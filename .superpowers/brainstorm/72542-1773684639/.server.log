@@ -1,0 +1,6 @@
+{"type":"server-started","port":54450,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:54450","screen_dir":"/Users/evanbaukol/Sites/groundwork-studio/.superpowers/brainstorm/72542-1773684639"}
+{"type":"screen-added","file":"/Users/evanbaukol/Sites/groundwork-studio/.superpowers/brainstorm/72542-1773684639/sections-overview.html"}
+{"type":"screen-added","file":"/Users/evanbaukol/Sites/groundwork-studio/.superpowers/brainstorm/72542-1773684639/design-comparison.html"}
+{"type":"screen-added","file":"/Users/evanbaukol/Sites/groundwork-studio/.superpowers/brainstorm/72542-1773684639/design-faq.html"}
+{"type":"screen-added","file":"/Users/evanbaukol/Sites/groundwork-studio/.superpowers/brainstorm/72542-1773684639/design-full.html"}
+{"type":"server-stopped","reason":"idle timeout"}

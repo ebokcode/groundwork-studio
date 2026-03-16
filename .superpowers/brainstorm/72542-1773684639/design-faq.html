@@ -1,0 +1,119 @@
+<h2>Section Design: FAQ</h2>
+<p class="subtitle">Accordion-style. Goes right before the contact form — last thing they read before filling it out. Each answer quietly handles an objection.</p>
+
+<div class="mockup">
+  <div class="mockup-header">FAQ Section — Interactive Preview</div>
+  <div class="mockup-body" style="padding:0;overflow:hidden;">
+
+    <div style="padding:32px 32px 24px;border-bottom:1px solid #e5e7eb;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;color:#16a34a;text-transform:uppercase;margin-bottom:6px;">FAQ</div>
+      <div style="font-size:20px;font-weight:800;color:#111827;">Common questions, straight answers.</div>
+    </div>
+
+    <div id="faq-list" style="padding:8px 0;">
+
+      <!-- Q1 -->
+      <div class="faq-item" style="border-bottom:1px solid #f3f4f6;">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">How long does it take to build my site?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          Most sites are live in <strong style="color:#374151;">1–2 weeks</strong> from the time we have your content (photos, copy, logo). The biggest delay is always waiting on content — the build itself is fast. Need it sooner? We can make it happen.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="faq-item" style="border-bottom:1px solid #f3f4f6;">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">Do I own my website?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          Yes — you own all the content, copy, and design. We host the site on our infrastructure, which keeps it fast and maintained. If you ever want to move it, we'll hand everything over. No hostage situations.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="faq-item" style="border-bottom:1px solid #f3f4f6;">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">What if I need changes after launch?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          Text and photo updates are included in our monthly maintenance plan — just send a message. Larger changes (new pages, new features) are quoted separately. Either way, you're talking to the person who built it, not a support ticket.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="faq-item" style="border-bottom:1px solid #f3f4f6;">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">Can't I just use Wix or Squarespace?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          You could. You'd spend 20–40 hours learning the platform, building something that looks like every other Wix site, paying $25–40/month forever, and handling everything yourself when it breaks. Most business owners have better things to do with their time.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="faq-item" style="border-bottom:1px solid #f3f4f6;">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">Will my site show up on Google?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          Every site we build includes on-page SEO basics — title tags, meta descriptions, site speed, mobile-friendliness, and proper structure. That's the foundation. For ongoing rankings and Google Business Profile management, ask us about the Growth plan.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="faq-item" style="border-bottom:1px solid #f3f4f6;">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">What do I need to provide to get started?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          Ideally: your logo, a few photos of your work or team, and a sense of what services you offer. That's it. No logo? We can help. No photos? We use professional stock. We've launched sites with nothing more than a phone call.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="faq-item">
+        <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:none;border:none;cursor:pointer;text-align:left;">
+          <span style="font-size:14px;font-weight:600;color:#111827;">Do you work with businesses outside of Phoenix?</span>
+          <span class="faq-icon" style="font-size:18px;color:#16a34a;font-weight:300;flex-shrink:0;margin-left:16px;">+</span>
+        </button>
+        <div class="faq-answer" style="display:none;padding:0 28px 16px;font-size:13px;color:#6b7280;line-height:1.7;">
+          We're based in Phoenix and focused on the Valley — Scottsdale, Mesa, Tempe, Chandler, Gilbert, Glendale. We like working with local businesses we can actually visit. Reach out and we'll let you know if it's a fit.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .faq-item button:hover { background:#f9fafb !important; }
+  .faq-item button:hover span:first-child { color:#16a34a !important; }
+</style>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = answer.style.display === 'block';
+    // close all
+    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+    document.querySelectorAll('.faq-icon').forEach(i => { i.textContent = '+'; i.style.transform = 'rotate(0deg)'; });
+    if (!isOpen) {
+      answer.style.display = 'block';
+      icon.textContent = '−';
+    }
+  }
+</script>
+
+<div class="section" style="margin-top:24px;">
+  <h3>7 questions — all functional in this preview</h3>
+  <p class="subtitle">Click any question to expand it. Each answer handles a real objection from your sales guide. Any you'd add, remove, or reword? Let me know in the terminal.</p>
+</div>
