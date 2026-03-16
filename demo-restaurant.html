@@ -5,173 +5,602 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesa Eats — Fresh Food &amp; Great Vibes</title>
   <meta name="description" content="Mesa's favorite local restaurant. Fresh food, great vibes, dine-in and takeout.">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="theme-restaurant">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:    #f2ede3;
+      --sand:     #e8e0ce;
+      --terra:    #b84c2a;
+      --terra-lt: #cf6b47;
+      --sage:     #5e7252;
+      --dark:     #1a1007;
+      --mid:      #3c2e1c;
+      --muted:    #8a7a68;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --sans:     'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--dark); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
-  <!-- ============================================================
-       DEMO BANNER (non-sticky)
-       ============================================================ -->
-  <div style="background:#16a34a;color:#ffffff;text-align:center;padding:10px 24px;font-size:12px;font-weight:500;">
+    /* ── DEMO BANNER ──────────────────────────────────────── */
+    .demo-bar {
+      position: relative; z-index: 400;
+      background: var(--terra); color: #fff;
+      text-align: center; padding: 9px 24px;
+      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
+    }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: fixed; left: 0; right: 0; z-index: 300;
+      padding: 0 44px; height: 66px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s, border-color .4s;
+    }
+    .nav.solid {
+      background: rgba(242,237,227,.97);
+      border-bottom: 1px solid rgba(60,40,20,.1);
+      backdrop-filter: blur(10px);
+    }
+    .nav-name {
+      font-family: var(--serif); font-size: 21px;
+      font-weight: 400; font-style: italic;
+      color: #fff; transition: color .4s;
+    }
+    .nav.solid .nav-name { color: var(--dark); }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-phone {
+      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
+      text-transform: uppercase; color: rgba(255,255,255,.75); transition: color .4s;
+    }
+    .nav.solid .nav-phone { color: var(--mid); }
+    .nav-btn {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; padding: 11px 24px;
+      background: rgba(255,255,255,.12); color: #fff;
+      border: 1px solid rgba(255,255,255,.32);
+      transition: background .25s, border-color .25s, color .25s;
+    }
+    .nav.solid .nav-btn { background: var(--terra); color: #fff; border-color: var(--terra); }
+    .nav-btn:hover { opacity: .85; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative; height: 100vh; min-height: 620px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=85')
+        center/cover no-repeat;
+    }
+    .hero-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg,
+        rgba(18,8,2,.55) 0%,
+        rgba(18,8,2,.50) 45%,
+        rgba(80,28,8,.68) 100%);
+    }
+    .hero-body {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 24px;
+      animation: riseIn 1.4s cubic-bezier(.16,1,.3,1) both;
+    }
+    .hero-eyebrow {
+      font-size: 10px; font-weight: 400; letter-spacing: 5px;
+      text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 22px;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(80px, 13vw, 160px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: .88; letter-spacing: -2px; margin-bottom: 28px;
+    }
+    .hero-rule {
+      width: 48px; height: 1px;
+      background: rgba(255,255,255,.38); margin: 0 auto 26px;
+    }
+    .hero-tagline {
+      font-family: var(--serif); font-size: 19px;
+      font-weight: 300; font-style: italic;
+      color: rgba(255,255,255,.68); margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+    .btn-fill {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; background: var(--terra); color: #fff;
+      padding: 14px 38px; display: inline-block; transition: background .2s;
+    }
+    .btn-fill:hover { background: var(--terra-lt); }
+    .btn-line {
+      font-size: 10.5px; font-weight: 400; letter-spacing: 2.5px;
+      text-transform: uppercase; color: rgba(255,255,255,.7);
+      border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-line:hover { color: #fff; border-color: rgba(255,255,255,.9); }
+    .hero-scroll {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      animation: scrollDrop 2.2s ease-in-out infinite;
+    }
+    .hero-scroll span {
+      font-size: 9px; letter-spacing: 3.5px;
+      text-transform: uppercase; color: rgba(255,255,255,.38);
+    }
+    .scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.35), transparent);
+    }
+
+    /* ── INTRO QUOTE ──────────────────────────────────────── */
+    .intro {
+      background: var(--cream);
+      padding: 112px 40px;
+      display: flex; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    /* Saguaro silhouette — right side */
+    .intro::before {
+      content: '';
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      width: 250px; height: 400px; opacity: .055; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200'%3E%3Cpath d='M48 200 L48 118 Q28 110 22 85 Q16 60 28 42 Q36 28 48 24 L48 0 L52 0 L52 24 Q64 28 72 42 Q84 60 78 85 Q72 110 52 118 L52 200Z' fill='%231a1007'/%3E%3Cpath d='M48 95 L22 95 L22 75 Q16 65 18 52 L22 52 Q20 64 26 74 L48 74Z' fill='%231a1007'/%3E%3Cpath d='M52 88 L78 88 L78 68 Q84 58 82 45 L78 45 Q80 57 74 67 L52 67Z' fill='%231a1007'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    /* Smaller saguaro — left */
+    .intro::after {
+      content: '';
+      position: absolute; left: 3%; top: 55%; transform: translateY(-50%);
+      width: 140px; height: 240px; opacity: .04; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 200'%3E%3Cpath d='M48 200 L48 118 Q28 110 22 85 Q16 60 28 42 Q36 28 48 24 L48 0 L52 0 L52 24 Q64 28 72 42 Q84 60 78 85 Q72 110 52 118 L52 200Z' fill='%231a1007'/%3E%3Cpath d='M48 95 L22 95 L22 75 Q16 65 18 52 L22 52 Q20 64 26 74 L48 74Z' fill='%231a1007'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .intro-inner { max-width: 740px; text-align: center; position: relative; z-index: 1; }
+    .lbl {
+      display: inline-block;
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--terra); margin-bottom: 24px;
+    }
+    .intro-quote {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4.2vw, 52px);
+      font-weight: 300; font-style: italic; line-height: 1.32; color: var(--dark);
+    }
+    .intro-rule { width: 36px; height: 1px; background: var(--terra); margin: 40px auto; }
+    .intro-desc {
+      font-size: 15px; font-weight: 300; line-height: 1.85;
+      color: var(--muted); max-width: 500px; margin: 0 auto;
+    }
+
+    /* ── MENU ─────────────────────────────────────────────── */
+    .menu { padding-bottom: 100px; }
+    .menu-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      padding: 0 44px 52px;
+      border-bottom: 1px solid rgba(60,40,20,.1);
+    }
+    .menu-h2 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 90px);
+      font-weight: 300; line-height: .9; color: var(--dark);
+    }
+    .menu-aside {
+      padding-bottom: 10px;
+      font-size: 13.5px; font-weight: 300;
+      color: var(--muted); line-height: 1.7;
+      max-width: 220px; text-align: right;
+    }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .menu-card { overflow: hidden; }
+    .menu-card-img-wrap { overflow: hidden; height: 340px; }
+    .menu-card-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .menu-card:hover .menu-card-img { transform: scale(1.06); }
+    .menu-card-body {
+      padding: 28px 32px 40px;
+      border-right: 1px solid rgba(60,40,20,.08);
+    }
+    .menu-card:last-child .menu-card-body { border-right: none; }
+    .card-num {
+      display: block;
+      font-family: var(--serif); font-size: 80px; font-weight: 300;
+      color: rgba(60,40,20,.06); line-height: 1; margin-bottom: -12px;
+    }
+    .card-cat {
+      font-size: 9.5px; font-weight: 500; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--terra); margin-bottom: 8px;
+    }
+    .card-name {
+      font-family: var(--serif); font-size: 28px; font-weight: 400;
+      color: var(--dark); margin-bottom: 10px; line-height: 1.15;
+    }
+    .card-desc {
+      font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.75;
+    }
+
+    /* ── DESERT PHOTO BAND ────────────────────────────────── */
+    .desert-band { position: relative; height: 480px; overflow: hidden; }
+    .desert-band-img {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=85')
+        center 40%/cover no-repeat;
+    }
+    .desert-band-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right,
+        rgba(18,8,2,.75) 0%,
+        rgba(18,8,2,.28) 55%,
+        rgba(18,8,2,.55) 100%);
+    }
+    .desert-band-inner {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; align-items: center; padding: 0 80px;
+    }
+    .desert-pull { max-width: 520px; }
+    .desert-lbl {
+      font-size: 10px; font-weight: 400; letter-spacing: 5px;
+      text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 20px;
+    }
+    .desert-q {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1.3; margin-bottom: 32px;
+    }
+    .desert-cta {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--terra-lt);
+      border-bottom: 1px solid var(--terra-lt); padding-bottom: 2px;
+      display: inline-block; transition: color .2s, border-color .2s;
+    }
+    .desert-cta:hover { color: #fff; border-color: #fff; }
+
+    /* ── HOURS SPLIT ──────────────────────────────────────── */
+    .split { display: grid; grid-template-columns: 1.15fr .85fr; }
+    .split-photo { position: relative; overflow: hidden; min-height: 580px; }
+    .split-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .split-dark {
+      background: var(--dark); padding: 88px 68px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .split-lbl {
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--terra-lt); margin-bottom: 22px;
+    }
+    .split-h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 300; font-style: italic;
+      color: var(--cream); margin-bottom: 50px; line-height: 1.12;
+    }
+    .hours-tbl { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+    .hours-tbl tr { border-bottom: 1px solid rgba(242,237,227,.08); }
+    .hours-tbl tr:first-child { border-top: 1px solid rgba(242,237,227,.08); }
+    .hours-tbl td { padding: 14px 0; font-size: 13.5px; font-weight: 300; }
+    .hours-tbl td:first-child { color: rgba(242,237,227,.45); }
+    .hours-tbl td:last-child { text-align: right; color: var(--cream); font-weight: 400; }
+    .split-addr {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(242,237,227,.4); line-height: 2;
+    }
+    .split-addr a { color: var(--terra-lt); font-weight: 500; }
+
+    /* ── TRUST STRIP ──────────────────────────────────────── */
+    .trust {
+      background: var(--sand);
+      padding: 72px 40px;
+      display: flex; justify-content: center;
+      gap: 72px; flex-wrap: wrap;
+    }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 30px; margin-bottom: 14px; }
+    .trust-name {
+      font-family: var(--serif); font-size: 19px; font-weight: 400;
+      color: var(--dark); margin-bottom: 4px;
+    }
+    .trust-sub {
+      font-size: 10.5px; font-weight: 400; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer { background: var(--dark); padding: 88px 44px 44px; }
+    .foot-top {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 64px;
+      border-bottom: 1px solid rgba(242,237,227,.08); margin-bottom: 40px;
+    }
+    .foot-brand {
+      font-family: var(--serif); font-size: 48px;
+      font-weight: 300; font-style: italic; color: var(--cream); line-height: 1;
+    }
+    .foot-brand span {
+      display: block; font-style: normal;
+      font-size: 10px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--terra-lt);
+      margin-top: 10px; font-weight: 400;
+    }
+    .foot-col-lbl {
+      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
+      text-transform: uppercase; color: rgba(242,237,227,.3); margin-bottom: 20px;
+    }
+    .foot-info {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(242,237,227,.4); line-height: 2.1;
+    }
+    .foot-info a { color: rgba(242,237,227,.4); }
+    .foot-info a:hover { color: var(--terra-lt); }
+    .foot-cta-btn {
+      display: inline-block;
+      font-size: 10.5px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; background: var(--cream);
+      color: var(--dark); padding: 15px 32px;
+      transition: background .2s, color .2s;
+    }
+    .foot-cta-btn:hover { background: var(--terra); color: #fff; }
+    .foot-note {
+      font-size: 12px; font-weight: 300;
+      color: rgba(242,237,227,.25); margin-top: 14px; line-height: 1.6;
+    }
+    .foot-bottom {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .foot-copy {
+      font-size: 11.5px; font-weight: 300; color: rgba(242,237,227,.22);
+    }
+    .foot-copy a { color: var(--terra-lt); font-weight: 500; }
+
+    /* ── KEYFRAMES ────────────────────────────────────────── */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(36px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollDrop {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      55%       { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      .nav-phone { display: none; }
+      .menu-head { padding: 0 20px 44px; flex-direction: column; align-items: flex-start; }
+      .menu-aside { text-align: left; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-card-body { border-right: none; border-bottom: 1px solid rgba(60,40,20,.08); }
+      .desert-band-inner { padding: 0 32px; }
+      .split { grid-template-columns: 1fr; }
+      .split-photo { min-height: 300px; height: 300px; position: relative; }
+      .split-dark { padding: 56px 32px; }
+      .foot-top { grid-template-columns: 1fr; gap: 36px; }
+      .trust { gap: 40px; padding: 56px 24px; }
+      .intro { padding: 80px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">
     This is a demo site — an example of what your business could look like.&nbsp;
-    <a href="index.html" style="color:#ffffff;font-weight:700;text-decoration:underline;">Built by Groundwork Studio →</a>
+    <a href="index.html">Built by Groundwork Studio →</a>
   </div>
 
-  <!-- ============================================================
-       STICKY NAV
-       ============================================================ -->
-  <header style="position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:1px solid #e5e7eb;">
-    <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;position:relative;">
-
-      <!-- Business name -->
-      <span style="font-weight:800;font-size:17px;color:#ea580c;letter-spacing:-0.3px;">Mesa Eats</span>
-
-      <!-- Desktop nav (restaurant-specific links) -->
-      <div class="desktop-nav" style="display:flex;align-items:center;gap:28px;">
-        <a href="#menu" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Menu</a>
-        <a href="#location" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Location</a>
-        <a href="#contact" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Contact</a>
-        <a href="tel:+14805550231" style="font-size:14px;font-weight:700;color:#ea580c;text-decoration:none;">(480) 555-0231</a>
-      </div>
-
-      <!-- Hamburger (mobile) -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
-      <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
-
-      <!-- Mobile dropdown -->
-      <nav class="mobile-nav">
-        <a href="#menu">Menu</a>
-        <a href="#location">Location</a>
-        <a href="#contact">Contact</a>
-        <a href="tel:+14805550231" style="color:#ea580c;">(480) 555-0231</a>
-      </nav>
-
+  <!-- NAV -->
+  <nav class="nav" id="siteNav">
+    <a href="#" class="nav-name">Mesa Eats</a>
+    <div class="nav-right">
+      <a href="tel:+14805550231" class="nav-phone">(480) 555-0231</a>
+      <a href="#menu" class="nav-btn">View Menu</a>
     </div>
-  </header>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-body">
+      <p class="hero-eyebrow">Mesa, Arizona &nbsp;·&nbsp; Est. 2018</p>
+      <h1 class="hero-name">Mesa Eats</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">Fresh food. Great vibes. Mesa's favorite table.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-fill">View Menu</a>
+        <a href="tel:+14805550231" class="btn-line">Call to Reserve</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
 
   <main>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
-  <section style="background:linear-gradient(rgba(80,20,5,0.70),rgba(180,60,10,0.70)),url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80') center/cover no-repeat;padding:80px 24px;text-align:center;">
-    <div style="max-width:700px;margin:0 auto;">
-      <h1 class="hero-headline" style="font-size:44px;font-weight:800;color:#ffffff;line-height:1.15;margin-bottom:16px;">
-        Fresh Food. Great Vibes.<br>Mesa's Favorite Table.
-      </h1>
-      <p style="font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:32px;line-height:1.7;">
-        Locally owned and operated. Made fresh daily. Dine-in, takeout, and private events.
-      </p>
-      <a href="#menu"
-         style="background:#ffffff;color:#7c2d12;font-size:15px;font-weight:800;padding:16px 36px;border-radius:6px;text-decoration:none;display:inline-block;">
-        See Our Menu
-      </a>
-      <p style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:0.3px;">📸 Your real business photos replace this stock image</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       MENU HIGHLIGHTS (replaces Services)
-       ============================================================ -->
-  <section id="menu" style="padding:64px 24px;border-bottom:1px solid #e5e7eb;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#ea580c;text-transform:uppercase;margin-bottom:8px;">
-        Menu
+    <!-- INTRO / STORY -->
+    <section class="intro">
+      <div class="intro-inner">
+        <span class="lbl">Our Story</span>
+        <p class="intro-quote">"Where the desert meets the table — bold flavors, local roots, and a kitchen that truly cares."</p>
+        <div class="intro-rule"></div>
+        <p class="intro-desc">Locally owned and operated since 2018. Every plate is made fresh daily using ingredients sourced from Arizona farms. We believe good food should feel like coming home.</p>
       </div>
-      <h2 style="font-size:26px;font-weight:800;color:#111827;margin-bottom:32px;">
-        What We're Known For
-      </h2>
+    </section>
 
-      <div class="grid-3col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">🍳</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Breakfast Plates</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Fresh eggs, house potatoes, and all your morning favorites.</p>
-        </div>
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">🥗</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Lunch Specials</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Rotating daily specials made from local ingredients.</p>
-        </div>
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">🥂</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Weekend Brunch</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Saturday and Sunday 8am–2pm. Mimosas included.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       HOURS & LOCATION (replaces Why Us)
-       ============================================================ -->
-  <section id="location" style="background:#f9fafb;padding:64px 24px;border-bottom:1px solid #e5e7eb;">
-    <div style="max-width:900px;margin:0 auto;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#ea580c;text-transform:uppercase;margin-bottom:8px;">
-        Hours &amp; Location
-      </div>
-      <h2 style="font-size:26px;font-weight:800;color:#111827;margin-bottom:32px;">
-        Come find us
-      </h2>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:32px;">
-
+    <!-- MENU -->
+    <section class="menu" id="menu">
+      <div class="menu-head">
         <div>
-          <h3 style="font-size:15px;font-weight:700;color:#111827;margin-bottom:12px;">Hours</h3>
-          <div style="font-size:14px;color:#6b7280;line-height:2.2;">
-            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e5e7eb;padding-bottom:6px;margin-bottom:6px;">
-              <span>Mon – Fri</span><span style="color:#111827;font-weight:600;">7am – 3pm</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;">
-              <span>Sat – Sun</span><span style="color:#111827;font-weight:600;">8am – 2pm</span>
-            </div>
+          <span class="lbl">What We're Known For</span>
+          <h2 class="menu-h2">Crafted<br>Fresh<br>Daily.</h2>
+        </div>
+        <p class="menu-aside">Breakfast · Lunch · Weekend Brunch<br>Made from scratch, every single day.</p>
+      </div>
+
+      <div class="menu-grid">
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img"
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=80"
+              alt="Breakfast plates">
+          </div>
+          <div class="menu-card-body">
+            <span class="card-num">01</span>
+            <p class="card-cat">Morning</p>
+            <h3 class="card-name">Breakfast Plates</h3>
+            <p class="card-desc">Farm eggs, house-made potatoes, and everything you want before noon. Served until 11am daily.</p>
           </div>
         </div>
 
-        <div>
-          <h3 style="font-size:15px;font-weight:700;color:#111827;margin-bottom:12px;">Address</h3>
-          <div style="font-size:14px;color:#6b7280;line-height:1.8;">
-            1145 S Dobson Rd<br>Mesa, AZ 85202<br>
-            <a href="tel:+14805550231" style="color:#ea580c;text-decoration:none;font-weight:600;">(480) 555-0231</a>
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img"
+              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=700&q=80"
+              alt="Lunch specials">
+          </div>
+          <div class="menu-card-body">
+            <span class="card-num">02</span>
+            <p class="card-cat">Midday</p>
+            <h3 class="card-name">Lunch Specials</h3>
+            <p class="card-desc">Rotating daily specials built around what's fresh and local. Never the same twice.</p>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img"
+              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80"
+              alt="Weekend brunch">
+          </div>
+          <div class="menu-card-body">
+            <span class="card-num">03</span>
+            <p class="card-cat">Weekend</p>
+            <h3 class="card-name">Weekend Brunch</h3>
+            <p class="card-desc">Saturday &amp; Sunday 8am–2pm. Mimosas, live music, and the most popular table in Mesa.</p>
           </div>
         </div>
 
       </div>
+    </section>
 
-      <!-- Map placeholder — no iframe, no external embed, no JS -->
-      <div style="background:#e5e7eb;height:200px;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-        <span style="font-size:15px;color:#6b7280;">📍 1145 S Dobson Rd, Mesa AZ 85202</span>
+    <!-- DESERT PHOTO DIVIDER -->
+    <div class="desert-band">
+      <div class="desert-band-img"></div>
+      <div class="desert-band-inner">
+        <div class="desert-pull">
+          <p class="desert-lbl">Arizona Grown</p>
+          <p class="desert-q">"We source from Arizona farms because the desert grows something extraordinary — and so do we."</p>
+          <a href="#contact" class="desert-cta">Reserve a Table →</a>
+        </div>
       </div>
     </div>
-  </section>
+
+    <!-- HOURS & LOCATION -->
+    <section class="split" id="location">
+      <div class="split-photo">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&q=85"
+             alt="Mesa Eats dining room">
+      </div>
+      <div class="split-dark">
+        <p class="split-lbl">Hours &amp; Location</p>
+        <h2 class="split-h2">Come find<br>your table.</h2>
+        <table class="hours-tbl">
+          <tr><td>Monday – Friday</td><td>7am – 3pm</td></tr>
+          <tr><td>Saturday – Sunday</td><td>8am – 2pm</td></tr>
+        </table>
+        <div class="split-addr">
+          1145 S Dobson Rd, Mesa, AZ 85202<br>
+          <a href="tel:+14805550231">(480) 555-0231</a><br>
+          <a href="mailto:hello@mesaeatsaz.com">hello@mesaeatsaz.com</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust">
+      <div class="trust-item">
+        <div class="trust-icon">🌵</div>
+        <div class="trust-name">Locally Owned</div>
+        <div class="trust-sub">Mesa, Arizona</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🌾</div>
+        <div class="trust-name">Farm to Table</div>
+        <div class="trust-sub">Arizona Sourced</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🥂</div>
+        <div class="trust-name">Weekend Brunch</div>
+        <div class="trust-sub">Sat &amp; Sun 8–2</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📋</div>
+        <div class="trust-name">Private Events</div>
+        <div class="trust-sub">Up to 60 Guests</div>
+      </div>
+    </section>
 
   </main>
 
-  <!-- ============================================================
-       CONTACT / FOOTER
-       ============================================================ -->
-  <footer id="contact" style="background:#111827;padding:48px 24px 24px;">
-    <div style="max-width:1100px;margin:0 auto;">
-
-      <div style="margin-bottom:32px;">
-        <div style="font-weight:800;font-size:18px;color:#ffffff;margin-bottom:16px;">Mesa Eats</div>
-        <div style="font-size:14px;color:#9ca3af;line-height:2;">
-          1145 S Dobson Rd, Mesa, AZ 85202<br>
-          <a href="tel:+14805550231" style="color:#9ca3af;text-decoration:none;">(480) 555-0231</a><br>
-          <a href="mailto:hello@mesaeatsaz.com" style="color:#9ca3af;text-decoration:none;">hello@mesaeatsaz.com</a>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          Mesa Eats
+          <span>Mesa, Arizona</span>
         </div>
       </div>
-
-      <div style="border-top:1px solid #1f2937;padding-top:16px;font-size:12px;color:#6b7280;text-align:center;">
-        Demo site &mdash; <a href="index.html" style="color:#16a34a;text-decoration:none;font-weight:600;">Site by Groundwork Studio</a>
+      <div>
+        <p class="foot-col-lbl">Find Us</p>
+        <div class="foot-info">
+          1145 S Dobson Rd<br>
+          Mesa, AZ 85202<br>
+          <a href="tel:+14805550231">(480) 555-0231</a><br>
+          <a href="mailto:hello@mesaeatsaz.com">hello@mesaeatsaz.com</a>
+        </div>
+      </div>
+      <div>
+        <p class="foot-col-lbl">Reserve a Table</p>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="foot-cta-btn">
+          Get in Touch
+        </a>
+        <p class="foot-note">No reservation app needed —<br>just call or drop us an email.</p>
       </div>
     </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
+      <p class="foot-copy">© 2026 Mesa Eats</p>
+    </div>
   </footer>
+
+  <script>
+    const nav = document.getElementById('siteNav');
+    const banner = document.querySelector('.demo-bar');
+
+    function updateNav() {
+      const y = window.scrollY;
+      const bh = banner.offsetHeight;
+      nav.style.top = Math.max(0, bh - y) + 'px';
+      nav.classList.toggle('solid', y > 80);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  </script>
 
 </body>
 </html>
