@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desert Ridge Auto — Mesa Auto Repair</title>
+  <meta name="description" content="Honest, fast auto repair in Mesa, AZ. Oil changes, brakes, diagnostics, and more. Free estimates.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:     #0d0d0d;
+      --navy:    #1a1a1a;
+      --card:    #1f1f1f;
+      --border:  #2e2e2e;
+      --orange:  #ea580c;
+      --orange-lt: #f97316;
+      --orange-gl: rgba(234,88,12,.12);
+      --white:   #f5f0eb;
+      --muted:   #8a8a8a;
+      --serif:   'Barlow Condensed', sans-serif;
+      --sans:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── DEMO BANNER ──────────────────────────────────────── */
+    .demo-bar {
+      background: var(--orange); color: #fff;
+      text-align: center; padding: 9px 24px;
+      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
+      position: relative; z-index: 400;
+    }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: fixed; left: 0; right: 0; z-index: 300;
+      padding: 0 44px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .35s, border-color .35s;
+    }
+    .nav.solid {
+      background: rgba(13,13,13,.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 20px; font-weight: 800;
+      letter-spacing: .5px; text-transform: uppercase; color: var(--white);
+    }
+    .nav-logo span { color: var(--orange-lt); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-emergency {
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      background: var(--orange); color: #fff;
+      padding: 10px 22px; display: flex; align-items: center; gap: 8px;
+      transition: background .2s;
+    }
+    .nav-emergency:hover { background: var(--orange-lt); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 44px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80')
+        center/cover no-repeat;
+      animation: kenBurns 22s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
+    @keyframes kenBurns {
+      from { transform: scale(1) translateX(0); }
+      to   { transform: scale(1.1) translateX(2%); }
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg,
+        rgba(13,13,13,.95) 0%,
+        rgba(13,13,13,.88) 50%,
+        rgba(13,13,13,.6) 100%);
+    }
+    /* Animated orange line accent */
+    .hero-bg::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--orange), var(--orange-lt), transparent);
+      z-index: 1;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 60px; align-items: center;
+      max-width: 1200px; width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--orange-lt);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 2px;
+      background: var(--orange-lt);
+    }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(72px, 11vw, 140px);
+      font-weight: 900; line-height: .88;
+      letter-spacing: -1px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .hero-h1 em {
+      font-style: normal; color: var(--orange-lt);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 16px; font-weight: 300; line-height: 1.7;
+      color: var(--muted); max-width: 440px; margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--orange); color: #fff;
+      padding: 16px 36px; display: inline-block;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--orange-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: transparent; color: var(--white);
+      padding: 16px 36px; border: 1px solid var(--border);
+      display: inline-block; transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--orange-lt); color: var(--orange-lt); }
+    /* Call card */
+    .hero-cta-card {
+      background: var(--navy); border: 1px solid var(--border);
+      padding: 36px 32px; min-width: 260px;
+      position: relative; overflow: hidden;
+    }
+    .hero-cta-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--orange);
+    }
+    .cta-card-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 12px;
+    }
+    .cta-card-title {
+      font-family: var(--serif); font-size: 28px; font-weight: 800;
+      line-height: 1.1; margin-bottom: 20px; text-transform: uppercase;
+    }
+    .cta-card-phone {
+      font-family: var(--serif); font-size: 30px; font-weight: 900;
+      color: var(--white); display: block; margin-bottom: 18px;
+      letter-spacing: -.5px;
+    }
+    .pulse-btn {
+      display: block; width: 100%;
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: var(--orange); color: #fff;
+      padding: 14px 20px; text-align: center;
+      animation: pulseGlow 2.5s ease-in-out infinite;
+      transition: background .2s;
+    }
+    .pulse-btn:hover { background: var(--orange-lt); animation: none; }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,.5); }
+      50%       { box-shadow: 0 0 0 12px rgba(234,88,12,0); }
+    }
+
+    /* ── STATS STRIP ──────────────────────────────────────── */
+    .stats {
+      background: var(--navy); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 44px;
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat {
+      flex: 1; text-align: center; padding: 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--serif); font-size: 52px; font-weight: 900;
+      line-height: 1; color: var(--orange-lt); letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    .services { padding: 100px 44px; }
+    .section-header { margin-bottom: 60px; }
+    .section-tag {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-tag::before {
+      content: ''; display: block; width: 28px; height: 2px; background: var(--orange-lt);
+    }
+    .section-h2 {
+      font-family: var(--serif); font-size: clamp(44px, 7vw, 80px);
+      font-weight: 900; line-height: .9; text-transform: uppercase;
+      color: var(--white);
+    }
+    .section-h2 span { color: var(--orange-lt); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .svc-card {
+      background: var(--card); padding: 40px 36px;
+      border-left: 2px solid transparent;
+      transition: border-color .25s, background .25s, transform .2s;
+      cursor: default; position: relative; overflow: hidden;
+    }
+    .svc-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--orange-gl); opacity: 0; transition: opacity .25s;
+    }
+    .svc-card:hover { border-left-color: var(--orange-lt); background: #2a1a10; }
+    .svc-card:hover::after { opacity: 1; }
+    .svc-card:hover { transform: translateX(4px); }
+    .svc-icon {
+      font-size: 36px; margin-bottom: 20px; display: block;
+    }
+    .svc-num {
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--serif); font-size: 64px; font-weight: 900;
+      color: rgba(234,88,12,.08); line-height: 1;
+    }
+    .svc-title {
+      font-family: var(--serif); font-size: 28px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .svc-desc {
+      font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .svc-link {
+      font-size: 11px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange-lt);
+      display: flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .svc-card:hover .svc-link { gap: 10px; }
+
+    /* ── PROCESS SECTION ─────────────────────────────────────── */
+    .process {
+      background: var(--card);
+      padding: 96px 44px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .process-grid {
+      max-width: 1200px; margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .process-step {
+      background: var(--navy);
+      padding: 48px 36px;
+      position: relative;
+      border-top: 2px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .process-step:hover { border-top-color: var(--orange-lt); }
+    .process-connector {
+      position: absolute;
+      top: 50px; right: -1px;
+      width: 2px; height: 40px;
+      background: var(--border);
+    }
+    .process-step:last-child .process-connector { display: none; }
+    .process-step-num {
+      font-family: var(--serif);
+      font-size: 5.5rem; font-weight: 900;
+      color: rgba(234,88,12,0.07);
+      line-height: 1; margin-bottom: -14px;
+    }
+    .process-step-icon {
+      font-size: 2rem; margin-bottom: 16px; display: block;
+    }
+    .process-step-title {
+      font-family: var(--serif);
+      font-size: 1.4rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .process-step-desc {
+      font-size: 14px; font-weight: 300;
+      line-height: 1.75; color: var(--muted);
+    }
+    @media (max-width: 960px) {
+      .process { padding: 60px 20px; }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── PHOTO CTA BAND ──────────────────────────────────────── */
+    .photo-cta-band {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+    .photo-cta-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80') center/cover no-repeat;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .photo-cta-band:hover .photo-cta-bg { transform: scale(1); }
+    .photo-cta-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right,
+        rgba(13,13,13,0.92) 0%,
+        rgba(13,13,13,0.7) 55%,
+        rgba(13,13,13,0.5) 100%);
+    }
+    .photo-cta-inner {
+      position: relative; z-index: 2;
+      height: 100%;
+      display: flex; align-items: center;
+      padding: 0 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .photo-cta-content { max-width: 520px; }
+    .photo-cta-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 20px;
+    }
+    .photo-cta-headline {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900; text-transform: uppercase;
+      line-height: 0.9; color: var(--white);
+      margin-bottom: 24px;
+    }
+    .photo-cta-sub {
+      font-size: 15px; font-weight: 300;
+      color: rgba(245,240,235,0.7); line-height: 1.7;
+      margin-bottom: 36px; max-width: 400px;
+    }
+    .photo-cta-phone {
+      font-family: var(--serif); font-size: 48px; font-weight: 900;
+      color: var(--white); letter-spacing: -1px;
+      display: block; margin-bottom: 20px;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .photo-cta-phone:hover { color: var(--orange-lt); }
+    @media (max-width: 960px) {
+      .photo-cta-band { height: auto; }
+      .photo-cta-inner { padding: 80px 24px; }
+    }
+
+    /* ── WHY US ───────────────────────────────────────────── */
+    .why { background: var(--navy); padding: 100px 44px; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .why-item {
+      background: var(--card); padding: 44px 36px;
+      border-top: 2px solid var(--border);
+      transition: border-color .2s;
+    }
+    .why-item:hover { border-top-color: var(--orange-lt); }
+    .why-num {
+      font-family: var(--serif); font-size: 88px; font-weight: 900;
+      color: rgba(234,88,12,.08); line-height: 1; margin-bottom: -16px;
+    }
+    .why-title {
+      font-family: var(--serif); font-size: 22px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .why-desc {
+      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────────────────── */
+    .reviews { background: var(--ink); padding: 100px 44px; border-top: 1px solid var(--border); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      margin-top: 60px;
+    }
+    .review-card {
+      background: var(--card); padding: 40px 32px;
+      border-top: 3px solid transparent;
+      transition: border-color .25s;
+    }
+    .review-card:hover { border-top-color: var(--orange-lt); }
+    .review-stars { color: #facc15; font-size: 16px; margin-bottom: 18px; letter-spacing: 2px; }
+    .review-text {
+      font-size: 14.5px; font-weight: 300; line-height: 1.8;
+      color: rgba(245,240,235,.65); margin-bottom: 24px; font-style: italic;
+    }
+    .review-author {
+      font-family: var(--serif); font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
+    }
+    .review-loc {
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--muted); margin-top: 3px;
+    }
+    @media (max-width: 960px) { .reviews-grid { grid-template-columns: 1fr; } .reviews { padding: 60px 20px; } }
+
+    /* ── TRUST BADGES ─────────────────────────────────────── */
+    .trust {
+      padding: 56px 44px;
+      display: flex; justify-content: center;
+      gap: 60px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 28px; margin-bottom: 10px; }
+    .trust-label {
+      font-family: var(--serif); font-size: 16px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); margin-bottom: 3px;
+    }
+    .trust-sub {
+      font-size: 11px; font-weight: 300; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer { background: var(--navy); padding: 80px 44px 44px; }
+    .foot-top {
+      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 48px; padding-bottom: 60px;
+      border-bottom: 1px solid var(--border); margin-bottom: 36px;
+    }
+    .foot-brand {
+      font-family: var(--serif); font-size: 36px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .5px; line-height: 1;
+    }
+    .foot-brand span { color: var(--orange-lt); }
+    .foot-brand sub {
+      display: block; font-size: 10px; font-weight: 400; letter-spacing: 3px;
+      color: var(--muted); margin-top: 8px; text-transform: uppercase;
+    }
+    .foot-col-head {
+      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+    }
+    .foot-info {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(245,240,235,.4); line-height: 2.1;
+    }
+    .foot-info a { color: rgba(245,240,235,.4); transition: color .2s; }
+    .foot-info a:hover { color: var(--orange-lt); }
+    .foot-cta {
+      display: inline-block;
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: var(--orange); color: #fff; padding: 15px 30px;
+      transition: background .2s;
+    }
+    .foot-cta:hover { background: var(--orange-lt); }
+    .foot-cta-note {
+      font-size: 12px; font-weight: 300; color: var(--muted);
+      margin-top: 12px; line-height: 1.6;
+    }
+    .foot-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(245,240,235,.2); }
+    .foot-copy a { color: var(--orange-lt); font-weight: 500; }
+
+    /* ── ANIMATIONS / SCROLL REVEAL ───────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 20px; min-height: auto; padding-top: 120px; padding-bottom: 60px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-cta-card { max-width: 340px; }
+      .stats { padding: 32px 20px; gap: 0; flex-wrap: wrap; }
+      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .services { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; gap: 2px; }
+      .why { padding: 60px 20px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .foot-top { grid-template-columns: 1fr; gap: 32px; }
+      .trust { gap: 32px; padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">
+    Auto Repair Demo — an example of what your business could look like.&nbsp;
+    <a href="index.html">Built by Groundwork Studio →</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="siteNav">
+    <div class="nav-logo">Desert Ridge<span>.</span></div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#why">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="tel:+14805550191" class="nav-emergency">🔧 (480) 555-0191</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">Mesa, AZ</p>
+        <h1 class="hero-h1">
+          Phoenix's<br>
+          <em>Trusted</em><br>
+          Auto Repair.
+        </h1>
+        <p class="hero-sub">Honest repairs. Fair prices. Done right the first time.</p>
+        <div class="hero-actions">
+          <a href="tel:+14805550191" class="btn-primary">Get a Free Estimate</a>
+          <a href="tel:+14805550191" class="btn-ghost">Call (480) 555-0191</a>
+        </div>
+      </div>
+      <div class="hero-cta-card">
+        <p class="cta-card-label">Free Estimates</p>
+        <h3 class="cta-card-title">Need Your Car Fixed?</h3>
+        <a href="tel:+14805550191" class="cta-card-phone">(480) 555-0191</a>
+        <a href="tel:+14805550191" class="pulse-btn">Get a Free Estimate →</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num" data-target="20">20</div>
+        <div class="stat-label">Years in Mesa</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="12">12</div>
+        <div class="stat-label">Month Warranty</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="5000">5000</div>
+        <div class="stat-label">Cars Serviced</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="100">100</div>
+        <div class="stat-label">% ASE Certified</div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="section-header reveal">
+        <p class="section-tag">What We Handle</p>
+        <h2 class="section-h2">Every Job.<br><span>Done Right.</span></h2>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <span class="svc-num">01</span>
+          <span class="svc-icon">🛢️</span>
+          <h3 class="svc-title">Oil Change &amp; Fluids</h3>
+          <p class="svc-desc">Full-service oil changes with all major fluid checks. In and out fast — no appointment needed.</p>
+          <a href="tel:+14805550191" class="svc-link">Get a Quote → </a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">02</span>
+          <span class="svc-icon">🛑</span>
+          <h3 class="svc-title">Brake Repair</h3>
+          <p class="svc-desc">Pads, rotors, calipers, and brake fluid — we inspect the full system and give you an honest assessment before any work begins.</p>
+          <a href="tel:+14805550191" class="svc-link">Get a Quote → </a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">03</span>
+          <span class="svc-icon">❄️</span>
+          <h3 class="svc-title">AC &amp; Heating</h3>
+          <p class="svc-desc">AC recharge, compressor repair, and heater core service. Don't sweat the Arizona heat — we'll get your climate control working right.</p>
+          <a href="tel:+14805550191" class="svc-link">Get a Quote → </a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">04</span>
+          <span class="svc-icon">🔍</span>
+          <h3 class="svc-title">Engine Diagnostics</h3>
+          <p class="svc-desc">Check engine light? We scan, diagnose, and explain the issue in plain language — no jargon, no unnecessary upsells.</p>
+          <a href="tel:+14805550191" class="svc-link">Get a Quote → </a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">05</span>
+          <span class="svc-icon">🔄</span>
+          <h3 class="svc-title">Tire Services</h3>
+          <p class="svc-desc">Tire rotation, balancing, flat repair, and new tire installation. We carry all major brands at competitive prices.</p>
+          <a href="tel:+14805550191" class="svc-link">Get a Quote → </a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">06</span>
+          <span class="svc-icon">⚙️</span>
+          <h3 class="svc-title">Transmission</h3>
+          <p class="svc-desc">Fluid service, filter replacement, and full transmission repair. Most jobs completed same week with a loaner vehicle available.</p>
+          <a href="tel:+14805550191" class="svc-link">Get a Quote → </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT TO EXPECT -->
+    <section class="process">
+      <div class="section-header reveal" style="max-width:1200px;margin:0 auto;">
+        <p class="section-tag">Simple &amp; Straightforward</p>
+        <h2 class="section-h2">What to<br><span>Expect.</span></h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-connector"></div>
+          <div class="process-step-num">01</div>
+          <span class="process-step-icon">🚗</span>
+          <h3 class="process-step-title">Drop Off</h3>
+          <p class="process-step-desc">Leave your vehicle with us — no appointment needed.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.1s">
+          <div class="process-connector"></div>
+          <div class="process-step-num">02</div>
+          <span class="process-step-icon">🔍</span>
+          <h3 class="process-step-title">Diagnosis</h3>
+          <p class="process-step-desc">We inspect and call you with a clear estimate before any work begins.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.2s">
+          <div class="process-connector"></div>
+          <div class="process-step-num">03</div>
+          <span class="process-step-icon">✅</span>
+          <h3 class="process-step-title">Approval</h3>
+          <p class="process-step-desc">You say go, we get it done — same day for most repairs.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.3s">
+          <div class="process-step-num">04</div>
+          <span class="process-step-icon">🏁</span>
+          <h3 class="process-step-title">Pick Up</h3>
+          <p class="process-step-desc">Your vehicle is ready, cleaned, and waiting for you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO CTA BAND -->
+    <div class="photo-cta-band">
+      <div class="photo-cta-bg"></div>
+      <div class="photo-cta-overlay"></div>
+      <div class="photo-cta-inner">
+        <div class="photo-cta-content reveal">
+          <p class="photo-cta-label">Mesa, AZ Auto Repair</p>
+          <h2 class="photo-cta-headline">Don't wait for<br>a small problem<br>to become a<br>big one.</h2>
+          <a href="tel:+14805550191" class="photo-cta-phone">(480) 555-0191</a>
+          <a href="tel:+14805550191" class="btn-primary">Get a Free Estimate →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY US -->
+    <section class="why" id="why">
+      <div class="section-header reveal">
+        <p class="section-tag">Why Desert Ridge Auto</p>
+        <h2 class="section-h2">Why Mesa<br><span>Trusts Us.</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item reveal">
+          <div class="why-num">01</div>
+          <h3 class="why-title">ASE Certified Technicians</h3>
+          <p class="why-desc">Every technician on our team is ASE certified. You're getting skilled, tested professionals — not trainees.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">02</div>
+          <h3 class="why-title">Same-Day Repairs</h3>
+          <p class="why-desc">Most repairs are completed the same day you drop off. We know you need your car — we don't make you wait.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">03</div>
+          <h3 class="why-title">12-Month Warranty</h3>
+          <p class="why-desc">Every repair comes backed by a 12-month warranty. If something isn't right, we make it right — no questions asked.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="reviews">
+      <div class="section-header reveal">
+        <p class="section-tag">What Customers Say</p>
+        <h2 class="section-h2">Real Reviews.<br><span>Real Mesa Drivers.</span></h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Brought my truck in for brakes and they had it done same day. Fair price, no runaround."</p>
+          <div class="review-author">Mike T.</div>
+          <div class="review-loc">Mesa · Google Review</div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"They diagnosed an issue two other shops missed. Honest and fast."</p>
+          <div class="review-author">Sandra R.</div>
+          <div class="review-loc">Gilbert · Google Review</div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Been taking my cars here for 3 years. Never felt like I was getting ripped off."</p>
+          <div class="review-author">James K.</div>
+          <div class="review-loc">Chandler · Google Review</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <div class="trust">
+      <div class="trust-item">
+        <div class="trust-icon">🏆</div>
+        <div class="trust-label">ASE Certified</div>
+        <div class="trust-sub">All Technicians</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🚗</div>
+        <div class="trust-label">Loaner Vehicles</div>
+        <div class="trust-sub">Available</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <div class="trust-label">12-Month Warranty</div>
+        <div class="trust-sub">On All Repairs</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          Desert Ridge<span>.</span>
+          <sub>Mesa, AZ Auto Repair</sub>
+        </div>
+      </div>
+      <div>
+        <p class="foot-col-head">Find Us</p>
+        <div class="foot-info">
+          Mesa, AZ<br>
+          <a href="tel:+14805550191">(480) 555-0191</a><br>
+          <br>
+          Oil Changes · Brakes<br>
+          Diagnostics · AC Repair · Tires
+        </div>
+      </div>
+      <div>
+        <p class="foot-col-head">Get a Quote</p>
+        <a href="mailto:evan@teamground.work?subject=Auto%20Repair%20Quote%20Request" class="foot-cta">
+          Free Estimate →
+        </a>
+        <p class="foot-cta-note">No commitment. We'll call you<br>back within the hour.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
+      <p class="foot-copy">© 2026 Desert Ridge Auto</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav solid on scroll
+    const nav = document.getElementById('siteNav');
+    const banner = document.querySelector('.demo-bar');
+    function updateNav() {
+      const y = window.scrollY;
+      nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
+      nav.classList.toggle('solid', y > 80);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Animated stat counters
+    const statNums = document.querySelectorAll('.stat-num[data-target]');
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = +el.dataset.target;
+        const duration = 1600;
+        const start = performance.now();
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(ease * target);
+          el.textContent = current;
+          if (progress < 1) requestAnimationFrame(tick);
+          else el.textContent = target;
+        }
+        el.textContent = '0';
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(el => counterObserver.observe(el));
+  </script>
+
+</body>
+</html>
