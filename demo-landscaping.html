@@ -439,6 +439,34 @@
     }
     .foot-copy a { color: var(--sage-lt); font-weight: 500; }
 
+    /* ── CUSTOM CURSOR ────────────────────────────────────── */
+    body { cursor: none; }
+    a, button { cursor: none; }
+    .cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 12px; height: 12px;
+      border-radius: 50%; pointer-events: none;
+      background: var(--sage);
+      transform: translate(-50%, -50%);
+      transition: width .35s cubic-bezier(.16,1,.3,1),
+                  height .35s cubic-bezier(.16,1,.3,1),
+                  background .3s, opacity .3s,
+                  transform .08s linear;
+      mix-blend-mode: normal;
+    }
+    .cursor.expanded {
+      width: 64px; height: 64px;
+      background: transparent;
+      border: 1.5px solid rgba(122,154,110,.7);
+    }
+    .cursor.on-dark {
+      background: var(--cream);
+    }
+    .cursor.expanded.on-dark {
+      background: transparent;
+      border-color: rgba(244,240,230,.5);
+    }
+
     /* ── SCROLL REVEAL ────────────────────────────────────── */
     .reveal {
       opacity: 0; transform: translateY(24px);
@@ -458,6 +486,8 @@
 
     /* ── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 960px) {
+      body, a, button { cursor: auto !important; }
+      .cursor { display: none; }
       .nav { padding: 0 20px; }
       .nav-links { display: none; }
       .hero-inner { padding: 0 24px; flex-direction: column; align-items: flex-start; }
@@ -566,7 +596,7 @@
             <li>Edging &amp; trimming included</li>
             <li>Seasonal schedule adjustments</li>
           </ul>
-          <a href="tel:+16235550177" class="svc-cta">Get a Quote →</a>
+          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
         </div>
       </div>
 
@@ -583,7 +613,7 @@
             <li>Rock &amp; gravel design</li>
             <li>Drought-tolerant installations</li>
           </ul>
-          <a href="tel:+16235550177" class="svc-cta">Get a Quote →</a>
+          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
         </div>
       </div>
 
@@ -600,7 +630,7 @@
             <li>Leak detection &amp; repair</li>
             <li>Seasonal tune-ups</li>
           </ul>
-          <a href="tel:+16235550177" class="svc-cta">Get a Quote →</a>
+          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
         </div>
       </div>
 
@@ -617,7 +647,7 @@
             <li>Pre-season preparation</li>
             <li>Debris &amp; waste removal</li>
           </ul>
-          <a href="tel:+16235550177" class="svc-cta">Get a Quote →</a>
+          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
         </div>
       </div>
 
@@ -744,6 +774,33 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+
+    // Custom cursor
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor');
+    document.body.appendChild(cursor);
+
+    let mouseX = -100, mouseY = -100;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+    });
+    document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+    document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+
+    // Expand on images, links, buttons
+    const expandTargets = document.querySelectorAll('img, a, button, .svc-cta, .btn-fill, .btn-cream, .btn-outline, .nav-cta, .step, .svc-split');
+    expandTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+    });
+
+    // Dark mode cursor on dark sections
+    const darkSections = document.querySelectorAll('.process, footer, .hero');
+    darkSections.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('on-dark'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('on-dark'));
+    });
   </script>
 
 </body>
