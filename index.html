@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groundwork Studio — Phoenix Web Developer</title>
+  <meta name="description" content="We build clean, fast websites for local Phoenix businesses. No templates.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <!-- ============================================================
+       STICKY NAV
+       ============================================================ -->
+  <header style="position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:1px solid #e5e7eb;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;position:relative;">
+
+      <!-- Logo -->
+      <a href="index.html" style="font-weight:800;font-size:18px;color:#111827;text-decoration:none;letter-spacing:-0.3px;">
+        Groundwork<span style="color:#16a34a;">.</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <div class="desktop-nav" style="display:flex;align-items:center;gap:28px;">
+        <a href="#work" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Work</a>
+        <a href="#how-it-works" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">How it works</a>
+        <a href="#contact" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Contact</a>
+        <a href="#contact" style="background:#16a34a;color:#ffffff;font-size:13px;font-weight:700;padding:9px 20px;border-radius:5px;text-decoration:none;">Get a Quote</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+
+      <!-- Mobile dropdown nav -->
+      <nav class="mobile-nav">
+        <a href="#work">Work</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" style="color:#16a34a;font-weight:700;">Get a Quote →</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section style="background:#f9fafb;border-bottom:1px solid #e5e7eb;padding:72px 24px 64px;">
+    <div style="max-width:700px;margin:0 auto;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#16a34a;text-transform:uppercase;margin-bottom:16px;">
+        Phoenix, AZ — Local Web Developer
+      </div>
+      <h1 class="hero-headline" style="font-size:48px;font-weight:800;color:#111827;line-height:1.1;margin-bottom:16px;">
+        We build websites<br>that get you calls.
+      </h1>
+      <p style="font-size:16px;color:#6b7280;margin-bottom:32px;max-width:480px;line-height:1.7;">
+        Clean, fast, mobile-ready sites for local businesses. No templates. No agencies. Just a real developer who picks up the phone.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#work" style="background:#16a34a;color:#ffffff;font-size:14px;font-weight:700;padding:14px 28px;border-radius:5px;text-decoration:none;display:inline-block;">
+          See Our Work →
+        </a>
+        <a href="#contact" style="border:2px solid #d1d5db;color:#374151;font-size:14px;font-weight:600;padding:14px 28px;border-radius:5px;text-decoration:none;display:inline-block;background:#ffffff;">
+          Get a Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORK SECTION
+       ============================================================ -->
+  <section id="work" style="padding:64px 24px;border-bottom:1px solid #e5e7eb;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#16a34a;text-transform:uppercase;margin-bottom:8px;">
+        Our Work
+      </div>
+      <h2 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:32px;">
+        Sites built for businesses like yours.
+      </h2>
+
+      <!-- 3-column card grid -->
+      <div class="grid-3col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+
+        <!-- Plumbing card -->
+        <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+          <div style="height:120px;background:linear-gradient(135deg,#1e3a5f,#2563eb);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:500;">Valley Pro Plumbing</span>
+          </div>
+          <div style="padding:16px;">
+            <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:4px;">Valley Pro Plumbing</div>
+            <div style="font-size:12px;color:#6b7280;margin-bottom:12px;">Plumbing · Phoenix</div>
+            <a href="demo-plumbing.html" style="font-size:13px;font-weight:700;color:#16a34a;text-decoration:none;">View Demo →</a>
+          </div>
+        </div>
+
+        <!-- Restaurant card -->
+        <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+          <div style="height:120px;background:linear-gradient(135deg,#7c2d12,#ea580c);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:500;">Mesa Eats</span>
+          </div>
+          <div style="padding:16px;">
+            <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:4px;">Mesa Eats</div>
+            <div style="font-size:12px;color:#6b7280;margin-bottom:12px;">Restaurant · Mesa</div>
+            <a href="demo-restaurant.html" style="font-size:13px;font-weight:700;color:#16a34a;text-decoration:none;">View Demo →</a>
+          </div>
+        </div>
+
+        <!-- Landscaping card -->
+        <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+          <div style="height:120px;background:linear-gradient(135deg,#14532d,#15803d);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:500;">Desert Grounds</span>
+          </div>
+          <div style="padding:16px;">
+            <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:4px;">Desert Grounds</div>
+            <div style="font-size:12px;color:#6b7280;margin-bottom:12px;">Landscaping · Phoenix</div>
+            <a href="demo-landscaping.html" style="font-size:13px;font-weight:700;color:#16a34a;text-decoration:none;">View Demo →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section id="how-it-works" style="background:#f9fafb;padding:64px 24px;border-bottom:1px solid #e5e7eb;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#16a34a;text-transform:uppercase;margin-bottom:8px;">
+        How It Works
+      </div>
+      <h2 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:40px;">
+        Simple process. Fast turnaround.
+      </h2>
+
+      <div class="grid-3col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;">
+
+        <div>
+          <div style="font-size:36px;font-weight:800;color:#16a34a;margin-bottom:10px;">1</div>
+          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">You tell me what you need</h3>
+          <p style="font-size:14px;color:#6b7280;line-height:1.6;">A quick call or email. I listen, ask a few questions, no jargon.</p>
+        </div>
+
+        <div>
+          <div style="font-size:36px;font-weight:800;color:#16a34a;margin-bottom:10px;">2</div>
+          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">I build it, you approve it</h3>
+          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Fast turnaround. You see the site before it ever goes live.</p>
+        </div>
+
+        <div>
+          <div style="font-size:36px;font-weight:800;color:#16a34a;margin-bottom:10px;">3</div>
+          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">Your site goes live</h3>
+          <p style="font-size:14px;color:#6b7280;line-height:1.6;">I handle hosting setup. You start getting found by new customers.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT / CTA
+       ============================================================ -->
+  <section id="contact" style="padding:80px 24px;text-align:center;">
+    <div style="max-width:560px;margin:0 auto;">
+      <h2 style="font-size:32px;font-weight:800;color:#111827;margin-bottom:12px;">
+        Ready to get started?
+      </h2>
+      <p style="font-size:15px;color:#6b7280;margin-bottom:32px;">
+        No commitment. Just a quick conversation.
+      </p>
+      <a href="mailto:evan@groundworkstudio.com?subject=Website%20Quote%20Request"
+         style="background:#16a34a;color:#ffffff;font-size:15px;font-weight:700;padding:16px 40px;border-radius:6px;text-decoration:none;display:inline-block;margin-bottom:24px;">
+        Get a Free Quote
+      </a>
+      <div style="font-size:14px;color:#6b7280;">
+        <a href="mailto:evan@groundworkstudio.com" style="color:#374151;text-decoration:none;">evan@groundworkstudio.com</a>
+        &nbsp;·&nbsp;
+        <a href="tel:+14804526473" style="color:#374151;text-decoration:none;">(480) 452-6473</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer style="background:#111827;padding:24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+        <span style="font-weight:800;font-size:16px;color:#ffffff;">
+          Groundwork<span style="color:#16a34a;">.</span>
+        </span>
+        <span style="font-size:13px;color:#9ca3af;">
+          Phoenix, AZ &nbsp;·&nbsp;
+          <a href="tel:+14804526473" style="color:#9ca3af;text-decoration:none;">(480) 452-6473</a>
+          &nbsp;·&nbsp;
+          <a href="mailto:evan@groundworkstudio.com" style="color:#9ca3af;text-decoration:none;">evan@groundworkstudio.com</a>
+        </span>
+      </div>
+      <div style="text-align:center;font-size:12px;color:#6b7280;border-top:1px solid #1f2937;padding-top:16px;">
+        &copy; 2026 Groundwork Studio
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
