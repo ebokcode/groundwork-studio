@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palette Pro Painting — Phoenix, AZ | Interior & Exterior Painters</title>
+  <meta name="description" content="Palette Pro Painting brings premium interior and exterior painting to Phoenix-area homes. Free color consultation, low-VOC paints, satisfaction guaranteed. Call (602) 555-0533.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:      #ffffff;
+      --off-white:  #fafaf8;
+      --beige:      #f0e8d8;
+      --charcoal:   #1a1a1a;
+      --coral:      #e85d3d;
+      --coral-dk:   #d14e2e;
+      --coral-lt:   #f07358;
+      --muted:      #6b6b6b;
+      --border:     #e8e8e4;
+      --sans:       'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── DEMO BANNER ─────────────────────────────────────── */
+    .demo-bar {
+      background: var(--coral);
+      color: #fff;
+      text-align: center;
+      padding: 11px 24px;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .2px;
+      position: relative;
+      z-index: 500;
+    }
+    .demo-bar a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .demo-bar a:hover { opacity: .85; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      left: 0; right: 0;
+      top: 38px; /* below demo bar */
+      z-index: 400;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled {
+      box-shadow: 0 2px 20px rgba(26,26,26,.08);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
+    }
+    .nav-swatch {
+      width: 22px;
+      height: 22px;
+      background: var(--coral);
+      border-radius: 5px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-swatch::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 50%; height: 50%;
+      background: var(--coral-dk);
+      border-radius: 4px 0 5px 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+    .btn-nav {
+      background: var(--coral);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-nav:hover { background: var(--coral-dk); transform: translateY(-1px); }
+
+    /* ── BUTTONS ─────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--coral-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,93,61,.3);
+    }
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--charcoal);
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px 30px;
+      border-radius: 8px;
+      border: 2px solid var(--charcoal);
+      cursor: pointer;
+      transition: background .2s, color .2s, transform .15s;
+    }
+    .btn-outline-dark:hover {
+      background: var(--charcoal);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding-top: 110px; /* nav + demo bar */
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-circle {
+      position: absolute;
+      top: -180px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: var(--coral);
+      opacity: .065;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-circle-2 {
+      position: absolute;
+      bottom: -120px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--coral);
+      opacity: .04;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-left {
+      padding: 80px 56px 80px 72px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--coral);
+    }
+    .hero-h1 {
+      font-size: clamp(52px, 8vw, 100px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -2px;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+    }
+    .hero-h1 .accent { color: var(--coral); }
+    .hero-tagline {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 420px;
+      margin-bottom: 40px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+    .hero-badge-stars {
+      color: var(--coral);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .hero-badge-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      padding: 80px 72px 80px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-photo-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+    .hero-photo-frame {
+      border-radius: 24px 60px 24px 60px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--beige);
+      box-shadow: 0 32px 80px rgba(26,26,26,.14);
+    }
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-photo-float {
+      position: absolute;
+      bottom: -24px;
+      left: -32px;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 12px 40px rgba(26,26,26,.12);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-float-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--coral);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .hero-float-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    .hero-float-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--charcoal);
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    .services {
+      background: var(--beige);
+      padding: 100px 72px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 16px;
+    }
+    .section-heading {
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 28px;
+      border-top: 3px solid var(--coral);
+      transition: transform .25s, box-shadow .25s;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(26,26,26,.1);
+    }
+    .service-icon {
+      font-size: 36px;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .service-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .service-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── BEFORE/AFTER SHOWCASE ───────────────────────────── */
+    .showcase {
+      background: var(--charcoal);
+      padding: 100px 72px;
+    }
+    .showcase-header { margin-bottom: 64px; }
+    .showcase-header .section-label { color: var(--coral); }
+    .showcase-heading {
+      font-size: clamp(38px, 4.5vw, 60px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      color: var(--white);
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .showcase-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #2a2a2a;
+      transition: transform .25s, box-shadow .25s;
+      cursor: default;
+    }
+    .showcase-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.4);
+    }
+    .showcase-photo-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .showcase-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .showcase-card:hover .showcase-photo-wrap img {
+      transform: scale(1.04);
+    }
+    .showcase-after-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--coral);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .showcase-caption {
+      padding: 24px 24px 28px;
+    }
+    .showcase-caption-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .showcase-caption-loc {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* ── PROCESS ─────────────────────────────────────────── */
+    .process {
+      background: var(--off-white);
+      padding: 100px 72px;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-top: 64px;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .process-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--coral);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 20px rgba(232,93,61,.35);
+    }
+    .process-step-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .process-step-desc {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── COLOR CONSULT CALLOUT ───────────────────────────── */
+    .color-callout {
+      background: var(--beige);
+      padding: 100px 72px;
+    }
+    .color-callout-inner {
+      max-width: 700px;
+    }
+    .color-callout-swatches {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .swatch {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .color-callout h2 {
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+    .color-callout p {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────────────── */
+    .testimonials {
+      background: var(--white);
+      padding: 100px 72px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .testi-card {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(26,26,26,.07);
+    }
+    .testi-stars {
+      color: var(--coral);
+      font-size: 16px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+    .testi-quote {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testi-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--coral);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .testi-location {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── TRUST STRIP ─────────────────────────────────────── */
+    .trust {
+      background: var(--charcoal);
+      padding: 56px 72px;
+    }
+    .trust-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .trust-icon {
+      font-size: 30px;
+    }
+    .trust-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .3px;
+    }
+    .trust-sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,.45);
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .footer {
+      background: var(--charcoal);
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 80px 72px 48px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .footer-brand-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,.5);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 280px;
+    }
+    .footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 24px;
+      border-radius: 7px;
+      transition: background .2s, transform .15s;
+    }
+    .footer-cta:hover { background: var(--coral-dk); transform: translateY(-1px); }
+    .footer-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 20px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,.65);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-contact { display: flex; flex-direction: column; gap: 12px; }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .footer-contact-icon {
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .footer-contact-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,.65);
+      line-height: 1.5;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 12.5px;
+      color: rgba(255,255,255,.3);
+    }
+    .footer-demo-note {
+      font-size: 12.5px;
+      color: rgba(255,255,255,.3);
+    }
+    .footer-demo-note a {
+      color: var(--coral);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .footer-demo-note a:hover { opacity: .8; }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── MOBILE ──────────────────────────────────────────── */
+    .nav-links { display: flex; }
+    .nav-mobile-cta { display: none; }
+
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-grid .showcase-card:last-child { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 120px;
+      }
+      .hero-right {
+        padding: 0 32px 80px;
+      }
+      .hero-left {
+        padding: 64px 32px 40px;
+      }
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-mobile-cta { display: block; }
+      .services { padding: 72px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .showcase { padding: 72px 24px; }
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-grid .showcase-card:last-child { display: block; }
+      .process { padding: 72px 24px; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .color-callout { padding: 72px 24px; }
+      .testimonials { padding: 72px 24px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .trust { padding: 48px 24px; }
+      .trust-items { grid-template-columns: repeat(2, 1fr); }
+      .footer { padding: 64px 24px 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-h1 { font-size: 52px; letter-spacing: -1.5px; }
+      .hero-ctas { flex-direction: column; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">
+    This is a demo site — an example of what your business could look like online.&nbsp;
+    <a href="index.html">Built by Groundwork Studio →</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-swatch"></div>
+      Palette Pro
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="tel:6025550533">(602) 555-0533</a>
+      </div>
+      <a href="#contact" class="btn-nav">Get a Quote</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-circle"></div>
+    <div class="hero-circle-2"></div>
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">Phoenix's Premier Painters</div>
+      <h1 class="hero-h1">
+        We Make<br>
+        <span class="accent">Arizona<br>Homes</span><br>
+        Beautiful.
+      </h1>
+      <p class="hero-tagline">
+        From bold accent walls to complete exterior transformations — Palette Pro brings precision, care, and vibrant color to every project.
+      </p>
+      <div class="hero-ctas">
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="btn-primary">Get a Free Quote →</a>
+        <a href="#showcase" class="btn-outline-dark">See Our Work</a>
+      </div>
+      <div class="hero-badge">
+        <span class="hero-badge-stars">★★★★★</span>
+        <span class="hero-badge-text">200+ Five-Star Reviews in Phoenix</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-frame">
+          <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=900&q=85" alt="Professional painter at work" loading="eager">
+        </div>
+        <div class="hero-photo-float">
+          <div class="hero-float-icon">🎨</div>
+          <div>
+            <div class="hero-float-label">Free with every estimate</div>
+            <div class="hero-float-val">Color Consultation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-heading">Every Surface.<br>Every Project.</h2>
+      <p class="section-sub">From single rooms to full-home transformations, our team handles it all with meticulous prep and premium finishes.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-icon">🏠</span>
+        <div class="service-title">Interior Painting</div>
+        <div class="service-desc">Walls, ceilings, trim, and accent features. We protect your furnishings and leave your home spotless — no mess, no hassle.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-icon">☀️</span>
+        <div class="service-title">Exterior Painting</div>
+        <div class="service-desc">Curb appeal that lasts in Arizona's harsh climate. UV-resistant, weather-sealed finishes applied with thorough surface preparation.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-icon">🚪</span>
+        <div class="service-title">Cabinet Refinishing</div>
+        <div class="service-desc">Transform your kitchen or bathroom cabinets for a fraction of the cost of replacement. Smooth, factory-quality finish.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-4">
+        <span class="service-icon">🎨</span>
+        <div class="service-title">Color Consultation</div>
+        <div class="service-desc">Not sure what to choose? Our certified color consultants walk you through options for your home's style, light, and personality.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE/AFTER SHOWCASE -->
+  <section class="showcase" id="showcase">
+    <div class="showcase-header reveal">
+      <div class="section-label">Our Work</div>
+      <h2 class="showcase-heading">The Palette Pro<br>Difference.</h2>
+    </div>
+    <div class="showcase-grid">
+      <div class="showcase-card reveal reveal-delay-1">
+        <div class="showcase-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=85" alt="Beautifully painted living room" loading="lazy">
+          <span class="showcase-after-tag">After →</span>
+        </div>
+        <div class="showcase-caption">
+          <div class="showcase-caption-title">Living Room Transformation</div>
+          <div class="showcase-caption-loc">Arcadia, Phoenix · Interior Full Repaint</div>
+        </div>
+      </div>
+      <div class="showcase-card reveal reveal-delay-2">
+        <div class="showcase-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=600&q=85" alt="Freshly painted modern room" loading="lazy">
+          <span class="showcase-after-tag">After →</span>
+        </div>
+        <div class="showcase-caption">
+          <div class="showcase-caption-title">Master Bedroom Refresh</div>
+          <div class="showcase-caption-loc">Scottsdale · Accent Wall + Full Room</div>
+        </div>
+      </div>
+      <div class="showcase-card reveal reveal-delay-3">
+        <div class="showcase-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85" alt="Exterior house painting" loading="lazy">
+          <span class="showcase-after-tag">After →</span>
+        </div>
+        <div class="showcase-caption">
+          <div class="showcase-caption-title">Exterior & Trim Update</div>
+          <div class="showcase-caption-loc">North Phoenix · Complete Exterior</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="reveal">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-heading">Simple. Transparent.<br>Stress-Free.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">1</div>
+        <div class="process-step-title">Free Color Consultation</div>
+        <div class="process-step-desc">We visit your home, discuss your vision, and provide expert color recommendations — completely free.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">2</div>
+        <div class="process-step-title">Surface Preparation</div>
+        <div class="process-step-desc">Thorough cleaning, patching, sanding, and priming. Proper prep is the secret to a flawless, lasting finish.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">3</div>
+        <div class="process-step-title">Professional Application</div>
+        <div class="process-step-desc">Our trained crews apply premium, low-VOC paints with precision tools — clean edges, no drips, no shortcuts.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="process-num">4</div>
+        <div class="process-step-title">Final Walkthrough</div>
+        <div class="process-step-desc">We walk the project with you before considering it complete. Every detail approved. Satisfaction guaranteed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOR CONSULTATION CALLOUT -->
+  <section class="color-callout" id="contact">
+    <div class="color-callout-inner reveal">
+      <div class="color-callout-swatches">
+        <div class="swatch" style="background:#e85d3d;"></div>
+        <div class="swatch" style="background:#4a7fa5;"></div>
+        <div class="swatch" style="background:#6b9e74;"></div>
+        <div class="swatch" style="background:#d4b896;"></div>
+        <div class="swatch" style="background:#7a6b8a;"></div>
+        <div class="swatch" style="background:#1a1a1a;"></div>
+      </div>
+      <div class="section-label">Color Consultation</div>
+      <h2>Not sure what colors to choose?</h2>
+      <p>Our color consultants help you find the perfect palette for your home — taking into account your lighting, architecture, and personal style. Included free with every estimate.</p>
+      <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="btn-primary">Book a Free Consultation →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="reveal">
+      <div class="section-label">Client Reviews</div>
+      <h2 class="section-heading">What Phoenix<br>Homeowners Say.</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Palette Pro completely transformed our living room. They helped us choose a warm sage green we never would've picked ourselves — and it's absolutely perfect. Meticulous, fast, and no mess left behind."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JM</div>
+          <div>
+            <div class="testi-name">Jennifer M.</div>
+            <div class="testi-location">Arcadia, Phoenix</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"We hired Palette Pro for our exterior repaint before listing our house. The curb appeal went through the roof — we had offers above asking within 48 hours. Phenomenal work and professionalism throughout."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DK</div>
+          <div>
+            <div class="testi-name">David K.</div>
+            <div class="testi-location">North Scottsdale</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The cabinet refinishing is unbelievable — looks brand new. We were quoted $18k for replacement. Palette Pro did it for a fraction of the cost and it honestly looks better. I recommend them to everyone."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SR</div>
+          <div>
+            <div class="testi-name">Sandra R.</div>
+            <div class="testi-location">Chandler, AZ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust">
+    <div class="trust-items">
+      <div class="trust-item reveal">
+        <div class="trust-icon">🛡️</div>
+        <div class="trust-label">Licensed &amp; Insured</div>
+        <div class="trust-sub">Arizona ROC licensed. Fully insured for your peace of mind.</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-1">
+        <div class="trust-icon">🌿</div>
+        <div class="trust-label">Low-VOC Paints</div>
+        <div class="trust-sub">Healthy for your family, safe for pets, better for Arizona.</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-2">
+        <div class="trust-icon">🎨</div>
+        <div class="trust-label">Free Color Consult</div>
+        <div class="trust-sub">Expert color guidance included with every estimate.</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-3">
+        <div class="trust-icon">✅</div>
+        <div class="trust-label">Satisfaction Guaranteed</div>
+        <div class="trust-sub">We don't call it done until you're completely happy.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="nav-swatch"></div>
+          <span class="footer-brand-name">Palette Pro</span>
+        </div>
+        <p class="footer-tagline">
+          Phoenix's trusted painting contractor. Premium results, honest pricing, and a guarantee you can stand behind.
+        </p>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="footer-cta">Get a Free Quote →</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="#services">Interior Painting</a>
+          <a href="#services">Exterior Painting</a>
+          <a href="#services">Cabinet Refinishing</a>
+          <a href="#services">Color Consultation</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact">
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">📞</span>
+            <span class="footer-contact-text"><a href="tel:6025550533" style="color:inherit;">(602) 555-0533</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">✉️</span>
+            <span class="footer-contact-text"><a href="mailto:hello@palettepropaint.com" style="color:inherit;">hello@palettepropaint.com</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">📍</span>
+            <span class="footer-contact-text">5550 N 19th Ave<br>Phoenix, AZ 85015</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">🕐</span>
+            <span class="footer-contact-text">Mon–Sat: 7am–6pm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Palette Pro Painting. All rights reserved.</span>
+      <span class="footer-demo-note">Demo site by <a href="index.html">Groundwork Studio</a> — we build websites for contractors.</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── NAV SCROLL SHADOW ─────────────────────────────────
+    const nav = document.getElementById('nav');
+    const demoBar = document.querySelector('.demo-bar');
+
+    function updateNav() {
+      const offset = demoBar ? demoBar.offsetHeight : 0;
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+        nav.style.top = '0';
+      } else {
+        nav.classList.remove('scrolled');
+        nav.style.top = offset + 'px';
+      }
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // ── SCROLL REVEAL ─────────────────────────────────────
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
