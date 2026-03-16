@@ -7,685 +7,1217 @@
   <meta name="description" content="Licensed electricians in Phoenix, AZ. Panel upgrades, outlets, lighting, emergency electrical service. 24/7 available. Call (602) 555-0291.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink:      #0a0c10;
-      --navy:     #0d1017;
-      --card:     #111418;
-      --border:   #1e2229;
-      --yellow:   #f5c518;
-      --yellow-lt:#ffd740;
-      --yellow-gl:rgba(245,197,24,.1);
-      --amber:    #d97706;
-      --amber-lt: #f59e0b;
-      --white:    #f0f4ff;
-      --muted:    #7a8394;
-      --serif:    'Bebas Neue', sans-serif;
-      --sans:     'DM Sans', sans-serif;
+      --navy:      #001542;
+      --navy-lt:   #002266;
+      --gold:      #FDBA12;
+      --gold-lt:   #FED24D;
+      --white:     #ffffff;
+      --off-white: #f8f9fc;
+      --muted:     #64748b;
+      --text:      #0f172a;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--ink); color: var(--white); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
 
-    /* ── DEMO BANNER ──────────────────────────────────────── */
-    .demo-bar {
-      background: var(--yellow); color: #0a0c10;
-      text-align: center; padding: 9px 24px;
-      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
-      position: relative; z-index: 400;
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
     }
-    .demo-bar a { color: #0a0c10; font-weight: 700; text-decoration: underline; }
 
-    /* ── NAV ──────────────────────────────────────────────── */
+    /* ── DEMO BANNER ─────────────────────────────────────────────── */
+    .demo-banner {
+      background: var(--gold);
+      color: var(--navy);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 200;
+    }
+    .demo-banner a {
+      color: var(--navy);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .demo-banner a:hover { opacity: 0.75; }
+
+    /* ── STICKY NAV ──────────────────────────────────────────────── */
     .nav {
-      position: fixed; left: 0; right: 0; z-index: 300;
-      padding: 0 44px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .35s, border-color .35s;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,21,66,0.08);
+      transition: box-shadow 0.3s ease;
     }
-    .nav.solid {
-      background: rgba(10,12,16,.97);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
+    .nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0,21,66,0.12);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
     }
     .nav-logo {
-      font-family: var(--serif); font-size: 26px;
-      letter-spacing: 2px; color: var(--white);
-      display: flex; align-items: center; gap: 8px;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 1.75rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 2px;
     }
-    .nav-logo-bolt {
-      display: inline-block; width: 20px; height: 20px;
-      background: var(--yellow); color: #0a0c10;
-      font-size: 13px; line-height: 20px; text-align: center;
-      clip-path: polygon(50% 0%, 100% 35%, 70% 35%, 100% 100%, 0% 65%, 30% 65%, 0% 0%);
-    }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a {
-      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
-      text-transform: uppercase; color: var(--muted);
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      font-family: var(--serif); font-size: 16px; letter-spacing: 1.5px;
-      background: var(--yellow); color: #0a0c10;
-      padding: 11px 22px; display: flex; align-items: center; gap: 8px;
-      transition: background .2s;
-    }
-    .nav-cta:hover { background: var(--yellow-lt); }
-
-    /* ── HERO ─────────────────────────────────────────────── */
-    .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 0 44px; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1800&q=80')
-        center/cover no-repeat;
-      animation: kenBurns 18s ease-in-out infinite alternate;
-    }
-    @keyframes kenBurns {
-      0%   { transform: scale(1.0) translate(0, 0); }
-      100% { transform: scale(1.07) translate(-1%, -1%); }
-    }
-    .hero-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(105deg,
-        rgba(10,12,16,.96) 0%,
-        rgba(10,12,16,.88) 45%,
-        rgba(10,12,16,.55) 100%);
-    }
-    /* Yellow left-edge accent line */
-    .hero-bg::before {
-      content: ''; position: absolute;
-      left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(to bottom, transparent, var(--yellow), var(--amber), transparent);
-      z-index: 1;
-    }
-    .hero-inner {
-      position: relative; z-index: 2;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 60px; align-items: center;
-      max-width: 1200px; width: 100%;
-    }
-    .hero-eyebrow {
-      font-size: 11px; font-weight: 500; letter-spacing: 5px;
-      text-transform: uppercase; color: var(--yellow);
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 2px;
-      background: var(--yellow);
-    }
-    .hero-h1 {
-      font-family: var(--serif);
-      font-size: clamp(80px, 12vw, 140px);
-      line-height: .88;
-      letter-spacing: 1px;
-      color: var(--white); margin-bottom: 24px;
-    }
-    .hero-h1 em {
-      font-style: normal; color: var(--yellow);
-      display: block;
-    }
-    .hero-sub {
-      font-size: 16px; font-weight: 300; line-height: 1.7;
-      color: var(--muted); max-width: 440px; margin-bottom: 44px;
-    }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary {
-      font-family: var(--serif); font-size: 18px; letter-spacing: 2px;
-      background: var(--yellow); color: #0a0c10;
-      padding: 14px 36px; display: inline-block;
-      transition: background .2s, transform .15s;
-    }
-    .btn-primary:hover { background: var(--yellow-lt); transform: translateY(-1px); }
-    .btn-ghost {
-      font-family: var(--serif); font-size: 18px; letter-spacing: 2px;
-      background: transparent; color: var(--white);
-      padding: 14px 36px; border: 1px solid var(--border);
-      display: inline-block; transition: border-color .2s, color .2s;
-    }
-    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
-
-    /* Emergency call card */
-    .hero-cta-card {
-      background: var(--navy); border: 1px solid var(--border);
-      padding: 36px 32px; min-width: 268px;
-      position: relative; overflow: hidden;
-    }
-    .hero-cta-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: var(--yellow);
-    }
-    .cta-card-label {
-      font-size: 10px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 12px;
-    }
-    .cta-card-title {
-      font-family: var(--serif); font-size: 28px;
-      line-height: 1.1; margin-bottom: 20px; letter-spacing: 1px;
-    }
-    .cta-card-phone {
-      font-family: var(--serif); font-size: 30px;
-      color: var(--white); display: block; margin-bottom: 18px;
-      letter-spacing: 1px; line-height: 1;
-    }
-    .pulse-btn {
-      display: block; width: 100%;
-      font-family: var(--serif); font-size: 16px; letter-spacing: 2px;
-      background: var(--yellow); color: #0a0c10;
-      padding: 14px 20px; text-align: center;
-      animation: pulseGlow 2.4s ease-in-out infinite;
-      transition: background .2s;
-    }
-    .pulse-btn:hover { background: var(--yellow-lt); animation: none; }
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(245,197,24,.55); }
-      50%       { box-shadow: 0 0 0 14px rgba(245,197,24,0); }
-    }
-
-    /* ── STATS STRIP ──────────────────────────────────────── */
-    .stats {
-      background: var(--navy); border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 44px 44px;
-      display: flex; justify-content: center; gap: 0;
-    }
-    .stat {
-      flex: 1; text-align: center; padding: 0 24px;
-      border-right: 1px solid var(--border);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--serif); font-size: 60px;
-      line-height: 1; color: var(--yellow); letter-spacing: 1px;
-      margin-bottom: 6px; display: flex; align-items: baseline;
-      justify-content: center; gap: 4px;
-    }
-    .stat-num .unit {
-      font-size: 24px; color: var(--amber); letter-spacing: 1px;
-    }
-    .stat-label {
-      font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--muted);
-    }
-
-    /* ── SERVICES ─────────────────────────────────────────── */
-    .services { padding: 100px 44px; }
-    .section-header { margin-bottom: 60px; }
-    .section-tag {
-      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-tag::before {
-      content: ''; display: block; width: 28px; height: 2px; background: var(--yellow);
-    }
-    .section-h2 {
-      font-family: var(--serif); font-size: clamp(44px, 7vw, 80px);
-      line-height: .9; letter-spacing: 1px;
-      color: var(--white);
-    }
-    .section-h2 span { color: var(--yellow); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
-    }
-    .svc-card {
-      background: var(--card); padding: 40px 36px;
-      border-left: 3px solid transparent;
-      transition: border-color .25s, background .25s, transform .2s;
-      cursor: default; position: relative; overflow: hidden;
-    }
-    .svc-card::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--yellow-gl); opacity: 0; transition: opacity .25s;
-    }
-    .svc-card:hover {
-      border-left-color: var(--yellow);
-      background: #13150b;
-      transform: translateX(4px);
-    }
-    .svc-card:hover::after { opacity: 1; }
-    .svc-icon {
-      font-size: 36px; margin-bottom: 20px; display: block;
-    }
-    .svc-num {
-      position: absolute; top: 20px; right: 24px;
-      font-family: var(--serif); font-size: 72px;
-      color: rgba(245,197,24,.07); line-height: 1; letter-spacing: 1px;
-    }
-    .svc-title {
-      font-family: var(--serif); font-size: 30px; letter-spacing: 1px;
-      color: var(--white); margin-bottom: 12px;
-    }
-    .svc-desc {
-      font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .svc-link {
-      font-size: 11px; font-weight: 500; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--yellow);
-      display: flex; align-items: center; gap: 6px;
-      transition: gap .2s;
-    }
-    .svc-card:hover .svc-link { gap: 10px; }
-
-    /* ── SAFETY / EMERGENCY BAND ──────────────────────────── */
-    .emergency-band {
-      position: relative; overflow: hidden;
-      background: var(--yellow);
-      padding: 72px 44px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; flex-wrap: wrap;
-    }
-    .emergency-band::before {
-      content: '⚡'; position: absolute; right: -30px; top: 50%;
-      transform: translateY(-50%);
-      font-size: 340px; opacity: .06; line-height: 1;
-      pointer-events: none;
-    }
-    .emg-left h2 {
-      font-family: var(--serif); font-size: clamp(44px, 6vw, 76px);
-      line-height: .9; color: #0a0c10; margin-bottom: 12px; letter-spacing: 1px;
-    }
-    .emg-left p {
-      font-size: 15px; font-weight: 300; color: rgba(10,12,16,.65);
-    }
-    .emg-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
-    .emg-phone {
-      font-family: var(--serif); font-size: 54px;
-      color: #0a0c10; letter-spacing: 1px; line-height: 1;
-    }
-    .btn-dark {
-      font-family: var(--serif); font-size: 16px; letter-spacing: 2px;
-      background: #0a0c10; color: var(--yellow);
-      padding: 16px 36px; display: inline-block;
-      transition: background .2s, color .2s;
-    }
-    .btn-dark:hover { background: var(--navy); color: var(--yellow-lt); }
-
-    /* ── WHY US ───────────────────────────────────────────── */
-    .why { background: var(--navy); padding: 100px 44px; }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 60px;
-    }
-    .why-item {
-      background: var(--card); padding: 44px 36px;
-      border-top: 3px solid var(--border);
-      transition: border-color .2s;
-    }
-    .why-item:hover { border-top-color: var(--yellow); }
-    .why-num {
-      font-family: var(--serif); font-size: 88px;
-      color: rgba(245,197,24,.07); line-height: 1; margin-bottom: -16px;
-      letter-spacing: 1px;
-    }
-    .why-title {
-      font-family: var(--serif); font-size: 24px; letter-spacing: 1px;
-      color: var(--white); margin-bottom: 12px;
-    }
-    .why-desc {
-      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
-    }
-
-    /* ── TRUST STRIP ──────────────────────────────────────── */
-    .trust {
-      padding: 56px 44px;
-      display: flex; justify-content: center;
-      gap: 60px; flex-wrap: wrap;
-      border-bottom: 1px solid var(--border);
-    }
-    .trust-item { text-align: center; }
-    .trust-icon { font-size: 28px; margin-bottom: 10px; }
-    .trust-label {
-      font-family: var(--serif); font-size: 18px; letter-spacing: 1px;
-      color: var(--white); margin-bottom: 3px;
-    }
-    .trust-sub {
-      font-size: 11px; font-weight: 300; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--muted);
-    }
-
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer { background: var(--navy); padding: 80px 44px 44px; }
-    .foot-top {
-      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 48px; padding-bottom: 60px;
-      border-bottom: 1px solid var(--border); margin-bottom: 36px;
-    }
-    .foot-brand {
-      font-family: var(--serif); font-size: 40px; letter-spacing: 3px;
+    .nav-logo span {
+      color: var(--gold);
+      font-size: 2rem;
       line-height: 1;
     }
-    .foot-brand span { color: var(--yellow); }
-    .foot-brand sub {
-      display: block; font-size: 10px; font-weight: 400; letter-spacing: 3px;
-      font-family: var(--sans);
-      color: var(--muted); margin-top: 8px; text-transform: uppercase;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
     }
-    .foot-col-head {
-      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      transition: color 0.2s;
     }
-    .foot-info {
-      font-size: 13.5px; font-weight: 300;
-      color: rgba(240,244,255,.4); line-height: 2.1;
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .foot-info a { color: rgba(240,244,255,.4); transition: color .2s; }
-    .foot-info a:hover { color: var(--yellow); }
-    .foot-cta {
-      display: inline-block;
-      font-family: var(--serif); font-size: 16px; letter-spacing: 2px;
-      background: var(--yellow); color: #0a0c10; padding: 15px 30px;
-      transition: background .2s;
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
-    .foot-cta:hover { background: var(--yellow-lt); }
-    .foot-cta-note {
-      font-size: 12px; font-weight: 300; color: var(--muted);
-      margin-top: 12px; line-height: 1.6;
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .nav-phone {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
     }
-    .foot-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 10px;
-    }
-    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(240,244,255,.2); }
-    .foot-copy a { color: var(--yellow); font-weight: 500; }
 
-    /* ── SCROLL REVEAL ────────────────────────────────────── */
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 21, 66, 0.85);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      width: 100%;
+    }
+    .hero-text {
+      max-width: 600px;
+    }
+    .hero-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .hero-headline {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero-headline .accent { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.78);
+      max-width: 460px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-gold-lg {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold-lg:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-outline-lg {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 32px;
+      border: 2px solid rgba(255,255,255,0.6);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline-lg:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Emergency floating card */
+    .emergency-card {
+      position: absolute;
+      bottom: 48px;
+      right: 24px;
+      z-index: 3;
+      background: var(--navy);
+      border-top: 3px solid var(--gold);
+      padding: 22px 28px;
+      width: 260px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .emergency-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .emergency-card-phone {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .btn-pulse {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 9px 16px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(253,186,18,0.5); }
+      50% { box-shadow: 0 0 0 8px rgba(253,186,18,0); }
+    }
+
+    /* ── TRUST BAR ───────────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,21,66,0.08);
+      padding: 18px 24px;
+    }
+    .trust-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 36px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .trust-item .icon {
+      font-size: 1rem;
+    }
+
+    /* ── STATS STRIP ─────────────────────────────────────────────── */
+    .stats-strip {
+      background: var(--off-white);
+      padding: 64px 24px;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .stat-item {
+      padding: 32px 24px;
+      border-bottom: 3px solid var(--gold);
+      background: var(--white);
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 2px;
+    }
+    .stat-suffix {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── SERVICES (FLIP CARDS) ───────────────────────────────────── */
+    .services {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .section-title .accent { color: var(--gold); }
+
+    .flip-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    /* Flip card CSS */
+    .flip-card {
+      perspective: 1000px;
+      height: 260px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front,
+    .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 28px;
+    }
+    .flip-front {
+      background: var(--navy);
+      text-align: center;
+    }
+    .flip-front-icon {
+      font-size: 2.6rem;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .flip-front-title {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .flip-front-hint {
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .flip-back {
+      background: var(--navy-lt);
+      transform: rotateY(180deg);
+      text-align: left;
+      align-items: flex-start;
+    }
+    .flip-back-title {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .flip-back-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .flip-back-cta {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .flip-back-cta:hover { gap: 10px; }
+
+    /* Mobile: show back content statically */
+    @media (max-width: 768px) {
+      .flip-card {
+        height: auto;
+        perspective: none;
+      }
+      .flip-card-inner {
+        transform: none !important;
+        transform-style: flat;
+        position: static;
+        height: auto;
+      }
+      .flip-front {
+        display: none;
+      }
+      .flip-back {
+        position: static;
+        transform: none;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+        background: var(--navy);
+        padding: 28px 24px;
+      }
+    }
+
+    /* ── WHY CHOOSE VOLT ─────────────────────────────────────────── */
+    .why-section {
+      background: var(--off-white);
+      padding: 96px 24px;
+    }
+    .why-grid {
+      max-width: 1200px;
+      margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--white);
+      border-left: 3px solid var(--gold);
+      padding: 32px 28px;
+      box-shadow: 0 1px 6px rgba(0,21,66,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,21,66,0.1);
+    }
+    .why-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+    .why-title {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .why-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── EMERGENCY BAND ──────────────────────────────────────────── */
+    .emergency-band {
+      background: var(--navy);
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .emergency-band::before {
+      content: '⚡';
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.05;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .emergency-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      position: relative;
+      z-index: 1;
+    }
+    .emergency-left {
+      flex: 1;
+    }
+    .emergency-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .emergency-headline {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .emergency-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 380px;
+    }
+    .emergency-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .emergency-phone {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--gold);
+      display: block;
+      text-decoration: none;
+      margin-bottom: 18px;
+      transition: color 0.2s;
+    }
+    .emergency-phone:hover { color: var(--gold-lt); }
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 28px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-white:hover { background: var(--off-white); }
+
+    /* ── TESTIMONIALS ────────────────────────────────────────────── */
+    .testimonials {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .testimonials-grid {
+      max-width: 1200px;
+      margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      border-top: 3px solid var(--gold);
+      padding: 32px 28px;
+      box-shadow: 0 1px 8px rgba(0,21,66,0.07);
+      background: var(--white);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,21,66,0.1);
+    }
+    .stars {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+    .testimonial-name {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+    .testimonial-loc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── TRUST STRIP ─────────────────────────────────────────────── */
+    .trust-strip {
+      background: var(--off-white);
+      padding: 40px 24px;
+      border-top: 1px solid rgba(0,21,66,0.07);
+    }
+    .trust-strip-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+    .trust-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust-badge-icon {
+      font-size: 1.6rem;
+    }
+    .trust-badge-label {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--navy);
+    }
+    .trust-badge-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      padding: 64px 24px 32px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-logo {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .footer-cta {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 11px 22px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .footer-cta:hover { background: var(--gold-lt); }
+    .footer-col-title {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer-contact-item a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-item a:hover { color: var(--gold); }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-copy a {
+      color: var(--gold);
+      text-decoration: none;
+      opacity: 0.8;
+    }
+    .footer-copy a:hover { opacity: 1; }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────────── */
     .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
 
-    /* ── RESPONSIVE ───────────────────────────────────────── */
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
     @media (max-width: 960px) {
-      .nav { padding: 0 20px; }
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .trust-strip-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero { padding: 0 20px; min-height: auto; padding-top: 120px; padding-bottom: 60px; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-cta-card { max-width: 360px; }
-      .stats { padding: 32px 20px; gap: 0; flex-wrap: wrap; }
-      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
-      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
-      .stat:last-child { border-bottom: none; }
-      .services { padding: 60px 20px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .why { padding: 60px 20px; }
-      .why-grid { grid-template-columns: 1fr; }
-      .emergency-band { padding: 56px 24px; }
-      .emg-phone { font-size: 38px; }
-      .foot-top { grid-template-columns: 1fr; gap: 32px; }
-      .trust { gap: 32px; padding: 48px 24px; }
+      .nav-phone { display: none; }
+      .flip-grid {
+        grid-template-columns: 1fr;
+      }
+      .emergency-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .emergency-right {
+        text-align: center;
+      }
+      .emergency-card {
+        display: none;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    @media (max-width: 600px) {
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .trust-strip-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- DEMO BANNER -->
-  <div class="demo-bar">
-    This is a demo site — an example of what your business could look like.&nbsp;
-    <a href="index.html">Built by Groundwork Studio →</a>
+  <div class="demo-banner">
+    This is a demo site — an example of what your business could look like. Built by <a href="index.html">Groundwork Studio →</a>
   </div>
 
-  <!-- NAV -->
-  <nav class="nav" id="siteNav">
-    <div class="nav-logo">
-      VOLT
-    </div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#why">About</a>
-        <a href="#contact">Contact</a>
+  <!-- STICKY NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">VOLT<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why Volt</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <span class="nav-phone">(602) 555-0291</span>
+        <a href="tel:6025550291" class="btn-gold">⚡ Emergency Service</a>
       </div>
-      <a href="tel:+16025550291" class="nav-cta">⚡ (602) 555-0291</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-inner">
-      <div>
-        <p class="hero-eyebrow">Phoenix, Arizona — Est. 2007</p>
-        <h1 class="hero-h1">
-          Phoenix's<br>
-          <em>Electrical</em><br>
-          Experts.
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-label">Phoenix, Arizona · Licensed &amp; Bonded</p>
+        <h1 class="hero-headline">
+          Phoenix's Most<br>
+          <span class="accent">Trusted</span><br>
+          Electricians.
         </h1>
-        <p class="hero-sub">Licensed, bonded, and insured electricians serving the entire Phoenix metro. Panel upgrades, rewiring, lighting, and 24/7 emergency service — we get the power on.</p>
-        <div class="hero-actions">
-          <a href="tel:+16025550291" class="btn-primary">Call Now</a>
-          <a href="#services" class="btn-ghost">Our Services</a>
+        <p class="hero-sub">
+          From panel upgrades to same-day emergency repairs — Volt Electric has served the Valley with professional, flat-rate electrical service since 2007.
+        </p>
+        <div class="hero-ctas">
+          <a href="mailto:info@voltelectricaz.com?subject=Free%20Estimate%20Request" class="btn-gold-lg">Get a Free Estimate →</a>
+          <a href="tel:6025550291" class="btn-outline-lg">⚡ Emergency Line</a>
         </div>
       </div>
-      <div class="hero-cta-card">
-        <p class="cta-card-label">24 / 7 Emergency Line</p>
-        <h3 class="cta-card-title">Need an Electrician Right Now?</h3>
-        <a href="tel:+16025550291" class="cta-card-phone">(602) 555-0291</a>
-        <a href="tel:+16025550291" class="pulse-btn">Call Emergency Line →</a>
+    </div>
+    <div class="emergency-card">
+      <p class="emergency-card-label">24 / 7 Emergency Line</p>
+      <p class="emergency-card-phone">(602) 555-0291</p>
+      <a href="tel:6025550291" class="btn-pulse">Call Now ⚡</a>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><span class="icon">⚡</span> Licensed &amp; Bonded</div>
+      <div class="trust-item"><span class="icon">📋</span> Free Estimates</div>
+      <div class="trust-item"><span class="icon">🕐</span> Same-Day Service</div>
+      <div class="trust-item"><span class="icon">⭐</span> 5-Star Rated</div>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <section class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-number">
+          <span class="stat-count" data-target="18">0</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <div class="stat-label">Years in Phoenix</div>
+      </div>
+      <div class="stat-item reveal" style="transition-delay:0.1s">
+        <div class="stat-number">
+          <span class="stat-count" data-target="24">0</span>
+        </div>
+        <div class="stat-label">Hours a Day</div>
+      </div>
+      <div class="stat-item reveal" style="transition-delay:0.2s">
+        <div class="stat-number">
+          <span class="stat-count" data-target="7">0</span>
+        </div>
+        <div class="stat-label">Days a Week</div>
+      </div>
+      <div class="stat-item reveal" style="transition-delay:0.3s">
+        <div class="stat-number">
+          <span class="stat-count" data-target="100">0</span>
+          <span class="stat-suffix">%</span>
+        </div>
+        <div class="stat-label">Satisfaction Guaranteed</div>
       </div>
     </div>
   </section>
 
-  <main>
-
-    <!-- STATS -->
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num">
-          <span data-target="24">24</span>
+  <!-- SERVICES (FLIP CARDS) -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">Our <span class="accent">Services</span></h2>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-card reveal">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="flip-front-icon">⚡</div>
+            <div class="flip-front-title">Panel Upgrades</div>
+            <div class="flip-front-hint">Hover to learn more →</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Panel Upgrades</div>
+            <div class="flip-back-desc">Outdated panels are a fire hazard. We upgrade to modern 200A service with full permits and inspections — code-compliant and built to last.</div>
+            <a href="mailto:info@voltelectricaz.com?subject=Panel%20Upgrade%20Quote" class="flip-back-cta">Get a Quote →</a>
+          </div>
         </div>
-        <div class="stat-label">Hours a Day</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">
-          <span data-target="7">7</span>
+      <div class="flip-card reveal" style="transition-delay:0.1s">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="flip-front-icon">🔌</div>
+            <div class="flip-front-title">Outlets &amp; Wiring</div>
+            <div class="flip-front-hint">Hover to learn more →</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Outlets &amp; Wiring</div>
+            <div class="flip-back-desc">New outlet installs, GFCI upgrades, dedicated circuits for appliances, and full rewiring for older Phoenix homes. No guesswork, just clean work.</div>
+            <a href="mailto:info@voltelectricaz.com?subject=Outlets%20%26%20Wiring%20Quote" class="flip-back-cta">Get a Quote →</a>
+          </div>
         </div>
-        <div class="stat-label">Days a Week</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">
-          <span data-target="18">18</span>
+      <div class="flip-card reveal" style="transition-delay:0.15s">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="flip-front-icon">💡</div>
+            <div class="flip-front-title">Lighting Installation</div>
+            <div class="flip-front-hint">Hover to learn more →</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Lighting Installation</div>
+            <div class="flip-back-desc">Recessed lighting, ceiling fans, outdoor security lights, smart dimmers, and landscape lighting. We make your home look and feel exactly right.</div>
+            <a href="mailto:info@voltelectricaz.com?subject=Lighting%20Installation%20Quote" class="flip-back-cta">Get a Quote →</a>
+          </div>
         </div>
-        <div class="stat-label">Years in Phoenix</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">
-          <span data-target="100">100</span><span class="unit">%</span>
+      <div class="flip-card reveal" style="transition-delay:0.2s">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="flip-front-icon">🚨</div>
+            <div class="flip-front-title">Emergency Electrical</div>
+            <div class="flip-front-hint">Hover to learn more →</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Emergency Electrical</div>
+            <div class="flip-back-desc">Power outages, tripped breakers that won't reset, burning smells, sparking outlets — our crew responds same-day, 24 hours a day, 7 days a week.</div>
+            <a href="tel:6025550291" class="flip-back-cta">Call Now →</a>
+          </div>
         </div>
-        <div class="stat-label">Licensed &amp; Insured</div>
       </div>
     </div>
+  </section>
 
-    <!-- SERVICES -->
-    <section class="services" id="services">
-      <div class="section-header reveal">
-        <p class="section-tag">What We Handle</p>
-        <h2 class="section-h2">Every Job.<br><span>Wired Right.</span></h2>
+  <!-- WHY CHOOSE VOLT -->
+  <section class="why-section" id="why">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Why Volt Electric</p>
+      <h2 class="section-title">Built on <span class="accent">Trust</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">Licensed &amp; Bonded in AZ</div>
+        <p class="why-desc">We carry full Arizona electrical contractor licensing, liability insurance, and bonding. Every job is permitted and inspected — no shortcuts.</p>
       </div>
-      <div class="services-grid">
-        <div class="svc-card reveal">
-          <span class="svc-num">01</span>
-          <span class="svc-icon">⚡</span>
-          <h3 class="svc-title">Panel Upgrades</h3>
-          <p class="svc-desc">Older panels are a safety risk — and a code issue. We upgrade to modern 200A service, ready for EV chargers, solar, and smart home systems.</p>
-          <a href="tel:+16025550291" class="svc-link">Book a Call →</a>
-        </div>
-        <div class="svc-card reveal">
-          <span class="svc-num">02</span>
-          <span class="svc-icon">🔌</span>
-          <h3 class="svc-title">Outlets &amp; Wiring</h3>
-          <p class="svc-desc">New outlets, GFCI upgrades, dedicated circuits for appliances. Clean, code-compliant work with no drywall nightmares left behind.</p>
-          <a href="tel:+16025550291" class="svc-link">Book a Call →</a>
-        </div>
-        <div class="svc-card reveal">
-          <span class="svc-num">03</span>
-          <span class="svc-icon">💡</span>
-          <h3 class="svc-title">Lighting Installation</h3>
-          <p class="svc-desc">Recessed cans, pendant fixtures, under-cabinet LED strips, exterior lighting — installed right the first time, every time.</p>
-          <a href="tel:+16025550291" class="svc-link">Book a Call →</a>
-        </div>
-        <div class="svc-card reveal">
-          <span class="svc-num">04</span>
-          <span class="svc-icon">🚨</span>
-          <h3 class="svc-title">Emergency Electrical</h3>
-          <p class="svc-desc">Sparks, outages, tripped breakers that won't reset — our emergency line is live around the clock. Same-day response across Phoenix.</p>
-          <a href="tel:+16025550291" class="svc-link">Call Now →</a>
-        </div>
+      <div class="why-card reveal" style="transition-delay:0.1s">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Upfront Flat-Rate Pricing</div>
+        <p class="why-desc">You get a fixed price before we start — no surprise invoices, no hourly billing that drags out. What we quote is what you pay.</p>
       </div>
-    </section>
-
-    <!-- SAFETY BAND -->
-    <div class="emergency-band">
-      <div class="emg-left">
-        <h2>Electrical<br>Emergency?</h2>
-        <p>Every call is answered. 24 hours a day, 7 days a week, 365 days a year.</p>
-      </div>
-      <div class="emg-right">
-        <a href="tel:+16025550291" class="emg-phone">(602) 555-0291</a>
-        <a href="tel:+16025550291" class="btn-dark">Call Now — We're Ready</a>
+      <div class="why-card reveal" style="transition-delay:0.2s">
+        <div class="why-icon">📍</div>
+        <div class="why-title">Serving Phoenix Since 2007</div>
+        <p class="why-desc">Nearly two decades of work across the Valley. We know Phoenix homes, local code, and the neighborhoods we serve. We're your neighbors.</p>
       </div>
     </div>
+  </section>
 
-    <!-- WHY US -->
-    <section class="why" id="why">
-      <div class="section-header reveal">
-        <p class="section-tag">Why Volt Electric</p>
-        <h2 class="section-h2">Why Phoenix<br><span>Trusts Us.</span></h2>
+  <!-- EMERGENCY BAND -->
+  <section class="emergency-band">
+    <div class="emergency-inner">
+      <div class="emergency-left reveal">
+        <p class="emergency-label">24 / 7 Response</p>
+        <h2 class="emergency-headline">Electrical<br>Emergency?</h2>
+        <p class="emergency-sub">Don't wait. Electrical problems can become dangerous fast. Our licensed electricians are on call around the clock for Phoenix homeowners.</p>
       </div>
-      <div class="why-grid">
-        <div class="why-item reveal">
-          <div class="why-num">01</div>
-          <h3 class="why-title">Licensed &amp; Bonded in AZ</h3>
-          <p class="why-desc">Every technician holds a current Arizona Electrical License. We're fully bonded and insured — protecting your home and your investment on every job.</p>
-        </div>
-        <div class="why-item reveal">
-          <div class="why-num">02</div>
-          <h3 class="why-title">Same-Day Service</h3>
-          <p class="why-desc">Most jobs are booked and completed the same day you call. We know electrical problems don't wait — and neither should you.</p>
-        </div>
-        <div class="why-item reveal">
-          <div class="why-num">03</div>
-          <h3 class="why-title">Serving Phoenix Since 2007</h3>
-          <p class="why-desc">18 years in the Valley. We've wired thousands of homes and businesses across the Phoenix metro. Our reputation is on the line with every job.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST STRIP -->
-    <div class="trust">
-      <div class="trust-item">
-        <div class="trust-icon">✅</div>
-        <div class="trust-label">Licensed</div>
-        <div class="trust-sub">State of Arizona</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">🛡️</div>
-        <div class="trust-label">Bonded</div>
-        <div class="trust-sub">Fully Protected</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">⚡</div>
-        <div class="trust-label">Same-Day</div>
-        <div class="trust-sub">Service Available</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">📞</div>
-        <div class="trust-label">24 / 7</div>
-        <div class="trust-sub">Emergency Line</div>
+      <div class="emergency-right reveal" style="transition-delay:0.15s">
+        <a href="tel:6025550291" class="emergency-phone">(602) 555-0291</a>
+        <br>
+        <a href="mailto:info@voltelectricaz.com?subject=Emergency%20Service%20Request" class="btn-white">Schedule Service →</a>
       </div>
     </div>
+  </section>
 
-  </main>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">What Clients Say</p>
+      <h2 class="section-title">Trusted by <span class="accent">Phoenix</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Volt upgraded our main panel after a scary tripping issue — showed up the same day, explained everything clearly, and the price was exactly what they quoted. Couldn't ask for more."</p>
+        <div class="testimonial-name">Marcus T.</div>
+        <div class="testimonial-loc">Arcadia, Phoenix</div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.1s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"We had outlets going dead throughout the house. The Volt team diagnosed the whole circuit in under an hour, fixed it cleanly, and didn't leave a mess. Professional from start to finish."</p>
+        <div class="testimonial-name">Priya &amp; Kevin S.</div>
+        <div class="testimonial-loc">Scottsdale border, Phoenix</div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.2s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Used Volt for a recessed lighting project in our living room — they ran new circuits, no drywall damage, and the result is stunning. Already hired them back for our patio lights."</p>
+        <div class="testimonial-name">Dana W.</div>
+        <div class="testimonial-loc">North Central Phoenix</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-badge reveal">
+        <div class="trust-badge-icon">📜</div>
+        <div class="trust-badge-label">Licensed</div>
+        <div class="trust-badge-sub">AZ ROC #280441</div>
+      </div>
+      <div class="trust-badge reveal" style="transition-delay:0.1s">
+        <div class="trust-badge-icon">🔒</div>
+        <div class="trust-badge-label">Bonded</div>
+        <div class="trust-badge-sub">Fully Insured</div>
+      </div>
+      <div class="trust-badge reveal" style="transition-delay:0.2s">
+        <div class="trust-badge-icon">🏆</div>
+        <div class="trust-badge-label">BBB A+</div>
+        <div class="trust-badge-sub">Accredited Business</div>
+      </div>
+      <div class="trust-badge reveal" style="transition-delay:0.3s">
+        <div class="trust-badge-icon">⚡</div>
+        <div class="trust-badge-label">Same-Day</div>
+        <div class="trust-badge-sub">Available 24/7</div>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
-  <footer id="contact">
-    <div class="foot-top">
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
       <div>
-        <div class="foot-brand">
-          VOLT<span>.</span>
-          <sub>Phoenix Electricians Since 2007</sub>
-        </div>
+        <div class="footer-logo">VOLT<span style="color:var(--gold)">.</span></div>
+        <p class="footer-tagline">Phoenix's trusted electrical contractor since 2007. Licensed, bonded, and committed to quality work at every job site.</p>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="footer-cta">Request Free Estimate →</a>
       </div>
       <div>
-        <p class="foot-col-head">Find Us</p>
-        <div class="foot-info">
-          2240 E Thomas Rd<br>
-          Phoenix, AZ 85016<br>
-          <a href="tel:+16025550291">(602) 555-0291</a><br>
-          <a href="mailto:info@voltelectricaz.com">info@voltelectricaz.com</a>
-        </div>
+        <div class="footer-col-title">Contact Us</div>
+        <div class="footer-contact-item">📞 <a href="tel:6025550291">(602) 555-0291</a></div>
+        <div class="footer-contact-item">✉️ <a href="mailto:info@voltelectricaz.com">info@voltelectricaz.com</a></div>
+        <div class="footer-contact-item">📍 2240 E Thomas Rd<br>Phoenix, AZ 85016</div>
       </div>
       <div>
-        <p class="foot-col-head">Get a Quote</p>
-        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="foot-cta">
-          Free Estimate →
-        </a>
-        <p class="foot-cta-note">No commitment. We'll respond<br>within the hour.</p>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Panel Upgrades</a></li>
+          <li><a href="#services">Outlets &amp; Wiring</a></li>
+          <li><a href="#services">Lighting Installation</a></li>
+          <li><a href="#services">Emergency Electrical</a></li>
+          <li><a href="#why">Why Volt</a></li>
+        </ul>
       </div>
     </div>
-    <div class="foot-bottom">
-      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
-      <p class="foot-copy">© 2026 Volt Electric LLC</p>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Volt Electric — Phoenix, AZ. All rights reserved.</p>
+      <p class="footer-copy">Demo site built by <a href="index.html">Groundwork Studio</a></p>
     </div>
   </footer>
 
   <script>
-    // Nav solid on scroll (offset for demo banner)
-    const nav = document.getElementById('siteNav');
-    const banner = document.querySelector('.demo-bar');
-    function updateNav() {
-      const y = window.scrollY;
-      nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
-      nav.classList.toggle('solid', y > 80);
-    }
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
+    // ── NAV SCROLL SHADOW ────────────────────────────────────────
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => revealObserver.observe(el));
-
-    // Animated stat counters
-    const statNums = document.querySelectorAll('.stat-num [data-target]');
-    const counterObserver = new IntersectionObserver(entries => {
+    // ── INTERSECTION OBSERVER: SCROLL REVEAL ─────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = +el.dataset.target;
-        const duration = 1600;
-        const start = performance.now();
-        function tick(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          // Ease out cubic
-          const ease = 1 - Math.pow(1 - progress, 3);
-          const current = Math.round(ease * target);
-          el.textContent = current;
-          if (progress < 1) requestAnimationFrame(tick);
-          else el.textContent = target;
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
         }
-        el.textContent = '0';
-        requestAnimationFrame(tick);
-        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── ANIMATED STAT COUNTERS ───────────────────────────────────
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1600;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutCubic(progress);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
       });
     }, { threshold: 0.5 });
-    statNums.forEach(el => counterObserver.observe(el));
-  </script>
 
+    document.querySelectorAll('.stat-count').forEach(el => counterObserver.observe(el));
+  </script>
 </body>
 </html>
