@@ -116,12 +116,13 @@ body {
   display: block;
 }
 
-/* Show ✕ when open */
-.nav-toggle-input:checked + .nav-toggle-label::before {
-  content: '✕';
+/* Show ✕ when open — hide the ☰ glyph and replace with × via ::before */
+.nav-toggle-input:checked + .nav-toggle-label {
+  font-size: 0;
 }
 
-.nav-toggle-input:checked + .nav-toggle-label {
+.nav-toggle-input:checked + .nav-toggle-label::before {
+  content: '✕';
   font-size: 20px;
 }
 
