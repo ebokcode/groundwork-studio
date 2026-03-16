@@ -3,526 +3,608 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desert Grounds — Phoenix Landscaping</title>
-  <meta name="description" content="Desert-smart landscaping for Phoenix homeowners. Lawn care, irrigation, cleanups.">
+  <title>Desert Grounds — Scottsdale Landscaping & Hardscaping</title>
+  <meta name="description" content="Luxury landscaping and hardscaping for Scottsdale and Paradise Valley homeowners. Bespoke outdoor design that thrives in the Arizona desert.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --forest:   #0b1a0d;
-      --dark-g:   #111f13;
-      --green:    #1e4423;
-      --sage:     #4d6e45;
-      --sage-lt:  #7a9a6e;
-      --stone:    #c8b89a;
-      --cream:    #f4f0e6;
-      --warm:     #f9f6ee;
-      --terra:    #7c5230;
-      --white:    #fdfaf3;
-      --muted:    #8a7a60;
-      --serif:    'Playfair Display', Georgia, serif;
-      --sans:     'DM Sans', sans-serif;
+      --black:   #060908;
+      --dark:    #0e1510;
+      --surface: #f4f0e4;
+      --warm:    #faf7f0;
+      --sage:    #8da06a;
+      --sage-lt: #b0c490;
+      --sage-dk: #4f6b34;
+      --cream:   #f0e8d0;
+      --text:    #ede5cf;
+      --muted:   #7a7060;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Inter', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--warm); color: var(--forest); overflow-x: hidden; }
+    body { font-family: var(--sans); background: var(--black); color: var(--text); overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
+    body { cursor: none; }
+    a, button { cursor: none; }
 
-    /* ── DEMO BANNER ──────────────────────────────────────── */
+    /* ── DEMO BANNER ─────────────────────────────────────── */
     .demo-bar {
-      background: var(--sage); color: #fff;
+      background: var(--sage-dk); color: #fff;
       text-align: center; padding: 9px 24px;
       font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
       position: relative; z-index: 400;
     }
     .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
 
-    /* ── NAV ──────────────────────────────────────────────── */
+    /* ── CUSTOM CURSOR ───────────────────────────────────── */
+    .cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--sage); pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width .4s cubic-bezier(.16,1,.3,1),
+                  height .4s cubic-bezier(.16,1,.3,1),
+                  background .3s, border .3s;
+    }
+    .cursor.big {
+      width: 56px; height: 56px;
+      background: transparent;
+      border: 1.5px solid rgba(141,160,106,.6);
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
     .nav {
       position: fixed; left: 0; right: 0; z-index: 300;
-      padding: 0 44px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .4s, border-color .4s;
+      height: 72px; padding: 0 48px;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      transition: background .4s, box-shadow .4s;
     }
     .nav.solid {
-      background: rgba(249,246,238,.97);
-      border-bottom: 1px solid rgba(30,68,35,.1);
-      backdrop-filter: blur(10px);
+      background: rgba(6,9,8,.96);
+      box-shadow: 0 1px 0 rgba(141,160,106,.12);
+      backdrop-filter: blur(12px);
     }
+    .nav-left { display: flex; gap: 36px; }
+    .nav-left a, .nav-right-links a {
+      font-size: 11px; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,.5);
+      transition: color .25s;
+    }
+    .nav-left a:hover, .nav-right-links a:hover { color: rgba(255,255,255,.9); }
     .nav-logo {
-      font-family: var(--serif); font-size: 20px; font-weight: 700; font-style: italic;
-      color: #fff; transition: color .4s;
+      font-family: var(--serif); font-size: 22px; font-weight: 300; font-style: italic;
+      color: #fff; text-align: center; letter-spacing: .5px;
     }
-    .nav.solid .nav-logo { color: var(--forest); }
-    .nav-right { display: flex; align-items: center; gap: 28px; }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a {
-      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
-      text-transform: uppercase; color: rgba(255,255,255,.7);
-      transition: color .3s;
-    }
-    .nav.solid .nav-links a { color: var(--muted); }
-    .nav-links a:hover, .nav.solid .nav-links a:hover { color: var(--sage); }
+    .nav-right { display: flex; align-items: center; justify-content: flex-end; gap: 32px; }
+    .nav-right-links { display: flex; gap: 36px; }
     .nav-cta {
       font-size: 11px; font-weight: 500; letter-spacing: 2px;
-      text-transform: uppercase; padding: 10px 22px;
-      background: rgba(255,255,255,.12); color: #fff;
-      border: 1px solid rgba(255,255,255,.3);
-      transition: background .25s, border-color .25s, color .25s;
+      text-transform: uppercase; padding: 10px 24px;
+      background: var(--sage); color: #fff;
+      transition: background .2s;
     }
-    .nav.solid .nav-cta { background: var(--green); color: #fff; border-color: var(--green); }
-    .nav-cta:hover { opacity: .85; }
+    .nav-cta:hover { background: var(--sage-lt); }
 
-    /* ── HERO ─────────────────────────────────────────────── */
+    /* ── HERO ────────────────────────────────────────────── */
     .hero {
-      position: relative; height: 100vh; min-height: 640px;
-      display: flex; align-items: flex-end; padding-bottom: 80px;
+      position: relative; height: 100vh; min-height: 680px;
+      display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
       background: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1800&q=85')
         center/cover no-repeat;
-      animation: kenBurns 18s ease-in-out infinite alternate;
+      transform-origin: center;
+      animation: kenBurns 20s ease-in-out infinite alternate;
     }
     @keyframes kenBurns {
       from { transform: scale(1); }
-      to   { transform: scale(1.06); }
+      to   { transform: scale(1.08); }
     }
     .hero-bg::after {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(
-        to top,
-        rgba(11,26,13,.88) 0%,
-        rgba(11,26,13,.45) 55%,
-        rgba(11,26,13,.2) 100%
+        180deg,
+        rgba(6,9,8,.35) 0%,
+        rgba(6,9,8,.2) 40%,
+        rgba(6,9,8,.65) 80%,
+        rgba(6,9,8,.92) 100%
       );
     }
     .hero-inner {
-      position: relative; z-index: 2; padding: 0 60px;
-      display: flex; align-items: flex-end; justify-content: space-between;
-      width: 100%; gap: 40px;
+      position: relative; z-index: 2; text-align: center;
+      padding: 0 24px; max-width: 1000px;
     }
-    .hero-text { max-width: 680px; }
     .hero-eyebrow {
-      font-size: 10.5px; font-weight: 400; letter-spacing: 5px;
-      text-transform: uppercase; color: rgba(255,255,255,.55);
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 36px; height: 1px;
-      background: var(--sage-lt);
+      font-size: 10px; font-weight: 400; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--sage-lt);
+      margin-bottom: 28px; opacity: 0;
+      animation: fadeUp .8s ease .3s forwards;
     }
     .hero-h1 {
       font-family: var(--serif);
-      font-size: clamp(60px, 10vw, 120px);
-      font-weight: 700; font-style: italic;
-      line-height: .9; color: #fff;
-      margin-bottom: 28px; letter-spacing: -1px;
+      font-size: clamp(72px, 11vw, 140px);
+      font-weight: 300; font-style: italic; line-height: .9;
+      color: #fff; margin-bottom: 32px; letter-spacing: -1px;
+      opacity: 0; animation: fadeUp .9s ease .5s forwards;
     }
-    .hero-h1 em {
-      font-style: normal; font-weight: 400;
-      display: block; color: rgba(255,255,255,.7);
-      font-size: 55%;
+    .hero-h1 strong {
+      font-weight: 600; font-style: normal;
+      display: block; font-size: 38%;
+      letter-spacing: 8px; text-transform: uppercase;
+      color: rgba(255,255,255,.55); margin-bottom: 8px;
     }
     .hero-tagline {
-      font-size: 15px; font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,.65); max-width: 400px; margin-bottom: 40px;
+      font-size: 15px; font-weight: 300; line-height: 1.8;
+      color: rgba(255,255,255,.55); max-width: 420px;
+      margin: 0 auto 44px; opacity: 0;
+      animation: fadeUp .9s ease .7s forwards;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-    .btn-fill {
+    .hero-btns {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp .9s ease .9s forwards;
+    }
+    .btn-sage {
       font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
       text-transform: uppercase; background: var(--sage); color: #fff;
-      padding: 14px 36px; display: inline-block; transition: background .2s;
+      padding: 15px 40px; display: inline-block;
+      transition: background .2s, transform .2s;
     }
-    .btn-fill:hover { background: var(--sage-lt); }
-    .btn-outline {
+    .btn-sage:hover { background: var(--sage-lt); transform: translateY(-1px); }
+    .btn-ghost {
       font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
-      text-transform: uppercase; color: rgba(255,255,255,.7);
-      border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 3px;
-      transition: color .2s, border-color .2s;
+      text-transform: uppercase; color: rgba(255,255,255,.65);
+      border: 1px solid rgba(255,255,255,.2); padding: 15px 40px;
+      display: inline-block; transition: border-color .2s, color .2s;
     }
-    .btn-outline:hover { color: #fff; border-color: #fff; }
-    /* Side badge */
-    .hero-badge {
-      background: rgba(11,26,13,.8); backdrop-filter: blur(8px);
-      border: 1px solid rgba(122,154,110,.25);
-      padding: 28px 28px; min-width: 200px; text-align: center;
-      flex-shrink: 0;
+    .btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .badge-num {
-      font-family: var(--serif); font-size: 56px; font-weight: 700;
-      color: var(--sage-lt); line-height: 1; margin-bottom: 4px;
-    }
-    .badge-text {
-      font-size: 10px; font-weight: 400; letter-spacing: 3px;
-      text-transform: uppercase; color: rgba(255,255,255,.45);
-    }
-    /* Scroll line */
+    /* Scroll indicator */
     .hero-scroll {
-      position: absolute; bottom: 0; left: 60px;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      z-index: 2; padding-bottom: 0;
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0; animation: fadeUp .8s ease 1.2s forwards;
     }
-    .scroll-line {
-      width: 1px; height: 60px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.3));
+    .scroll-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--sage-lt); opacity: .5;
+      animation: bounce 2s ease infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: .5; }
+      50% { transform: translateY(8px); opacity: 1; }
     }
 
-    /* ── INTRO / PHILOSOPHY ───────────────────────────────── */
-    .philosophy {
-      background: var(--warm); padding: 108px 60px;
+    /* ── STATS STRIP ─────────────────────────────────────── */
+    .stats-strip {
+      background: var(--dark);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(141,160,106,.1);
+      border-bottom: 1px solid rgba(141,160,106,.1);
+    }
+    .stat-item {
+      padding: 52px 40px; text-align: center;
+      border-right: 1px solid rgba(141,160,106,.07);
+      transition: background .3s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(141,160,106,.04); }
+    .stat-n {
+      font-family: var(--serif); font-size: 60px; font-weight: 300;
+      color: var(--sage-lt); line-height: 1; margin-bottom: 8px;
+      font-style: italic;
+    }
+    .stat-l {
+      font-size: 10px; font-weight: 400; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(237,229,207,.3);
+    }
+
+    /* ── ABOUT / PHILOSOPHY ──────────────────────────────── */
+    .about {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
+      min-height: 600px;
+    }
+    .about-photo {
       position: relative; overflow: hidden;
+      min-height: 500px;
     }
-    /* Botanical SVG watermark */
-    .philosophy::after {
-      content: '';
-      position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
-      width: 380px; height: 380px; opacity: .04; pointer-events: none;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cellipse cx='100' cy='100' rx='80' ry='95' fill='none' stroke='%230b1a0d' stroke-width='2'/%3E%3Cellipse cx='100' cy='100' rx='50' ry='70' fill='none' stroke='%230b1a0d' stroke-width='1.5'/%3E%3Cpath d='M100 5 Q130 50 100 100 Q70 50 100 5Z' fill='%230b1a0d'/%3E%3Cpath d='M100 100 Q150 130 195 100 Q150 80 100 100Z' fill='%230b1a0d'/%3E%3Cpath d='M100 100 Q50 130 5 100 Q50 80 100 100Z' fill='%230b1a0d'/%3E%3Cpath d='M100 100 Q130 150 100 195 Q70 150 100 100Z' fill='%230b1a0d'/%3E%3C/svg%3E") center/contain no-repeat;
-    }
-    .phil-label {
-      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--sage); margin-bottom: 24px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .phil-label::before {
-      content: ''; display: block; width: 28px; height: 1px; background: var(--sage);
-    }
-    .phil-h2 {
-      font-family: var(--serif);
-      font-size: clamp(36px, 4.5vw, 58px);
-      font-weight: 700; font-style: italic; line-height: 1.15;
-      color: var(--forest);
-    }
-    .phil-right {}
-    .phil-rule {
-      width: 36px; height: 1px; background: var(--sage); margin: 0 0 32px;
-    }
-    .phil-body {
-      font-size: 15.5px; font-weight: 300; line-height: 1.85;
-      color: var(--muted); margin-bottom: 36px;
-    }
-    .phil-stat-row {
-      display: flex; gap: 48px; flex-wrap: wrap;
-    }
-    .phil-stat {}
-    .phil-stat-n {
-      font-family: var(--serif); font-size: 40px; font-weight: 700;
-      color: var(--green); line-height: 1; margin-bottom: 4px;
-    }
-    .phil-stat-l {
-      font-size: 11px; font-weight: 400; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--muted);
-    }
-
-    /* ── SERVICES ─────────────────────────────────────────── */
-    .services { background: var(--cream); }
-
-    /* Alternating split sections */
-    .svc-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 520px;
-    }
-    .svc-split.reverse { direction: rtl; }
-    .svc-split.reverse > * { direction: ltr; }
-    .svc-photo { position: relative; overflow: hidden; }
-    .svc-photo img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
+    .about-photo img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
       transition: transform .8s cubic-bezier(.16,1,.3,1);
     }
-    .svc-split:hover .svc-photo img { transform: scale(1.04); }
-    .svc-body {
-      padding: 72px 60px;
+    .about:hover .about-photo img { transform: scale(1.04); }
+    .about-body {
+      background: var(--dark); padding: 88px 72px;
       display: flex; flex-direction: column; justify-content: center;
-      background: var(--cream);
-    }
-    .svc-split:nth-child(even) .svc-body { background: var(--warm); }
-    .svc-tag {
-      font-size: 10px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--sage); margin-bottom: 18px;
-    }
-    .svc-h3 {
-      font-family: var(--serif); font-size: clamp(32px, 3.5vw, 48px);
-      font-weight: 700; font-style: italic; line-height: 1.1;
-      color: var(--forest); margin-bottom: 20px;
-    }
-    .svc-desc {
-      font-size: 14.5px; font-weight: 300; line-height: 1.8;
-      color: var(--muted); margin-bottom: 32px; max-width: 360px;
-    }
-    .svc-bullets { list-style: none; margin-bottom: 36px; }
-    .svc-bullets li {
-      font-size: 13.5px; font-weight: 400; color: var(--forest);
-      padding: 8px 0; border-bottom: 1px solid rgba(30,68,35,.08);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .svc-bullets li::before {
-      content: '→'; color: var(--sage); font-size: 13px;
-    }
-    .svc-cta {
-      font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--green);
-      border-bottom: 1px solid var(--green); padding-bottom: 2px;
-      display: inline-block; transition: color .2s, border-color .2s;
-    }
-    .svc-cta:hover { color: var(--sage); border-color: var(--sage); }
-
-    /* ── PROCESS ──────────────────────────────────────────── */
-    .process {
-      background: var(--forest); padding: 100px 60px;
       position: relative; overflow: hidden;
     }
-    .process::before {
+    .about-body::before {
       content: '';
-      position: absolute; right: -40px; top: -40px;
-      width: 500px; height: 500px; border-radius: 50%;
-      border: 1px solid rgba(122,154,110,.08);
+      position: absolute; right: -60px; bottom: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(141,160,106,.06);
       pointer-events: none;
     }
-    .process::after {
-      content: '';
-      position: absolute; right: 40px; top: 40px;
-      width: 360px; height: 360px; border-radius: 50%;
-      border: 1px solid rgba(122,154,110,.05);
-      pointer-events: none;
-    }
-    .process-head {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      flex-wrap: wrap; gap: 24px; margin-bottom: 72px;
-    }
-    .process-lbl {
-      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--sage-lt); margin-bottom: 16px;
+    .section-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 4.5px;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 24px;
       display: flex; align-items: center; gap: 14px;
     }
-    .process-lbl::before {
-      content: ''; width: 28px; height: 1px; background: var(--sage-lt);
+    .section-label::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--sage);
     }
-    .process-h2 {
+    .about-h2 {
       font-family: var(--serif);
-      font-size: clamp(40px, 5.5vw, 68px);
-      font-weight: 700; font-style: italic;
-      line-height: .95; color: var(--cream);
+      font-size: clamp(38px, 4.5vw, 60px);
+      font-weight: 300; font-style: italic; line-height: 1.1;
+      color: #fff; margin-bottom: 28px;
     }
-    .process-sub {
-      font-size: 14px; font-weight: 300; color: rgba(200,184,154,.55);
-      max-width: 280px; line-height: 1.75; text-align: right;
+    .about-body p {
+      font-size: 15px; font-weight: 300; line-height: 1.9;
+      color: rgba(237,229,207,.5); margin-bottom: 40px;
     }
-    .process-steps {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
+    .about-stats {
+      display: flex; gap: 48px; flex-wrap: wrap;
     }
-    .step {
-      background: var(--dark-g); padding: 40px 32px;
-      border-top: 2px solid transparent;
-      transition: border-color .3s, background .3s;
+    .astat-n {
+      font-family: var(--serif); font-size: 44px; font-weight: 300;
+      color: var(--sage-lt); font-style: italic; line-height: 1; margin-bottom: 6px;
     }
-    .step:hover { border-top-color: var(--sage-lt); background: rgba(30,68,35,.4); }
-    .step-num {
-      font-family: var(--serif); font-size: 72px; font-weight: 700;
-      color: rgba(122,154,110,.12); line-height: 1; margin-bottom: -10px;
-    }
-    .step-title {
-      font-family: var(--serif); font-size: 20px; font-weight: 700; font-style: italic;
-      color: var(--cream); margin-bottom: 12px;
-    }
-    .step-desc {
-      font-size: 13.5px; font-weight: 300; color: rgba(200,184,154,.5); line-height: 1.75;
+    .astat-l {
+      font-size: 10px; font-weight: 400; letter-spacing: 2.5px;
+      text-transform: uppercase; color: rgba(237,229,207,.3);
     }
 
-    /* ── FREE ESTIMATE BAND ───────────────────────────────── */
-    .estimate-band {
+    /* ── SERVICES (photo card grid) ──────────────────────── */
+    .services-head {
+      background: var(--black); padding: 88px 60px 56px;
+      text-align: center;
+    }
+    .services-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 84px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: .95; margin-bottom: 20px;
+    }
+    .services-head p {
+      font-size: 14px; font-weight: 300; color: rgba(237,229,207,.4);
+      max-width: 480px; margin: 0 auto; line-height: 1.8;
+    }
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 3px;
+      background: var(--black);
+      padding: 0 3px 3px;
+    }
+    .svc-card {
       position: relative; overflow: hidden;
-      background: var(--sage); padding: 88px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; flex-wrap: wrap;
+      aspect-ratio: 3/4; min-height: 420px;
     }
-    .estimate-band::before {
+    .svc-card.wide {
+      grid-column: span 2;
+      aspect-ratio: unset;
+    }
+    .svc-card img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transition: transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .svc-card::after {
       content: '';
-      position: absolute; left: -80px; top: 50%; transform: translateY(-50%);
-      width: 400px; height: 400px; border-radius: 50%;
-      background: rgba(11,26,13,.15); pointer-events: none;
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(6,9,8,.9) 0%,
+        rgba(6,9,8,.4) 50%,
+        rgba(6,9,8,.1) 100%
+      );
+      transition: background .4s;
     }
-    .est-left { position: relative; z-index: 1; }
-    .est-lbl {
-      font-size: 10px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 16px;
+    .svc-card:hover img { transform: scale(1.06); }
+    .svc-card:hover::after {
+      background: linear-gradient(
+        to top,
+        rgba(6,9,8,.95) 0%,
+        rgba(6,9,8,.6) 55%,
+        rgba(6,9,8,.2) 100%
+      );
     }
-    .est-h2 {
+    .svc-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      z-index: 2; padding: 36px 36px 36px;
+      transform: translateY(8px);
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .svc-card:hover .svc-info { transform: translateY(0); }
+    .svc-num {
+      font-size: 10px; font-weight: 400; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--sage-lt); margin-bottom: 10px;
+    }
+    .svc-name {
       font-family: var(--serif);
-      font-size: clamp(38px, 5vw, 64px);
-      font-weight: 700; font-style: italic;
-      color: #fff; line-height: 1.05;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1.1; margin-bottom: 12px;
     }
-    .est-right { position: relative; z-index: 1; }
-    .est-right p {
-      font-size: 14px; font-weight: 300;
-      color: rgba(255,255,255,.65); margin-bottom: 24px; max-width: 280px; line-height: 1.7;
+    .svc-desc-txt {
+      font-size: 13px; font-weight: 300; color: rgba(255,255,255,.55);
+      line-height: 1.7; max-width: 360px; margin-bottom: 18px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity .4s .05s, transform .4s .05s;
     }
-    .btn-cream {
-      display: inline-block;
-      font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
-      text-transform: uppercase; background: var(--cream);
-      color: var(--forest); padding: 16px 40px;
-      transition: background .2s, color .2s;
+    .svc-card:hover .svc-desc-txt { opacity: 1; transform: translateY(0); }
+    .svc-link {
+      font-size: 10px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--sage-lt);
+      display: inline-flex; align-items: center; gap: 8px;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .35s .1s, transform .35s .1s, color .2s;
     }
-    .btn-cream:hover { background: var(--forest); color: var(--cream); }
+    .svc-link::after { content: '→'; font-size: 12px; }
+    .svc-card:hover .svc-link { opacity: 1; transform: translateY(0); }
+    .svc-link:hover { color: #fff; }
 
-    /* ── TRUST STRIP ──────────────────────────────────────── */
-    .trust {
-      background: var(--warm);
-      padding: 72px 44px;
-      display: flex; justify-content: center; gap: 72px; flex-wrap: wrap;
-      border-bottom: 1px solid rgba(30,68,35,.08);
+    /* ── PROCESS (3-col cards on cream) ──────────────────── */
+    .process { background: var(--surface); padding: 100px 60px; }
+    .process-head { text-align: center; margin-bottom: 64px; }
+    .process-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5.5vw, 74px);
+      font-weight: 300; font-style: italic;
+      color: var(--dark); line-height: .95; margin-bottom: 16px;
     }
-    .trust-item { text-align: center; }
-    .trust-icon { font-size: 30px; margin-bottom: 14px; }
+    .process-head p {
+      font-size: 14px; font-weight: 300; color: var(--muted);
+      max-width: 400px; margin: 0 auto; line-height: 1.8;
+    }
+    .process-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    }
+    .proc-card {
+      background: var(--warm); padding: 48px 40px;
+      border-top: 2px solid transparent;
+      transition: border-color .3s, background .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .proc-card:hover {
+      border-top-color: var(--sage);
+      background: #fff;
+      transform: translateY(-3px);
+    }
+    .proc-num {
+      font-family: var(--serif); font-size: 11px; font-weight: 400;
+      letter-spacing: 4px; color: var(--sage); text-transform: uppercase;
+      margin-bottom: 28px; display: block;
+    }
+    .proc-icon {
+      width: 48px; height: 48px; margin-bottom: 24px;
+      opacity: .4; transition: opacity .3s;
+    }
+    .proc-card:hover .proc-icon { opacity: .7; }
+    .proc-h3 {
+      font-family: var(--serif);
+      font-size: 26px; font-weight: 400; color: var(--dark);
+      margin-bottom: 14px; line-height: 1.2;
+    }
+    .proc-p {
+      font-size: 13.5px; font-weight: 300; color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── GALLERY STRIP ───────────────────────────────────── */
+    .gallery-strip {
+      background: var(--black); padding: 80px 0;
+      overflow: hidden;
+    }
+    .gallery-head { padding: 0 60px; margin-bottom: 40px; }
+    .gallery-head h2 {
+      font-family: var(--serif); font-size: 13px; font-weight: 300;
+      font-style: italic; color: rgba(237,229,207,.35);
+      letter-spacing: 2px;
+    }
+    .gallery-scroll {
+      display: flex; gap: 3px; overflow-x: auto; padding: 0 60px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      cursor: grab;
+    }
+    .gallery-scroll:active { cursor: grabbing; }
+    .gallery-scroll::-webkit-scrollbar { display: none; }
+    .gallery-img {
+      flex: 0 0 auto; width: 380px; height: 260px;
+      overflow: hidden; position: relative;
+    }
+    .gallery-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.16,1,.3,1);
+    }
+    .gallery-img:hover img { transform: scale(1.06); }
+
+    /* ── CTA BAND ────────────────────────────────────────── */
+    .cta-band {
+      background: var(--sage-dk); padding: 96px 60px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.06); pointer-events: none;
+    }
+    .cta-band::after {
+      content: '';
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+      width: 340px; height: 340px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.04); pointer-events: none;
+    }
+    .cta-left { position: relative; z-index: 1; }
+    .cta-left .section-label { color: rgba(255,255,255,.5); }
+    .cta-left .section-label::before { background: rgba(255,255,255,.3); }
+    .cta-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5.5vw, 72px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: .95;
+    }
+    .cta-right { position: relative; z-index: 1; }
+    .cta-right p {
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,.6);
+      line-height: 1.8; margin-bottom: 32px; max-width: 340px;
+    }
+    .btn-white {
+      display: inline-block; font-size: 11px; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      background: #fff; color: var(--sage-dk); padding: 16px 44px;
+      transition: background .2s, transform .2s;
+    }
+    .btn-white:hover { background: var(--cream); transform: translateY(-2px); }
+
+    /* ── TRUST STRIP ─────────────────────────────────────── */
+    .trust {
+      background: var(--dark); padding: 72px 60px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(141,160,106,.08);
+    }
+    .trust-item {
+      padding: 16px 24px; text-align: center;
+      border-right: 1px solid rgba(141,160,106,.07);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon-wrap {
+      width: 44px; height: 44px; margin: 0 auto 16px;
+      border: 1px solid rgba(141,160,106,.2); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trust-icon-wrap svg { width: 18px; height: 18px; }
     .trust-name {
-      font-family: var(--serif); font-size: 18px; font-weight: 700;
-      color: var(--forest); margin-bottom: 4px;
+      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      color: #fff; margin-bottom: 4px;
     }
     .trust-sub {
-      font-size: 10.5px; font-weight: 400; letter-spacing: 1.8px;
-      text-transform: uppercase; color: var(--muted);
+      font-size: 10px; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(237,229,207,.3);
     }
 
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer { background: var(--forest); padding: 88px 44px 44px; }
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { background: var(--dark); padding: 88px 60px 44px; }
     .foot-top {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 48px; padding-bottom: 64px;
-      border-bottom: 1px solid rgba(122,154,110,.1); margin-bottom: 40px;
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px; padding-bottom: 60px;
+      border-bottom: 1px solid rgba(141,160,106,.08); margin-bottom: 36px;
     }
     .foot-brand {
-      font-family: var(--serif); font-size: 44px;
-      font-weight: 700; font-style: italic; color: var(--cream); line-height: 1;
+      font-family: var(--serif); font-size: 52px; font-weight: 300;
+      font-style: italic; color: #fff; line-height: .9; margin-bottom: 16px;
     }
-    .foot-brand span {
-      display: block; font-style: normal; font-size: 10px;
-      letter-spacing: 4px; text-transform: uppercase;
-      color: var(--sage-lt); margin-top: 10px; font-weight: 400;
+    .foot-tagline {
+      font-size: 12px; font-weight: 300; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(237,229,207,.25); margin-bottom: 28px;
     }
+    .foot-cta-btn {
+      display: inline-block;
+      font-size: 11px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; background: var(--sage);
+      color: #fff; padding: 13px 30px; transition: background .2s;
+    }
+    .foot-cta-btn:hover { background: var(--sage-lt); }
     .foot-col-head {
       font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
-      text-transform: uppercase; color: rgba(200,184,154,.3); margin-bottom: 20px;
+      text-transform: uppercase; color: rgba(237,229,207,.2); margin-bottom: 20px;
     }
     .foot-info {
       font-size: 13.5px; font-weight: 300;
-      color: rgba(200,184,154,.4); line-height: 2.1;
+      color: rgba(237,229,207,.35); line-height: 2.2;
     }
-    .foot-info a { color: rgba(200,184,154,.4); transition: color .2s; }
+    .foot-info a { color: rgba(237,229,207,.35); transition: color .2s; }
     .foot-info a:hover { color: var(--sage-lt); }
-    .foot-cta-btn {
-      display: inline-block;
-      font-size: 11px; font-weight: 500; letter-spacing: 2.5px;
-      text-transform: uppercase; background: var(--sage);
-      color: #fff; padding: 15px 32px; transition: background .2s;
-    }
-    .foot-cta-btn:hover { background: var(--sage-lt); }
-    .foot-note {
-      font-size: 12px; font-weight: 300;
-      color: rgba(200,184,154,.25); margin-top: 14px; line-height: 1.6;
-    }
     .foot-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 10px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
     }
-    .foot-copy {
-      font-size: 11.5px; font-weight: 300; color: rgba(200,184,154,.22);
-    }
+    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(237,229,207,.2); }
     .foot-copy a { color: var(--sage-lt); font-weight: 500; }
 
-    /* ── CUSTOM CURSOR ────────────────────────────────────── */
-    body { cursor: none; }
-    a, button { cursor: none; }
-    .cursor {
-      position: fixed; top: 0; left: 0; z-index: 9999;
-      width: 12px; height: 12px;
-      border-radius: 50%; pointer-events: none;
-      background: var(--sage);
-      transform: translate(-50%, -50%);
-      transition: width .35s cubic-bezier(.16,1,.3,1),
-                  height .35s cubic-bezier(.16,1,.3,1),
-                  background .3s, opacity .3s,
-                  transform .08s linear;
-      mix-blend-mode: normal;
-    }
-    .cursor.expanded {
-      width: 64px; height: 64px;
-      background: transparent;
-      border: 1.5px solid rgba(122,154,110,.7);
-    }
-    .cursor.on-dark {
-      background: var(--cream);
-    }
-    .cursor.expanded.on-dark {
-      background: transparent;
-      border-color: rgba(244,240,230,.5);
-    }
-
-    /* ── SCROLL REVEAL ────────────────────────────────────── */
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
     .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity .75s ease, transform .75s ease;
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-left {
-      opacity: 0; transform: translateX(-24px);
-      transition: opacity .75s ease, transform .75s ease;
+      opacity: 0; transform: translateX(-28px);
+      transition: opacity .8s ease, transform .8s ease;
     }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
     .reveal-right {
-      opacity: 0; transform: translateX(24px);
-      transition: opacity .75s ease, transform .75s ease;
+      opacity: 0; transform: translateX(28px);
+      transition: opacity .8s ease, transform .8s ease;
     }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-    /* ── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 960px) {
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .nav { grid-template-columns: 1fr auto; }
+      .nav-left, .nav-right-links { display: none; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .svc-card.wide { grid-column: span 1; aspect-ratio: 4/3; }
+      .svc-card { aspect-ratio: 4/3; min-height: 300px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .about-photo { min-height: 360px; }
+      .about-body { padding: 60px 32px; }
+      .cta-band { grid-template-columns: 1fr; padding: 64px 32px; }
+      .trust { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(141,160,106,.07); padding: 28px 16px; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(141,160,106,.07); }
+      .foot-top { grid-template-columns: 1fr; gap: 36px; }
+      .process { padding: 72px 24px; }
+      .services-head { padding: 72px 24px 48px; }
+      .gallery-head { padding: 0 24px; }
+      .gallery-scroll { padding: 0 24px; }
+      .gallery-img { width: 280px; height: 200px; }
+      .cta-band::before, .cta-band::after { display: none; }
+      footer { padding: 64px 24px 36px; }
       body, a, button { cursor: auto !important; }
       .cursor { display: none; }
-      .nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero-inner { padding: 0 24px; flex-direction: column; align-items: flex-start; }
-      .hero-badge { display: none; }
-      .philosophy { grid-template-columns: 1fr; gap: 40px; padding: 72px 24px; }
-      .svc-split { grid-template-columns: 1fr; direction: ltr !important; }
-      .svc-photo { height: 300px; position: relative; }
-      .svc-photo img { position: absolute; }
-      .svc-body { padding: 48px 24px; }
-      .process { padding: 72px 24px; }
-      .process-steps { grid-template-columns: 1fr 1fr; }
-      .estimate-band { padding: 64px 24px; }
-      .foot-top { grid-template-columns: 1fr; gap: 36px; }
-      .trust { gap: 40px; padding: 56px 24px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+
   <!-- DEMO BANNER -->
   <div class="demo-bar">
-    This is a demo site — an example of what your business could look like.&nbsp;
+    This is a demo site — see what your business could look like.&nbsp;
     <a href="index.html">Built by Groundwork Studio →</a>
   </div>
 
   <!-- NAV -->
   <nav class="nav" id="siteNav">
+    <div class="nav-left">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+    </div>
     <a href="#" class="nav-logo">Desert Grounds</a>
     <div class="nav-right">
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
+      <div class="nav-right-links">
+        <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="tel:+16235550177" class="nav-cta">(623) 555-0177</a>
+      <a href="#contact" class="nav-cta">Start Your Project</a>
     </div>
   </nav>
 
@@ -530,193 +612,252 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-inner">
-      <div class="hero-text">
-        <p class="hero-eyebrow">Tolleson, Arizona — Desert-Smart Landscaping</p>
-        <h1 class="hero-h1">
-          Desert<br>
-          <em>Grounds.</em>
-        </h1>
-        <p class="hero-tagline">Water-wise design, reliable maintenance, and outdoor spaces that thrive in the Arizona climate.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn-fill">Free Estimate</a>
-          <a href="#services" class="btn-outline">View Services</a>
-        </div>
-      </div>
-      <div class="hero-badge">
-        <div class="badge-num">10+</div>
-        <div class="badge-text">Years in<br>Phoenix Valley</div>
+      <p class="hero-eyebrow">Scottsdale &amp; Paradise Valley, Arizona</p>
+      <h1 class="hero-h1">
+        <strong>Luxury Landscaping</strong>
+        Desert<br>Grounds.
+      </h1>
+      <p class="hero-tagline">Bespoke outdoor design and precision maintenance for Arizona's most discerning homeowners.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-sage">Start Your Project</a>
+        <a href="#services" class="btn-ghost">View Our Services</a>
       </div>
     </div>
     <div class="hero-scroll">
-      <div class="scroll-line"></div>
+      <div class="scroll-dot"></div>
     </div>
   </section>
 
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-item reveal">
+      <div class="stat-n" data-target="15">0</div>
+      <div class="stat-l">Years of Excellence</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-n" data-target="400">0</div>
+      <div class="stat-l">Projects Completed</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-n" data-target="100">0</div>
+      <div class="stat-l">% Licensed &amp; Insured</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-n">Free</div>
+      <div class="stat-l">Estimates — No Pressure</div>
+    </div>
+  </div>
+
   <main>
 
-    <!-- PHILOSOPHY -->
-    <section class="philosophy">
-      <div class="reveal-left">
-        <p class="phil-label">Our Approach</p>
-        <h2 class="phil-h2">Beautiful yards built for where you actually live.</h2>
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-photo reveal-left">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1000&q=85" alt="Luxury landscape design">
       </div>
-      <div class="reveal-right">
-        <div class="phil-rule"></div>
-        <p class="phil-body">The Arizona desert isn't a limitation — it's the palette. We design and maintain outdoor spaces that work with the climate, use water wisely, and look incredible year-round. No generic lawn-and-go service. Just real craftsmanship.</p>
-        <div class="phil-stat-row">
-          <div class="phil-stat">
-            <div class="phil-stat-n">100%</div>
-            <div class="phil-stat-l">Licensed &amp; Insured</div>
+      <div class="about-body reveal-right">
+        <p class="section-label">About Desert Grounds</p>
+        <h2 class="about-h2">Exceptional landscapes, unparalleled service.</h2>
+        <p>Founded in Scottsdale, Desert Grounds specializes in high-end landscape and hardscaping services for Arizona's most affluent homeowners. The desert isn't a limitation — it's the palette. We design spaces that work with the climate, conserve water intelligently, and look extraordinary year-round.</p>
+        <div class="about-stats">
+          <div>
+            <div class="astat-n">10+</div>
+            <div class="astat-l">Year Warranty</div>
           </div>
-          <div class="phil-stat">
-            <div class="phil-stat-n">Free</div>
-            <div class="phil-stat-l">Estimates — No Pressure</div>
+          <div>
+            <div class="astat-n">5★</div>
+            <div class="astat-l">Client Rating</div>
           </div>
-          <div class="phil-stat">
-            <div class="phil-stat-n">Local</div>
-            <div class="phil-stat-l">Phoenix-Based Team</div>
+          <div>
+            <div class="astat-n">Local</div>
+            <div class="astat-l">Phoenix Valley Team</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- SERVICES -->
-    <div class="services" id="services">
-
-      <div class="svc-split">
-        <div class="svc-photo reveal-left">
-          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=85" alt="Lawn maintenance">
-        </div>
-        <div class="svc-body reveal-right">
-          <p class="svc-tag">Service 01</p>
-          <h3 class="svc-h3">Lawn Maintenance</h3>
-          <p class="svc-desc">Consistent, reliable care that keeps your yard looking its best without you lifting a finger.</p>
-          <ul class="svc-bullets">
-            <li>Weekly or bi-weekly service</li>
-            <li>Edging &amp; trimming included</li>
-            <li>Seasonal schedule adjustments</li>
-          </ul>
-          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
-        </div>
+    <div id="services">
+      <div class="services-head reveal">
+        <p class="section-label" style="justify-content:center;">Our Expert Services</p>
+        <h2>Transforming<br><em>Luxury Landscapes</em></h2>
+        <p>Tailored to the discerning needs of Arizona's finest homeowners — from routine precision maintenance to complete outdoor transformations.</p>
       </div>
+      <div class="svc-grid">
 
-      <div class="svc-split reverse">
-        <div class="svc-photo reveal-right">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85" alt="Desert landscaping">
+        <div class="svc-card wide">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1400&q=85" alt="Landscape Design">
+          <div class="svc-info">
+            <p class="svc-num">01 — Signature Service</p>
+            <h3 class="svc-name">Landscape Design<br>&amp; Installation</h3>
+            <p class="svc-desc-txt">Complete outdoor transformations — from concept drawings to final planting. Native species, water-wise design, hardscape integration, and desert-smart layouts that endure the Arizona climate.</p>
+            <a href="tel:+16235550177" class="svc-link">Explore Further</a>
+          </div>
         </div>
-        <div class="svc-body reveal-left">
-          <p class="svc-tag">Service 02</p>
-          <h3 class="svc-h3">Desert Landscaping</h3>
-          <p class="svc-desc">Native plants and rock design that thrive in Arizona heat — beautiful, low-maintenance, and water-wise.</p>
-          <ul class="svc-bullets">
-            <li>Native plant selection</li>
-            <li>Rock &amp; gravel design</li>
-            <li>Drought-tolerant installations</li>
-          </ul>
-          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
+
+        <div class="svc-card">
+          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=900&q=85" alt="Irrigation">
+          <div class="svc-info">
+            <p class="svc-num">02</p>
+            <h3 class="svc-name">Irrigation &amp; Sprinkler Systems</h3>
+            <p class="svc-desc-txt">Install, repair, and seasonal tune-ups. Every drop goes exactly where it should.</p>
+            <a href="tel:+16235550177" class="svc-link">Explore Further</a>
+          </div>
         </div>
+
+        <div class="svc-card">
+          <img src="https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=900&q=85" alt="Maintenance">
+          <div class="svc-info">
+            <p class="svc-num">03</p>
+            <h3 class="svc-name">Precision Maintenance</h3>
+            <p class="svc-desc-txt">Weekly and bi-weekly care that keeps your property at its best without compromise.</p>
+            <a href="tel:+16235550177" class="svc-link">Explore Further</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=900&q=85" alt="Hardscaping">
+          <div class="svc-info">
+            <p class="svc-num">04</p>
+            <h3 class="svc-name">Hardscaping &amp; Pavers</h3>
+            <p class="svc-desc-txt">Custom driveways, patios, fire features, and outdoor structures built to last.</p>
+            <a href="tel:+16235550177" class="svc-link">Explore Further</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85" alt="Desert Landscaping">
+          <div class="svc-info">
+            <p class="svc-num">05</p>
+            <h3 class="svc-name">Desert Xeriscaping</h3>
+            <p class="svc-desc-txt">Native plants and rock design that thrive in Arizona heat — beautiful and low-maintenance.</p>
+            <a href="tel:+16235550177" class="svc-link">Explore Further</a>
+          </div>
+        </div>
+
       </div>
-
-      <div class="svc-split">
-        <div class="svc-photo reveal-left">
-          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=900&q=85" alt="Irrigation systems">
-        </div>
-        <div class="svc-body reveal-right">
-          <p class="svc-tag">Service 03</p>
-          <h3 class="svc-h3">Irrigation Systems</h3>
-          <p class="svc-desc">Install, repair, and seasonal tune-ups. We make sure every drop of water goes exactly where it should.</p>
-          <ul class="svc-bullets">
-            <li>New system installation</li>
-            <li>Leak detection &amp; repair</li>
-            <li>Seasonal tune-ups</li>
-          </ul>
-          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
-        </div>
-      </div>
-
-      <div class="svc-split reverse">
-        <div class="svc-photo reveal-right">
-          <img src="https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=900&q=85" alt="Yard cleanups">
-        </div>
-        <div class="svc-body reveal-left">
-          <p class="svc-tag">Service 04</p>
-          <h3 class="svc-h3">Yard Cleanups</h3>
-          <p class="svc-desc">One-time or seasonal deep cleans — debris removal, raking, edging, and getting your yard show-ready.</p>
-          <ul class="svc-bullets">
-            <li>One-time deep cleans</li>
-            <li>Pre-season preparation</li>
-            <li>Debris &amp; waste removal</li>
-          </ul>
-          <a href="tel:+16235550177" class="svc-cta">Request a Consultation →</a>
-        </div>
-      </div>
-
     </div>
 
     <!-- PROCESS -->
     <section class="process" id="process">
       <div class="process-head reveal">
-        <div>
-          <p class="process-lbl">How It Works</p>
-          <h2 class="process-h2">Simple process,<br>beautiful results.</h2>
-        </div>
-        <p class="process-sub">From first call to finished yard — we keep it easy, clear, and stress-free.</p>
+        <p class="section-label" style="justify-content:center;">The Plan</p>
+        <h2>Our Proven Approach</h2>
+        <p>We follow a rigorous process to ensure every project meets our uncompromising standards of quality and beauty.</p>
       </div>
-      <div class="process-steps">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <h3 class="step-title">Free Estimate</h3>
-          <p class="step-desc">We come to your property, assess the work, and give you an honest quote. No pressure, no guesswork.</p>
+      <div class="process-grid">
+
+        <div class="proc-card reveal">
+          <span class="proc-num">01 Vision</span>
+          <svg class="proc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8"/>
+            <line x1="24" y1="6" x2="24" y2="12"/><line x1="24" y1="36" x2="24" y2="42"/>
+            <line x1="6" y1="24" x2="12" y2="24"/><line x1="36" y1="24" x2="42" y2="24"/>
+          </svg>
+          <h3 class="proc-h3">Crafting Your Dream Landscape</h3>
+          <p class="proc-p">We begin with a personalized consultation to capture your vision and assess your property's unique needs, climate, and character.</p>
         </div>
-        <div class="step reveal">
-          <div class="step-num">02</div>
-          <h3 class="step-title">We Plan It Out</h3>
-          <p class="step-desc">Whether it's a one-time cleanup or a full landscape redesign, we map out exactly what we'll do.</p>
+
+        <div class="proc-card reveal">
+          <span class="proc-num">02 Design</span>
+          <svg class="proc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="8" y="8" width="32" height="32" rx="2"/>
+            <line x1="8" y1="20" x2="40" y2="20"/>
+            <line x1="20" y1="20" x2="20" y2="40"/>
+            <circle cx="14" cy="14" r="2" fill="currentColor"/>
+          </svg>
+          <h3 class="proc-h3">Bespoke Design Solutions</h3>
+          <p class="proc-p">Our design team collaborates with architects to develop customized plans and material selections that bring your vision to life precisely.</p>
         </div>
-        <div class="step reveal">
-          <div class="step-num">03</div>
-          <h3 class="step-title">We Get to Work</h3>
-          <p class="step-desc">Our crew shows up on time, does the job right, and leaves your yard cleaner than we found it.</p>
+
+        <div class="proc-card reveal">
+          <span class="proc-num">03 Execution</span>
+          <svg class="proc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="24,4 44,38 4,38"/>
+            <line x1="24" y1="16" x2="24" y2="28"/>
+            <circle cx="24" cy="33" r="1.5" fill="currentColor"/>
+          </svg>
+          <h3 class="proc-h3">Flawless Execution</h3>
+          <p class="proc-p">From breaking ground to final touches, our senior crew ensures meticulous execution with attention to every detail and zero disruption.</p>
         </div>
-        <div class="step reveal">
-          <div class="step-num">04</div>
-          <h3 class="step-title">You Love It</h3>
-          <p class="step-desc">We follow up, answer questions, and make sure you're completely happy before calling it done.</p>
+
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-strip" id="gallery">
+      <div class="gallery-head reveal">
+        <h2>Our Work — Drag to Explore</h2>
+      </div>
+      <div class="gallery-scroll" id="galleryScroll">
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=760&q=80" alt="Project 1">
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=760&q=80" alt="Project 2">
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=760&q=80" alt="Project 3">
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=760&q=80" alt="Project 4">
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=760&q=80" alt="Project 5">
+        </div>
+        <div class="gallery-img">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=760&q=80" alt="Project 6">
         </div>
       </div>
     </section>
 
-    <!-- ESTIMATE CTA -->
-    <div class="estimate-band" id="contact">
-      <div class="est-left">
-        <p class="est-lbl">Zero Commitment</p>
-        <h2 class="est-h2">Get a free<br>estimate today.</h2>
+    <!-- CTA BAND -->
+    <section class="cta-band" id="contact">
+      <div class="cta-left reveal-left">
+        <p class="section-label">Zero Commitment</p>
+        <h2>Start your<br>project today.</h2>
       </div>
-      <div class="est-right">
-        <p>Just a quick call or email and we'll come out, take a look, and tell you exactly what it'll take.</p>
-        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="btn-cream">Request a Free Estimate</a>
+      <div class="cta-right reveal-right">
+        <p>Just a quick conversation — we'll come to your property, assess what's possible, and give you an honest, transparent quote. No pressure, no obligation.</p>
+        <a href="mailto:evan@teamground.work?subject=Landscaping%20Quote%20Request" class="btn-white">Request a Free Estimate</a>
       </div>
-    </div>
+    </section>
 
-    <!-- TRUST STRIP -->
+    <!-- TRUST -->
     <section class="trust">
-      <div class="trust-item">
-        <div class="trust-icon">🌵</div>
+      <div class="trust-item reveal">
+        <div class="trust-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
         <div class="trust-name">Locally Owned</div>
-        <div class="trust-sub">Phoenix-Based</div>
+        <div class="trust-sub">Scottsdale-Based</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">📋</div>
+      <div class="trust-item reveal">
+        <div class="trust-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
         <div class="trust-name">Licensed &amp; Insured</div>
         <div class="trust-sub">Fully Protected</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">💧</div>
-        <div class="trust-name">Water-Wise</div>
-        <div class="trust-sub">Desert-Smart Design</div>
+      <div class="trust-item reveal">
+        <div class="trust-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/>
+          </svg>
+        </div>
+        <div class="trust-name">5-Star Rated</div>
+        <div class="trust-sub">Google &amp; Yelp</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon">💬</div>
+      <div class="trust-item reveal">
+        <div class="trust-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5">
+            <path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </div>
         <div class="trust-name">Free Estimates</div>
         <div class="trust-sub">No Pressure</div>
       </div>
@@ -728,78 +869,112 @@
   <footer>
     <div class="foot-top">
       <div>
-        <div class="foot-brand">
-          Desert Grounds
-          <span>Tolleson, Arizona</span>
-        </div>
+        <div class="foot-brand">Desert Grounds</div>
+        <p class="foot-tagline">Scottsdale, Arizona</p>
+        <a href="mailto:evan@teamground.work?subject=Landscaping%20Quote%20Request" class="foot-cta-btn">Get in Touch</a>
       </div>
       <div>
         <p class="foot-col-head">Find Us</p>
         <div class="foot-info">
-          9301 W McDowell Rd<br>
-          Tolleson, AZ 85353<br>
-          <a href="tel:+16235550177">(623) 555-0177</a><br>
+          8900 E Pinnacle Peak Rd<br>
+          Scottsdale, AZ 85255<br>
+          <a href="tel:+14805550188">(480) 555-0188</a><br>
           <a href="mailto:hello@desertgrounds.com">hello@desertgrounds.com</a>
         </div>
       </div>
       <div>
-        <p class="foot-col-head">Free Estimate</p>
-        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="foot-cta-btn">
-          Get in Touch
-        </a>
-        <p class="foot-note">No commitment needed —<br>just a quick conversation.</p>
+        <p class="foot-col-head">Services</p>
+        <div class="foot-info">
+          Landscape Design<br>
+          Hardscaping &amp; Pavers<br>
+          Irrigation Systems<br>
+          Desert Xeriscaping<br>
+          Precision Maintenance
+        </div>
       </div>
     </div>
     <div class="foot-bottom">
-      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
+      <p class="foot-copy">Demo site — <a href="index.html">Built by Groundwork Studio</a></p>
       <p class="foot-copy">© 2026 Desert Grounds</p>
     </div>
   </footer>
 
   <script>
-    // Nav
+    // ── Nav scroll ─────────────────────────────────────────
     const nav = document.getElementById('siteNav');
     const banner = document.querySelector('.demo-bar');
     function updateNav() {
       const y = window.scrollY;
       nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
-      nav.classList.toggle('solid', y > 80);
+      nav.classList.toggle('solid', y > 60);
     }
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    // ── Scroll reveal ──────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 80);
+        }
+      });
     }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    revealEls.forEach(el => revealObs.observe(el));
 
-    // Custom cursor
-    const cursor = document.createElement('div');
-    cursor.classList.add('cursor');
-    document.body.appendChild(cursor);
+    // ── Animated counters ──────────────────────────────────
+    function animateCounter(el, target, suffix = '') {
+      const duration = 1600;
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
 
-    let mouseX = -100, mouseY = -100;
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.target);
+          const suffix = el.dataset.target === '100' ? '%' : (el.dataset.target === '400' ? '+' : '+');
+          animateCounter(el, target, suffix);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-n[data-target]').forEach(el => counterObs.observe(el));
+
+    // ── Custom cursor ──────────────────────────────────────
+    const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+      cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
     });
     document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
     document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-
-    // Expand on images, links, buttons
-    const expandTargets = document.querySelectorAll('img, a, button, .svc-cta, .btn-fill, .btn-cream, .btn-outline, .nav-cta, .step, .svc-split');
-    expandTargets.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+    document.querySelectorAll('a, button, .svc-card, img, .proc-card, .gallery-img').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
     });
 
-    // Dark mode cursor on dark sections
-    const darkSections = document.querySelectorAll('.process, footer, .hero');
-    darkSections.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('on-dark'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('on-dark'));
+    // ── Drag-to-scroll gallery ─────────────────────────────
+    const gallery = document.getElementById('galleryScroll');
+    let isDragging = false, startX, scrollLeft;
+    gallery.addEventListener('mousedown', e => {
+      isDragging = true;
+      startX = e.pageX - gallery.offsetLeft;
+      scrollLeft = gallery.scrollLeft;
+    });
+    gallery.addEventListener('mouseleave', () => isDragging = false);
+    gallery.addEventListener('mouseup', () => isDragging = false);
+    gallery.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - gallery.offsetLeft;
+      gallery.scrollLeft = scrollLeft - (x - startX) * 1.5;
     });
   </script>
 
