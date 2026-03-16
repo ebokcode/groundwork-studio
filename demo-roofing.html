@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summit Roofing — Phoenix, AZ | Trusted Arizona Roofers</title>
+  <meta name="description" content="Summit Roofing serves the greater Phoenix metro. Roof replacement, repair, storm damage, and new construction. 25+ years experience. Free inspection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #151a23;
+      --card:      #1b2130;
+      --border:    #252d3d;
+      --red:       #dc4a2d;
+      --red-dk:    #c03e24;
+      --gold:      #c9952a;
+      --gold-lt:   #e0aa3a;
+      --cream:     #f5f0e8;
+      --muted:     #8492a8;
+      --white:     #ffffff;
+      --serif:     'Oswald', sans-serif;
+      --sans:      'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--cream); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── DEMO BANNER ──────────────────────────────────── */
+    .demo-bar {
+      background: var(--red); color: #fff;
+      text-align: center; padding: 10px 24px;
+      font-size: 12px; font-weight: 500; letter-spacing: .3px;
+      position: relative; z-index: 500;
+    }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    .nav {
+      position: fixed; left: 0; right: 0; z-index: 400;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .35s, border-color .35s, box-shadow .35s;
+    }
+    .nav.solid {
+      background: rgba(21,26,35,.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 24px rgba(0,0,0,.45);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 22px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-mark {
+      width: 32px; height: 32px; background: var(--red);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a {
+      font-size: 11.5px; font-weight: 500; letter-spacing: 1.8px;
+      text-transform: uppercase; color: rgba(245,240,232,.7);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .btn-nav {
+      font-family: var(--serif); font-size: 13px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--red); color: var(--white);
+      padding: 11px 26px; border: none; cursor: pointer;
+      transition: background .2s; display: inline-block;
+    }
+    .btn-nav:hover { background: var(--red-dk); }
+    .nav-mobile-cta { display: none; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 48px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1800&q=80');
+      background-size: cover; background-position: center 30%;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(21,26,35,.93) 0%,
+        rgba(21,26,35,.80) 45%,
+        rgba(21,26,35,.35) 75%,
+        rgba(21,26,35,.15) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 680px; padding-top: 80px;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 2px;
+      background: var(--red);
+    }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 700;
+      font-size: clamp(68px, 10vw, 128px);
+      line-height: .9; text-transform: uppercase;
+      color: var(--white); letter-spacing: 1px;
+      margin-bottom: 28px;
+    }
+    .hero h1 em { color: var(--red); font-style: normal; }
+    .hero-sub {
+      font-size: 17px; font-weight: 400; line-height: 1.65;
+      color: rgba(245,240,232,.78); max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--serif); font-size: 14px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      background: var(--red); color: var(--white);
+      padding: 16px 36px; border: 2px solid var(--red);
+      cursor: pointer; transition: background .2s, color .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dk); border-color: var(--red-dk); }
+    .btn-ghost {
+      font-family: var(--serif); font-size: 14px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      background: transparent; color: var(--white);
+      padding: 16px 36px; border: 2px solid rgba(245,240,232,.5);
+      cursor: pointer; transition: border-color .2s, color .2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--white); }
+
+    /* Storm card */
+    .storm-card {
+      position: absolute; z-index: 2; right: 48px; top: 50%;
+      transform: translateY(-50%); width: 280px;
+      background: rgba(21,26,35,.92); border: 1px solid rgba(220,74,45,.4);
+      border-top: 3px solid var(--red);
+      backdrop-filter: blur(16px);
+      padding: 28px 24px;
+    }
+    .storm-card-icon { font-size: 36px; margin-bottom: 12px; }
+    .storm-card h3 {
+      font-family: var(--serif); font-size: 24px; font-weight: 700;
+      text-transform: uppercase; color: var(--white);
+      letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .storm-card p {
+      font-size: 13.5px; color: rgba(245,240,232,.72);
+      line-height: 1.55; margin-bottom: 22px;
+    }
+    .btn-pulse {
+      font-family: var(--serif); font-size: 13px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--red); color: var(--white);
+      padding: 13px 20px; border: none; cursor: pointer;
+      display: block; width: 100%; text-align: center;
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
+    .btn-pulse::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); opacity: 0;
+      animation: pulse-ring 2s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%   { opacity: 0; transform: scale(.8); }
+      50%  { opacity: .12; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.1); }
+    }
+    .btn-pulse:hover { background: var(--red-dk); }
+    .storm-card-tel {
+      font-family: var(--serif); font-size: 18px; font-weight: 700;
+      color: var(--gold); text-align: center; margin-top: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* ── STATS STRIP ──────────────────────────────────── */
+    .stats {
+      background: #1b2130; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 44px 32px; text-align: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: var(--serif); font-size: 56px; font-weight: 700;
+      color: var(--red); letter-spacing: -1px; line-height: 1;
+      display: block; margin-bottom: 6px;
+    }
+    .stat-suffix { font-size: 36px; }
+    .stat-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+      display: block;
+    }
+    .stat-divider {
+      width: 24px; height: 2px; background: var(--red);
+      margin: 10px auto 0;
+    }
+
+    /* ── SECTION BASE ─────────────────────────────────── */
+    section { position: relative; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 100px 48px; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--red); }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; line-height: 1.05;
+    }
+    .section-title em { color: var(--red); font-style: normal; }
+    .section-sub {
+      font-size: 16px; color: var(--muted); line-height: 1.65;
+      max-width: 580px; margin-top: 14px;
+    }
+
+    /* ── SERVICES ─────────────────────────────────────── */
+    .services { background: var(--bg); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .service-card {
+      background: var(--card); padding: 44px 40px;
+      border-top: 3px solid transparent;
+      transition: border-color .25s, background .25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--red); transform: scaleX(0);
+      transform-origin: left; transition: transform .35s ease;
+    }
+    .service-card:hover { border-top-color: var(--red); background: #1e2638; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 40px; margin-bottom: 20px; }
+    .service-card h3 {
+      font-family: var(--serif); font-size: 26px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .service-card p { font-size: 15px; line-height: 1.65; color: var(--muted); }
+    .service-card .service-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 20px; font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--red); transition: gap .2s;
+    }
+    .service-card:hover .service-link { gap: 12px; }
+
+    /* ── STORM BAND ───────────────────────────────────── */
+    .storm-band {
+      background: #1a1410; border-top: 1px solid rgba(220,74,45,.2);
+      border-bottom: 1px solid rgba(220,74,45,.2);
+      overflow: hidden; position: relative;
+    }
+    .storm-band-watermark {
+      position: absolute; font-size: 260px; right: -40px; top: 50%;
+      transform: translateY(-50%); opacity: .04;
+      line-height: 1; pointer-events: none; user-select: none;
+    }
+    .storm-band-inner {
+      max-width: 1160px; margin: 0 auto; padding: 80px 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .storm-band h2 {
+      font-family: var(--serif); font-size: clamp(44px, 5vw, 70px);
+      font-weight: 700; text-transform: uppercase;
+      line-height: .95; letter-spacing: 1px; color: var(--white);
+    }
+    .storm-band h2 em { color: var(--red); font-style: normal; }
+    .storm-band-body p {
+      font-size: 16px; color: rgba(245,240,232,.72);
+      line-height: 1.65; margin-bottom: 32px; max-width: 420px;
+    }
+    .storm-band-phone {
+      font-family: var(--serif); font-size: 42px; font-weight: 700;
+      color: var(--gold); letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .storm-band-phone a { color: inherit; }
+    .storm-band-phone-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 28px; display: block;
+    }
+    .btn-white {
+      font-family: var(--serif); font-size: 13px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      background: var(--white); color: var(--bg);
+      padding: 15px 32px; border: none; cursor: pointer;
+      display: inline-block; transition: background .2s;
+    }
+    .btn-white:hover { background: var(--cream); }
+
+    /* ── WHY SUMMIT ───────────────────────────────────── */
+    .why { background: #111520; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .why-card {
+      background: var(--card); padding: 48px 36px;
+      border-left: 3px solid var(--red);
+      transition: background .25s;
+    }
+    .why-card:hover { background: #1e2638; }
+    .why-card-num {
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--red); margin-bottom: 20px;
+    }
+    .why-card h3 {
+      font-family: var(--serif); font-size: 24px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); line-height: 1.15; margin-bottom: 16px;
+    }
+    .why-card p { font-size: 15px; line-height: 1.65; color: var(--muted); }
+    .why-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+
+    /* ── REVIEWS ──────────────────────────────────────── */
+    .reviews { background: var(--cream); }
+    .reviews .section-label { color: var(--red-dk); }
+    .reviews .section-label::before { background: var(--red-dk); }
+    .reviews .section-title { color: #1a1e28; }
+    .reviews .section-sub { color: #5a6272; }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 56px;
+    }
+    .review-card {
+      background: var(--white); padding: 36px 32px;
+      border-top: 3px solid var(--red);
+      box-shadow: 0 4px 32px rgba(0,0,0,.08);
+    }
+    .review-stars { color: var(--red); font-size: 18px; letter-spacing: 1px; margin-bottom: 16px; }
+    .review-text {
+      font-size: 15.5px; line-height: 1.7; color: #2e3440;
+      font-style: italic; margin-bottom: 24px;
+    }
+    .review-author { display: flex; align-items: center; gap: 14px; }
+    .review-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--red) 0%, var(--gold) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 16px; font-weight: 700;
+      color: var(--white); flex-shrink: 0;
+    }
+    .review-name {
+      font-size: 14px; font-weight: 600; color: #1a1e28;
+    }
+    .review-location {
+      font-size: 12px; color: #8492a8; margin-top: 2px;
+    }
+    .reviews-source {
+      text-align: center; margin-top: 48px;
+      font-size: 13px; color: #8492a8; font-weight: 500;
+    }
+    .reviews-source span { color: var(--red-dk); font-weight: 600; }
+
+    /* ── TRUST STRIP ──────────────────────────────────── */
+    .trust {
+      background: var(--bg); border-top: 1px solid var(--border);
+    }
+    .trust-inner {
+      max-width: 1160px; margin: 0 auto; padding: 48px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 24px 28px;
+      border-right: 1px solid var(--border);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon { font-size: 28px; flex-shrink: 0; }
+    .trust-label { font-size: 13px; font-weight: 600; color: var(--cream); }
+    .trust-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    .footer {
+      background: #0e1118; border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      padding: 80px 48px 48px;
+      display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 64px;
+    }
+    .footer-logo {
+      font-family: var(--serif); font-size: 26px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-logo-mark {
+      width: 30px; height: 30px; background: var(--red);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      flex-shrink: 0;
+    }
+    .footer-tagline { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 280px; }
+    .footer-tagline strong { color: var(--gold); font-weight: 600; }
+    .footer-col h4 {
+      font-family: var(--serif); font-size: 14px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .footer-contact-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 14px; font-size: 14px; color: var(--muted); line-height: 1.5;
+    }
+    .footer-contact-row .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .footer-contact-row a { color: var(--muted); transition: color .2s; }
+    .footer-contact-row a:hover { color: var(--cream); }
+    .footer-cta-block { margin-top: 6px; }
+    .footer-cta-block p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
+    .btn-footer {
+      font-family: var(--serif); font-size: 13px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      background: var(--red); color: var(--white);
+      padding: 14px 28px; border: none; cursor: pointer;
+      display: inline-block; transition: background .2s; width: 100%;
+      text-align: center;
+    }
+    .btn-footer:hover { background: var(--red-dk); }
+    .footer-bottom {
+      max-width: 1160px; margin: 0 auto;
+      padding: 24px 48px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); transition: color .2s; }
+    .footer-bottom a:hover { color: var(--cream); }
+    .footer-demo-tag {
+      font-size: 12px; color: var(--muted);
+    }
+    .footer-demo-tag a { color: var(--red); font-weight: 600; }
+
+    /* ── REVEAL ANIMATION ─────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .storm-card { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .storm-band-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-mobile-cta { display: block; }
+      .hero { padding: 0 20px; }
+      .hero-content { padding-top: 100px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .section-inner { padding: 72px 20px; }
+      .storm-band-inner { padding: 60px 20px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); padding: 32px 20px; }
+      .trust-item { border-right: none; padding: 16px 20px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 20px 40px; }
+      .footer-bottom { padding: 20px; flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat-item { padding: 28px 16px; }
+      .stat-number { font-size: 40px; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-ghost { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">
+    This is a demo site — an example of what your business could look like.
+    Built by <a href="index.html">Groundwork Studio →</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark"></div>
+      SUMMIT
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="mailto:info@summitroofingaz.com" class="btn-nav nav-mobile-cta">Call Us</a>
+      <a href="#contact" class="btn-nav" style="display:none;" id="nav-desktop-cta">Free Inspection</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Phoenix Metro's Trusted Roofers Since 1999</div>
+      <h1>Arizona's<br><em>Trusted</em><br>Roofers.</h1>
+      <p class="hero-sub">From full roof replacements to storm damage repair, Summit Roofing protects what matters most — your home and your family. Serving the Valley for 25+ years.</p>
+      <div class="hero-ctas">
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="btn-primary">Get Free Inspection</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
+    </div>
+    <!-- Storm Damage Card -->
+    <div class="storm-card">
+      <div class="storm-card-icon">⛈️</div>
+      <h3>Storm<br>Damage?</h3>
+      <p>Free damage inspection — we'll document everything for your insurance claim.</p>
+      <a href="tel:+14805550342" class="btn-pulse">Call Now — Free Inspection</a>
+      <div class="storm-card-tel">(480) 555-0342</div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats" id="about">
+    <div class="stat-item reveal">
+      <span class="stat-number" data-target="25" data-suffix=" yrs">0</span>
+      <span class="stat-label">Years Experience</span>
+      <div class="stat-divider"></div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <span class="stat-number" data-target="5000" data-suffix="+">0</span>
+      <span class="stat-label">Roofs Completed</span>
+      <div class="stat-divider"></div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-number" data-target="100" data-suffix="%">0</span>
+      <span class="stat-label">Satisfaction Guaranteed</span>
+      <div class="stat-divider"></div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <span class="stat-number" data-target="48" data-suffix=" hr">0</span>
+      <span class="stat-label">Emergency Response</span>
+      <div class="stat-divider"></div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-inner">
+      <div class="section-label reveal">What We Do</div>
+      <h2 class="section-title reveal reveal-delay-1">Complete Roofing<br><em>Services</em></h2>
+      <p class="section-sub reveal reveal-delay-2">Whether you need a full replacement or a quick repair, our crews are trained, licensed, and ready. We don't cut corners — period.</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🏠</div>
+          <h3>Roof Replacement</h3>
+          <p>Full tear-off and replacement using premium materials — tile, shingle, flat, and metal roofing systems. We handle permitting and work directly with your insurance adjuster when applicable.</p>
+          <div class="service-link">Learn More →</div>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🔧</div>
+          <h3>Roof Repair</h3>
+          <p>Leaks, cracked tiles, damaged flashing, worn sealants — our repair crews diagnose accurately and fix it right the first time. Most repairs completed same day or next day.</p>
+          <div class="service-link">Learn More →</div>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">⛈️</div>
+          <h3>Storm Damage</h3>
+          <p>Arizona storms are brutal. We respond within 48 hours, provide full damage documentation, and work directly with insurance adjusters to maximize your claim and minimize your out-of-pocket costs.</p>
+          <div class="service-link">Learn More →</div>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">🏗️</div>
+          <h3>New Construction</h3>
+          <p>Building a new home in the Valley? We partner with builders and general contractors to deliver precision installs on schedule. All new construction comes with our full workmanship warranty.</p>
+          <div class="service-link">Learn More →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORM BAND -->
+  <section class="storm-band">
+    <div class="storm-band-watermark">⚡</div>
+    <div class="storm-band-inner">
+      <div class="storm-band-left reveal">
+        <h2>Storm<br>Damage?<br><em>We Respond Fast.</em></h2>
+      </div>
+      <div class="storm-band-body reveal reveal-delay-1">
+        <p>Arizona monsoon season hits hard. If your roof took damage, don't wait — water intrusion causes expensive structural issues fast. Most insurance claims accepted. We'll document everything and handle the process with your insurer.</p>
+        <div class="storm-band-phone"><a href="tel:+14805550342">(480) 555-0342</a></div>
+        <span class="storm-band-phone-label">48-hour emergency response guaranteed</span>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="btn-white">Schedule Free Inspection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SUMMIT -->
+  <section class="why">
+    <div class="section-inner">
+      <div class="section-label reveal">Why Choose Us</div>
+      <h2 class="section-title reveal reveal-delay-1">Built on <em>Trust.</em><br>Backed by Results.</h2>
+      <p class="section-sub reveal reveal-delay-2">We've been protecting Arizona homes since 1999. Here's what sets us apart from every other roofer in the Valley.</p>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <span class="why-icon">🌵</span>
+          <div class="why-card-num">01</div>
+          <h3>25+ Years in Arizona</h3>
+          <p>We know this climate inside and out — the heat, the monsoons, the UV exposure. Our material recommendations and installation methods are built specifically for Arizona conditions, not copied from a national playbook.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-1">
+          <span class="why-icon">📋</span>
+          <div class="why-card-num">02</div>
+          <h3>Insurance Claims Specialists</h3>
+          <p>Navigating an insurance claim is stressful. Our team has handled thousands of them. We document the damage thoroughly, communicate directly with adjusters, and advocate to get you the full replacement your policy entitles you to.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <span class="why-icon">🛡️</span>
+          <div class="why-card-num">03</div>
+          <h3>Lifetime Workmanship Warranty</h3>
+          <p>We stand behind every nail and every seam. Our lifetime workmanship warranty means if something goes wrong due to our installation, we come back and fix it — no questions asked, no charge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="section-inner">
+      <div class="section-label reveal">Customer Reviews</div>
+      <h2 class="section-title reveal reveal-delay-1">What Our <em style="color:var(--red-dk);">Customers</em> Say</h2>
+      <p class="section-sub reveal reveal-delay-2">Don't take our word for it. Here's what homeowners across the Phoenix metro have said about working with Summit Roofing.</p>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"After last summer's monsoon tore up a section of our roof, Summit was out the next morning. They documented everything, dealt with our insurance company directly, and had us fully repaired within a week. Couldn't be easier. Highly recommend."</p>
+          <div class="review-author">
+            <div class="review-avatar">MR</div>
+            <div>
+              <div class="review-name">Mike R.</div>
+              <div class="review-location">Chandler, AZ · Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"We needed a full roof replacement on our home in Gilbert. Summit gave us a clear, honest estimate — no surprises. The crew was professional, cleaned up perfectly, and finished a day ahead of schedule. The new roof looks incredible."</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg,#c9952a 0%,#dc4a2d 100%);">TL</div>
+            <div>
+              <div class="review-name">Teresa L.</div>
+              <div class="review-location">Gilbert, AZ · Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I've owned my home for 18 years and dealt with three different roofers. Summit is by far the best. They actually explained what was wrong and why, instead of just handing me a big bill. Trustworthy, skilled, and they answered every single question I had."</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg,#1a3a6e 0%,#2d5fbd 100%);">JK</div>
+            <div>
+              <div class="review-name">James K.</div>
+              <div class="review-location">Tempe, AZ · Verified Customer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="reviews-source">Based on <span>200+ reviews</span> across Google and the BBB. Average rating: <span>4.9 / 5.0</span></p>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="trust-inner">
+      <div class="trust-item reveal">
+        <div class="trust-icon">✅</div>
+        <div>
+          <div class="trust-label">Licensed & Insured</div>
+          <div class="trust-sub">ROC #289441 · Arizona</div>
+        </div>
+      </div>
+      <div class="trust-item reveal reveal-delay-1">
+        <div class="trust-icon">🏅</div>
+        <div>
+          <div class="trust-label">BBB Accredited</div>
+          <div class="trust-sub">A+ Rating Since 2004</div>
+        </div>
+      </div>
+      <div class="trust-item reveal reveal-delay-2">
+        <div class="trust-icon">📝</div>
+        <div>
+          <div class="trust-label">Free Estimates</div>
+          <div class="trust-sub">No obligation, no pressure</div>
+        </div>
+      </div>
+      <div class="trust-item reveal reveal-delay-3">
+        <div class="trust-icon">🤝</div>
+        <div>
+          <div class="trust-label">Family Owned</div>
+          <div class="trust-sub">Serving Arizona since 1999</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <!-- Brand -->
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-mark"></div>
+          SUMMIT
+        </div>
+        <p class="footer-tagline">Protecting Arizona homes since 1999. <strong>Licensed, insured, and backed by a lifetime workmanship warranty.</strong> When the stakes are high, you want a roofer you can trust.</p>
+      </div>
+      <!-- Contact -->
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-contact-row">
+          <span class="icon">📞</span>
+          <div><a href="tel:+14805550342">(480) 555-0342</a></div>
+        </div>
+        <div class="footer-contact-row">
+          <span class="icon">✉️</span>
+          <div><a href="mailto:info@summitroofingaz.com">info@summitroofingaz.com</a></div>
+        </div>
+        <div class="footer-contact-row">
+          <span class="icon">📍</span>
+          <div>1155 S Power Rd<br>Mesa, AZ 85206</div>
+        </div>
+        <div class="footer-contact-row">
+          <span class="icon">🕐</span>
+          <div>Mon–Sat: 7am – 6pm<br>Emergency: 24/7</div>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="footer-cta-block">
+        <h4>Schedule Inspection</h4>
+        <p>Get a free, no-obligation roof inspection from one of our licensed Arizona roofing specialists. Most inspections completed within 24–48 hours of request.</p>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="btn-footer">Request Free Inspection →</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Summit Roofing LLC · Mesa, AZ · ROC #289441 · All Rights Reserved</p>
+      <p class="footer-demo-tag">Demo site built by <a href="index.html">Groundwork Studio</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── NAV SCROLL BEHAVIOR ─────────────────────────── */
+    (function() {
+      const nav = document.getElementById('nav');
+      const desktopCta = document.getElementById('nav-desktop-cta');
+      const demoBannerH = document.querySelector('.demo-bar').offsetHeight;
+
+      function updateNav() {
+        if (window.scrollY > demoBannerH + 20) {
+          nav.classList.add('solid');
+          desktopCta.style.display = 'inline-block';
+        } else {
+          nav.classList.remove('solid');
+          desktopCta.style.display = 'none';
+        }
+      }
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+
+      // offset anchor links for fixed nav
+      document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          const id = this.getAttribute('href').slice(1);
+          if (!id) return;
+          const el = document.getElementById(id);
+          if (!el) return;
+          e.preventDefault();
+          const offset = nav.offsetHeight + demoBannerH + 8;
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        });
+      });
+    })();
+
+    /* ── INTERSECTION OBSERVER (REVEAL) ──────────────── */
+    (function() {
+      const revealEls = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function(el) { io.observe(el); });
+    })();
+
+    /* ── ANIMATED COUNTERS ───────────────────────────── */
+    (function() {
+      const statEls = document.querySelectorAll('.stat-number[data-target]');
+      let countersStarted = false;
+
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function animateCounter(el) {
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1600;
+        const start = performance.now();
+
+        function step(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutCubic(progress);
+          const current = Math.round(eased * target);
+
+          // Format thousands with comma for 5000+
+          const display = target >= 1000
+            ? current.toLocaleString()
+            : current;
+
+          el.textContent = display + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = (target >= 1000 ? target.toLocaleString() : target) + suffix;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      const statsSection = document.querySelector('.stats');
+      const io = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !countersStarted) {
+          countersStarted = true;
+          statEls.forEach(function(el) { animateCounter(el); });
+          io.disconnect();
+        }
+      }, { threshold: 0.3 });
+      io.observe(statsSection);
+    })();
+  </script>
+</body>
+</html>

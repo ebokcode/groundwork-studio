@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volt Electric — Phoenix, AZ Electrician</title>
+  <meta name="description" content="Licensed electricians in Phoenix, AZ. Panel upgrades, outlets, lighting, emergency electrical service. 24/7 available. Call (602) 555-0291.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:      #0a0c10;
+      --navy:     #0d1017;
+      --card:     #111418;
+      --border:   #1e2229;
+      --yellow:   #f5c518;
+      --yellow-lt:#ffd740;
+      --yellow-gl:rgba(245,197,24,.1);
+      --amber:    #d97706;
+      --amber-lt: #f59e0b;
+      --white:    #f0f4ff;
+      --muted:    #7a8394;
+      --serif:    'Bebas Neue', sans-serif;
+      --sans:     'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── DEMO BANNER ──────────────────────────────────────── */
+    .demo-bar {
+      background: var(--yellow); color: #0a0c10;
+      text-align: center; padding: 9px 24px;
+      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
+      position: relative; z-index: 400;
+    }
+    .demo-bar a { color: #0a0c10; font-weight: 700; text-decoration: underline; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: fixed; left: 0; right: 0; z-index: 300;
+      padding: 0 44px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .35s, border-color .35s;
+    }
+    .nav.solid {
+      background: rgba(10,12,16,.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 26px;
+      letter-spacing: 2px; color: var(--white);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo-bolt {
+      display: inline-block; width: 20px; height: 20px;
+      background: var(--yellow); color: #0a0c10;
+      font-size: 13px; line-height: 20px; text-align: center;
+      clip-path: polygon(50% 0%, 100% 35%, 70% 35%, 100% 100%, 0% 65%, 30% 65%, 0% 0%);
+    }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-family: var(--serif); font-size: 16px; letter-spacing: 1.5px;
+      background: var(--yellow); color: #0a0c10;
+      padding: 11px 22px; display: flex; align-items: center; gap: 8px;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--yellow-lt); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 44px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1800&q=80')
+        center/cover no-repeat;
+      animation: kenBurns 18s ease-in-out infinite alternate;
+    }
+    @keyframes kenBurns {
+      0%   { transform: scale(1.0) translate(0, 0); }
+      100% { transform: scale(1.07) translate(-1%, -1%); }
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg,
+        rgba(10,12,16,.96) 0%,
+        rgba(10,12,16,.88) 45%,
+        rgba(10,12,16,.55) 100%);
+    }
+    /* Yellow left-edge accent line */
+    .hero-bg::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--yellow), var(--amber), transparent);
+      z-index: 1;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 60px; align-items: center;
+      max-width: 1200px; width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--yellow);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 2px;
+      background: var(--yellow);
+    }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(80px, 12vw, 140px);
+      line-height: .88;
+      letter-spacing: 1px;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .hero-h1 em {
+      font-style: normal; color: var(--yellow);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 16px; font-weight: 300; line-height: 1.7;
+      color: var(--muted); max-width: 440px; margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--serif); font-size: 18px; letter-spacing: 2px;
+      background: var(--yellow); color: #0a0c10;
+      padding: 14px 36px; display: inline-block;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--yellow-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      font-family: var(--serif); font-size: 18px; letter-spacing: 2px;
+      background: transparent; color: var(--white);
+      padding: 14px 36px; border: 1px solid var(--border);
+      display: inline-block; transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* Emergency call card */
+    .hero-cta-card {
+      background: var(--navy); border: 1px solid var(--border);
+      padding: 36px 32px; min-width: 268px;
+      position: relative; overflow: hidden;
+    }
+    .hero-cta-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--yellow);
+    }
+    .cta-card-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--yellow); margin-bottom: 12px;
+    }
+    .cta-card-title {
+      font-family: var(--serif); font-size: 28px;
+      line-height: 1.1; margin-bottom: 20px; letter-spacing: 1px;
+    }
+    .cta-card-phone {
+      font-family: var(--serif); font-size: 30px;
+      color: var(--white); display: block; margin-bottom: 18px;
+      letter-spacing: 1px; line-height: 1;
+    }
+    .pulse-btn {
+      display: block; width: 100%;
+      font-family: var(--serif); font-size: 16px; letter-spacing: 2px;
+      background: var(--yellow); color: #0a0c10;
+      padding: 14px 20px; text-align: center;
+      animation: pulseGlow 2.4s ease-in-out infinite;
+      transition: background .2s;
+    }
+    .pulse-btn:hover { background: var(--yellow-lt); animation: none; }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,197,24,.55); }
+      50%       { box-shadow: 0 0 0 14px rgba(245,197,24,0); }
+    }
+
+    /* ── STATS STRIP ──────────────────────────────────────── */
+    .stats {
+      background: var(--navy); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 44px;
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat {
+      flex: 1; text-align: center; padding: 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--serif); font-size: 60px;
+      line-height: 1; color: var(--yellow); letter-spacing: 1px;
+      margin-bottom: 6px; display: flex; align-items: baseline;
+      justify-content: center; gap: 4px;
+    }
+    .stat-num .unit {
+      font-size: 24px; color: var(--amber); letter-spacing: 1px;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    .services { padding: 100px 44px; }
+    .section-header { margin-bottom: 60px; }
+    .section-tag {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-tag::before {
+      content: ''; display: block; width: 28px; height: 2px; background: var(--yellow);
+    }
+    .section-h2 {
+      font-family: var(--serif); font-size: clamp(44px, 7vw, 80px);
+      line-height: .9; letter-spacing: 1px;
+      color: var(--white);
+    }
+    .section-h2 span { color: var(--yellow); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    }
+    .svc-card {
+      background: var(--card); padding: 40px 36px;
+      border-left: 3px solid transparent;
+      transition: border-color .25s, background .25s, transform .2s;
+      cursor: default; position: relative; overflow: hidden;
+    }
+    .svc-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--yellow-gl); opacity: 0; transition: opacity .25s;
+    }
+    .svc-card:hover {
+      border-left-color: var(--yellow);
+      background: #13150b;
+      transform: translateX(4px);
+    }
+    .svc-card:hover::after { opacity: 1; }
+    .svc-icon {
+      font-size: 36px; margin-bottom: 20px; display: block;
+    }
+    .svc-num {
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--serif); font-size: 72px;
+      color: rgba(245,197,24,.07); line-height: 1; letter-spacing: 1px;
+    }
+    .svc-title {
+      font-family: var(--serif); font-size: 30px; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .svc-desc {
+      font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .svc-link {
+      font-size: 11px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--yellow);
+      display: flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .svc-card:hover .svc-link { gap: 10px; }
+
+    /* ── SAFETY / EMERGENCY BAND ──────────────────────────── */
+    .emergency-band {
+      position: relative; overflow: hidden;
+      background: var(--yellow);
+      padding: 72px 44px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .emergency-band::before {
+      content: '⚡'; position: absolute; right: -30px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 340px; opacity: .06; line-height: 1;
+      pointer-events: none;
+    }
+    .emg-left h2 {
+      font-family: var(--serif); font-size: clamp(44px, 6vw, 76px);
+      line-height: .9; color: #0a0c10; margin-bottom: 12px; letter-spacing: 1px;
+    }
+    .emg-left p {
+      font-size: 15px; font-weight: 300; color: rgba(10,12,16,.65);
+    }
+    .emg-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+    .emg-phone {
+      font-family: var(--serif); font-size: 54px;
+      color: #0a0c10; letter-spacing: 1px; line-height: 1;
+    }
+    .btn-dark {
+      font-family: var(--serif); font-size: 16px; letter-spacing: 2px;
+      background: #0a0c10; color: var(--yellow);
+      padding: 16px 36px; display: inline-block;
+      transition: background .2s, color .2s;
+    }
+    .btn-dark:hover { background: var(--navy); color: var(--yellow-lt); }
+
+    /* ── WHY US ───────────────────────────────────────────── */
+    .why { background: var(--navy); padding: 100px 44px; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .why-item {
+      background: var(--card); padding: 44px 36px;
+      border-top: 3px solid var(--border);
+      transition: border-color .2s;
+    }
+    .why-item:hover { border-top-color: var(--yellow); }
+    .why-num {
+      font-family: var(--serif); font-size: 88px;
+      color: rgba(245,197,24,.07); line-height: 1; margin-bottom: -16px;
+      letter-spacing: 1px;
+    }
+    .why-title {
+      font-family: var(--serif); font-size: 24px; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .why-desc {
+      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
+    }
+
+    /* ── TRUST STRIP ──────────────────────────────────────── */
+    .trust {
+      padding: 56px 44px;
+      display: flex; justify-content: center;
+      gap: 60px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 28px; margin-bottom: 10px; }
+    .trust-label {
+      font-family: var(--serif); font-size: 18px; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 3px;
+    }
+    .trust-sub {
+      font-size: 11px; font-weight: 300; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer { background: var(--navy); padding: 80px 44px 44px; }
+    .foot-top {
+      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 48px; padding-bottom: 60px;
+      border-bottom: 1px solid var(--border); margin-bottom: 36px;
+    }
+    .foot-brand {
+      font-family: var(--serif); font-size: 40px; letter-spacing: 3px;
+      line-height: 1;
+    }
+    .foot-brand span { color: var(--yellow); }
+    .foot-brand sub {
+      display: block; font-size: 10px; font-weight: 400; letter-spacing: 3px;
+      font-family: var(--sans);
+      color: var(--muted); margin-top: 8px; text-transform: uppercase;
+    }
+    .foot-col-head {
+      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+    }
+    .foot-info {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(240,244,255,.4); line-height: 2.1;
+    }
+    .foot-info a { color: rgba(240,244,255,.4); transition: color .2s; }
+    .foot-info a:hover { color: var(--yellow); }
+    .foot-cta {
+      display: inline-block;
+      font-family: var(--serif); font-size: 16px; letter-spacing: 2px;
+      background: var(--yellow); color: #0a0c10; padding: 15px 30px;
+      transition: background .2s;
+    }
+    .foot-cta:hover { background: var(--yellow-lt); }
+    .foot-cta-note {
+      font-size: 12px; font-weight: 300; color: var(--muted);
+      margin-top: 12px; line-height: 1.6;
+    }
+    .foot-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(240,244,255,.2); }
+    .foot-copy a { color: var(--yellow); font-weight: 500; }
+
+    /* ── SCROLL REVEAL ────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 20px; min-height: auto; padding-top: 120px; padding-bottom: 60px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-cta-card { max-width: 360px; }
+      .stats { padding: 32px 20px; gap: 0; flex-wrap: wrap; }
+      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .services { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why { padding: 60px 20px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .emergency-band { padding: 56px 24px; }
+      .emg-phone { font-size: 38px; }
+      .foot-top { grid-template-columns: 1fr; gap: 32px; }
+      .trust { gap: 32px; padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">
+    This is a demo site — an example of what your business could look like.&nbsp;
+    <a href="index.html">Built by Groundwork Studio →</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="siteNav">
+    <div class="nav-logo">
+      VOLT
+    </div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#why">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="tel:+16025550291" class="nav-cta">⚡ (602) 555-0291</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">Phoenix, Arizona — Est. 2007</p>
+        <h1 class="hero-h1">
+          Phoenix's<br>
+          <em>Electrical</em><br>
+          Experts.
+        </h1>
+        <p class="hero-sub">Licensed, bonded, and insured electricians serving the entire Phoenix metro. Panel upgrades, rewiring, lighting, and 24/7 emergency service — we get the power on.</p>
+        <div class="hero-actions">
+          <a href="tel:+16025550291" class="btn-primary">Call Now</a>
+          <a href="#services" class="btn-ghost">Our Services</a>
+        </div>
+      </div>
+      <div class="hero-cta-card">
+        <p class="cta-card-label">24 / 7 Emergency Line</p>
+        <h3 class="cta-card-title">Need an Electrician Right Now?</h3>
+        <a href="tel:+16025550291" class="cta-card-phone">(602) 555-0291</a>
+        <a href="tel:+16025550291" class="pulse-btn">Call Emergency Line →</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">
+          <span data-target="24">24</span>
+        </div>
+        <div class="stat-label">Hours a Day</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">
+          <span data-target="7">7</span>
+        </div>
+        <div class="stat-label">Days a Week</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">
+          <span data-target="18">18</span>
+        </div>
+        <div class="stat-label">Years in Phoenix</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">
+          <span data-target="100">100</span><span class="unit">%</span>
+        </div>
+        <div class="stat-label">Licensed &amp; Insured</div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="section-header reveal">
+        <p class="section-tag">What We Handle</p>
+        <h2 class="section-h2">Every Job.<br><span>Wired Right.</span></h2>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <span class="svc-num">01</span>
+          <span class="svc-icon">⚡</span>
+          <h3 class="svc-title">Panel Upgrades</h3>
+          <p class="svc-desc">Older panels are a safety risk — and a code issue. We upgrade to modern 200A service, ready for EV chargers, solar, and smart home systems.</p>
+          <a href="tel:+16025550291" class="svc-link">Book a Call →</a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">02</span>
+          <span class="svc-icon">🔌</span>
+          <h3 class="svc-title">Outlets &amp; Wiring</h3>
+          <p class="svc-desc">New outlets, GFCI upgrades, dedicated circuits for appliances. Clean, code-compliant work with no drywall nightmares left behind.</p>
+          <a href="tel:+16025550291" class="svc-link">Book a Call →</a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">03</span>
+          <span class="svc-icon">💡</span>
+          <h3 class="svc-title">Lighting Installation</h3>
+          <p class="svc-desc">Recessed cans, pendant fixtures, under-cabinet LED strips, exterior lighting — installed right the first time, every time.</p>
+          <a href="tel:+16025550291" class="svc-link">Book a Call →</a>
+        </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">04</span>
+          <span class="svc-icon">🚨</span>
+          <h3 class="svc-title">Emergency Electrical</h3>
+          <p class="svc-desc">Sparks, outages, tripped breakers that won't reset — our emergency line is live around the clock. Same-day response across Phoenix.</p>
+          <a href="tel:+16025550291" class="svc-link">Call Now →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY BAND -->
+    <div class="emergency-band">
+      <div class="emg-left">
+        <h2>Electrical<br>Emergency?</h2>
+        <p>Every call is answered. 24 hours a day, 7 days a week, 365 days a year.</p>
+      </div>
+      <div class="emg-right">
+        <a href="tel:+16025550291" class="emg-phone">(602) 555-0291</a>
+        <a href="tel:+16025550291" class="btn-dark">Call Now — We're Ready</a>
+      </div>
+    </div>
+
+    <!-- WHY US -->
+    <section class="why" id="why">
+      <div class="section-header reveal">
+        <p class="section-tag">Why Volt Electric</p>
+        <h2 class="section-h2">Why Phoenix<br><span>Trusts Us.</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item reveal">
+          <div class="why-num">01</div>
+          <h3 class="why-title">Licensed &amp; Bonded in AZ</h3>
+          <p class="why-desc">Every technician holds a current Arizona Electrical License. We're fully bonded and insured — protecting your home and your investment on every job.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">02</div>
+          <h3 class="why-title">Same-Day Service</h3>
+          <p class="why-desc">Most jobs are booked and completed the same day you call. We know electrical problems don't wait — and neither should you.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">03</div>
+          <h3 class="why-title">Serving Phoenix Since 2007</h3>
+          <p class="why-desc">18 years in the Valley. We've wired thousands of homes and businesses across the Phoenix metro. Our reputation is on the line with every job.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <div class="trust">
+      <div class="trust-item">
+        <div class="trust-icon">✅</div>
+        <div class="trust-label">Licensed</div>
+        <div class="trust-sub">State of Arizona</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <div class="trust-label">Bonded</div>
+        <div class="trust-sub">Fully Protected</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-label">Same-Day</div>
+        <div class="trust-sub">Service Available</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📞</div>
+        <div class="trust-label">24 / 7</div>
+        <div class="trust-sub">Emergency Line</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          VOLT<span>.</span>
+          <sub>Phoenix Electricians Since 2007</sub>
+        </div>
+      </div>
+      <div>
+        <p class="foot-col-head">Find Us</p>
+        <div class="foot-info">
+          2240 E Thomas Rd<br>
+          Phoenix, AZ 85016<br>
+          <a href="tel:+16025550291">(602) 555-0291</a><br>
+          <a href="mailto:info@voltelectricaz.com">info@voltelectricaz.com</a>
+        </div>
+      </div>
+      <div>
+        <p class="foot-col-head">Get a Quote</p>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="foot-cta">
+          Free Estimate →
+        </a>
+        <p class="foot-cta-note">No commitment. We'll respond<br>within the hour.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
+      <p class="foot-copy">© 2026 Volt Electric LLC</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav solid on scroll (offset for demo banner)
+    const nav = document.getElementById('siteNav');
+    const banner = document.querySelector('.demo-bar');
+    function updateNav() {
+      const y = window.scrollY;
+      nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
+      nav.classList.toggle('solid', y > 80);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Animated stat counters
+    const statNums = document.querySelectorAll('.stat-num [data-target]');
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = +el.dataset.target;
+        const duration = 1600;
+        const start = performance.now();
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(ease * target);
+          el.textContent = current;
+          if (progress < 1) requestAnimationFrame(tick);
+          else el.textContent = target;
+        }
+        el.textContent = '0';
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(el => counterObserver.observe(el));
+  </script>
+
+</body>
+</html>
