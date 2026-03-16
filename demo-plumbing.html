@@ -4,170 +4,639 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valley Pro Plumbing — Phoenix, AZ</title>
-  <meta name="description" content="Fast, reliable plumbing services in Phoenix. Drain cleaning, water heaters, leak repair.">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="theme-plumbing">
+  <meta name="description" content="Fast, reliable plumbing services in Phoenix. Drain cleaning, water heaters, leak repair. 24/7 emergency service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:     #080c12;
+      --navy:    #0f1923;
+      --card:    #111827;
+      --border:  #1e2d40;
+      --blue:    #1d4ed8;
+      --blue-lt: #3b82f6;
+      --blue-gl: rgba(29,78,216,.12);
+      --orange:  #ea580c;
+      --orange-lt: #f97316;
+      --white:   #f0f6ff;
+      --muted:   #8899b0;
+      --serif:   'Barlow Condensed', sans-serif;
+      --sans:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
-  <!-- ============================================================
-       DEMO BANNER (non-sticky, scrolls away)
-       ============================================================ -->
-  <div style="background:#16a34a;color:#ffffff;text-align:center;padding:10px 24px;font-size:12px;font-weight:500;">
+    /* ── DEMO BANNER ──────────────────────────────────────── */
+    .demo-bar {
+      background: var(--blue); color: #fff;
+      text-align: center; padding: 9px 24px;
+      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
+      position: relative; z-index: 400;
+    }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: fixed; left: 0; right: 0; z-index: 300;
+      padding: 0 44px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .35s, border-color .35s;
+    }
+    .nav.solid {
+      background: rgba(8,12,18,.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 20px; font-weight: 800;
+      letter-spacing: .5px; text-transform: uppercase; color: var(--white);
+    }
+    .nav-logo span { color: var(--blue-lt); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-emergency {
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      background: var(--orange); color: #fff;
+      padding: 10px 22px; display: flex; align-items: center; gap: 8px;
+      transition: background .2s;
+    }
+    .nav-emergency:hover { background: var(--orange-lt); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 44px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80')
+        center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg,
+        rgba(8,12,18,.95) 0%,
+        rgba(8,12,18,.88) 50%,
+        rgba(8,12,18,.6) 100%);
+    }
+    /* Animated blue line accent */
+    .hero-bg::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--blue), var(--blue-lt), transparent);
+      z-index: 1;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 60px; align-items: center;
+      max-width: 1200px; width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--blue-lt);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 2px;
+      background: var(--blue-lt);
+    }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(72px, 11vw, 140px);
+      font-weight: 900; line-height: .88;
+      letter-spacing: -1px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 24px;
+    }
+    .hero-h1 em {
+      font-style: normal; color: var(--blue-lt);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 16px; font-weight: 300; line-height: 1.7;
+      color: var(--muted); max-width: 440px; margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: var(--blue); color: #fff;
+      padding: 16px 36px; display: inline-block;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: transparent; color: var(--white);
+      padding: 16px 36px; border: 1px solid var(--border);
+      display: inline-block; transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--blue-lt); color: var(--blue-lt); }
+    /* Emergency call card */
+    .hero-cta-card {
+      background: var(--navy); border: 1px solid var(--border);
+      padding: 36px 32px; min-width: 260px;
+      position: relative; overflow: hidden;
+    }
+    .hero-cta-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--orange);
+    }
+    .cta-card-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 12px;
+    }
+    .cta-card-title {
+      font-family: var(--serif); font-size: 28px; font-weight: 800;
+      line-height: 1.1; margin-bottom: 20px; text-transform: uppercase;
+    }
+    .cta-card-phone {
+      font-family: var(--serif); font-size: 30px; font-weight: 900;
+      color: var(--white); display: block; margin-bottom: 18px;
+      letter-spacing: -.5px;
+    }
+    .pulse-btn {
+      display: block; width: 100%;
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: var(--orange); color: #fff;
+      padding: 14px 20px; text-align: center;
+      animation: pulseGlow 2.5s ease-in-out infinite;
+      transition: background .2s;
+    }
+    .pulse-btn:hover { background: var(--orange-lt); animation: none; }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,.5); }
+      50%       { box-shadow: 0 0 0 12px rgba(234,88,12,0); }
+    }
+
+    /* ── STATS STRIP ──────────────────────────────────────── */
+    .stats {
+      background: var(--navy); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 44px;
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat {
+      flex: 1; text-align: center; padding: 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--serif); font-size: 52px; font-weight: 900;
+      line-height: 1; color: var(--blue-lt); letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    .services { padding: 100px 44px; }
+    .section-header { margin-bottom: 60px; }
+    .section-tag {
+      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--blue-lt); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-tag::before {
+      content: ''; display: block; width: 28px; height: 2px; background: var(--blue-lt);
+    }
+    .section-h2 {
+      font-family: var(--serif); font-size: clamp(44px, 7vw, 80px);
+      font-weight: 900; line-height: .9; text-transform: uppercase;
+      color: var(--white);
+    }
+    .section-h2 span { color: var(--blue-lt); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    }
+    .svc-card {
+      background: var(--card); padding: 40px 36px;
+      border-left: 2px solid transparent;
+      transition: border-color .25s, background .25s, transform .2s;
+      cursor: default; position: relative; overflow: hidden;
+    }
+    .svc-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--blue-gl); opacity: 0; transition: opacity .25s;
+    }
+    .svc-card:hover { border-left-color: var(--blue-lt); background: #141e2d; }
+    .svc-card:hover::after { opacity: 1; }
+    .svc-card:hover { transform: translateX(4px); }
+    .svc-icon {
+      font-size: 36px; margin-bottom: 20px; display: block;
+    }
+    .svc-num {
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--serif); font-size: 64px; font-weight: 900;
+      color: rgba(30,77,216,.08); line-height: 1;
+    }
+    .svc-title {
+      font-family: var(--serif); font-size: 28px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .svc-desc {
+      font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .svc-link {
+      font-size: 11px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue-lt);
+      display: flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .svc-card:hover .svc-link { gap: 10px; }
+
+    /* ── EMERGENCY BAND ───────────────────────────────────── */
+    .emergency-band {
+      position: relative; overflow: hidden;
+      background: var(--orange);
+      padding: 72px 44px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .emergency-band::before {
+      content: '⚡'; position: absolute; right: -20px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 320px; opacity: .06; line-height: 1;
+      pointer-events: none;
+    }
+    .emg-left h2 {
+      font-family: var(--serif); font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900; text-transform: uppercase;
+      line-height: .9; color: #fff; margin-bottom: 12px;
+    }
+    .emg-left p {
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,.8);
+    }
+    .emg-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+    .emg-phone {
+      font-family: var(--serif); font-size: 48px; font-weight: 900;
+      color: #fff; letter-spacing: -1px; line-height: 1;
+    }
+    .btn-white {
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: #fff; color: var(--orange);
+      padding: 16px 36px; display: inline-block;
+      transition: background .2s, color .2s;
+    }
+    .btn-white:hover { background: var(--ink); color: #fff; }
+
+    /* ── WHY US ───────────────────────────────────────────── */
+    .why { background: var(--navy); padding: 100px 44px; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .why-item {
+      background: var(--card); padding: 44px 36px;
+      border-top: 2px solid var(--border);
+      transition: border-color .2s;
+    }
+    .why-item:hover { border-top-color: var(--blue-lt); }
+    .why-num {
+      font-family: var(--serif); font-size: 88px; font-weight: 900;
+      color: rgba(59,130,246,.08); line-height: 1; margin-bottom: -16px;
+    }
+    .why-title {
+      font-family: var(--serif); font-size: 22px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .why-desc {
+      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
+    }
+
+    /* ── TRUST BADGES ─────────────────────────────────────── */
+    .trust {
+      padding: 56px 44px;
+      display: flex; justify-content: center;
+      gap: 60px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 28px; margin-bottom: 10px; }
+    .trust-label {
+      font-family: var(--serif); font-size: 16px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); margin-bottom: 3px;
+    }
+    .trust-sub {
+      font-size: 11px; font-weight: 300; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer { background: var(--navy); padding: 80px 44px 44px; }
+    .foot-top {
+      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 48px; padding-bottom: 60px;
+      border-bottom: 1px solid var(--border); margin-bottom: 36px;
+    }
+    .foot-brand {
+      font-family: var(--serif); font-size: 36px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .5px; line-height: 1;
+    }
+    .foot-brand span { color: var(--blue-lt); }
+    .foot-brand sub {
+      display: block; font-size: 10px; font-weight: 400; letter-spacing: 3px;
+      color: var(--muted); margin-top: 8px; text-transform: uppercase;
+    }
+    .foot-col-head {
+      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+    }
+    .foot-info {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(240,246,255,.4); line-height: 2.1;
+    }
+    .foot-info a { color: rgba(240,246,255,.4); transition: color .2s; }
+    .foot-info a:hover { color: var(--blue-lt); }
+    .foot-cta {
+      display: inline-block;
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: var(--blue); color: #fff; padding: 15px 30px;
+      transition: background .2s;
+    }
+    .foot-cta:hover { background: var(--blue-lt); }
+    .foot-cta-note {
+      font-size: 12px; font-weight: 300; color: var(--muted);
+      margin-top: 12px; line-height: 1.6;
+    }
+    .foot-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(240,246,255,.2); }
+    .foot-copy a { color: var(--blue-lt); font-weight: 500; }
+
+    /* ── ANIMATIONS / SCROLL REVEAL ───────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 20px; min-height: auto; padding-top: 120px; padding-bottom: 60px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-cta-card { max-width: 340px; }
+      .stats { padding: 32px 20px; gap: 0; flex-wrap: wrap; }
+      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .services { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; gap: 2px; }
+      .why { padding: 60px 20px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .emergency-band { padding: 56px 24px; }
+      .foot-top { grid-template-columns: 1fr; gap: 32px; }
+      .trust { gap: 32px; padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">
     This is a demo site — an example of what your business could look like.&nbsp;
-    <a href="index.html" style="color:#ffffff;font-weight:700;text-decoration:underline;">Built by Groundwork Studio →</a>
+    <a href="index.html">Built by Groundwork Studio →</a>
   </div>
 
-  <!-- ============================================================
-       STICKY NAV
-       ============================================================ -->
-  <header style="position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:1px solid #e5e7eb;">
-    <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;position:relative;">
-
-      <!-- Business name -->
-      <span style="font-weight:800;font-size:17px;color:#1e3a5f;letter-spacing:-0.3px;">Valley Pro Plumbing</span>
-
-      <!-- Desktop nav -->
-      <div class="desktop-nav" style="display:flex;align-items:center;gap:28px;">
-        <a href="#services" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Services</a>
-        <a href="#why-us" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">About</a>
-        <a href="#contact" style="font-size:14px;color:#374151;text-decoration:none;font-weight:500;">Contact</a>
-        <a href="tel:+16025550184" style="font-size:14px;font-weight:700;color:#1e3a5f;text-decoration:none;">(602) 555-0184</a>
-      </div>
-
-      <!-- Hamburger (mobile) -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
-      <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
-
-      <!-- Mobile dropdown -->
-      <nav class="mobile-nav">
+  <!-- NAV -->
+  <nav class="nav" id="siteNav">
+    <div class="nav-logo">Valley Pro<span>.</span></div>
+    <div class="nav-right">
+      <div class="nav-links">
         <a href="#services">Services</a>
-        <a href="#why-us">About</a>
+        <a href="#why">About</a>
         <a href="#contact">Contact</a>
-        <a href="tel:+16025550184" style="color:#1e3a5f;">(602) 555-0184</a>
-      </nav>
-
+      </div>
+      <a href="tel:+16025550184" class="nav-emergency">⚡ (602) 555-0184</a>
     </div>
-  </header>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">Phoenix, Arizona — Est. 2009</p>
+        <h1 class="hero-h1">
+          Phoenix's<br>
+          <em>Trusted</em><br>
+          Plumbers.
+        </h1>
+        <p class="hero-sub">Available 7 days a week for repairs, installs, and emergency calls across the entire Phoenix metro. We show up — fast.</p>
+        <div class="hero-actions">
+          <a href="tel:+16025550184" class="btn-primary">Call Now</a>
+          <a href="#services" class="btn-ghost">Our Services</a>
+        </div>
+      </div>
+      <div class="hero-cta-card">
+        <p class="cta-card-label">24 / 7 Emergency Line</p>
+        <h3 class="cta-card-title">Need a Plumber Right Now?</h3>
+        <a href="tel:+16025550184" class="cta-card-phone">(602) 555-0184</a>
+        <a href="tel:+16025550184" class="pulse-btn">Call Emergency Line →</a>
+      </div>
+    </div>
+  </section>
 
   <main>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
-  <section style="background:linear-gradient(rgba(15,30,60,0.72),rgba(20,50,100,0.72)),url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80') center/cover no-repeat;padding:80px 24px;text-align:center;">
-    <div style="max-width:700px;margin:0 auto;">
-      <h1 class="hero-headline" style="font-size:44px;font-weight:800;color:#ffffff;line-height:1.15;margin-bottom:16px;">
-        Phoenix's Trusted Plumbers.<br>Fast. Reliable. Local.
-      </h1>
-      <p style="font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:32px;line-height:1.7;">
-        Available 7 days a week for repairs, installs, and emergency calls across the Phoenix metro.
-      </p>
-      <a href="tel:+16025550184"
-         style="background:#ffffff;color:#1e3a5f;font-size:15px;font-weight:800;padding:16px 36px;border-radius:6px;text-decoration:none;display:inline-block;">
-        Call Now — (602) 555-0184
-      </a>
-      <p style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:0.3px;">📸 Your real business photos replace this stock image</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SERVICES
-       ============================================================ -->
-  <section id="services" style="padding:64px 24px;border-bottom:1px solid #e5e7eb;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#1e3a5f;text-transform:uppercase;margin-bottom:8px;">
-        Services
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num" data-target="24">24</div>
+        <div class="stat-label">Hours a Day</div>
       </div>
-      <h2 style="font-size:26px;font-weight:800;color:#111827;margin-bottom:32px;">
-        What we handle
-      </h2>
-
-      <div class="grid-3col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">🔧</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Drain Cleaning</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Clogged or slow drains cleared fast.</p>
-        </div>
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">🚿</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Water Heater Install</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Repair or replace — all makes and models.</p>
-        </div>
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">💧</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Leak Repair</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">Burst pipes, fixture leaks, slab leaks.</p>
-        </div>
-
-        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:24px;">
-          <div style="font-size:28px;margin-bottom:10px;">🚨</div>
-          <h3 style="font-size:16px;font-weight:700;color:#111827;margin-bottom:6px;">Emergency Plumbing</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6;">24/7 same-day response across Phoenix.</p>
-        </div>
-
+      <div class="stat">
+        <div class="stat-num" data-target="7">7</div>
+        <div class="stat-label">Days a Week</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="15">15</div>
+        <div class="stat-label">Years in Phoenix</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="100">100</div>
+        <div class="stat-label">% Licensed &amp; Insured</div>
       </div>
     </div>
-  </section>
 
-  <!-- ============================================================
-       WHY US
-       ============================================================ -->
-  <section id="why-us" style="background:#f9fafb;padding:64px 24px;border-bottom:1px solid #e5e7eb;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#1e3a5f;text-transform:uppercase;margin-bottom:8px;">
-        Why Us
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="section-header reveal">
+        <p class="section-tag">What We Handle</p>
+        <h2 class="section-h2">Every Job.<br><span>Done Right.</span></h2>
       </div>
-      <h2 style="font-size:26px;font-weight:800;color:#111827;margin-bottom:32px;">
-        Why Phoenix trusts Valley Pro
-      </h2>
-
-      <div class="grid-3col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
-
-        <div style="text-align:center;padding:24px;">
-          <div style="font-size:32px;margin-bottom:12px;">✅</div>
-          <h3 style="font-size:15px;font-weight:700;color:#111827;">Licensed &amp; Insured in Arizona</h3>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <span class="svc-num">01</span>
+          <span class="svc-icon">🔧</span>
+          <h3 class="svc-title">Drain Cleaning</h3>
+          <p class="svc-desc">Clogged or slow drains cleared fast using professional-grade equipment. Same-day service available across Phoenix.</p>
+          <a href="tel:+16025550184" class="svc-link">Book a Call → </a>
         </div>
-
-        <div style="text-align:center;padding:24px;">
-          <div style="font-size:32px;margin-bottom:12px;">⚡</div>
-          <h3 style="font-size:15px;font-weight:700;color:#111827;">Same-Day Service Available</h3>
+        <div class="svc-card reveal">
+          <span class="svc-num">02</span>
+          <span class="svc-icon">🚿</span>
+          <h3 class="svc-title">Water Heater Install</h3>
+          <p class="svc-desc">Repair or replace — all makes and models, including tankless. Upfront pricing, no surprises.</p>
+          <a href="tel:+16025550184" class="svc-link">Book a Call → </a>
         </div>
-
-        <div style="text-align:center;padding:24px;">
-          <div style="font-size:32px;margin-bottom:12px;">🏠</div>
-          <h3 style="font-size:15px;font-weight:700;color:#111827;">Serving Phoenix Since 2009</h3>
+        <div class="svc-card reveal">
+          <span class="svc-num">03</span>
+          <span class="svc-icon">💧</span>
+          <h3 class="svc-title">Leak Repair</h3>
+          <p class="svc-desc">Burst pipes, fixture leaks, slab leaks. We find it and fix it — no guesswork, no callbacks.</p>
+          <a href="tel:+16025550184" class="svc-link">Book a Call → </a>
         </div>
+        <div class="svc-card reveal">
+          <span class="svc-num">04</span>
+          <span class="svc-icon">🚨</span>
+          <h3 class="svc-title">Emergency Plumbing</h3>
+          <p class="svc-desc">24/7 same-day response across Phoenix. When water can't wait, neither do we.</p>
+          <a href="tel:+16025550184" class="svc-link">Call Now → </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- EMERGENCY BAND -->
+    <div class="emergency-band">
+      <div class="emg-left">
+        <h2>Plumbing<br>Emergency?</h2>
+        <p>We answer every call. 24 hours a day, 7 days a week.</p>
+      </div>
+      <div class="emg-right">
+        <a href="tel:+16025550184" class="emg-phone">(602) 555-0184</a>
+        <a href="tel:+16025550184" class="btn-white">Call Now — We're Ready</a>
       </div>
     </div>
-  </section>
+
+    <!-- WHY US -->
+    <section class="why" id="why">
+      <div class="section-header reveal">
+        <p class="section-tag">Why Valley Pro</p>
+        <h2 class="section-h2">Why Phoenix<br><span>Trusts Us.</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item reveal">
+          <div class="why-num">01</div>
+          <h3 class="why-title">Licensed &amp; Insured in Arizona</h3>
+          <p class="why-desc">Fully licensed, bonded, and insured. Every technician is background-checked and certified. You're protected — always.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">02</div>
+          <h3 class="why-title">Same-Day Service Available</h3>
+          <p class="why-desc">Most jobs are scheduled and completed the same day you call. We don't make you wait a week for hot water.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-num">03</div>
+          <h3 class="why-title">Serving Phoenix Since 2009</h3>
+          <p class="why-desc">15+ years in the Valley. We know Phoenix plumbing inside out — the pipes, the heat, the problems that come with it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <div class="trust">
+      <div class="trust-item">
+        <div class="trust-icon">✅</div>
+        <div class="trust-label">Licensed</div>
+        <div class="trust-sub">State of Arizona</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <div class="trust-label">Bonded</div>
+        <div class="trust-sub">Fully Protected</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-label">Same-Day</div>
+        <div class="trust-sub">Service Available</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📞</div>
+        <div class="trust-label">24 / 7</div>
+        <div class="trust-sub">Emergency Line</div>
+      </div>
+    </div>
 
   </main>
 
-  <!-- ============================================================
-       CONTACT / FOOTER
-       ============================================================ -->
-  <footer id="contact" style="background:#111827;padding:48px 24px 24px;">
-    <div style="max-width:1100px;margin:0 auto;">
-
-      <div style="margin-bottom:32px;">
-        <div style="font-weight:800;font-size:18px;color:#ffffff;margin-bottom:16px;">Valley Pro Plumbing</div>
-        <div style="font-size:14px;color:#9ca3af;line-height:2;">
-          4820 N 35th Ave, Phoenix, AZ 85017<br>
-          <a href="tel:+16025550184" style="color:#9ca3af;text-decoration:none;">(602) 555-0184</a><br>
-          <a href="mailto:info@valleyproplumbing.com" style="color:#9ca3af;text-decoration:none;">info@valleyproplumbing.com</a>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          Valley Pro<span>.</span>
+          <sub>Phoenix Plumbing Since 2009</sub>
         </div>
       </div>
-
-      <div style="border-top:1px solid #1f2937;padding-top:16px;font-size:12px;color:#6b7280;text-align:center;">
-        Demo site &mdash; <a href="index.html" style="color:#16a34a;text-decoration:none;font-weight:600;">Site by Groundwork Studio</a>
+      <div>
+        <p class="foot-col-head">Find Us</p>
+        <div class="foot-info">
+          4820 N 35th Ave<br>
+          Phoenix, AZ 85017<br>
+          <a href="tel:+16025550184">(602) 555-0184</a><br>
+          <a href="mailto:info@valleyproplumbing.com">info@valleyproplumbing.com</a>
+        </div>
+      </div>
+      <div>
+        <p class="foot-col-head">Get a Quote</p>
+        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="foot-cta">
+          Free Estimate →
+        </a>
+        <p class="foot-cta-note">No commitment. We'll call you<br>back within the hour.</p>
       </div>
     </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
+      <p class="foot-copy">© 2026 Valley Pro Plumbing</p>
+    </div>
   </footer>
+
+  <script>
+    // Nav solid on scroll
+    const nav = document.getElementById('siteNav');
+    const banner = document.querySelector('.demo-bar');
+    function updateNav() {
+      const y = window.scrollY;
+      nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
+      nav.classList.toggle('solid', y > 80);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
