@@ -29,6 +29,112 @@
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
 
+    /* ── CUSTOM CURSOR ────────────────────────────────────────── */
+    *, *::before, *::after { cursor: none !important; }
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform 0.08s ease;
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9998;
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1.5px solid rgba(220,74,45,0.55);
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, transform 0.12s ease;
+    }
+    .cursor-ring.hovering {
+      width: 44px; height: 44px;
+      border-color: rgba(220,74,45,0.9);
+    }
+
+    /* ── MARQUEE TICKER ───────────────────────────────────────── */
+    .ticker-strip {
+      background: var(--red);
+      overflow: hidden;
+      padding: 13px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: tickerScroll 30s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.92);
+      padding: 0 32px;
+      flex-shrink: 0;
+    }
+    .ticker-dot {
+      color: rgba(255,255,255,0.4);
+      font-size: 8px;
+      padding: 0 4px;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── GALLERY ──────────────────────────────────────────────── */
+    .gallery-section {
+      padding: 96px 0 96px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .gallery-header {
+      max-width: 1160px;
+      margin: 0 auto 48px;
+      padding: 0 48px;
+    }
+    .gallery-track-wrap {
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .gallery-track-wrap:active { cursor: grabbing; }
+    .gallery-track {
+      display: flex;
+      gap: 4px;
+      padding: 0 48px;
+      transition: none;
+    }
+    .gallery-img {
+      width: 400px;
+      height: 280px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    .gallery-img:hover img { transform: scale(1.05); }
+    .gallery-drag-hint {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     /* ── DEMO BANNER ──────────────────────────────────── */
     .demo-bar {
       background: var(--red); color: #fff;
@@ -498,6 +604,9 @@
       .trust-item { border-right: none; padding: 16px 20px; }
       .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 20px 40px; }
       .footer-bottom { padding: 20px; flex-direction: column; text-align: center; }
+      .gallery-header { padding: 0 20px; }
+      .gallery-track { padding: 0 20px; }
+      .gallery-img { width: 280px; height: 200px; }
     }
     @media (max-width: 480px) {
       .stats { grid-template-columns: 1fr 1fr; }
@@ -509,6 +618,9 @@
   </style>
 </head>
 <body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
   <!-- DEMO BANNER -->
   <div class="demo-bar">
@@ -577,6 +689,29 @@
       <span class="stat-number" data-target="48" data-suffix=" hr">0</span>
       <span class="stat-label">Emergency Response</span>
       <div class="stat-divider"></div>
+    </div>
+  </div>
+
+  <!-- MARQUEE TICKER -->
+  <div class="ticker-strip">
+    <div class="ticker-track">
+      <span class="ticker-item">Licensed &amp; Insured</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">25 Years Experience</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Free Inspections</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Storm Damage Specialists</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Lifetime Warranty</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">5,000+ Roofs Completed</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Insurance Claims Experts</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Family Owned Since 1999</span><span class="ticker-dot">◆</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">Licensed &amp; Insured</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">25 Years Experience</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Free Inspections</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Storm Damage Specialists</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Lifetime Warranty</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">5,000+ Roofs Completed</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Insurance Claims Experts</span><span class="ticker-dot">◆</span>
+      <span class="ticker-item">Family Owned Since 1999</span><span class="ticker-dot">◆</span>
     </div>
   </div>
 
@@ -658,6 +793,26 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- OUR WORK GALLERY -->
+  <section class="gallery-section">
+    <div class="gallery-header reveal">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">Roofs We've <em>Built</em></h2>
+      <p class="section-sub">A look at completed projects across the Phoenix metro — tile, shingle, flat, and metal roofing systems.</p>
+    </div>
+    <div class="gallery-track-wrap" id="galleryWrap">
+      <div class="gallery-track" id="galleryTrack">
+        <div class="gallery-img"><img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800&q=80" alt="Completed roof"></div>
+        <div class="gallery-img"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80" alt="New construction roofing"></div>
+        <div class="gallery-img"><img src="https://images.unsplash.com/photo-1605146768851-eda79da39897?w=800&q=80" alt="Tile roof replacement"></div>
+        <div class="gallery-img"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Shingle roof install"></div>
+        <div class="gallery-img"><img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80" alt="Roof repair Phoenix"></div>
+        <div class="gallery-img"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80" alt="Arizona home roofing"></div>
+      </div>
+    </div>
+    <p class="gallery-drag-hint">← Drag to explore →</p>
   </section>
 
   <!-- REVIEWS -->
@@ -875,6 +1030,48 @@
         }
       }, { threshold: 0.3 });
       io.observe(statsSection);
+    })();
+
+    /* ── DRAG GALLERY ─────────────────────────────────── */
+    (function() {
+      const wrap  = document.getElementById('galleryWrap');
+      const track = document.getElementById('galleryTrack');
+      if (!wrap || !track) return;
+      let isDown = false, startX = 0, scrollLeft = 0;
+      wrap.addEventListener('mousedown', e => {
+        isDown = true; startX = e.pageX - wrap.offsetLeft;
+        scrollLeft = wrap.scrollLeft; wrap.style.scrollBehavior = 'auto';
+      });
+      wrap.addEventListener('mouseleave', () => { isDown = false; });
+      wrap.addEventListener('mouseup',    () => { isDown = false; });
+      wrap.addEventListener('mousemove',  e => {
+        if (!isDown) return; e.preventDefault();
+        const x    = e.pageX - wrap.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        wrap.scrollLeft = scrollLeft - walk;
+      });
+      wrap.style.overflowX = 'auto';
+      wrap.style.scrollbarWidth = 'none';
+      wrap.style.msOverflowStyle = 'none';
+    })();
+
+    /* ── CUSTOM CURSOR ──────────────────────────────────── */
+    (function() {
+      const dot  = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      function animCursor() {
+        dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
+        rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animCursor);
+      }
+      animCursor();
+      document.querySelectorAll('a, button, .service-card, .why-card, .review-card').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+      });
     })();
   </script>
 </body>

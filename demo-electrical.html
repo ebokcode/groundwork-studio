@@ -357,7 +357,7 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── SERVICES (FLIP CARDS) ───────────────────────────────────── */
+    /* ── SERVICES (PHOTO CARDS) ──────────────────────────────── */
     .services {
       background: var(--white);
       padding: 96px 24px;
@@ -384,121 +384,64 @@
     }
     .section-title .accent { color: var(--gold); }
 
-    .flip-grid {
-      max-width: 1000px;
+    .photo-services-grid {
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 4px;
     }
-
-    /* Flip card CSS */
-    .flip-card {
-      perspective: 1000px;
-      height: 260px;
+    .photo-svc-card {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
       cursor: pointer;
     }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    .photo-svc-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
     }
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
+    .photo-svc-card:hover .photo-svc-bg { transform: scale(1.07); }
+    .photo-svc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,21,66,0.95) 0%, rgba(0,21,66,0.5) 55%, rgba(0,21,66,0.2) 100%);
+      transition: background 0.4s;
     }
-    .flip-front,
-    .flip-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .photo-svc-card:hover .photo-svc-overlay {
+      background: linear-gradient(to top, rgba(0,21,66,0.98) 0%, rgba(0,21,66,0.65) 55%, rgba(0,21,66,0.3) 100%);
+    }
+    .photo-svc-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
       padding: 32px 28px;
+      transform: translateY(52px);
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
     }
-    .flip-front {
-      background: var(--navy);
-      text-align: center;
-    }
-    .flip-front-icon {
-      font-size: 2.6rem;
-      margin-bottom: 16px;
-      line-height: 1;
-    }
-    .flip-front-title {
+    .photo-svc-card:hover .photo-svc-content { transform: translateY(0); }
+    .photo-svc-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .photo-svc-title {
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--white);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .flip-front-hint {
-      font-size: 0.78rem;
-      color: var(--gold);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-    .flip-back {
-      background: var(--navy-lt);
-      transform: rotateY(180deg);
-      text-align: left;
-      align-items: flex-start;
-    }
-    .flip-back-title {
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-    .flip-back-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.82);
+    .photo-svc-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.78);
       line-height: 1.65;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .flip-back-cta {
+    .photo-svc-link {
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       color: var(--gold);
+      display: flex; align-items: center; gap: 6px;
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
       transition: gap 0.2s;
     }
-    .flip-back-cta:hover { gap: 10px; }
-
-    /* Mobile: show back content statically */
-    @media (max-width: 768px) {
-      .flip-card {
-        height: auto;
-        perspective: none;
-      }
-      .flip-card-inner {
-        transform: none !important;
-        transform-style: flat;
-        position: static;
-        height: auto;
-      }
-      .flip-front {
-        display: none;
-      }
-      .flip-back {
-        position: static;
-        transform: none;
-        backface-visibility: visible;
-        -webkit-backface-visibility: visible;
-        background: var(--navy);
-        padding: 28px 24px;
-      }
-    }
+    .photo-svc-card:hover .photo-svc-link { gap: 10px; }
 
     /* ── WHY CHOOSE VOLT ─────────────────────────────────────────── */
     .why-section {
@@ -811,6 +754,16 @@
     }
     .footer-copy a:hover { opacity: 1; }
 
+    /* ── HERO STAGGER ANIMATION ───────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-label  { opacity: 0; animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.15s forwards; }
+    .hero-headline { opacity: 0; animation: fadeUp 0.75s cubic-bezier(.16,1,.3,1) 0.3s forwards; }
+    .hero-sub    { opacity: 0; animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.48s forwards; }
+    .hero-ctas   { opacity: 0; animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.62s forwards; }
+
     /* ── SCROLL REVEAL ───────────────────────────────────────────── */
     .reveal {
       opacity: 0;
@@ -820,6 +773,58 @@
     .reveal.visible {
       opacity: 1;
       transform: none;
+    }
+
+    /* ── PROCESS SECTION ─────────────────────────────────────────── */
+    .process-section {
+      background: var(--off-white);
+      padding: 96px 24px;
+      border-top: 1px solid rgba(0,21,66,0.06);
+    }
+    .process-inner { max-width: 1200px; margin: 0 auto; }
+    .process-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .process-step {
+      background: var(--white);
+      padding: 44px 36px;
+      position: relative;
+      border-top: 3px solid transparent;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .process-step:hover {
+      border-top-color: var(--gold);
+      box-shadow: 0 8px 32px rgba(0,21,66,0.08);
+    }
+    .process-num {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 800;
+      font-size: 5rem;
+      color: rgba(0,21,66,0.06);
+      line-height: 1;
+      margin-bottom: -12px;
+    }
+    .process-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .process-title {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .process-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     /* ── RESPONSIVE ──────────────────────────────────────────────── */
@@ -843,9 +848,10 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-phone { display: none; }
-      .flip-grid {
-        grid-template-columns: 1fr;
-      }
+      .process-grid { grid-template-columns: 1fr; }
+      .photo-services-grid { grid-template-columns: 1fr; }
+      .photo-svc-card { height: 280px; }
+      .photo-svc-content { transform: translateY(0); }
       .emergency-inner {
         flex-direction: column;
         text-align: center;
@@ -975,67 +981,81 @@
     </div>
   </section>
 
-  <!-- SERVICES (FLIP CARDS) -->
+  <!-- SERVICES (PHOTO CARDS) -->
   <section class="services" id="services">
     <div class="section-header reveal">
       <p class="section-eyebrow">What We Do</p>
       <h2 class="section-title">Our <span class="accent">Services</span></h2>
     </div>
-    <div class="flip-grid">
-      <div class="flip-card reveal">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="flip-front-icon">⚡</div>
-            <div class="flip-front-title">Panel Upgrades</div>
-            <div class="flip-front-hint">Hover to learn more →</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-title">Panel Upgrades</div>
-            <div class="flip-back-desc">Outdated panels are a fire hazard. We upgrade to modern 200A service with full permits and inspections — code-compliant and built to last.</div>
-            <a href="mailto:info@voltelectricaz.com?subject=Panel%20Upgrade%20Quote" class="flip-back-cta">Get a Quote →</a>
-          </div>
+    <div class="photo-services-grid">
+      <div class="photo-svc-card reveal">
+        <div class="photo-svc-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80')"></div>
+        <div class="photo-svc-overlay"></div>
+        <div class="photo-svc-content">
+          <span class="photo-svc-icon">⚡</span>
+          <div class="photo-svc-title">Panel Upgrades</div>
+          <div class="photo-svc-desc">Outdated panels are a fire hazard. We upgrade to modern 200A service with full permits and inspections — code-compliant and built to last.</div>
+          <a href="mailto:info@voltelectricaz.com?subject=Panel%20Upgrade%20Quote" class="photo-svc-link">Get a Quote →</a>
         </div>
       </div>
-      <div class="flip-card reveal" style="transition-delay:0.1s">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="flip-front-icon">🔌</div>
-            <div class="flip-front-title">Outlets &amp; Wiring</div>
-            <div class="flip-front-hint">Hover to learn more →</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-title">Outlets &amp; Wiring</div>
-            <div class="flip-back-desc">New outlet installs, GFCI upgrades, dedicated circuits for appliances, and full rewiring for older Phoenix homes. No guesswork, just clean work.</div>
-            <a href="mailto:info@voltelectricaz.com?subject=Outlets%20%26%20Wiring%20Quote" class="flip-back-cta">Get a Quote →</a>
-          </div>
+      <div class="photo-svc-card reveal" style="transition-delay:0.1s">
+        <div class="photo-svc-bg" style="background-image:url('https://images.unsplash.com/photo-1605152276897-4f618f831968?w=900&q=80')"></div>
+        <div class="photo-svc-overlay"></div>
+        <div class="photo-svc-content">
+          <span class="photo-svc-icon">🔌</span>
+          <div class="photo-svc-title">Outlets &amp; Wiring</div>
+          <div class="photo-svc-desc">New outlet installs, GFCI upgrades, dedicated circuits for appliances, and full rewiring for older Phoenix homes. No guesswork, just clean work.</div>
+          <a href="mailto:info@voltelectricaz.com?subject=Outlets%20%26%20Wiring%20Quote" class="photo-svc-link">Get a Quote →</a>
         </div>
       </div>
-      <div class="flip-card reveal" style="transition-delay:0.15s">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="flip-front-icon">💡</div>
-            <div class="flip-front-title">Lighting Installation</div>
-            <div class="flip-front-hint">Hover to learn more →</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-title">Lighting Installation</div>
-            <div class="flip-back-desc">Recessed lighting, ceiling fans, outdoor security lights, smart dimmers, and landscape lighting. We make your home look and feel exactly right.</div>
-            <a href="mailto:info@voltelectricaz.com?subject=Lighting%20Installation%20Quote" class="flip-back-cta">Get a Quote →</a>
-          </div>
+      <div class="photo-svc-card reveal" style="transition-delay:0.15s">
+        <div class="photo-svc-bg" style="background-image:url('https://images.unsplash.com/photo-1565728744382-61accd4aa148?w=900&q=80')"></div>
+        <div class="photo-svc-overlay"></div>
+        <div class="photo-svc-content">
+          <span class="photo-svc-icon">💡</span>
+          <div class="photo-svc-title">Lighting Installation</div>
+          <div class="photo-svc-desc">Recessed lighting, ceiling fans, outdoor security lights, smart dimmers, and landscape lighting. We make your home look and feel exactly right.</div>
+          <a href="mailto:info@voltelectricaz.com?subject=Lighting%20Installation%20Quote" class="photo-svc-link">Get a Quote →</a>
         </div>
       </div>
-      <div class="flip-card reveal" style="transition-delay:0.2s">
-        <div class="flip-card-inner">
-          <div class="flip-front">
-            <div class="flip-front-icon">🚨</div>
-            <div class="flip-front-title">Emergency Electrical</div>
-            <div class="flip-front-hint">Hover to learn more →</div>
-          </div>
-          <div class="flip-back">
-            <div class="flip-back-title">Emergency Electrical</div>
-            <div class="flip-back-desc">Power outages, tripped breakers that won't reset, burning smells, sparking outlets — our crew responds same-day, 24 hours a day, 7 days a week.</div>
-            <a href="tel:6025550291" class="flip-back-cta">Call Now →</a>
-          </div>
+      <div class="photo-svc-card reveal" style="transition-delay:0.2s">
+        <div class="photo-svc-bg" style="background-image:url('https://images.unsplash.com/photo-1621905251918-ee5fcca7c5b1?w=900&q=80')"></div>
+        <div class="photo-svc-overlay"></div>
+        <div class="photo-svc-content">
+          <span class="photo-svc-icon">🚨</span>
+          <div class="photo-svc-title">Emergency Electrical</div>
+          <div class="photo-svc-desc">Power outages, tripped breakers that won't reset, burning smells, sparking outlets — our crew responds same-day, 24 hours a day, 7 days a week.</div>
+          <a href="tel:6025550291" class="photo-svc-link">Call Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="process-section reveal">
+    <div class="process-inner">
+      <div class="process-header">
+        <p class="section-eyebrow">Simple Process</p>
+        <h2 class="section-title">Three Steps. <span class="accent">Zero Hassle.</span></h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-num">01</div>
+          <div class="process-icon">📞</div>
+          <h3 class="process-title">Call or Request Online</h3>
+          <p class="process-desc">Reach us any time — 24 hours a day. Describe the issue and we'll book same-day or next-day service with no wait and no hold music.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.12s">
+          <div class="process-num">02</div>
+          <div class="process-icon">🔍</div>
+          <h3 class="process-title">On-Site Assessment</h3>
+          <p class="process-desc">Our licensed electrician arrives, diagnoses the problem fully, and gives you a clear flat-rate quote before touching a single wire.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.24s">
+          <div class="process-num">03</div>
+          <div class="process-icon">✅</div>
+          <h3 class="process-title">Clean Work. Clear Bill.</h3>
+          <p class="process-desc">We complete the job to code, clean up completely, and hand you a final invoice that matches your quote — not a dollar more.</p>
         </div>
       </div>
     </div>

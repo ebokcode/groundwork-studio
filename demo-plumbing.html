@@ -83,6 +83,12 @@
       position: absolute; inset: 0;
       background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80')
         center/cover no-repeat;
+      animation: kenBurns 22s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
+    @keyframes kenBurns {
+      from { transform: scale(1) translateX(0); }
+      to   { transform: scale(1.1) translateX(2%); }
     }
     .hero-bg::after {
       content: ''; position: absolute; inset: 0;
@@ -264,6 +270,58 @@
     }
     .svc-card:hover .svc-link { gap: 10px; }
 
+    /* ── PROCESS SECTION ─────────────────────────────────────── */
+    .process {
+      background: var(--card);
+      padding: 96px 44px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .process-grid {
+      max-width: 1200px; margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .process-step {
+      background: var(--navy);
+      padding: 48px 36px;
+      position: relative;
+      border-top: 2px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .process-step:hover { border-top-color: var(--blue-lt); }
+    .process-connector {
+      position: absolute;
+      top: 50px; right: -1px;
+      width: 2px; height: 40px;
+      background: var(--border);
+    }
+    .process-step:last-child .process-connector { display: none; }
+    .process-step-num {
+      font-family: var(--serif);
+      font-size: 5.5rem; font-weight: 900;
+      color: rgba(59,130,246,0.07);
+      line-height: 1; margin-bottom: -14px;
+    }
+    .process-step-icon {
+      font-size: 2rem; margin-bottom: 16px; display: block;
+    }
+    .process-step-title {
+      font-family: var(--serif);
+      font-size: 1.4rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .process-step-desc {
+      font-size: 14px; font-weight: 300;
+      line-height: 1.75; color: var(--muted);
+    }
+    @media (max-width: 960px) {
+      .process { padding: 60px 20px; }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── EMERGENCY BAND ───────────────────────────────────── */
     .emergency-band {
       position: relative; overflow: hidden;
@@ -299,6 +357,63 @@
       transition: background .2s, color .2s;
     }
     .btn-white:hover { background: var(--ink); color: #fff; }
+
+    /* ── PHOTO CTA BAND ──────────────────────────────────────── */
+    .photo-cta-band {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+    .photo-cta-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1583845112203-29329902332e?w=1800&q=80') center/cover no-repeat;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .photo-cta-band:hover .photo-cta-bg { transform: scale(1); }
+    .photo-cta-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right,
+        rgba(8,12,18,0.92) 0%,
+        rgba(8,12,18,0.7) 55%,
+        rgba(8,12,18,0.5) 100%);
+    }
+    .photo-cta-inner {
+      position: relative; z-index: 2;
+      height: 100%;
+      display: flex; align-items: center;
+      padding: 0 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .photo-cta-content { max-width: 520px; }
+    .photo-cta-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 20px;
+    }
+    .photo-cta-headline {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900; text-transform: uppercase;
+      line-height: 0.9; color: var(--white);
+      margin-bottom: 24px;
+    }
+    .photo-cta-sub {
+      font-size: 15px; font-weight: 300;
+      color: rgba(240,246,255,0.7); line-height: 1.7;
+      margin-bottom: 36px; max-width: 400px;
+    }
+    .photo-cta-phone {
+      font-family: var(--serif); font-size: 48px; font-weight: 900;
+      color: var(--white); letter-spacing: -1px;
+      display: block; margin-bottom: 20px;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .photo-cta-phone:hover { color: var(--orange-lt); }
+    @media (max-width: 960px) {
+      .photo-cta-band { height: auto; }
+      .photo-cta-inner { padding: 80px 24px; }
+    }
 
     /* ── WHY US ───────────────────────────────────────────── */
     .why { background: var(--navy); padding: 100px 44px; }
@@ -550,15 +665,48 @@
       </div>
     </section>
 
-    <!-- EMERGENCY BAND -->
-    <div class="emergency-band">
-      <div class="emg-left">
-        <h2>Plumbing<br>Emergency?</h2>
-        <p>We answer every call. 24 hours a day, 7 days a week.</p>
+    <!-- HOW IT WORKS -->
+    <section class="process">
+      <div class="section-header reveal" style="max-width:1200px;margin:0 auto;">
+        <p class="section-tag">Simple &amp; Straightforward</p>
+        <h2 class="section-h2">How It<br><span>Works.</span></h2>
       </div>
-      <div class="emg-right">
-        <a href="tel:+16025550184" class="emg-phone">(602) 555-0184</a>
-        <a href="tel:+16025550184" class="btn-white">Call Now — We're Ready</a>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-connector"></div>
+          <div class="process-step-num">01</div>
+          <span class="process-step-icon">📞</span>
+          <h3 class="process-step-title">Call or Book Online</h3>
+          <p class="process-step-desc">Reach us any time — we answer 24/7. Tell us what's wrong and we'll get a technician on the way fast, no runaround.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.12s">
+          <div class="process-connector"></div>
+          <div class="process-step-num">02</div>
+          <span class="process-step-icon">🔍</span>
+          <h3 class="process-step-title">Diagnose &amp; Quote</h3>
+          <p class="process-step-desc">Our licensed plumber arrives, identifies the problem completely, and gives you a flat-rate price before any work begins. No surprises.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.24s">
+          <div class="process-step-num">03</div>
+          <span class="process-step-icon">✅</span>
+          <h3 class="process-step-title">Fixed Right. Done Fast.</h3>
+          <p class="process-step-desc">We complete the repair or install cleanly and efficiently. Most jobs are wrapped same day — you get a working system and a clear invoice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO CTA BAND -->
+    <div class="photo-cta-band">
+      <div class="photo-cta-bg"></div>
+      <div class="photo-cta-overlay"></div>
+      <div class="photo-cta-inner">
+        <div class="photo-cta-content reveal">
+          <p class="photo-cta-label">24 / 7 Emergency Response</p>
+          <h2 class="photo-cta-headline">Plumbing<br>Emergency?</h2>
+          <p class="photo-cta-sub">We answer every call. Day or night, weekends included. Our licensed technicians are across the Phoenix metro and ready to respond fast.</p>
+          <a href="tel:+16025550184" class="photo-cta-phone">(602) 555-0184</a>
+          <a href="tel:+16025550184" class="btn-primary">Call Now — We're Ready</a>
+        </div>
       </div>
     </div>
 
