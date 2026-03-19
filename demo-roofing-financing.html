@@ -133,7 +133,8 @@
     .dropdown-menu::-webkit-scrollbar-track { background: var(--slate); }
     .dropdown-menu::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
     .nav-dropdown:hover .dropdown-menu,
-    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .nav-dropdown:focus-within .dropdown-menu,
+    .nav-dropdown.open .dropdown-menu { display: block; }
     .dropdown-menu a {
       display: flex;
       align-items: flex-start;
@@ -175,16 +176,18 @@
       background: var(--rust);
       color: #fff;
       font-size: 0.84rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 9px 20px;
-      border-radius: var(--radius-pill);
+      border-radius: 9px;
       border: none;
       cursor: pointer;
       transition: background var(--transition);
       white-space: nowrap;
       font-family: inherit;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    .nav-cta:hover { background: var(--rust-mid); }
+    .nav-cta:hover { background: var(--rust-mid); transform: translateY(-1px); }
 
     /* ── HAMBURGER ── */
     .hamburger {
@@ -776,7 +779,7 @@
         <a href="demo-roofing-about.html">About</a>
         <a href="demo-roofing-contact.html">Contact</a>
       </div>
-      <button class="nav-cta">Free Inspection</button>
+      <button class="nav-cta">📅 Schedule Service</button>
       <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -794,7 +797,7 @@
       <a href="demo-roofing-financing.html">Financing</a>
       <a href="demo-roofing-about.html">About</a>
       <a href="demo-roofing-contact.html">Contact</a>
-      <a href="#contact" class="m-cta">Free Inspection</a>
+      <a href="#contact" class="m-cta">📅 Schedule Service →</a>
     </div>
   </nav>
 
@@ -1044,5 +1047,28 @@
     </div>
   </footer>
 
+<script>
+  // ── Services dropdown — reliable click toggle ──
+  const navDropdown = document.querySelector('.nav-dropdown');
+  if (navDropdown) {
+    const trigger = navDropdown.querySelector('button');
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      navDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!navDropdown.contains(e.target)) {
+        navDropdown.classList.remove('open');
+      }
+    });
+    navDropdown.querySelectorAll('.dropdown-menu a').forEach(a => {
+      a.addEventListener('click', () => navDropdown.classList.remove('open'));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') navDropdown.classList.remove('open');
+    });
+  }
+</script>
 </body>
 </html>

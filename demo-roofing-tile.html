@@ -136,7 +136,8 @@
     .dropdown::-webkit-scrollbar { width: 4px; }
     .dropdown::-webkit-scrollbar-track { background: var(--slate); }
     .dropdown::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
-    .has-dropdown:hover .dropdown { display: block; }
+    .has-dropdown:hover .dropdown,
+    .has-dropdown.open .dropdown { display: block; }
     .dropdown a {
       display: flex;
       align-items: flex-start;
@@ -1260,6 +1261,28 @@
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.toggle('open');
     });
+
+  // ── Services dropdown — reliable click toggle ──
+  const navDropdown = document.querySelector('.has-dropdown');
+  if (navDropdown) {
+    const trigger = navDropdown.querySelector('a');
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      navDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!navDropdown.contains(e.target)) {
+        navDropdown.classList.remove('open');
+      }
+    });
+    navDropdown.querySelectorAll('.dropdown a').forEach(a => {
+      a.addEventListener('click', () => navDropdown.classList.remove('open'));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') navDropdown.classList.remove('open');
+    });
+  }
   </script>
 </body>
 </html>

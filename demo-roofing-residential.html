@@ -151,7 +151,8 @@
     .dropdown-menu::-webkit-scrollbar { width: 4px; }
     .dropdown-menu::-webkit-scrollbar-track { background: var(--slate); }
     .dropdown-menu::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
-    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.open .dropdown-menu { display: block; }
     .dropdown-menu a {
       display: flex;
       align-items: flex-start;
@@ -1276,6 +1277,28 @@
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.remove('open'));
     });
+
+  // ── Services dropdown — reliable click toggle ──
+  const navDropdown = document.querySelector('.nav-dropdown');
+  if (navDropdown) {
+    const trigger = navDropdown.querySelector('a');
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      navDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!navDropdown.contains(e.target)) {
+        navDropdown.classList.remove('open');
+      }
+    });
+    navDropdown.querySelectorAll('.dropdown-menu a').forEach(a => {
+      a.addEventListener('click', () => navDropdown.classList.remove('open'));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') navDropdown.classList.remove('open');
+    });
+  }
   </script>
 
 </body>

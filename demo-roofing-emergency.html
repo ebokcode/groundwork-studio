@@ -168,7 +168,8 @@
     .dropdown::-webkit-scrollbar { width: 4px; }
     .dropdown::-webkit-scrollbar-track { background: var(--slate); }
     .dropdown::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
-    .nav-links > li:hover .dropdown {
+    .nav-links > li:hover .dropdown,
+    .nav-links > li.open .dropdown {
       opacity: 1;
       pointer-events: all;
       transform: translateY(0);
@@ -1637,6 +1638,28 @@
     btn.textContent = '✓ Request Sent — We\'ll Call Within 1 Hour';
     btn.style.background = '#2d6a4f';
     btn.style.color = '#fff';
+  }
+
+  // ── Services dropdown — reliable click toggle ──
+  const navDropdown = document.querySelector('.nav-links > li:has(.dropdown)');
+  if (navDropdown) {
+    const trigger = navDropdown.querySelector('span');
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      navDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!navDropdown.contains(e.target)) {
+        navDropdown.classList.remove('open');
+      }
+    });
+    navDropdown.querySelectorAll('.dropdown a').forEach(a => {
+      a.addEventListener('click', () => navDropdown.classList.remove('open'));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') navDropdown.classList.remove('open');
+    });
   }
 </script>
 </body>
