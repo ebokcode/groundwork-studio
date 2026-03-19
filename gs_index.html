@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Groundwork Studio — Internal Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #111827; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout ── */
+    .page { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* ── Header ── */
+    .site-header {
+      background: #14532d;
+      color: #fff;
+      padding: 28px 32px;
+      border-radius: 14px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .site-header-left h1 { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; }
+    .site-header-left p { font-size: 13px; color: #86efac; margin-top: 2px; }
+    .site-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .site-header-right a { font-size: 13px; color: #86efac; }
+    .site-header-right a:hover { color: #fff; }
+
+    /* ── Section headings ── */
+    .section-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #e5e7eb;
+    }
+    .section-wrap { margin-bottom: 40px; }
+
+    /* ── Tier badges ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .badge-t1  { background: #dcfce7; color: #15803d; }
+    .badge-t2  { background: #dbeafe; color: #1d4ed8; }
+    .badge-t3  { background: #ede9fe; color: #6d28d9; }
+    .badge-t4  { background: #ffedd5; color: #c2410c; }
+    .badge-multi { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+    .badge-gray  { background: #f3f4f6; color: #6b7280; }
+
+    /* ── Tier summary cards ── */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .tier-card {
+      border-radius: 12px;
+      border: 1.5px solid;
+      padding: 20px 16px;
+    }
+    .tier-card.t1 { border-color: #bbf7d0; background: #f0fdf4; }
+    .tier-card.t2 { border-color: #bfdbfe; background: #eff6ff; }
+    .tier-card.t3 { border-color: #ddd6fe; background: #f5f3ff; }
+    .tier-card.t4 { border-color: #fed7aa; background: #fff7ed; }
+    .tier-card-label { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+    .t1 .tier-card-label { color: #15803d; }
+    .t2 .tier-card-label { color: #1d4ed8; }
+    .t3 .tier-card-label { color: #6d28d9; }
+    .t4 .tier-card-label { color: #c2410c; }
+    .tier-card-name { font-size: 15px; font-weight: 800; color: #111827; margin-bottom: 2px; }
+    .tier-card-price { font-size: 22px; font-weight: 900; margin-bottom: 2px; }
+    .t1 .tier-card-price { color: #16a34a; }
+    .t2 .tier-card-price { color: #2563eb; }
+    .t3 .tier-card-price { color: #7c3aed; }
+    .t4 .tier-card-price { color: #c2410c; }
+    .tier-card-monthly { font-size: 11px; color: #6b7280; margin-bottom: 10px; }
+    .tier-card-pages { font-size: 11px; color: #374151; line-height: 1.6; }
+
+    /* ── Demo grid ── */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .demo-card {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 150ms ease, border-color 150ms ease;
+    }
+    .demo-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: #d1d5db; }
+    .demo-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .demo-card-name { font-size: 14px; font-weight: 700; color: #111827; }
+    .demo-card-industry { font-size: 11px; color: #6b7280; margin-top: 1px; }
+    .demo-card-pages { font-size: 11px; color: #6b7280; line-height: 1.55; }
+    .demo-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .demo-link {
+      font-size: 11px;
+      font-weight: 700;
+      color: #16a34a;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .demo-link:hover { color: #14532d; }
+    .demo-card.multi-page { border-color: #bbf7d0; }
+    .demo-card.multi-page .demo-card-name { color: #14532d; }
+
+    /* ── Sub-pages list ── */
+    .subpages { font-size: 10px; color: #9ca3af; line-height: 1.7; }
+
+    /* ── Docs grid ── */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .doc-card {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .doc-card-left h3 { font-size: 14px; font-weight: 700; }
+    .doc-card-left p { font-size: 12px; color: #6b7280; margin-top: 3px; }
+    .doc-btn {
+      display: inline-block;
+      background: #16a34a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 150ms;
+    }
+    .doc-btn:hover { background: #14532d; }
+    .doc-btn.secondary { background: #f3f4f6; color: #374151; }
+    .doc-btn.secondary:hover { background: #e5e7eb; }
+
+    /* ── Info grid ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .info-card {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .info-card h3 { font-size: 12px; font-weight: 700; color: #6b7280; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+    .info-card p, .info-card a { font-size: 13px; color: #111827; line-height: 1.7; display: block; }
+    .info-card a { color: #16a34a; }
+    .info-card a:hover { text-decoration: underline; }
+
+    /* ── Callout ── */
+    .callout {
+      background: #fef3c7;
+      border-left: 4px solid #d97706;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #111827;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 800px) {
+      .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+      .demo-grid { grid-template-columns: repeat(2, 1fr); }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .tiers-grid { grid-template-columns: 1fr; }
+      .demo-grid { grid-template-columns: 1fr; }
+      .docs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="site-header">
+    <div class="site-header-left">
+      <h1>Groundwork Studio</h1>
+      <p>Internal business hub — not for client distribution</p>
+    </div>
+    <div class="site-header-right">
+      <a href="https://teamground.work" target="_blank">↗ teamground.work</a>
+      <a href="index.html">← Main Demo Site</a>
+    </div>
+  </div>
+
+  <!-- Company Info -->
+  <div class="section-wrap">
+    <div class="section-title">Company Info</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Contact</h3>
+        <a href="tel:+14804526473">(480) 452-6473</a>
+        <a href="mailto:evan@teamground.work">evan@teamground.work</a>
+        <a href="https://teamground.work" target="_blank">teamground.work</a>
+      </div>
+      <div class="info-card">
+        <h3>Location &amp; Service Area</h3>
+        <p>Phoenix, AZ</p>
+        <p>Serving local businesses nationwide</p>
+        <p>Remote-first · Fast turnaround</p>
+      </div>
+      <div class="info-card">
+        <h3>What We Build</h3>
+        <p>Custom static HTML/CSS sites</p>
+        <p>No page builders · No WordPress</p>
+        <p>Hosted on Netlify · Deployed via Git</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier Structure -->
+  <div class="section-wrap">
+    <div class="section-title">Site Tiers — Pricing Structure</div>
+    <div class="callout">
+      <strong>Tiers are baselines, not boxes.</strong> All tiers include service detail pages — clients provide content per service, we build the dedicated page. Clients can mix and match pages across tiers. Custom quotes available for any configuration.
+    </div>
+    <div class="tiers-grid">
+      <div class="tier-card t1">
+        <div class="tier-card-label">Tier 1</div>
+        <div class="tier-card-name">Foundation</div>
+        <div class="tier-card-price">$1,000</div>
+        <div class="tier-card-monthly">+ $125/mo Maintenance · $275/mo Growth</div>
+        <div class="tier-card-pages">Home · Contact + Scheduling · Services Overview · Service Detail Pages · Areas We Serve</div>
+      </div>
+      <div class="tier-card t2">
+        <div class="tier-card-label">Tier 2</div>
+        <div class="tier-card-name">Standard</div>
+        <div class="tier-card-price">$1,500</div>
+        <div class="tier-card-monthly">+ $150/mo Maintenance · $300/mo Growth</div>
+        <div class="tier-card-pages">Tier 1 + About · Gallery · Reviews · FAQ · More Service Detail Pages</div>
+      </div>
+      <div class="tier-card t3">
+        <div class="tier-card-label">Tier 3</div>
+        <div class="tier-card-name">Full Custom</div>
+        <div class="tier-card-price">$2,200</div>
+        <div class="tier-card-monthly">+ $175/mo Maintenance · $350/mo Growth</div>
+        <div class="tier-card-pages">Tier 2 + Financing · Emergency · Specials · Full service suite</div>
+      </div>
+      <div class="tier-card t4">
+        <div class="tier-card-label">Tier 4</div>
+        <div class="tier-card-name">Enterprise</div>
+        <div class="tier-card-price">$3,000+</div>
+        <div class="tier-card-monthly">+ $200/mo Maintenance · $425/mo Growth</div>
+        <div class="tier-card-pages">Tier 3 + Blog · Online Booking · Deep SEO · 15+ pages</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo Sites -->
+  <div class="section-wrap">
+    <div class="section-title">Demo Sites</div>
+    <div class="demo-grid">
+
+      <!-- ROOFING — Tier 3 multi-page -->
+      <div class="demo-card multi-page">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Peak Shield Roofing</div>
+            <div class="demo-card-industry">Roofing · Denver, CO</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+            <span class="badge badge-t3">Tier 3</span>
+            <span class="badge badge-multi">MULTI-PAGE</span>
+          </div>
+        </div>
+        <div class="subpages">Home · Residential · Commercial · Tile · Metal · Shingle · Emergency · Financing · About</div>
+        <div class="demo-card-footer">
+          <a href="demo-roofing.html" target="_blank" class="demo-link">View Site →</a>
+        </div>
+      </div>
+
+      <!-- HVAC -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">AZ Comfort Systems</div>
+            <div class="demo-card-industry">HVAC · Phoenix, AZ</div>
+          </div>
+          <span class="badge badge-t1">Tier 1</span>
+        </div>
+        <div class="demo-card-pages">Single page · Hero, Services, Areas, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-hvac.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- PLUMBING -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">FlowRight Plumbing</div>
+            <div class="demo-card-industry">Plumbing · Phoenix, AZ</div>
+          </div>
+          <span class="badge badge-t1">Tier 1</span>
+        </div>
+        <div class="demo-card-pages">Single page · Hero, Services, Areas, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-plumbing.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- POOL -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Desert Blue Pools</div>
+            <div class="demo-card-industry">Pool Service · Scottsdale, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Maintenance Plans, Gallery, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-pool.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- ELECTRICAL -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Volt Pro Electric</div>
+            <div class="demo-card-industry">Electrical · Phoenix, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Reviews, Areas, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-electrical.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- LANDSCAPING -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Verde Outdoor Services</div>
+            <div class="demo-card-industry">Landscaping · Tempe, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Gallery, Reviews, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-landscaping.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- PAINTING -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">ProCoat Painting</div>
+            <div class="demo-card-industry">Painting · Mesa, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Gallery, Reviews, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-painting.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- CLEANING -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Sparkle Clean Co.</div>
+            <div class="demo-card-industry">Cleaning · Phoenix, AZ</div>
+          </div>
+          <span class="badge badge-t1">Tier 1</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Pricing, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-cleaning.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- PEST CONTROL -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">GuardLine Pest Control</div>
+            <div class="demo-card-industry">Pest Control · Phoenix, AZ</div>
+          </div>
+          <span class="badge badge-t1">Tier 1</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Areas, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-pestcontrol.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- AUTO REPAIR -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Apex Auto Repair</div>
+            <div class="demo-card-industry">Auto Repair · Chandler, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Services, Reviews, Booking, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-autorepair.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- GYM -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Iron & Form Fitness</div>
+            <div class="demo-card-industry">Gym / Fitness · Scottsdale, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Memberships, Classes, Gallery, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-gym.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+      <!-- RESTAURANT -->
+      <div class="demo-card">
+        <div class="demo-card-top">
+          <div>
+            <div class="demo-card-name">Mesa Verde Kitchen</div>
+            <div class="demo-card-industry">Restaurant · Phoenix, AZ</div>
+          </div>
+          <span class="badge badge-t2">Tier 2</span>
+        </div>
+        <div class="demo-card-pages">Single page · Menu, Hours, Reservations, Contact</div>
+        <div class="demo-card-footer">
+          <a href="demo-restaurant.html" target="_blank" class="demo-link">View Demo →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Monthly Recurring Quick Ref -->
+  <div class="section-wrap">
+    <div class="section-title">Monthly Recurring — Quick Reference</div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e5e7eb;">
+        <thead>
+          <tr style="background:#f9fafb;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Plan</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:700;color:#16a34a;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Tier 1</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:700;color:#2563eb;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Tier 2</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:700;color:#7c3aed;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Tier 3</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:700;color:#c2410c;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Tier 4</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px 16px;font-weight:600;border-bottom:1px solid #f3f4f6;">Maintenance</td>
+            <td style="padding:10px 16px;text-align:center;color:#16a34a;font-weight:700;border-bottom:1px solid #f3f4f6;">$125/mo</td>
+            <td style="padding:10px 16px;text-align:center;color:#2563eb;font-weight:700;border-bottom:1px solid #f3f4f6;">$150/mo</td>
+            <td style="padding:10px 16px;text-align:center;color:#7c3aed;font-weight:700;border-bottom:1px solid #f3f4f6;">$175/mo</td>
+            <td style="padding:10px 16px;text-align:center;color:#c2410c;font-weight:700;border-bottom:1px solid #f3f4f6;">$200/mo</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 16px;font-weight:600;border-bottom:1px solid #f3f4f6;">Growth</td>
+            <td style="padding:10px 16px;text-align:center;color:#16a34a;font-weight:700;border-bottom:1px solid #f3f4f6;">$275/mo</td>
+            <td style="padding:10px 16px;text-align:center;color:#2563eb;font-weight:700;border-bottom:1px solid #f3f4f6;">$300/mo</td>
+            <td style="padding:10px 16px;text-align:center;color:#7c3aed;font-weight:700;border-bottom:1px solid #f3f4f6;">$350/mo</td>
+            <td style="padding:10px 16px;text-align:center;color:#c2410c;font-weight:700;border-bottom:1px solid #f3f4f6;">$425/mo</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 16px;font-weight:600;">Local Presence Add-On</td>
+            <td colspan="4" style="padding:10px 16px;text-align:center;color:#6b7280;font-weight:600;">$49/mo + $99 setup — same price on any tier</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:#9ca3af;margin-top:8px;">10 clients on avg Maintenance ($150/mo) = <strong style="color:#111827;">$1,500/mo recurring</strong> before a single new build.</p>
+  </div>
+
+  <!-- Documents -->
+  <div class="section-wrap">
+    <div class="section-title">Documents &amp; Downloads</div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-card-left">
+          <h3>Client Pricing Guide</h3>
+          <p>4-tier structure, pages menu, monthly plans, add-ons. Share with prospects.</p>
+        </div>
+        <a href="docs/Groundwork_Client_Pricing_Guide.pdf" target="_blank" class="doc-btn">Open PDF</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-left">
+          <h3>Sales Guide</h3>
+          <p>Internal reference — tiers, pricing, objection handling, pitch flow.</p>
+        </div>
+        <a href="docs/Groundwork_Sales_Guide.pdf" target="_blank" class="doc-btn">Open PDF</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-left">
+          <h3>Partner Packet</h3>
+          <p>For referral partners and collaborators. Revenue share, process, FAQ.</p>
+        </div>
+        <a href="docs/Groundwork_Partner_Packet.pdf" target="_blank" class="doc-btn">Open PDF</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-left">
+          <h3>Contract Template</h3>
+          <p>Standard client contract. Fill in name, tier, build fee, and launch date.</p>
+        </div>
+        <a href="docs/Groundwork_Contract_Template.pdf" target="_blank" class="doc-btn">Open PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add-ons quick ref -->
+  <div class="section-wrap">
+    <div class="section-title">Add-Ons — Quick Reference</div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid #e5e7eb;">
+        <thead>
+          <tr style="background:#f9fafb;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Add-On</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Price</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1.5px solid #e5e7eb;">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fff;"><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;font-weight:600;">Logo &amp; Brand Identity</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;">$300 – $600</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;color:#6b7280;">Pair with every Tier 1 build</td></tr>
+          <tr style="background:#f9fafb;"><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;font-weight:600;">Google Business Profile Setup</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;">$200 – $350</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;color:#6b7280;">High perceived value, ~30 min work</td></tr>
+          <tr style="background:#fff;"><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;font-weight:600;">SEO Foundation Package</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;">$400 – $700</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;color:#6b7280;">Scales with site size</td></tr>
+          <tr style="background:#f9fafb;"><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;font-weight:600;">Booking / Scheduling Integration</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;">$300 – $500</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;color:#6b7280;">Calendly, Square, Acuity</td></tr>
+          <tr style="background:#fff;"><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;font-weight:600;">Google &amp; Meta Ads Setup</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;">$400 + 10–15%/mo</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;color:#6b7280;">Setup + recurring management</td></tr>
+          <tr style="background:#f9fafb;"><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;font-weight:600;">Domain Registration &amp; Setup</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;">$50 – $75</td><td style="padding:9px 16px;border-bottom:1px solid #f3f4f6;color:#6b7280;">Or client buys own, we connect free</td></tr>
+          <tr style="background:#fff;"><td style="padding:9px 16px;font-weight:600;">Rush Delivery</td><td style="padding:9px 16px;">+25% of build fee</td><td style="padding:9px 16px;color:#6b7280;">Under 2 weeks, front of queue</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p style="font-size:11px;color:#9ca3af;text-align:center;">Groundwork Studio · teamground.work · evan@teamground.work · (480) 452-6473 · Phoenix, AZ</p>
+</div>
+</body>
+</html>

@@ -160,7 +160,8 @@
     .dropdown::-webkit-scrollbar { width: 4px; }
     .dropdown::-webkit-scrollbar-track { background: var(--slate); }
     .dropdown::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
-    .nav-links > li:hover .dropdown {
+    .nav-links > li:hover .dropdown,
+    .nav-links > li.open .dropdown {
       opacity: 1;
       pointer-events: all;
       transform: translateY(0);
@@ -1761,25 +1762,28 @@
     });
   });
 
-  // ── Touch-friendly Services dropdown ──
+  // ── Services dropdown — reliable click toggle (works on all devices) ──
   const servicesLi = document.querySelector('.nav-links > li:nth-child(2)');
   if (servicesLi) {
     const trigger = servicesLi.querySelector('span');
-    const dropdown = servicesLi.querySelector('.dropdown');
-    trigger.addEventListener('click', () => {
-      if (window.matchMedia('(hover: none)').matches) {
-        const isVisible = dropdown.style.opacity === '1';
-        dropdown.style.opacity = isVisible ? '0' : '1';
-        dropdown.style.pointerEvents = isVisible ? 'none' : 'all';
-        dropdown.style.transform = isVisible ? 'translateY(6px)' : 'translateY(0)';
+    trigger.style.cursor = 'pointer';
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      servicesLi.classList.toggle('open');
+    });
+    // Close when clicking outside
+    document.addEventListener('click', e => {
+      if (!servicesLi.contains(e.target)) {
+        servicesLi.classList.remove('open');
       }
     });
-    document.addEventListener('click', e => {
-      if (!servicesLi.contains(e.target) && window.matchMedia('(hover: none)').matches) {
-        dropdown.style.opacity = '0';
-        dropdown.style.pointerEvents = 'none';
-        dropdown.style.transform = 'translateY(6px)';
-      }
+    // Close when a dropdown link is clicked (navigation)
+    servicesLi.querySelectorAll('.dropdown a').forEach(a => {
+      a.addEventListener('click', () => servicesLi.classList.remove('open'));
+    });
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') servicesLi.classList.remove('open');
     });
   }
 
