@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Peak Shield Roofing — Denver, CO | Free Roof Inspection</title>
+  <meta name="description" content="Contact Peak Shield Roofing for a free roof inspection in Denver, CO. Call (720) 555-0183 or fill out our form — we respond within 2 hours." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rust: #f97316;
+      --rust-mid: #ea6c10;
+      --rust-dim: rgba(249,115,22,0.15);
+      --slate: #1c1917;
+      --slate-mid: #292524;
+      --slate-light: #44403c;
+      --cream: #fafaf9;
+      --muted: #a8a29e;
+      --white: #ffffff;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition: 200ms ease;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--slate);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── DEMO BANNER ─── */
+    .demo-banner {
+      background: var(--rust);
+      text-align: center;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1917;
+      letter-spacing: 0.01em;
+    }
+    .demo-banner a {
+      color: #1c1917;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ─── UTILITY BAR ─── */
+    .utility-bar {
+      background: #0f0e0d;
+      padding: 6px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      gap: 8px;
+    }
+    .utility-bar a:hover { color: var(--cream); }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #1c1917;
+      border-bottom: 1px solid var(--slate-light);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      flex: 1;
+    }
+    .nav-links a, .nav-links button {
+      display: block;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color var(--transition);
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links button:hover,
+    .nav-links a.active { color: var(--cream); }
+    .nav-links .has-dropdown { position: relative; }
+    .nav-links .has-dropdown:hover .dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 8px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 200;
+    }
+    .dropdown a {
+      display: block;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      border-radius: 8px;
+      transition: background var(--transition), color var(--transition);
+    }
+    .dropdown a:hover { background: var(--slate-light); color: var(--cream); }
+    .nav-cta {
+      background: var(--rust);
+      color: #1c1917 !important;
+      padding: 10px 20px !important;
+      border-radius: var(--radius-pill) !important;
+      font-weight: 700 !important;
+      flex-shrink: 0;
+      transition: background var(--transition) !important;
+    }
+    .nav-cta:hover { background: var(--rust-mid) !important; color: #1c1917 !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin-left: auto;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      background: var(--slate-mid);
+      border-top: 1px solid var(--slate-light);
+      padding: 16px 24px 24px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a, .mobile-menu button {
+      display: block;
+      padding: 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--muted);
+      border-bottom: 1px solid var(--slate-light);
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color var(--transition);
+    }
+    .mobile-menu a:last-child, .mobile-menu button:last-child { border-bottom: none; }
+    .mobile-menu a:hover, .mobile-menu button:hover { color: var(--cream); }
+    .mobile-menu-cta {
+      display: block;
+      margin-top: 16px;
+      background: var(--rust);
+      color: #1c1917 !important;
+      text-align: center;
+      padding: 14px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 16px;
+      border: none !important;
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      background: var(--slate-mid);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .page-header-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 14px;
+    }
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .page-header p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main-content {
+      background: var(--slate);
+      padding: 72px 24px;
+    }
+    .main-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ─── FORM ─── */
+    .form-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 40px;
+    }
+    .form-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .form-card .form-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .form-group label .req { color: var(--rust); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: var(--cream);
+      font-family: inherit;
+      transition: border-color var(--transition);
+      outline: none;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a8a29e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .form-group select option { background: var(--slate-mid); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--rust); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .consent-group {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .consent-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      accent-color: var(--rust);
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .consent-group label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .submit-btn {
+      grid-column: 1 / -1;
+      background: var(--rust);
+      color: #1c1917;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      transition: background var(--transition);
+      margin-top: 4px;
+      letter-spacing: 0.01em;
+    }
+    .submit-btn:hover { background: var(--rust-mid); }
+
+    /* ─── CONTACT SIDEBAR ─── */
+    .contact-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .contact-card-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .contact-card-body { flex: 1; min-width: 0; }
+    .contact-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 6px;
+    }
+    .contact-card-main {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+    .contact-card-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .response-badge {
+      background: var(--rust-dim);
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--rust);
+    }
+    .response-badge::before {
+      content: "⚡";
+      font-size: 16px;
+    }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      background: var(--slate-mid);
+      border-top: 1px solid var(--slate-light);
+      padding: 36px 24px;
+    }
+    .trust-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 32px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+    .trust-item:not(:last-child) {
+      border-right: 1px solid var(--slate-light);
+    }
+    .trust-item-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--rust-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0f0e0d;
+      padding: 64px 24px 0;
+      border-top: 1px solid var(--slate-light);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+    .footer-brand-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .gaf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--rust-dim);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--rust);
+      margin-bottom: 20px;
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+    .social-link {
+      width: 36px;
+      height: 36px;
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .social-link:hover { background: var(--slate-light); border-color: var(--rust); }
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-contact-item {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .footer-contact-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+    .footer-areas {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--slate-light);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .footer-bottom a { color: var(--rust); transition: color var(--transition); }
+    .footer-bottom a:hover { color: var(--rust-mid); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .utility-bar { font-size: 10px; padding: 6px 16px; gap: 4px; }
+      .main-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .trust-item { padding: 10px 16px; }
+      .trust-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--slate-light); }
+      .trust-strip-inner { flex-direction: column; align-items: stretch; }
+    }
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 24px 20px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .utility-bar .utility-right { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    ✨ Demo site built by <a href="https://groundworkstudio.co" target="_blank">Groundwork Studio</a> · groundworkstudio.co
+  </div>
+
+  <!-- UTILITY BAR -->
+  <div class="utility-bar">
+    <div class="utility-left">📞 (720) 555-0183 &nbsp;·&nbsp; Mon–Sat 7am–7pm</div>
+    <div class="utility-right">info@peakshieldroofing.com</div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="demo-roofing.html" class="nav-logo">🏗️ Peak Shield</a>
+      <ul class="nav-links">
+        <li><a href="demo-roofing.html">Home</a></li>
+        <li class="has-dropdown">
+          <button>Services ▾</button>
+          <div class="dropdown">
+            <a href="demo-roofing-residential.html">Residential Roofing</a>
+            <a href="demo-roofing-commercial.html">Commercial Roofing</a>
+            <a href="demo-roofing-tile.html">Tile Roofing</a>
+            <a href="demo-roofing-metal.html">Metal Roofing</a>
+            <a href="demo-roofing-shingle.html">Shingle Roofing</a>
+            <a href="demo-roofing-emergency.html">Storm &amp; Emergency</a>
+          </div>
+        </li>
+        <li><a href="#">Areas We Serve</a></li>
+        <li><a href="#">Specials</a></li>
+        <li><a href="#">Financing</a></li>
+        <li><a href="demo-roofing-about.html">About</a></li>
+        <li><a href="demo-roofing-contact.html" class="active">Contact</a></li>
+      </ul>
+      <a href="demo-roofing-contact.html" class="nav-cta">Free Inspection</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="demo-roofing.html">Home</a>
+      <a href="demo-roofing-residential.html">Residential Roofing</a>
+      <a href="demo-roofing-commercial.html">Commercial Roofing</a>
+      <a href="demo-roofing-tile.html">Tile Roofing</a>
+      <a href="demo-roofing-metal.html">Metal Roofing</a>
+      <a href="demo-roofing-shingle.html">Shingle Roofing</a>
+      <a href="demo-roofing-emergency.html">Storm &amp; Emergency</a>
+      <a href="#">Areas We Serve</a>
+      <a href="#">Specials</a>
+      <a href="#">Financing</a>
+      <a href="demo-roofing-about.html">About</a>
+      <a href="demo-roofing-contact.html">Contact</a>
+      <a href="demo-roofing-contact.html" class="mobile-menu-cta">Free Inspection</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="page-header-label">Contact Us</div>
+    <h1>Get Your Free Inspection</h1>
+    <p>Fill out the form below and a Peak Shield expert will reach out within 2 hours during business hours.</p>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="main-content">
+    <div class="main-inner">
+
+      <!-- FORM -->
+      <div class="form-card">
+        <h2>Request a Free Estimate</h2>
+        <p class="form-sub">No commitment. No pressure. Just an honest assessment from Denver's most trusted roofers.</p>
+        <form>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Full Name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="(720) 555-0000" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="city-zip">Property City / Zip Code <span class="req">*</span></label>
+              <input type="text" id="city-zip" name="city-zip" placeholder="Denver, CO 80218" required />
+            </div>
+            <div class="form-group full">
+              <label for="service">Service Needed <span class="req">*</span></label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option value="inspection">Roof Inspection</option>
+                <option value="repair">Roof Repair</option>
+                <option value="replacement">Roof Replacement</option>
+                <option value="storm">Storm Damage</option>
+                <option value="commercial">Commercial Roofing</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="message">How Can We Help?</label>
+              <textarea id="message" name="message" placeholder="Tell us a little about your roof, any concerns, or when you'd like us to come out…"></textarea>
+            </div>
+            <div class="consent-group">
+              <input type="checkbox" id="consent" name="consent" required />
+              <label for="consent">I understand I'm requesting a quote and a Peak Shield representative will contact me.</label>
+            </div>
+            <button type="submit" class="submit-btn">Request Free Inspection</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar">
+        <div class="response-badge">We respond within 2 hours during business hours</div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">📞</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Phone</div>
+            <div class="contact-card-main">(720) 555-0183</div>
+            <div class="contact-card-sub">We answer 7am–7pm, Mon–Sat</div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-main" style="font-size:15px;">info@peakshieldroofing.com</div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">📍</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Address</div>
+            <div class="contact-card-main" style="font-size:16px;">1240 E Colfax Ave</div>
+            <div class="contact-card-sub">Denver, CO 80218</div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">🕐</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Hours</div>
+            <div class="contact-card-main" style="font-size:15px;">Mon–Sat: 7:00am – 7:00pm</div>
+            <div class="contact-card-sub">Sunday: Emergency calls only</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item">
+        <div class="trust-item-icon">🏅</div>
+        GAF Certified
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">🛡️</div>
+        Licensed &amp; Insured
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">💰</div>
+        Free Estimates
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">📅</div>
+        Same-Week Scheduling
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-brand-logo">🏗️ Peak Shield Roofing</div>
+        <p class="footer-brand-desc">Denver's trusted roofing company since 2012. Honest assessments, quality materials, and a crew that treats your home with respect.</p>
+        <div class="gaf-badge">🏅 GAF Certified Contractor</div>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="#" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="Google">G</a>
+          <a href="#" class="social-link" aria-label="Yelp">Y</a>
+        </div>
+      </div>
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="demo-roofing-residential.html">Residential Roofing</a></li>
+          <li><a href="demo-roofing-commercial.html">Commercial Roofing</a></li>
+          <li><a href="demo-roofing-tile.html">Tile Roofing</a></li>
+          <li><a href="demo-roofing-metal.html">Metal Roofing</a></li>
+          <li><a href="demo-roofing-shingle.html">Shingle Roofing</a></li>
+          <li><a href="demo-roofing-emergency.html">Storm &amp; Emergency</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📞</span>
+          (720) 555-0183
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">✉️</span>
+          info@peakshieldroofing.com
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📍</span>
+          1240 E Colfax Ave<br />Denver, CO 80218
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">🕐</span>
+          Mon–Sat: 7am – 7pm
+        </div>
+      </div>
+      <!-- Areas -->
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <div class="footer-areas">
+          Denver · Aurora · Lakewood · Westminster · Thornton · Arvada · Centennial · Highlands Ranch · Parker · Castle Rock
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Peak Shield Roofing · Denver, CO · Built by <a href="https://groundworkstudio.co" target="_blank">Groundwork Studio</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

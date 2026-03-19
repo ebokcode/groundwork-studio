@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources & Documents — Groundwork Studio</title>
+  <meta name="description" content="Pricing guides, partner packets, and contract templates from Groundwork Studio." />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f9fafb; color: #111827; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid #e5e7eb;
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: baseline; gap: 0; line-height: 1;
+      text-decoration: none;
+    }
+    .nav-logo .g { font-family: Georgia, serif; font-size: 21px; font-weight: 700; color: #16a34a; }
+    .nav-logo .w { font-family: Georgia, serif; font-size: 21px; font-weight: 400; color: #111827; }
+    .nav-logo .s { font-size: 9px; color: #9ca3af; letter-spacing: 3px; margin-left: 5px; align-self: center; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #6b7280; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: #16a34a; }
+
+    /* ── HERO ── */
+    .hero {
+      background: #111827; padding: 72px 24px 60px; text-align: center;
+    }
+    .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: #16a34a; text-transform: uppercase; margin-bottom: 16px; }
+    .hero-h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: #fff; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .hero-sub { font-size: 15px; color: #9ca3af; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── SECTION ── */
+    .section { max-width: 900px; margin: 0 auto; padding: 56px 24px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: #16a34a; text-transform: uppercase; margin-bottom: 8px; }
+    .section-heading { font-size: 22px; font-weight: 800; color: #111827; margin-bottom: 28px; }
+
+    /* ── DOC CARDS ── */
+    .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .doc-card {
+      background: #fff; border: 1.5px solid #e5e7eb; border-radius: 12px;
+      padding: 28px 26px; display: flex; flex-direction: column; gap: 12px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .doc-card:hover { border-color: #16a34a; box-shadow: 0 4px 20px rgba(22,163,74,.1); }
+    .doc-icon { font-size: 28px; }
+    .doc-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
+      background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0;
+      align-self: flex-start;
+    }
+    .doc-tag.amber { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+    .doc-tag.blue  { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .doc-name { font-size: 17px; font-weight: 700; color: #111827; }
+    .doc-desc { font-size: 14px; color: #6b7280; line-height: 1.65; flex: 1; }
+    .doc-meta { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #16a34a; color: #fff; font-size: 13px; font-weight: 700;
+      padding: 10px 20px; border-radius: 7px; margin-top: 4px; align-self: flex-start;
+      transition: background .15s;
+    }
+    .btn-download:hover { background: #15803d; }
+    .btn-download-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #374151; font-size: 13px; font-weight: 600;
+      padding: 10px 20px; border-radius: 7px; border: 1.5px solid #e5e7eb; margin-top: 4px; align-self: flex-start;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-download-outline:hover { border-color: #16a34a; color: #16a34a; }
+
+    /* ── DIVIDER ── */
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 0; }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+      padding: 18px 22px; font-size: 14px; color: #92400e; line-height: 1.7;
+      margin-top: 8px;
+    }
+    .note-box strong { color: #78350f; }
+
+    /* ── FOOTER ── */
+    footer { background: #111827; padding: 24px; margin-top: 40px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-weight: 800; font-size: 15px; color: #fff; }
+    .footer-brand span { color: #16a34a; }
+    .footer-meta { font-size: 12px; color: #6b7280; }
+    .footer-meta a { color: #6b7280; text-decoration: none; }
+    .footer-meta a:hover { color: #9ca3af; }
+
+    @media (max-width: 640px) {
+      .docs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">
+        <span class="g">Ground</span><span class="w">work</span><span class="s">STUDIO</span>
+      </a>
+      <a href="/index.html" class="nav-back">← Back to main site</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Resources</div>
+    <h1 class="hero-h1">Docs & Downloads</h1>
+    <p class="hero-sub">Guides, pricing sheets, and templates — everything you need to understand how Groundwork Studio works.</p>
+  </div>
+
+  <!-- CLIENT RESOURCES -->
+  <div class="section">
+    <div class="section-label">For Clients</div>
+    <h2 class="section-heading">What to expect when you work with us</h2>
+
+    <div class="docs-grid">
+
+      <div class="doc-card">
+        <div class="doc-icon">📋</div>
+        <div class="doc-tag">Pricing</div>
+        <div class="doc-name">Client Pricing Guide</div>
+        <p class="doc-desc">Our current pricing for website builds, monthly care plans, and add-ons. Includes what's included in each tier and how to get started.</p>
+        <div class="doc-meta">PDF · Updated March 2026</div>
+        <a href="/docs/Groundwork_Client_Pricing_Guide.pdf" target="_blank" class="btn-download">
+          ⬇ Download PDF
+        </a>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon">📝</div>
+        <div class="doc-tag blue">Contract</div>
+        <div class="doc-name">Web Design Services Agreement</div>
+        <p class="doc-desc">Our standard contract template. Covers scope of work, payment terms, revisions, ownership, and hosting. Reviewed and signed before every project.</p>
+        <div class="doc-meta">PDF · Standard Template</div>
+        <a href="/docs/Groundwork_Contract_Template.pdf" target="_blank" class="btn-download">
+          ⬇ Download PDF
+        </a>
+      </div>
+
+    </div>
+
+    <div class="note-box" style="margin-top:20px;">
+      <strong>Questions about pricing?</strong> The best way to get an accurate number is a quick call or email. Every project is different — the guide covers ranges, but we'll give you a specific quote once we know what you need. Reach us at <a href="mailto:evan@teamground.work" style="color:#92400e;font-weight:600;">evan@teamground.work</a> or <a href="tel:+14804526473" style="color:#92400e;font-weight:600;">(480) 452-6473</a>.
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- PARTNER RESOURCES -->
+  <div class="section">
+    <div class="section-label">For Partners</div>
+    <h2 class="section-heading">Refer clients, earn recurring revenue</h2>
+
+    <div class="docs-grid">
+
+      <div class="doc-card">
+        <div class="doc-icon">🤝</div>
+        <div class="doc-tag amber">Partner</div>
+        <div class="doc-name">Partner Packet</div>
+        <p class="doc-desc">Everything you need to know about the Groundwork Partner Program. How referrals work, commission structure, what to say to clients, and how to track your earnings.</p>
+        <div class="doc-meta">PDF · Updated March 2026</div>
+        <a href="/docs/Groundwork_Partner_Packet.pdf" target="_blank" class="btn-download">
+          ⬇ Download PDF
+        </a>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-icon">📊</div>
+        <div class="doc-tag">Sales Reference</div>
+        <div class="doc-name">Sales Guide (Internal)</div>
+        <p class="doc-desc">Internal pricing reference, page menu for client customization, sales call script, and objection handling. For Groundwork team and referral partners.</p>
+        <div class="doc-meta">PDF · Updated March 2026</div>
+        <a href="/docs/Groundwork_Sales_Guide.pdf" target="_blank" class="btn-download">
+          ⬇ Download PDF
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <hr />
+
+  <!-- DEMO SITES CTA -->
+  <div class="section" style="padding-bottom: 72px;">
+    <div class="section-label">See the Work</div>
+    <h2 class="section-heading">Browse demo sites</h2>
+    <p style="font-size:15px;color:#6b7280;margin-bottom:28px;max-width:520px;line-height:1.7;">
+      Want to see what a site actually looks like before committing? We build industry-specific demos so you know exactly what you're getting.
+    </p>
+    <a href="/index.html#work" class="btn-download" style="font-size:14px;padding:13px 26px;">
+      View All Demo Sites →
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Groundwork<span>.</span></div>
+      <div class="footer-meta">
+        Phoenix, AZ &nbsp;·&nbsp;
+        <a href="tel:+14804526473">(480) 452-6473</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:evan@teamground.work">evan@teamground.work</a>
+        &nbsp;·&nbsp;
+        © 2026 Groundwork Studio
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

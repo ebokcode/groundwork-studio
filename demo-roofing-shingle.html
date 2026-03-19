@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shingle Roofing Denver — Architectural &amp; Designer | Peak Shield</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rust: #f97316;
+      --rust-mid: #ea6c10;
+      --rust-dim: rgba(249,115,22,0.15);
+      --slate: #1c1917;
+      --slate-mid: #292524;
+      --slate-light: #44403c;
+      --cream: #fafaf9;
+      --muted: #a8a29e;
+      --white: #ffffff;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition: 200ms ease;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--slate);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      background: var(--rust);
+      color: var(--slate);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .demo-banner a {
+      color: var(--slate);
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── UTILITY BAR ── */
+    .utility-bar {
+      background: #0f0e0d;
+      padding: 7px 24px;
+      border-bottom: 1px solid var(--slate-light);
+    }
+    .utility-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .utility-bar a { color: var(--rust); text-decoration: none; font-weight: 600; }
+    .utility-bar a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--slate);
+      border-bottom: 1px solid var(--slate-light);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 16px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--cream);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--cream); }
+
+    /* Services dropdown */
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-dropdown > a::after {
+      content: '▾';
+      font-size: 11px;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-left: 3px solid var(--rust);
+      border-radius: var(--radius-md);
+      min-width: 340px;
+      max-height: 440px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rust) var(--slate);
+      padding: 6px 0;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.55);
+      z-index: 200;
+    }
+    .dropdown-menu::-webkit-scrollbar { width: 4px; }
+    .dropdown-menu::-webkit-scrollbar-track { background: var(--slate); }
+    .dropdown-menu::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 18px;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+    .dropdown-menu a:hover { background: var(--slate-light); }
+    .dropdown-menu a.current { background: rgba(249,115,22,0.08); }
+    .dd-icon {
+      width: 34px;
+      height: 34px;
+      background: rgba(249,115,22,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--rust);
+    }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cream) !important;
+      transition: color var(--transition);
+    }
+    .dropdown-menu a.current .dd-name { color: var(--rust) !important; }
+    .dropdown-menu a:hover .dd-name { color: var(--rust) !important; }
+    .dd-desc {
+      font-size: 11px;
+      color: var(--muted) !important;
+      line-height: 1.4;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .btn-pill {
+      background: var(--rust);
+      color: var(--slate);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity var(--transition);
+      white-space: nowrap;
+    }
+    .btn-pill:hover { opacity: 0.88; }
+    .btn-pill-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--rust);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+    .btn-pill-outline:hover { background: var(--rust-dim); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--slate-mid);
+      border-top: 1px solid var(--slate-light);
+      padding: 16px 24px 24px;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--slate-light);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--cream); }
+    .mobile-menu a.rust { color: var(--rust); border-bottom: none; }
+    .mobile-menu .mobile-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rust);
+      padding: 12px 0 4px;
+      border-bottom: none;
+    }
+    .mobile-menu .mobile-sub {
+      padding-left: 12px;
+      font-size: 14px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: var(--slate-mid);
+      padding: 80px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--slate-light);
+    }
+    .page-header-inner { max-width: 800px; margin: 0 auto; }
+    .service-type-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding: 5px 14px;
+      border: 1px solid rgba(249,115,22,0.35);
+      border-radius: var(--radius-pill);
+    }
+    .page-h1 {
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .page-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── BENEFITS STRIP ── */
+    .benefits-strip {
+      background: var(--rust);
+      padding: 0 24px;
+    }
+    .benefits-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .benefit-item {
+      padding: 22px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(28,25,23,0.2);
+    }
+    .benefit-item:last-child { border-right: none; }
+    .benefit-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--slate);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      background: var(--slate);
+      padding: 80px 24px;
+    }
+    .main-content-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 60fr 40fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .main-body h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .main-body p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .main-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cream);
+      margin: 32px 0 14px;
+    }
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .check-list li::before {
+      content: '✓';
+      color: var(--rust);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .process-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 24px;
+      position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 36px;
+      bottom: 0;
+      width: 2px;
+      background: var(--slate-light);
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--rust);
+      color: var(--slate);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-left: 4px solid var(--rust);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+    }
+    .review-stars { font-size: 18px; margin-bottom: 14px; }
+    .review-quote {
+      font-size: 15px;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .review-author {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--rust);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .estimate-form {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+    }
+    .estimate-form h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .estimate-form .form-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 14px;
+      color: var(--cream);
+      font-family: var(--font);
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--rust);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--slate-light); }
+    .form-submit {
+      width: 100%;
+      background: var(--rust);
+      color: var(--slate);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 20px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: opacity var(--transition);
+      margin-top: 6px;
+    }
+    .form-submit:hover { opacity: 0.88; }
+
+    /* ── SCOPE GRID ── */
+    .scope-section {
+      background: var(--slate-mid);
+      padding: 80px 24px;
+    }
+    .scope-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      color: var(--cream);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .scope-item {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      transition: border-color var(--transition);
+    }
+    .scope-item:hover { border-color: var(--rust); }
+    .scope-icon {
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+    .scope-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.4;
+    }
+
+    /* ── MATERIALS ── */
+    .materials-section {
+      background: var(--slate);
+      padding: 80px 24px;
+    }
+    .materials-inner { max-width: 1200px; margin: 0 auto; }
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .material-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-top: 3px solid var(--rust);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+    }
+    .material-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--rust);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .material-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .material-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--slate-mid);
+      padding: 80px 24px;
+    }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    details {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    details[open] { border-color: var(--rust); }
+    details summary {
+      padding: 22px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      color: var(--rust);
+      font-size: 22px;
+      font-weight: 400;
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    details[open] summary::after {
+      content: '−';
+    }
+    .faq-answer {
+      padding: 0 24px 22px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── RELATED SERVICES ── */
+    .related-section {
+      background: var(--slate);
+      padding: 80px 24px;
+    }
+    .related-inner { max-width: 1200px; margin: 0 auto; }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .related-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      text-decoration: none;
+      transition: border-color var(--transition), transform var(--transition);
+      display: block;
+    }
+    .related-card:hover {
+      border-color: var(--rust);
+      transform: translateY(-3px);
+    }
+    .related-icon { font-size: 32px; margin-bottom: 16px; }
+    .related-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .related-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .related-arrow {
+      display: inline-block;
+      color: var(--rust);
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-banner {
+      background: var(--rust);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--slate);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .cta-banner p {
+      font-size: 17px;
+      color: rgba(28,25,23,0.75);
+      margin-bottom: 36px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-dark {
+      background: var(--slate);
+      color: var(--rust);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 34px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity var(--transition);
+    }
+    .btn-dark:hover { opacity: 0.85; }
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--slate);
+      border: 2px solid var(--slate);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 14px 34px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background var(--transition), color var(--transition);
+    }
+    .btn-outline-dark:hover {
+      background: var(--slate);
+      color: var(--rust);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0e0d;
+      padding: 72px 24px 40px;
+      border-top: 1px solid var(--slate-light);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    .footer-brand { font-size: 20px; font-weight: 800; color: var(--cream); margin-bottom: 12px; }
+    .footer-tagline { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 260px; margin-bottom: 20px; }
+    .footer-contact { font-size: 14px; color: var(--muted); line-height: 2; }
+    .footer-contact a { color: var(--rust); text-decoration: none; font-weight: 600; }
+    .footer-col-heading {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--rust); margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom {
+      border-top: 1px solid var(--slate-light); padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+    .footer-demo { font-size: 12px; color: var(--slate-light); }
+    .footer-demo a { color: var(--rust); text-decoration: none; font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .benefits-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .benefit-item:nth-child(2) { border-right: none; }
+      .benefit-item:nth-child(3) { border-right: 1px solid rgba(28,25,23,0.2); }
+      .benefit-item:nth-child(3),
+      .benefit-item:nth-child(4) { border-top: 1px solid rgba(28,25,23,0.2); }
+      .scope-grid { grid-template-columns: repeat(2, 1fr); }
+      .materials-grid { grid-template-columns: repeat(2, 1fr); }
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-right { display: none; }
+      .hamburger { display: flex; }
+
+      .utility-bar { display: none; }
+      .benefits-strip-inner { grid-template-columns: 1fr 1fr; }
+      .benefit-item { border-right: none !important; border-top: none !important; }
+      .benefit-item:nth-child(odd) { border-right: 1px solid rgba(28,25,23,0.2) !important; }
+
+      .main-content-inner { grid-template-columns: 1fr; gap: 40px; }
+      .scope-grid { grid-template-columns: 1fr 1fr; }
+      .materials-grid { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .scope-grid { grid-template-columns: 1fr; }
+      .benefits-strip-inner { grid-template-columns: 1fr; }
+      .benefit-item { border-right: none !important; border-top: 1px solid rgba(28,25,23,0.2) !important; }
+      .benefit-item:first-child { border-top: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    ✨ Demo site built by Groundwork Studio &middot; <a href="https://groundworkstudio.co" target="_blank">groundworkstudio.co</a>
+  </div>
+
+  <!-- UTILITY BAR -->
+  <div class="utility-bar">
+    <div class="utility-bar-inner">
+      <span>📞 <a href="tel:7205550183">(720) 555-0183</a> &nbsp;·&nbsp; Mon–Sat 7am–7pm · 24/7 Emergency</span>
+      <span>✉️ <a href="mailto:info@peakshieldroofing.com">info@peakshieldroofing.com</a></span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="demo-roofing.html" class="nav-logo">🏗️ PEAK SHIELD</a>
+      <ul class="nav-links">
+        <li><a href="demo-roofing.html">Home</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="active">Services</a>
+          <div class="dropdown-menu">
+            <a href="demo-roofing-residential.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Residential Roofing</div>
+                <div class="dd-desc">Replacements, repairs &amp; new installs for homes of every size</div>
+              </div>
+            </a>
+            <a href="demo-roofing-commercial.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Commercial Roofing</div>
+                <div class="dd-desc">Flat roofs, TPO, EPDM &amp; full commercial replacements</div>
+              </div>
+            </a>
+            <a href="demo-roofing-tile.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Tile Roofing</div>
+                <div class="dd-desc">Clay &amp; concrete tile built for Colorado's freeze-thaw cycles</div>
+              </div>
+            </a>
+            <a href="demo-roofing-metal.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Metal Roofing</div>
+                <div class="dd-desc">Standing seam &amp; steel panels with 50+ year lifespans</div>
+              </div>
+            </a>
+            <a href="demo-roofing-shingle.html" class="current">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Shingle Roofing</div>
+                <div class="dd-desc">Architectural &amp; Class 4 impact-rated shingles, 50+ colors</div>
+              </div>
+            </a>
+            <a href="demo-roofing-emergency.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 16.9A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Storm &amp; Emergency</div>
+                <div class="dd-desc">24/7 emergency tarping, hail damage &amp; insurance claims</div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li><a href="#">Areas We Serve</a></li>
+        <li><a href="#">Specials</a></li>
+        <li><a href="#">Financing</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#estimate" class="btn-pill">Free Inspection</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="demo-roofing.html">Home</a>
+      <span class="mobile-section-label">Services</span>
+      <a href="demo-roofing-residential.html" class="mobile-sub">Residential Roofing</a>
+      <a href="demo-roofing-commercial.html" class="mobile-sub">Commercial Roofing</a>
+      <a href="demo-roofing-tile.html" class="mobile-sub">Tile Roofing</a>
+      <a href="demo-roofing-metal.html" class="mobile-sub">Metal Roofing</a>
+      <a href="demo-roofing-shingle.html" class="mobile-sub rust">Shingle Roofing</a>
+      <a href="demo-roofing-emergency.html" class="mobile-sub">Storm &amp; Emergency</a>
+      <a href="#">Areas We Serve</a>
+      <a href="#">Specials</a>
+      <a href="#">Financing</a>
+      <a href="#">About</a>
+      <a href="tel:7205550183" class="rust">📞 (720) 555-0183 — Call Now</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="service-type-label">Shingle Roofing</div>
+      <h1 class="page-h1">Colorado Tough.<br>Curb Appeal Proven.</h1>
+      <p class="page-subtitle">Architectural and designer asphalt shingles for Denver homeowners. The most popular, cost-effective roofing material — when you do it right.</p>
+    </div>
+  </div>
+
+  <!-- BENEFITS STRIP -->
+  <div class="benefits-strip">
+    <div class="benefits-strip-inner">
+      <div class="benefit-item">
+        <div class="benefit-label">🏆 Class 4 Impact-Rated</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-label">🎨 50+ Color Options</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-label">🛡️ 30-Year Warranty</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-label">📅 Same-Week Available</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="main-content-inner">
+
+      <!-- Left: Description + List + Process -->
+      <div class="main-body">
+        <h2>Denver's Most Popular Roofing Material — Done the Right Way.</h2>
+        <p>Asphalt shingles cover more than 75% of homes in the United States, and for good reason: they offer an unmatched combination of cost, durability, and curb appeal. But not all shingles are created equal — and not all roofers install them the same way. In Denver's demanding climate, the difference between a shingle roof that lasts 30 years and one that fails in 12 comes down to the grade of material chosen and the quality of the installation underneath it.</p>
+        <p>There are three main categories of asphalt shingle. Three-tab shingles are the old standard — a single flat layer, thin, lightweight, and largely obsolete for new installations. They were the norm for decades but don't hold up well against hail or high winds. Architectural shingles (also called dimensional or laminate shingles) are the current workhorse: two bonded layers that create depth and shadow lines, dramatically better wind and impact resistance, and a richer look that adds real curb appeal. Designer shingles take it further — thicker profiles that mimic the look of wood shake or slate, with even heavier granule deposits and premium warranty coverage. For Denver homes, we install architectural as our baseline standard and offer designer tiers for homeowners who want the most out of their investment.</p>
+        <p>Class 4 impact ratings matter enormously along the Front Range. Denver sits in the heart of Colorado's hail corridor — metro Denver averages 9 to 10 hail events per year, and the region sees some of the most costly hail damage in the country. A Class 4 rating means the shingle passed the UL 2218 steel ball impact test at the highest level, resisting cracking and bruising from 2-inch diameter hailstones. Many insurance carriers offer a premium discount of 20–30% for Class 4 roofs, which can offset a meaningful portion of your installation cost over time.</p>
+        <p>At altitude, UV exposure is significantly more intense than at sea level — roughly 25% more UV radiation in Denver compared to coastal cities. This accelerates granule degradation and asphalt oxidation on lower-quality shingles. We specify products with dense, ceramic-coated granule layers that slow UV breakdown and maintain color longer. Proper attic ventilation is equally critical: without adequate airflow, heat buildup in the attic can cook shingles from the underside, voiding manufacturer warranties and cutting years off the roof's life. Our installations always include ridge vent assessment and corrections where needed.</p>
+        <p>Installation technique is the part that separates average roofers from those who do it right. Every shingle has a manufacturer-designated nailing zone — hitting outside that zone reduces wind resistance dramatically. Starter strips at the eaves and rakes are not optional; they seal the roof edge against wind uplift. Ice and water shield at eaves, valleys, and around penetrations is required by code in Colorado and essential given the freeze-thaw cycles we see every spring and fall. And in Denver's wind zones, we use a 6-nail pattern — not the 4-nail minimum — for significantly stronger hold at the corners most vulnerable to uplift.</p>
+
+        <h3>What's Included in Every Shingle Job</h3>
+        <ul class="check-list">
+          <li>Free inspection &amp; hail damage assessment</li>
+          <li>Class 4 impact-rated shingles standard</li>
+          <li>Ice &amp; water shield at eaves &amp; valleys</li>
+          <li>Proper starter strip installation</li>
+          <li>6-nail pattern for Denver wind zones</li>
+          <li>Ridge vent for attic ventilation</li>
+          <li>Full tear-off &amp; dumpster included</li>
+          <li>Magnet sweep &amp; full cleanup</li>
+        </ul>
+
+        <h3>Our Process</h3>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Free Inspection &amp; Hail Assessment</h4>
+              <p>We get on the roof with a camera and document every impact point, granule loss zone, and lifted shingle. You'll see exactly what we see — no vague claims, no pressure.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Written Estimate Within 24 Hours</h4>
+              <p>Line-by-line pricing that includes material grade, tear-off, ice shield, ventilation, and everything else. No "starting at" numbers — just a clear, complete cost.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Color Selection &amp; Scheduling</h4>
+              <p>We walk you through architectural and designer shingle options, color samples, and manufacturer differences. Once you're decided, we pull permits and get you on the calendar — usually within the same week.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Installation Day</h4>
+              <p>Full tear-off down to the decking, deck inspection for soft spots, ice shield placement, starter strips, shingle installation with 6-nail pattern, and ridge vent. Most jobs complete in one day.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Final Walkthrough &amp; Cleanup</h4>
+              <p>We walk every section with you, explain what was done and why, and run a full magnet sweep. Your yard, driveway, and landscaping will be clean when we leave.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Review + Form -->
+      <div class="sidebar" id="estimate">
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-quote">"After the May hailstorm I had three roofers come out. Peak Shield was the only one who showed me photos from the roof and explained exactly what I was looking at. No scare tactics, just honesty. New shingles look incredible and they handled everything with State Farm."</p>
+          <div class="review-author">— Marcus T., Aurora</div>
+        </div>
+
+        <div class="estimate-form">
+          <h3>Get a Free Estimate</h3>
+          <p class="form-sub">We'll call you back within 2 business hours.</p>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(720) 555-0000" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="city">City / Neighborhood</label>
+            <input type="text" id="city" name="city" placeholder="Denver, Lakewood, Aurora…" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" name="service">
+              <option value="">Select one…</option>
+              <option value="replacement">Full Roof Replacement</option>
+              <option value="repair">Roof Repair</option>
+              <option value="inspection">Inspection Only</option>
+              <option value="storm">Storm / Hail Damage</option>
+              <option value="new">New Installation</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Request Free Inspection →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCOPE / WHAT'S INCLUDED -->
+  <div class="scope-section">
+    <div class="scope-inner">
+      <div class="section-label">Full Scope</div>
+      <h2 class="section-heading">What Shingle Roofing Covers</h2>
+      <p class="section-sub">Every shingle job includes the full package — from hail assessment to final cleanup, with no corners cut on materials or technique.</p>
+      <div class="scope-grid">
+        <div class="scope-item">
+          <div class="scope-icon">🔍</div>
+          <div class="scope-name">Free Hail Assessment</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🏠</div>
+          <div class="scope-name">Architectural Shingles</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">✨</div>
+          <div class="scope-name">Designer Shingles</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🧊</div>
+          <div class="scope-name">Starter Strip &amp; Ice Shield</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">💨</div>
+          <div class="scope-name">6-Nail Wind Pattern</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🌬️</div>
+          <div class="scope-name">Ridge Vent Install</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🗑️</div>
+          <div class="scope-name">Full Tear-Off &amp; Disposal</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">📋</div>
+          <div class="scope-name">Insurance Claim Support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIALS / BRANDS -->
+  <div class="materials-section">
+    <div class="materials-inner">
+      <div class="section-label">Materials We Use</div>
+      <h2 class="section-heading">Class 4 Shingles. Proven Manufacturers.</h2>
+      <p class="section-sub">We stock and install Class 4 impact-rated shingles from the top three manufacturers in the country — all backed by warranties we stand behind.</p>
+      <div class="materials-grid">
+        <div class="material-card">
+          <div class="material-brand">GAF</div>
+          <div class="material-name">Timberline HDZ</div>
+          <p class="material-desc">The best-selling shingle in North America carries Class 4 impact resistance in its HDZ line. StrikeZone nailing technology creates a wider, more forgiving fastener zone that holds through Denver's wind gusts. Installed by a GAF Certified contractor, it qualifies for the Golden Pledge Limited Warranty — one of the strongest coverage packages in the industry.</p>
+        </div>
+        <div class="material-card">
+          <div class="material-brand">Owens Corning</div>
+          <div class="material-name">Duration STORM</div>
+          <p class="material-desc">Built specifically for severe weather markets, Duration STORM carries both Class 4 impact resistance and a 130 mph wind resistance rating. SureNail Technology bonds shingles through a triple-layer reinforcement strip, significantly reducing the risk of blow-offs in the Front Range wind corridor. A go-to choice for homeowners in hail-prone neighborhoods like Aurora and Centennial.</p>
+        </div>
+        <div class="material-card">
+          <div class="material-brand">CertainTeed</div>
+          <div class="material-name">Landmark Pro</div>
+          <p class="material-desc">Landmark Pro's dual-layer construction delivers the dimensional texture and shadow lines that give a home a premium, custom appearance — without the cost of tile or metal. Enhanced granule density resists UV degradation at altitude, and TL-rated algae resistance keeps the roof looking clean for years. A practical choice for homeowners who want enhanced curb appeal with Class 4 protection built in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="faq-inner">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-heading">Common Questions</h2>
+      <p class="section-sub">Straight answers to what Denver homeowners ask us most about shingle roofing.</p>
+      <div class="faq-list">
+        <details>
+          <summary>How long do architectural shingles last in Denver?</summary>
+          <div class="faq-answer">With proper installation and adequate attic ventilation, architectural shingles typically last 25 to 30 years in Denver's climate. Ventilation is the single biggest variable — an under-ventilated attic can push heat buildup above 150°F in summer, which accelerates shingle breakdown from the underside and can void manufacturer warranties. We always assess and correct ventilation as part of a full replacement, not as an upsell.</div>
+        </details>
+        <details>
+          <summary>What's the difference between 3-tab and architectural shingles?</summary>
+          <div class="faq-answer">Three-tab shingles are a single-layer product with cutouts that create the appearance of three separate pieces. They're thinner, lighter, and have lower wind and impact ratings — typically 60 mph wind resistance and no Class 4 impact rating. Architectural shingles (also called dimensional or laminate) are two layers bonded together, creating real thickness and dimensional texture. They carry higher wind ratings (100–130 mph), Class 4 impact resistance in premium lines, longer warranties, and a significantly richer appearance. We no longer install 3-tab shingles — the gap in performance doesn't justify the minor cost savings, especially in Denver's hail corridor.</div>
+        </details>
+        <details>
+          <summary>Does my insurance cover hail damage to shingles?</summary>
+          <div class="faq-answer">In most cases, yes — hail damage to shingles is a covered peril under standard homeowners insurance policies. The key is thorough documentation. Granule loss from hail impact accelerates shingle aging and is a legitimate claim item, but adjusters often underestimate it without clear photo evidence from a roofing professional. We're experienced with the claims process across all major carriers. We'll meet your adjuster on-site, walk every section of the roof together, and make sure nothing gets missed. We also carry documentation of Class 4 impact ratings, which can affect your premium going forward.</div>
+        </details>
+        <details>
+          <summary>What color shingle should I pick?</summary>
+          <div class="faq-answer">Start with your home's fixed elements — brick color, siding, trim, and window frames — and work from there. Darker shingles (charcoal, weathered wood tones) tend to hide aging and granule variation better over time and complement the stone and stucco common in Denver-area homes. Lighter shingles reflect more heat, which can reduce cooling loads in summer but show variation more quickly. If you're planning to sell within a few years, charcoal gray and weathered wood tones consistently photograph well and have broad buyer appeal. We can bring physical samples to your home — color looks significantly different in direct Colorado sunlight versus indoors.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED SERVICES -->
+  <div class="related-section">
+    <div class="related-inner">
+      <div class="section-label">More From Peak Shield</div>
+      <h2 class="section-heading">Related Services</h2>
+      <p class="section-sub">Shingle roofing pairs naturally with these services. Denver homeowners often bundle them for the best value.</p>
+      <div class="related-grid">
+        <a href="demo-roofing-residential.html" class="related-card">
+          <div class="related-icon">🏡</div>
+          <div class="related-name">Residential Roofing</div>
+          <p class="related-desc">Full-service residential roofing for Denver homeowners — repairs, replacements, and new installations across all material types.</p>
+          <span class="related-arrow">Learn more →</span>
+        </a>
+        <a href="demo-roofing-metal.html" class="related-card">
+          <div class="related-icon">🔩</div>
+          <div class="related-name">Metal Roofing</div>
+          <p class="related-desc">Standing seam and metal panel systems for homeowners who want maximum longevity and hail resistance. A premium alternative to shingles with a 50+ year lifespan.</p>
+          <span class="related-arrow">Learn more →</span>
+        </a>
+        <a href="demo-roofing-emergency.html" class="related-card">
+          <div class="related-icon">⛈️</div>
+          <div class="related-name">Storm &amp; Emergency</div>
+          <p class="related-desc">Hail damage, wind damage, and emergency tarping after severe weather. We respond fast, document thoroughly, and coordinate with your insurance carrier from day one.</p>
+          <span class="related-arrow">Learn more →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="cta-banner">
+    <h2>Ready for a New Roof?</h2>
+    <p>Call us today or request a free inspection online. We respond within 2 business hours.</p>
+    <div class="cta-row">
+      <a href="tel:7205550183" class="btn-dark">📞 (720) 555-0183 — Call Now</a>
+      <a href="#estimate" class="btn-outline-dark">Get Free Estimate Online</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">🏗️ Peak Shield Roofing</div>
+          <p class="footer-tagline">Denver's trusted residential and commercial roofing contractor. Licensed, insured, and GAF Certified.</p>
+          <div class="footer-contact">
+            <div>📍 Denver, CO 80202</div>
+            <div>📞 <a href="tel:7205550183">(720) 555-0183</a></div>
+            <div>✉️ <a href="mailto:info@peakshieldroofing.com">info@peakshieldroofing.com</a></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Services</div>
+          <ul class="footer-links">
+            <li><a href="demo-roofing-residential.html">Residential Roofing</a></li>
+            <li><a href="demo-roofing-commercial.html">Commercial Roofing</a></li>
+            <li><a href="demo-roofing-tile.html">Tile Roofing</a></li>
+            <li><a href="demo-roofing-metal.html">Metal Roofing</a></li>
+            <li><a href="demo-roofing-shingle.html">Shingle Roofing</a></li>
+            <li><a href="demo-roofing-emergency.html">Storm &amp; Emergency</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-heading">Contact</div>
+          <ul class="footer-links">
+            <li><a href="tel:7205550183">(720) 555-0183</a></li>
+            <li><a href="mailto:info@peakshieldroofing.com">info@peakshieldroofing.com</a></li>
+            <li><a href="#estimate">Free Inspection</a></li>
+            <li><a href="#">Emergency Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-heading">Service Areas</div>
+          <ul class="footer-links">
+            <li><a href="#">Denver</a></li>
+            <li><a href="#">Aurora</a></li>
+            <li><a href="#">Lakewood</a></li>
+            <li><a href="#">Highlands Ranch</a></li>
+            <li><a href="#">Centennial</a></li>
+            <li><a href="#">Englewood</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 Peak Shield Roofing · Denver, CO · All rights reserved</div>
+        <div class="footer-demo">Demo built by <a href="https://groundworkstudio.co" target="_blank">Groundwork Studio</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>

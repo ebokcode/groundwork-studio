@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commercial Roofing Denver — Flat Roof, TPO, EPDM | Peak Shield</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rust: #f97316;
+      --rust-mid: #ea6c10;
+      --rust-dim: rgba(249,115,22,0.15);
+      --slate: #1c1917;
+      --slate-mid: #292524;
+      --slate-light: #44403c;
+      --cream: #fafaf9;
+      --muted: #a8a29e;
+      --white: #ffffff;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition: 200ms ease;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--slate);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      background: var(--rust);
+      color: var(--slate);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .demo-banner a {
+      color: var(--slate);
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── UTILITY BAR ── */
+    .utility-bar {
+      background: #0f0e0d;
+      padding: 7px 24px;
+      border-bottom: 1px solid var(--slate-light);
+    }
+    .utility-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .utility-bar a { color: var(--rust); text-decoration: none; font-weight: 600; }
+    .utility-bar a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--slate);
+      border-bottom: 1px solid var(--slate-light);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 16px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--cream);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--cream); }
+
+    /* Services dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-dropdown > a::after {
+      content: '▾';
+      font-size: 11px;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-left: 3px solid var(--rust);
+      border-radius: var(--radius-md);
+      min-width: 340px;
+      max-height: 440px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rust) var(--slate);
+      padding: 6px 0;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.55);
+      z-index: 200;
+    }
+    .dropdown-menu::-webkit-scrollbar { width: 4px; }
+    .dropdown-menu::-webkit-scrollbar-track { background: var(--slate); }
+    .dropdown-menu::-webkit-scrollbar-thumb { background: var(--rust); border-radius: 2px; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 18px;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+    .dropdown-menu a:hover { background: var(--slate-light); }
+    .dropdown-menu a.current { background: rgba(249,115,22,0.08); }
+    .dd-icon {
+      width: 34px;
+      height: 34px;
+      background: rgba(249,115,22,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--rust);
+    }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cream) !important;
+      transition: color var(--transition);
+    }
+    .dropdown-menu a.current .dd-name { color: var(--rust) !important; }
+    .dropdown-menu a:hover .dd-name { color: var(--rust) !important; }
+    .dd-desc {
+      font-size: 11px;
+      color: var(--muted) !important;
+      line-height: 1.4;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .btn-pill {
+      background: var(--rust);
+      color: var(--slate);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity var(--transition);
+      white-space: nowrap;
+    }
+    .btn-pill:hover { opacity: 0.88; }
+    .btn-pill-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--rust);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+    .btn-pill-outline:hover { background: var(--rust-dim); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--slate-mid);
+      border-top: 1px solid var(--slate-light);
+      padding: 16px 24px 24px;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--slate-light);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--cream); }
+    .mobile-menu a.rust { color: var(--rust); border-bottom: none; }
+    .mobile-menu .mobile-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rust);
+      padding: 12px 0 4px;
+      border-bottom: none;
+    }
+    .mobile-menu .mobile-sub {
+      padding-left: 12px;
+      font-size: 14px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: var(--slate-mid);
+      padding: 80px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--slate-light);
+    }
+    .page-header-inner { max-width: 800px; margin: 0 auto; }
+    .service-type-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding: 5px 14px;
+      border: 1px solid rgba(249,115,22,0.35);
+      border-radius: var(--radius-pill);
+    }
+    .page-h1 {
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .page-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* ── BENEFITS STRIP ── */
+    .benefits-strip {
+      background: var(--rust);
+      padding: 0 24px;
+    }
+    .benefits-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .benefit-item {
+      padding: 22px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(28,25,23,0.2);
+    }
+    .benefit-item:last-child { border-right: none; }
+    .benefit-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--slate);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      background: var(--slate);
+      padding: 80px 24px;
+    }
+    .main-content-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 60fr 40fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .main-body h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .main-body p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .main-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cream);
+      margin: 32px 0 14px;
+    }
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .check-list li::before {
+      content: '✓';
+      color: var(--rust);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* System type pills */
+    .system-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 32px;
+    }
+    .system-pill {
+      background: var(--rust-dim);
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--rust);
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .process-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 24px;
+      position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 36px;
+      bottom: 0;
+      width: 2px;
+      background: var(--slate-light);
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--rust);
+      color: var(--slate);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-left: 4px solid var(--rust);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+    }
+    .review-stars { font-size: 18px; margin-bottom: 14px; }
+    .review-quote {
+      font-size: 15px;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .review-author {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--rust);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .estimate-form {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+    }
+    .estimate-form h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .estimate-form .form-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 14px;
+      color: var(--cream);
+      font-family: var(--font);
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--rust);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--slate-light); }
+    .form-submit {
+      width: 100%;
+      background: var(--rust);
+      color: var(--slate);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 20px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: opacity var(--transition);
+      margin-top: 6px;
+    }
+    .form-submit:hover { opacity: 0.88; }
+
+    /* ── SCOPE GRID ── */
+    .scope-section {
+      background: var(--slate-mid);
+      padding: 80px 24px;
+    }
+    .scope-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      color: var(--cream);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .scope-item {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      transition: border-color var(--transition);
+    }
+    .scope-item:hover { border-color: var(--rust); }
+    .scope-icon { font-size: 26px; margin-bottom: 12px; }
+    .scope-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.4;
+    }
+
+    /* ── MATERIALS ── */
+    .materials-section {
+      background: var(--slate);
+      padding: 80px 24px;
+    }
+    .materials-inner { max-width: 1200px; margin: 0 auto; }
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .material-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-top: 3px solid var(--rust);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+    }
+    .material-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--rust);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .material-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .material-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--slate-mid);
+      padding: 80px 24px;
+    }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    details {
+      background: var(--slate);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    details[open] { border-color: var(--rust); }
+    details summary {
+      padding: 22px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      color: var(--rust);
+      font-size: 22px;
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+    details[open] summary::after { content: '−'; }
+    .faq-answer {
+      padding: 0 24px 22px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── RELATED SERVICES ── */
+    .related-section {
+      background: var(--slate);
+      padding: 80px 24px;
+    }
+    .related-inner { max-width: 1200px; margin: 0 auto; }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .related-card {
+      background: var(--slate-mid);
+      border: 1px solid var(--slate-light);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      text-decoration: none;
+      transition: border-color var(--transition), transform var(--transition);
+      display: block;
+    }
+    .related-card:hover {
+      border-color: var(--rust);
+      transform: translateY(-3px);
+    }
+    .related-icon { font-size: 32px; margin-bottom: 16px; }
+    .related-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .related-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .related-arrow {
+      display: inline-block;
+      color: var(--rust);
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-banner {
+      background: var(--rust);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--slate);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .cta-banner p {
+      font-size: 17px;
+      color: rgba(28,25,23,0.75);
+      margin-bottom: 36px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-dark {
+      background: var(--slate);
+      color: var(--rust);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 34px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity var(--transition);
+    }
+    .btn-dark:hover { opacity: 0.85; }
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--slate);
+      border: 2px solid var(--slate);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 14px 34px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background var(--transition), color var(--transition);
+    }
+    .btn-outline-dark:hover {
+      background: var(--slate);
+      color: var(--rust);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0e0d;
+      padding: 72px 24px 40px;
+      border-top: 1px solid var(--slate-light);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    .footer-brand { font-size: 20px; font-weight: 800; color: var(--cream); margin-bottom: 12px; }
+    .footer-tagline { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 260px; margin-bottom: 20px; }
+    .footer-contact { font-size: 14px; color: var(--muted); line-height: 2; }
+    .footer-contact a { color: var(--rust); text-decoration: none; font-weight: 600; }
+    .footer-col-heading {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--rust); margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom {
+      border-top: 1px solid var(--slate-light); padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+    .footer-demo { font-size: 12px; color: var(--slate-light); }
+    .footer-demo a { color: var(--rust); text-decoration: none; font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .benefits-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .benefit-item:nth-child(2) { border-right: none; }
+      .benefit-item:nth-child(3) { border-right: 1px solid rgba(28,25,23,0.2); }
+      .benefit-item:nth-child(3),
+      .benefit-item:nth-child(4) { border-top: 1px solid rgba(28,25,23,0.2); }
+      .scope-grid { grid-template-columns: repeat(3, 1fr); }
+      .materials-grid { grid-template-columns: 1fr 1fr; }
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-right { display: none; }
+      .hamburger { display: flex; }
+
+      .utility-bar { display: none; }
+      .benefits-strip-inner { grid-template-columns: 1fr 1fr; }
+      .benefit-item { border-right: none !important; border-top: none !important; }
+      .benefit-item:nth-child(odd) { border-right: 1px solid rgba(28,25,23,0.2) !important; }
+
+      .main-content-inner { grid-template-columns: 1fr; gap: 40px; }
+      .scope-grid { grid-template-columns: 1fr 1fr; }
+      .materials-grid { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .scope-grid { grid-template-columns: 1fr; }
+      .benefits-strip-inner { grid-template-columns: 1fr; }
+      .benefit-item { border-right: none !important; border-top: 1px solid rgba(28,25,23,0.2) !important; }
+      .benefit-item:first-child { border-top: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    ✨ Demo site built by Groundwork Studio &middot; <a href="https://groundworkstudio.co" target="_blank">groundworkstudio.co</a>
+  </div>
+
+  <!-- UTILITY BAR -->
+  <div class="utility-bar">
+    <div class="utility-bar-inner">
+      <span>📞 <a href="tel:7205550183">(720) 555-0183</a> &nbsp;·&nbsp; Mon–Sat 7am–7pm · 24/7 Emergency</span>
+      <span>✉️ <a href="mailto:info@peakshieldroofing.com">info@peakshieldroofing.com</a></span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="demo-roofing.html" class="nav-logo">🏗️ PEAK SHIELD</a>
+      <ul class="nav-links">
+        <li><a href="demo-roofing.html">Home</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="active">Services</a>
+          <div class="dropdown-menu">
+            <a href="demo-roofing-residential.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Residential Roofing</div>
+                <div class="dd-desc">Replacements, repairs &amp; new installs for homes of every size</div>
+              </div>
+            </a>
+            <a href="demo-roofing-commercial.html" class="current">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Commercial Roofing</div>
+                <div class="dd-desc">Flat roofs, TPO, EPDM &amp; full commercial replacements</div>
+              </div>
+            </a>
+            <a href="demo-roofing-tile.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Tile Roofing</div>
+                <div class="dd-desc">Clay &amp; concrete tile built for Colorado's freeze-thaw cycles</div>
+              </div>
+            </a>
+            <a href="demo-roofing-metal.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Metal Roofing</div>
+                <div class="dd-desc">Standing seam &amp; steel panels with 50+ year lifespans</div>
+              </div>
+            </a>
+            <a href="demo-roofing-shingle.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Shingle Roofing</div>
+                <div class="dd-desc">Architectural &amp; Class 4 impact-rated shingles, 50+ colors</div>
+              </div>
+            </a>
+            <a href="demo-roofing-emergency.html">
+              <div class="dd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 16.9A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/></svg></div>
+              <div class="dd-text">
+                <div class="dd-name">Storm &amp; Emergency</div>
+                <div class="dd-desc">24/7 emergency tarping, hail damage &amp; insurance claims</div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li><a href="#">Areas We Serve</a></li>
+        <li><a href="#">Specials</a></li>
+        <li><a href="#">Financing</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#estimate" class="btn-pill">Free Inspection</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="demo-roofing.html">Home</a>
+      <span class="mobile-section-label">Services</span>
+      <a href="demo-roofing-residential.html" class="mobile-sub">Residential Roofing</a>
+      <a href="demo-roofing-commercial.html" class="mobile-sub rust">Commercial Roofing</a>
+      <a href="demo-roofing-tile.html" class="mobile-sub">Tile Roofing</a>
+      <a href="demo-roofing-metal.html" class="mobile-sub">Metal Roofing</a>
+      <a href="demo-roofing-shingle.html" class="mobile-sub">Shingle Roofing</a>
+      <a href="demo-roofing-emergency.html" class="mobile-sub">Storm &amp; Emergency</a>
+      <a href="#">Areas We Serve</a>
+      <a href="#">Specials</a>
+      <a href="#">Financing</a>
+      <a href="#">About</a>
+      <a href="tel:7205550183" class="rust">📞 (720) 555-0183 — Call Now</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="service-type-label">Commercial Roofing</div>
+      <h1 class="page-h1">Keep Your<br>Business Dry.</h1>
+      <p class="page-subtitle">Commercial roofing solutions for Denver businesses, HOAs, and property managers. Flat roofs, low-slope systems, and full replacements.</p>
+    </div>
+  </div>
+
+  <!-- BENEFITS STRIP -->
+  <div class="benefits-strip">
+    <div class="benefits-strip-inner">
+      <div class="benefit-item">
+        <div class="benefit-label">⏱️ Minimal Business Disruption</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-label">🛡️ Licensed &amp; Insured</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-label">🏢 Flat Roof Specialists</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-label">⚡ Emergency Response</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="main-content-inner">
+
+      <!-- Left: Description + List + Process -->
+      <div class="main-body">
+        <h2>Commercial Roofing Is a Different Animal — and We Know It.</h2>
+        <p>Residential and commercial roofing share almost nothing in common beyond the basic idea of keeping water out. Commercial buildings — whether a small retail strip, a multi-unit HOA, or a large warehouse complex — present a completely different set of challenges. Flat and low-slope roofs don't shed water the way a pitched residential roof does. They rely on membrane systems, proper drainage design, and precise sealing around dozens of HVAC penetrations, vents, drains, and curbs. When any of those fail, water doesn't just drip through a shingle — it pools, backs up, and infiltrates slowly until you have a serious interior problem.</p>
+        <p>Denver's commercial roofing environment adds its own complications. Rapid temperature swings between day and night cause membrane systems to expand and contract, stressing seams over time. Rooftop HVAC units are common in Colorado's commercial buildings and create multiple penetration points that need to be correctly flashed and maintained. Flat roofs also accumulate snow load in winter, which requires attention to drainage design so melt water exits cleanly without refreezing at drains and scuppers.</p>
+        <p>We work across the full spectrum of commercial membrane systems. Whether your building has an aging modified bitumen system that needs a full replacement, a TPO membrane with failing seams, or an EPDM rubber roof that's been punctured by foot traffic, we have the crews, certifications, and manufacturer relationships to get the job done right — with minimal disruption to your tenants and operations.</p>
+
+        <h3>Commercial Systems We Install</h3>
+        <div class="system-types">
+          <span class="system-pill">TPO Membrane</span>
+          <span class="system-pill">EPDM Rubber</span>
+          <span class="system-pill">Modified Bitumen</span>
+          <span class="system-pill">Metal Panel Systems</span>
+          <span class="system-pill">Built-Up Roofing (BUR)</span>
+          <span class="system-pill">Roof Coatings</span>
+        </div>
+
+        <h3>What's Included</h3>
+        <ul class="check-list">
+          <li>Full site assessment with drainage and penetration analysis</li>
+          <li>Detailed scope of work with itemized line items</li>
+          <li>Project timeline with milestone sign-offs</li>
+          <li>All city and commercial building permits</li>
+          <li>Crew safety protocols — OSHA-30 certified supervision</li>
+          <li>Material handling, staging, and on-site coordination</li>
+          <li>Installation with manufacturer certification where applicable</li>
+          <li>Drainage and all penetration sealing and re-flashing</li>
+          <li>Final inspection report with photo documentation</li>
+        </ul>
+
+        <h3>Our Commercial Process</h3>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Site Assessment &amp; Scope Development</h4>
+              <p>We walk the roof, assess the membrane, drainage, penetrations, and structural condition. You get a written scope, not a vague estimate.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Permits &amp; Pre-Job Coordination</h4>
+              <p>We pull all required commercial permits and coordinate with your property manager, HOA board, or facilities team before work begins.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Phased Installation to Minimize Disruption</h4>
+              <p>We sequence the work to keep tenants and operations running wherever possible. Early-morning and weekend scheduling available.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Milestone Sign-Offs</h4>
+              <p>You're not in the dark. We check in at defined milestones and give you progress photos so you always know where the project stands.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Final Inspection &amp; Documentation</h4>
+              <p>Full inspection report with photos, warranty documents, and permit closeout package — everything your records require.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Review + Form -->
+      <div class="sidebar" id="estimate">
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-quote">"We manage a 40-unit HOA community in Centennial and had significant flat roof issues across three buildings. Peak Shield came in, assessed all three, gave us a phased plan that fit our reserve budget, and completed the work with zero tenant complaints. Their milestone reporting kept our board informed throughout. We've already retained them for ongoing maintenance."</p>
+          <div class="review-author">— Marcus T., HOA Property Manager, Centennial</div>
+        </div>
+
+        <div class="estimate-form">
+          <h3>Get a Commercial Estimate</h3>
+          <p class="form-sub">We respond to commercial inquiries within 4 business hours.</p>
+          <div class="form-group">
+            <label for="name">Contact Name</label>
+            <input type="text" id="name" name="name" placeholder="Name or Property Manager" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(720) 555-0000" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" />
+          </div>
+          <div class="form-group">
+            <label for="property">Property / Business Name</label>
+            <input type="text" id="property" name="property" placeholder="Building or business name" />
+          </div>
+          <div class="form-group">
+            <label for="city">City / Address</label>
+            <input type="text" id="city" name="city" placeholder="Denver, Aurora, Lakewood…" />
+          </div>
+          <div class="form-group">
+            <label for="service">Type of Work</label>
+            <select id="service" name="service">
+              <option value="">Select one…</option>
+              <option value="replacement">Full Roof Replacement</option>
+              <option value="repair">Membrane Repair</option>
+              <option value="inspection">Commercial Inspection</option>
+              <option value="emergency">Emergency / Active Leak</option>
+              <option value="maintenance">Maintenance Contract</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Request Commercial Estimate →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCOPE / WHAT'S INCLUDED -->
+  <div class="scope-section">
+    <div class="scope-inner">
+      <div class="section-label">Full Scope</div>
+      <h2 class="section-heading">What Commercial Roofing Covers</h2>
+      <p class="section-sub">From the initial site assessment through final documentation, we manage every phase of the commercial project.</p>
+      <div class="scope-grid">
+        <div class="scope-item">
+          <div class="scope-icon">📐</div>
+          <div class="scope-name">Site Assessment &amp; Drainage Analysis</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">📋</div>
+          <div class="scope-name">Detailed Scope &amp; Timeline</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">✅</div>
+          <div class="scope-name">Milestone Sign-Offs</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🏛️</div>
+          <div class="scope-name">All City &amp; Commercial Permits</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🦺</div>
+          <div class="scope-name">OSHA-30 Crew Safety</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🚚</div>
+          <div class="scope-name">Material Handling &amp; Staging</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">🏗️</div>
+          <div class="scope-name">Manufacturer-Certified Installation</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">💧</div>
+          <div class="scope-name">Drainage &amp; Penetration Sealing</div>
+        </div>
+        <div class="scope-item">
+          <div class="scope-icon">📸</div>
+          <div class="scope-name">Final Inspection Report &amp; Photos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIALS / BRANDS -->
+  <div class="materials-section">
+    <div class="materials-inner">
+      <div class="section-label">Systems We Install</div>
+      <h2 class="section-heading">Manufacturer-Grade Materials. Proven in Colorado.</h2>
+      <p class="section-sub">We're trained and certified on the commercial systems that hold up best in Denver's climate — from TPO to EPDM to standing-seam metal.</p>
+      <div class="materials-grid">
+        <div class="material-card">
+          <div class="material-brand">Carlisle SynTec</div>
+          <div class="material-name">TPO Membrane</div>
+          <p class="material-desc">Thermoplastic polyolefin (TPO) is white or light grey, heat-weld seamed, and highly reflective — ideal for Denver's 300+ days of sun. Carlisle SynTec's Sure-Weld TPO is one of the most specified commercial membranes in the country, with excellent resistance to UV, ozone, and chemical exposure. Energy-efficient and available in 45, 60, and 80 mil thicknesses.</p>
+        </div>
+        <div class="material-card">
+          <div class="material-brand">Firestone</div>
+          <div class="material-name">EPDM Rubber Roofing</div>
+          <p class="material-desc">Firestone's EPDM (ethylene propylene diene terpolymer) is the industry's proven workhorse for low-slope commercial applications. Black rubber construction with outstanding cold-temperature flexibility — critical for Colorado winters. Seams are adhered or tape-sealed and the system handles large spans exceptionally well, making it cost-effective for warehouse and big-box applications.</p>
+        </div>
+        <div class="material-card">
+          <div class="material-brand">GAF</div>
+          <div class="material-name">Modified Bitumen</div>
+          <p class="material-desc">Modified bitumen is the evolution of built-up roofing — asphalt reinforced with polymer modifiers (SBS or APP) for improved flexibility and durability. GAF's commercial modified bitumen systems are commonly used for re-roofing over existing BUR systems, retail applications, and multi-family roofing where a proven, cost-effective system is needed. Torch-applied or cold-applied installation available.</p>
+        </div>
+        <div class="material-card">
+          <div class="material-brand">Berridge</div>
+          <div class="material-name">Metal Panel Systems</div>
+          <p class="material-desc">Berridge's standing-seam and structural metal panel systems are built for Colorado's commercial and light-industrial applications. Ideal for low-slope commercial buildings transitioning away from membrane systems, or new construction requiring 40+ year service life. Available in steel and aluminum with a wide range of Kynar 500 color finishes. Concealed fastener systems eliminate exposed penetrations entirely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="faq-inner">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-heading">Commercial Roofing Questions</h2>
+      <p class="section-sub">What Denver property managers and business owners ask us most often.</p>
+      <div class="faq-list">
+        <details>
+          <summary>Can you work around our business hours?</summary>
+          <div class="faq-answer">Yes. We coordinate scheduling upfront with your property manager, facilities team, or HOA board to minimize disruption to tenants and operations. We can work early mornings before business opens, evenings, or weekends for interior-sensitive sections of the project. We don't spring schedule changes on you — everything gets agreed to in writing before work begins.</div>
+        </details>
+        <details>
+          <summary>Do you handle large commercial properties?</summary>
+          <div class="faq-answer">We handle commercial projects across the full size range — from small retail buildings and single-story office spaces up to large warehouse complexes, multi-building HOA communities, and light-industrial properties. Larger projects are scoped and phased so you're never looking at unacceptable exposure or budget surprises mid-project.</div>
+        </details>
+        <details>
+          <summary>What's the difference between TPO and EPDM?</summary>
+          <div class="faq-answer">TPO is a white or light-colored thermoplastic membrane with heat-welded seams. It's highly reflective, energy-efficient, and excellent for buildings where cooling costs matter. EPDM is a black rubber membrane with adhered or tape-sealed seams. It's extremely durable, cost-effective over large spans, and performs exceptionally in cold weather. In Denver's climate both systems perform well — the right choice depends on your building size, existing system, energy goals, and budget. We'll walk you through the tradeoffs specifically for your property.</div>
+        </details>
+        <details>
+          <summary>Do you provide maintenance contracts?</summary>
+          <div class="faq-answer">Yes. We offer annual inspection and preventive maintenance contracts for commercial properties. This typically includes a bi-annual inspection (spring and fall), cleaning of drains and scuppers, minor membrane repairs at no additional cost, and a written condition report each visit. Maintenance contracts extend the life of your commercial roof significantly and catch small issues before they become budget-breaking problems.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED SERVICES -->
+  <div class="related-section">
+    <div class="related-inner">
+      <div class="section-label">More From Peak Shield</div>
+      <h2 class="section-heading">Related Services</h2>
+      <p class="section-sub">Commercial roofing often connects to these other Peak Shield services.</p>
+      <div class="related-grid">
+        <a href="demo-roofing-residential.html" class="related-card">
+          <div class="related-icon">🏠</div>
+          <div class="related-name">Residential Roofing</div>
+          <p class="related-desc">Full-service residential roofing for Denver homeowners — repairs, replacements, and new installations with GAF-certified materials and same-week scheduling.</p>
+          <span class="related-arrow">Learn more →</span>
+        </a>
+        <a href="demo-roofing-emergency.html" class="related-card">
+          <div class="related-icon">⛈️</div>
+          <div class="related-name">Storm &amp; Emergency</div>
+          <p class="related-desc">Active leak? Hail damage? We provide 24/7 emergency response for commercial properties, including emergency tarping and same-day assessment.</p>
+          <span class="related-arrow">Learn more →</span>
+        </a>
+        <a href="#" class="related-card">
+          <div class="related-icon">📋</div>
+          <div class="related-name">Maintenance Contracts</div>
+          <p class="related-desc">Annual inspection and preventive maintenance contracts for property managers and HOAs. Protect your investment and stay ahead of costly repairs.</p>
+          <span class="related-arrow">Contact us →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="cta-banner">
+    <h2>Protect Your Commercial Property.</h2>
+    <p>Call us or request an estimate online. Commercial inquiries get a response within 4 business hours.</p>
+    <div class="cta-row">
+      <a href="tel:7205550183" class="btn-dark">📞 (720) 555-0183 — Call Now</a>
+      <a href="#estimate" class="btn-outline-dark">Request Commercial Estimate</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">🏗️ Peak Shield Roofing</div>
+          <p class="footer-tagline">Denver's trusted residential and commercial roofing contractor. Licensed, insured, and GAF Certified.</p>
+          <div class="footer-contact">
+            <div>📍 Denver, CO 80202</div>
+            <div>📞 <a href="tel:7205550183">(720) 555-0183</a></div>
+            <div>✉️ <a href="mailto:info@peakshieldroofing.com">info@peakshieldroofing.com</a></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-heading">Services</div>
+          <ul class="footer-links">
+            <li><a href="demo-roofing-residential.html">Residential Roofing</a></li>
+            <li><a href="demo-roofing-commercial.html">Commercial Roofing</a></li>
+            <li><a href="demo-roofing-tile.html">Tile Roofing</a></li>
+            <li><a href="demo-roofing-metal.html">Metal Roofing</a></li>
+            <li><a href="demo-roofing-shingle.html">Shingle Roofing</a></li>
+            <li><a href="demo-roofing-emergency.html">Storm &amp; Emergency</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-heading">Contact</div>
+          <ul class="footer-links">
+            <li><a href="tel:7205550183">(720) 555-0183</a></li>
+            <li><a href="mailto:info@peakshieldroofing.com">info@peakshieldroofing.com</a></li>
+            <li><a href="#estimate">Free Estimate</a></li>
+            <li><a href="#">Emergency Service</a></li>
+            <li><a href="#">Maintenance Contracts</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-heading">Service Areas</div>
+          <ul class="footer-links">
+            <li><a href="#">Denver</a></li>
+            <li><a href="#">Aurora</a></li>
+            <li><a href="#">Lakewood</a></li>
+            <li><a href="#">Centennial</a></li>
+            <li><a href="#">Englewood</a></li>
+            <li><a href="#">Commerce City</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 Peak Shield Roofing · Denver, CO · All rights reserved</div>
+        <div class="footer-demo">Demo built by <a href="https://groundworkstudio.co" target="_blank">Groundwork Studio</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>
