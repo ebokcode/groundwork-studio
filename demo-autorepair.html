@@ -451,6 +451,409 @@
       text-transform: uppercase; color: var(--muted);
     }
 
+    /* ── ABOUT SECTION ────────────────────────────────────── */
+    .about {
+      padding: 100px 44px;
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-text { }
+    .about-body {
+      font-size: 15px; font-weight: 300; line-height: 1.85;
+      color: rgba(245,240,235,.7); margin-bottom: 32px;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 24px; margin-bottom: 40px;
+    }
+    .about-stat-item {
+      background: var(--card); padding: 20px 24px;
+      border-left: 3px solid var(--orange);
+    }
+    .about-stat-num {
+      font-family: var(--serif); font-size: 36px; font-weight: 900;
+      color: var(--orange-lt); line-height: 1; margin-bottom: 4px;
+    }
+    .about-stat-label {
+      font-size: 11px; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .about-trust-icons {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .about-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 10px 18px;
+    }
+    .about-badge-icon { font-size: 18px; }
+    .about-badge-text {
+      font-family: var(--serif); font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
+    }
+    .about-image {
+      position: relative;
+    }
+    .about-image img {
+      width: 100%; height: 500px; object-fit: cover;
+    }
+    .about-image::before {
+      content: ''; position: absolute;
+      top: -12px; left: -12px; right: 12px; bottom: 12px;
+      border: 2px solid var(--orange); z-index: 0; pointer-events: none;
+    }
+    .about-image img { position: relative; z-index: 1; }
+    @media (max-width: 960px) {
+      .about { padding: 60px 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-image::before { display: none; }
+    }
+
+    /* ── GALLERY ──────────────────────────────────────────── */
+    .gallery {
+      padding: 100px 44px;
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+    }
+    .gallery-inner { max-width: 1200px; margin: 0 auto; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-top: 56px;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      height: 250px; cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,.85) 0%, rgba(13,13,13,0) 60%);
+      opacity: 0; transition: opacity .35s;
+      display: flex; align-items: flex-end;
+      padding: 20px 22px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay-label {
+      font-family: var(--serif); font-size: 16px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px; color: var(--white);
+    }
+    @media (max-width: 960px) {
+      .gallery { padding: 60px 20px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── FINANCING BAND ───────────────────────────────────── */
+    .financing {
+      background: var(--orange);
+      padding: 80px 44px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .financing::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,.03) 0px,
+        rgba(255,255,255,.03) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+    }
+    .financing-inner {
+      position: relative; z-index: 1;
+      max-width: 860px; margin: 0 auto;
+    }
+    .financing-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 5px;
+      text-transform: uppercase; color: rgba(255,255,255,.7);
+      margin-bottom: 20px;
+    }
+    .financing-h2 {
+      font-family: var(--serif); font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900; text-transform: uppercase; line-height: .9;
+      color: #fff; margin-bottom: 24px;
+    }
+    .financing-sub {
+      font-size: 17px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,.85); margin-bottom: 40px;
+      max-width: 620px; margin-left: auto; margin-right: auto;
+    }
+    .financing-actions {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-financing-primary {
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: #fff; color: var(--orange);
+      padding: 16px 40px; display: inline-block;
+      transition: background .2s, transform .15s;
+    }
+    .btn-financing-primary:hover { background: #f5f0eb; transform: translateY(-2px); }
+    .btn-financing-ghost {
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: transparent; color: #fff;
+      padding: 16px 40px; border: 2px solid rgba(255,255,255,.5);
+      display: inline-block; transition: border-color .2s;
+    }
+    .btn-financing-ghost:hover { border-color: #fff; }
+
+    /* ── SPECIALS / PROMOTIONS ────────────────────────────── */
+    .specials {
+      padding: 100px 44px;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
+    .specials-inner { max-width: 1200px; margin: 0 auto; }
+    .specials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 56px;
+    }
+    .promo-card {
+      background: var(--navy); padding: 44px 36px;
+      border-top: 3px solid var(--orange);
+      position: relative; overflow: hidden;
+      transition: transform .2s;
+    }
+    .promo-card:hover { transform: translateY(-4px); }
+    .promo-badge {
+      display: inline-block;
+      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #fff;
+      background: var(--orange); padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+    .promo-title {
+      font-family: var(--serif); font-size: 28px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--white); line-height: 1.1; margin-bottom: 12px;
+    }
+    .promo-price {
+      font-family: var(--serif); font-size: 52px; font-weight: 900;
+      color: var(--orange-lt); line-height: 1; margin-bottom: 4px;
+    }
+    .promo-reg {
+      font-size: 12px; font-weight: 300; color: var(--muted);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px;
+      text-decoration: line-through;
+    }
+    .promo-desc {
+      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .promo-cta {
+      font-family: var(--serif); font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--orange-lt);
+      display: flex; align-items: center; gap: 8px;
+      transition: gap .2s;
+    }
+    .promo-card:hover .promo-cta { gap: 12px; }
+    @media (max-width: 960px) {
+      .specials { padding: 60px 20px; }
+      .specials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── BOOKING SECTION ──────────────────────────────────── */
+    .booking {
+      padding: 100px 44px;
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+    .booking-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 80px; align-items: start;
+    }
+    .booking-intro { padding-top: 8px; }
+    .booking-intro-body {
+      font-size: 15px; font-weight: 300; line-height: 1.85;
+      color: rgba(245,240,235,.65); margin: 24px 0 40px;
+    }
+    .booking-info-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .booking-info-icon {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--orange-gl); border: 1px solid var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange-lt); font-size: 16px;
+    }
+    .booking-info-text-title {
+      font-family: var(--serif); font-size: 14px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
+      margin-bottom: 2px;
+    }
+    .booking-info-text-sub {
+      font-size: 13px; font-weight: 300; color: var(--muted);
+    }
+    .booking-form {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 48px 44px;
+      position: relative; overflow: hidden;
+    }
+    .booking-form::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--orange), var(--orange-lt));
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .form-control {
+      width: 100%;
+      background: var(--navy); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--sans); font-size: 14px;
+      font-weight: 300; padding: 12px 16px;
+      outline: none; transition: border-color .2s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-control:focus { border-color: var(--orange-lt); }
+    .form-control::placeholder { color: var(--muted); }
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    textarea.form-control { resize: vertical; min-height: 90px; }
+    .form-submit {
+      width: 100%; margin-top: 8px;
+      font-family: var(--serif); font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: var(--orange); color: #fff; border: none;
+      padding: 18px 32px; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .form-submit:hover { background: var(--orange-lt); transform: translateY(-1px); }
+    @media (max-width: 960px) {
+      .booking { padding: 60px 20px; }
+      .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+      .booking-form { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── BLOG PREVIEW ─────────────────────────────────────── */
+    .blog {
+      padding: 100px 44px;
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+    }
+    .blog-inner { max-width: 1200px; margin: 0 auto; }
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 56px;
+    }
+    .blog-card {
+      background: var(--card);
+      transition: transform .2s;
+      cursor: pointer;
+    }
+    .blog-card:hover { transform: translateY(-4px); }
+    .blog-thumb {
+      height: 200px; overflow: hidden;
+    }
+    .blog-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .blog-card:hover .blog-thumb img { transform: scale(1.06); }
+    .blog-body { padding: 28px 28px 32px; }
+    .blog-cat {
+      display: inline-block;
+      font-size: 9px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange);
+      background: var(--orange-gl); border: 1px solid rgba(234,88,12,.25);
+      padding: 4px 10px; margin-bottom: 14px;
+    }
+    .blog-title {
+      font-family: var(--serif); font-size: 22px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .5px; line-height: 1.15;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .blog-excerpt {
+      font-size: 13.5px; font-weight: 300; line-height: 1.75;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .blog-more {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange-lt);
+      transition: letter-spacing .2s;
+    }
+    .blog-card:hover .blog-more { letter-spacing: 3px; }
+    @media (max-width: 960px) {
+      .blog { padding: 60px 20px; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FAQ ──────────────────────────────────────────────── */
+    .faq {
+      padding: 100px 44px;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
+    .faq-inner {
+      max-width: 860px; margin: 0 auto;
+    }
+    .faq-list { margin-top: 56px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      color: var(--white); font-family: var(--sans); font-size: 15px; font-weight: 500;
+      text-align: left; padding: 24px 0;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; gap: 20px;
+      transition: color .2s;
+    }
+    .faq-question:hover { color: var(--orange-lt); }
+    .faq-item.open .faq-question { color: var(--orange-lt); }
+    .faq-icon {
+      width: 28px; height: 28px; min-width: 28px;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 300; color: var(--muted);
+      transition: background .25s, border-color .25s, color .25s, transform .25s;
+      line-height: 1;
+    }
+    .faq-item.open .faq-icon {
+      background: var(--orange); border-color: var(--orange);
+      color: #fff; transform: rotate(45deg);
+    }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .4s ease, padding .3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner {
+      font-size: 14.5px; font-weight: 300; line-height: 1.8;
+      color: rgba(245,240,235,.65); padding-bottom: 24px;
+    }
+    @media (max-width: 960px) { .faq { padding: 60px 20px; } }
+
     /* ── FOOTER ───────────────────────────────────────────── */
     footer { background: var(--navy); padding: 80px 44px 44px; }
     .foot-top {
@@ -519,6 +922,7 @@
       .why-grid { grid-template-columns: 1fr; }
       .foot-top { grid-template-columns: 1fr; gap: 32px; }
       .trust { gap: 32px; padding: 48px 24px; }
+      .financing { padding: 60px 20px; }
     }
   </style>
 </head>
@@ -811,6 +1215,364 @@
       </div>
     </div>
 
+    <!-- ============================================================
+         ABOUT SECTION
+         ============================================================ -->
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div class="about-text reveal">
+          <p class="section-tag">Our Story</p>
+          <h2 class="section-h2" style="margin-bottom:28px;">About Desert<br><span>Ridge Auto.</span></h2>
+          <p class="about-body">Founded in 2008, Desert Ridge Auto has been Mesa's trusted family-owned repair shop for over 16 years. What started as a two-bay operation has grown into a full-service facility — without ever losing the values that built our reputation: honesty, quality workmanship, and standing behind every job.</p>
+          <p class="about-body">Every technician on our team is ASE certified, and we've serviced over 4,000 vehicles across Mesa, Gilbert, and Chandler. We treat every car like it belongs to a neighbor — because most of the time, it does.</p>
+          <div class="about-stats">
+            <div class="about-stat-item">
+              <div class="about-stat-num">2008</div>
+              <div class="about-stat-label">Year Founded</div>
+            </div>
+            <div class="about-stat-item">
+              <div class="about-stat-num">4,000+</div>
+              <div class="about-stat-label">Vehicles Serviced</div>
+            </div>
+            <div class="about-stat-item">
+              <div class="about-stat-num">100%</div>
+              <div class="about-stat-label">ASE Certified Staff</div>
+            </div>
+            <div class="about-stat-item">
+              <div class="about-stat-num">Family</div>
+              <div class="about-stat-label">Owned &amp; Operated</div>
+            </div>
+          </div>
+          <div class="about-trust-icons">
+            <div class="about-badge">
+              <span class="about-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+              <span class="about-badge-text">ASE Certified</span>
+            </div>
+            <div class="about-badge">
+              <span class="about-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              <span class="about-badge-text">AAA Approved</span>
+            </div>
+            <div class="about-badge">
+              <span class="about-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="about-badge-text">BBB A+</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image reveal" style="transition-delay:.15s">
+          <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=700&q=80" alt="Desert Ridge Auto shop interior" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         GALLERY
+         ============================================================ -->
+    <section class="gallery">
+      <div class="gallery-inner">
+        <div class="section-header reveal">
+          <p class="section-tag">See the Work</p>
+          <h2 class="section-h2">Our Shop<br><span>&amp; Work.</span></h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=700&q=80" alt="Auto shop interior" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-label">Shop Floor</span></div>
+          </div>
+          <div class="gallery-item reveal" style="transition-delay:.07s">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700&q=80" alt="Classic car engine" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-label">Engine Work</span></div>
+          </div>
+          <div class="gallery-item reveal" style="transition-delay:.14s">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=700&q=80" alt="Sports car detail" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-label">All Makes &amp; Models</span></div>
+          </div>
+          <div class="gallery-item reveal" style="transition-delay:.21s">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Mechanic at work" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-label">Expert Technicians</span></div>
+          </div>
+          <div class="gallery-item reveal" style="transition-delay:.28s">
+            <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=700&q=80" alt="Car detail" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-label">Detail &amp; Finish</span></div>
+          </div>
+          <div class="gallery-item reveal" style="transition-delay:.35s">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80" alt="Tire service" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-label">Tire Services</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FINANCING BAND
+         ============================================================ -->
+    <section class="financing">
+      <div class="financing-inner">
+        <p class="financing-tag">Flexible Payment Options</p>
+        <h2 class="financing-h2">Drive Now,<br>Pay Later.</h2>
+        <p class="financing-sub">Approved for auto repair financing in 60 seconds. 0% interest for 6 months on repairs over $500. No credit score impact to check your rate.</p>
+        <div class="financing-actions">
+          <a href="tel:+14805550191" class="btn-financing-primary">Apply Now →</a>
+          <a href="tel:+14805550191" class="btn-financing-ghost">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SPECIALS / PROMOTIONS
+         ============================================================ -->
+    <section class="specials">
+      <div class="specials-inner">
+        <div class="section-header reveal">
+          <p class="section-tag">Save on Your Next Visit</p>
+          <h2 class="section-h2">Current<br><span>Deals.</span></h2>
+        </div>
+        <div class="specials-grid">
+          <div class="promo-card reveal">
+            <span class="promo-badge">Limited Time</span>
+            <h3 class="promo-title">Oil Change + Tire Rotation</h3>
+            <div class="promo-price">$49.99</div>
+            <div class="promo-reg">Reg. $79.00</div>
+            <p class="promo-desc">Full-service oil change with tire rotation included. All makes and models welcome. Conventional or synthetic available.</p>
+            <a href="tel:+14805550191" class="promo-cta">Book This Deal →</a>
+          </div>
+          <div class="promo-card reveal" style="transition-delay:.1s">
+            <span class="promo-badge">Summer Special</span>
+            <h3 class="promo-title">Free AC System Check</h3>
+            <div class="promo-price">FREE</div>
+            <div class="promo-reg">&nbsp;</div>
+            <p class="promo-desc">Full AC system inspection at no charge. Recharge service available separately starting at $89. Don't sweat the Arizona summer.</p>
+            <a href="tel:+14805550191" class="promo-cta">Schedule Now →</a>
+          </div>
+          <div class="promo-card reveal" style="transition-delay:.2s">
+            <span class="promo-badge">New Customers</span>
+            <h3 class="promo-title">New Customer Brake Inspection</h3>
+            <div class="promo-price">FREE</div>
+            <div class="promo-reg">&nbsp;</div>
+            <p class="promo-desc">First-time customers receive a complete brake system inspection at no cost, no obligation. Know exactly where you stand before spending a dime.</p>
+            <a href="tel:+14805550191" class="promo-cta">Claim Offer →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ONLINE BOOKING
+         ============================================================ -->
+    <section class="booking" id="booking">
+      <div class="booking-inner">
+        <div class="booking-intro reveal">
+          <p class="section-tag">Schedule Online</p>
+          <h2 class="section-h2">Book Your<br><span>Appointment.</span></h2>
+          <p class="booking-intro-body">Skip the phone tag. Book your appointment online in under two minutes. We'll confirm within the hour and have your bay ready when you arrive.</p>
+          <div class="booking-info-item">
+            <div class="booking-info-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="booking-info-text-title">Same-Day Available</div>
+              <div class="booking-info-text-sub">Mon–Fri 7am–6pm, Sat 8am–4pm</div>
+            </div>
+          </div>
+          <div class="booking-info-item">
+            <div class="booking-info-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="booking-info-text-title">Written Estimate First</div>
+              <div class="booking-info-text-sub">No work starts without your written approval</div>
+            </div>
+          </div>
+          <div class="booking-info-item">
+            <div class="booking-info-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <div class="booking-info-text-title">After-Hours Drop Off</div>
+              <div class="booking-info-text-sub">Key drop box on north side of building</div>
+            </div>
+          </div>
+        </div>
+        <div class="booking-form reveal" style="transition-delay:.15s">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="appt-date">Preferred Date</label>
+              <input type="date" id="appt-date" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="appt-time">Preferred Time</label>
+              <select id="appt-time" class="form-control">
+                <option value="">Select a time</option>
+                <option>8:00 AM</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+                <option>5:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="appt-service">Service Needed</label>
+            <select id="appt-service" class="form-control">
+              <option value="">Select a service</option>
+              <option>Oil Change</option>
+              <option>Brake Repair</option>
+              <option>Tire Services</option>
+              <option>Engine Diagnostics</option>
+              <option>AC Service</option>
+              <option>Transmission</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="veh-year">Vehicle Year</label>
+              <input type="text" id="veh-year" class="form-control" placeholder="e.g. 2019">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="veh-make">Make</label>
+              <input type="text" id="veh-make" class="form-control" placeholder="e.g. Toyota">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="veh-model">Model</label>
+            <input type="text" id="veh-model" class="form-control" placeholder="e.g. Camry">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="appt-name">Your Name</label>
+              <input type="text" id="appt-name" class="form-control" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="appt-phone">Phone</label>
+              <input type="tel" id="appt-phone" class="form-control" placeholder="(480) 000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="appt-notes">Additional Notes</label>
+            <textarea id="appt-notes" class="form-control" placeholder="Describe the issue or anything we should know..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Request Appointment →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG PREVIEW
+         ============================================================ -->
+    <section class="blog">
+      <div class="blog-inner">
+        <div class="section-header reveal">
+          <p class="section-tag">Tips &amp; Advice</p>
+          <h2 class="section-h2">From the<br><span>Shop.</span></h2>
+        </div>
+        <div class="blog-grid">
+          <div class="blog-card reveal">
+            <div class="blog-thumb">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Brake inspection" loading="lazy">
+            </div>
+            <div class="blog-body">
+              <span class="blog-cat">Safety</span>
+              <h3 class="blog-title">5 Signs Your Brakes Need Attention</h3>
+              <p class="blog-excerpt">Squealing, vibration, and a soft pedal aren't just annoyances — they're warning signs that can save your life if you act early.</p>
+              <span class="blog-more">Read More →</span>
+            </div>
+          </div>
+          <div class="blog-card reveal" style="transition-delay:.1s">
+            <div class="blog-thumb">
+              <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=700&q=80" alt="Engine oil" loading="lazy">
+            </div>
+            <div class="blog-body">
+              <span class="blog-cat">Maintenance</span>
+              <h3 class="blog-title">Why Regular Oil Changes Extend Engine Life</h3>
+              <p class="blog-excerpt">Skipping an oil change seems harmless until it isn't — here's what's actually happening inside your engine between services.</p>
+              <span class="blog-more">Read More →</span>
+            </div>
+          </div>
+          <div class="blog-card reveal" style="transition-delay:.2s">
+            <div class="blog-thumb">
+              <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700&q=80" alt="Check engine light" loading="lazy">
+            </div>
+            <div class="blog-body">
+              <span class="blog-cat">Diagnostics</span>
+              <h3 class="blog-title">What Does the Check Engine Light Actually Mean?</h3>
+              <p class="blog-excerpt">It could be a loose gas cap or a failing catalytic converter — here's how to tell the difference and what to do next.</p>
+              <span class="blog-more">Read More →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ
+         ============================================================ -->
+    <section class="faq">
+      <div class="faq-inner">
+        <div class="section-header reveal">
+          <p class="section-tag">Common Questions</p>
+          <h2 class="section-h2">Got<br><span>Questions?</span></h2>
+        </div>
+        <div class="faq-list" id="faqList">
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you offer warranties on repairs?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Yes. Every repair we perform comes with a 24-month / 24,000-mile parts and labor warranty. If something isn't right, bring it back and we'll make it right — no charge, no questions asked.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How long will my repair take?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Most repairs are completed the same day you drop off. For complex jobs that require extended time, we'll provide a loaner vehicle or a Lyft credit so you're never stranded.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you work on all makes and models?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Yes — we service all domestic and foreign vehicles, model year 1995 and newer. From compact cars to full-size trucks and SUVs, our ASE-certified technicians are trained on all major platforms.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I drop off after hours?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Absolutely. We have a secure key drop box located on the north side of the building. Just drop your keys and leave a note with your name and phone number — we'll call you first thing in the morning.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you provide written estimates?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Always. We provide a written estimate before any work begins. Nothing gets done until you've reviewed the estimate and given your explicit approval. No surprises on your bill — ever.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -890,6 +1652,18 @@
       });
     }, { threshold: 0.5 });
     statNums.forEach(el => counterObserver.observe(el));
+
+    // FAQ accordion
+    document.getElementById('faqList').addEventListener('click', function(e) {
+      const btn = e.target.closest('.faq-question');
+      if (!btn) return;
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      // Toggle clicked
+      if (!isOpen) item.classList.add('open');
+    });
   </script>
 
 </body>
