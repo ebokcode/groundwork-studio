@@ -327,9 +327,15 @@
     .hero-accent {
       position: absolute;
       inset: 0;
-      background: var(--slate-mid);
+      background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80') center / cover no-repeat;
       clip-path: polygon(38% 0, 100% 0, 100% 100%, 18% 100%);
       z-index: 0;
+    }
+    .hero-accent::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--slate) 0%, rgba(28,25,23,0.45) 100%);
     }
     .hero-inner {
       position: relative;
@@ -518,15 +524,31 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 36px rgba(0,0,0,0.4);
     }
+    .service-photo {
+      width: calc(100% + 56px);
+      margin: -32px -28px 20px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(28,25,23,0.6) 100%);
+    }
     .service-icon {
-      width: 52px;
-      height: 52px;
+      width: 44px;
+      height: 44px;
       background: rgba(249,115,22,0.12);
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       color: var(--rust);
     }
     .service-name {
@@ -1382,36 +1404,42 @@
     </div>
     <div class="services-grid">
       <a href="demo-roofing-residential.html" class="service-card">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg></div>
         <div class="service-name">Residential Roofing</div>
         <div class="service-desc">Full replacements, repairs, and new installations for homes of every size and style.</div>
         <span class="service-link">Learn More →</span>
       </a>
       <a href="demo-roofing-commercial.html" class="service-card">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
         <div class="service-name">Commercial Roofing</div>
         <div class="service-desc">Flat roofing, TPO, EPDM, and more for commercial and multi-family properties.</div>
         <span class="service-link">Learn More →</span>
       </a>
       <a href="demo-roofing-tile.html" class="service-card">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/></svg></div>
         <div class="service-name">Tile Roofing</div>
         <div class="service-desc">Clay and concrete tile installation built for Colorado's freeze-thaw cycles.</div>
         <span class="service-link">Learn More →</span>
       </a>
       <a href="demo-roofing-metal.html" class="service-card">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <div class="service-name">Metal Roofing</div>
         <div class="service-desc">Standing seam and exposed-fastener metal systems with up to 50-year lifespans.</div>
         <span class="service-link">Learn More →</span>
       </a>
       <a href="demo-roofing-shingle.html" class="service-card">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1503594384566-461fe158e797?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg></div>
         <div class="service-name">Shingle Roofing</div>
         <div class="service-desc">Architectural and impact-resistant shingles from top manufacturers at every price point.</div>
         <span class="service-link">Learn More →</span>
       </a>
       <a href="demo-roofing-emergency.html" class="service-card">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?auto=format&fit=crop&w=600&q=80');"></div>
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 16.9A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/></svg></div>
         <div class="service-name">Storm &amp; Emergency</div>
         <div class="service-desc">24-hour emergency tarping, storm damage assessment, and insurance claim support.</div>
