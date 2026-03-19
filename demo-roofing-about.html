@@ -180,12 +180,14 @@
       background: var(--rust);
       color: #1c1917 !important;
       padding: 10px 20px !important;
-      border-radius: var(--radius-pill) !important;
-      font-weight: 700 !important;
+      border-radius: 9px !important;
+      font-weight: 800 !important;
       flex-shrink: 0;
       transition: background var(--transition) !important;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    .nav-cta:hover { background: var(--rust-mid) !important; color: #1c1917 !important; }
+    .nav-cta:hover { background: var(--rust-mid) !important; color: #1c1917 !important; transform: translateY(-1px); }
 
     /* Hamburger */
     .hamburger {
@@ -691,7 +693,7 @@
         <li><a href="demo-roofing-about.html" class="active">About</a></li>
         <li><a href="demo-roofing-contact.html">Contact</a></li>
       </ul>
-      <a href="demo-roofing-contact.html" class="nav-cta">Free Inspection</a>
+      <a href="demo-roofing-contact.html" class="nav-cta">📅 Schedule Service</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -709,7 +711,7 @@
       <a href="#">Financing</a>
       <a href="demo-roofing-about.html">About</a>
       <a href="demo-roofing-contact.html">Contact</a>
-      <a href="demo-roofing-contact.html" class="mobile-menu-cta">Free Inspection</a>
+      <a href="demo-roofing-contact.html" class="mobile-menu-cta">📅 Schedule Service →</a>
     </div>
   </nav>
 
@@ -849,7 +851,7 @@
     <h2>Ready to work with Denver's most trusted roofers?</h2>
     <p>No pressure. No upsells. Just an honest look at your roof — on us.</p>
     <div class="cta-buttons">
-      <a href="demo-roofing-contact.html" class="cta-btn-primary">Get Free Inspection</a>
+      <a href="demo-roofing-contact.html" class="cta-btn-primary">Schedule Service →</a>
       <span class="cta-phone">📞 (720) 555-0183</span>
     </div>
   </section>

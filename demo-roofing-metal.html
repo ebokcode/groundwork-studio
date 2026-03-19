@@ -197,18 +197,20 @@
     .btn-pill {
       background: var(--rust);
       color: var(--slate);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
       padding: 9px 20px;
-      border-radius: var(--radius-pill);
+      border-radius: 9px;
       border: none;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       transition: opacity var(--transition);
       white-space: nowrap;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    .btn-pill:hover { opacity: 0.88; }
+    .btn-pill:hover { opacity: 0.88; transform: translateY(-1px); }
     .btn-pill-outline {
       background: transparent;
       color: var(--cream);
@@ -920,7 +922,7 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <div class="nav-right">
-        <a href="#estimate" class="btn-pill">Free Inspection</a>
+        <a href="#estimate" class="btn-pill">📅 Schedule Service</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -1074,7 +1076,7 @@
               <option value="inspection">Inspection Only</option>
             </select>
           </div>
-          <button type="submit" class="form-submit">Request Free Inspection →</button>
+          <button type="submit" class="form-submit">📅 Schedule Service</button>
         </div>
       </div>
 

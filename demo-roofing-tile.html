@@ -176,14 +176,16 @@
     .nav-cta {
       background: var(--rust);
       color: var(--slate) !important;
-      border-radius: var(--radius-pill);
+      border-radius: 9px;
       padding: 10px 20px !important;
-      font-weight: 700 !important;
+      font-weight: 800 !important;
       font-size: 14px !important;
       margin-left: 16px;
       transition: background var(--transition) !important;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    .nav-cta:hover { background: var(--rust-mid) !important; color: var(--slate) !important; }
+    .nav-cta:hover { background: var(--rust-mid) !important; color: var(--slate) !important; transform: translateY(-1px); }
 
     .hamburger {
       display: none;
@@ -927,7 +929,7 @@
         <li><a href="demo-roofing-about.html">About</a></li>
         <li><a href="demo-roofing-contact.html">Contact</a></li>
       </ul>
-      <a href="demo-roofing-contact.html" class="nav-cta">Free Inspection</a>
+      <a href="demo-roofing-contact.html" class="nav-cta">📅 Schedule Service</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -945,7 +947,7 @@
       <a href="demo-roofing-financing.html">Financing</a>
       <a href="demo-roofing-about.html">About</a>
       <a href="demo-roofing-contact.html">Contact</a>
-      <a href="demo-roofing-contact.html" class="mobile-cta">Free Inspection</a>
+      <a href="demo-roofing-contact.html" class="mobile-cta">📅 Schedule Service →</a>
     </div>
   </nav>
 
