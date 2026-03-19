@@ -1,916 +1,718 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valley Pro Plumbing — Phoenix, AZ</title>
-  <meta name="description" content="Fast, reliable plumbing services in Phoenix. Drain cleaning, water heaters, leak repair. 24/7 emergency service.">
+  <title>FlowRight Plumbing — Phoenix, AZ | Licensed & Insured Plumbers</title>
+  <meta name="description" content="Phoenix's fast, reliable plumbers. Drain cleaning, pipe repair, water heaters, and 24/7 emergency service. Call (602) 555-0193.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    /* ── TOKENS ── */
     :root {
-      --ink:     #080c12;
-      --navy:    #0f1923;
-      --card:    #111827;
-      --border:  #1e2d40;
-      --blue:    #1d4ed8;
-      --blue-lt: #3b82f6;
-      --blue-gl: rgba(29,78,216,.12);
-      --orange:  #ea580c;
-      --orange-lt: #f97316;
-      --white:   #f0f6ff;
-      --muted:   #8899b0;
-      --serif:   'Barlow Condensed', sans-serif;
-      --sans:    'DM Sans', sans-serif;
+      --accent:      #0891b2;
+      --accent-dark: #0e7490;
+      --accent-light: #ecfeff;
+      --nav-bg:      #0f172a;
+      --body-bg:     #f9fafb;
+      --card-bg:     #ffffff;
+      --border:      #e5e7eb;
+      --text:        #111827;
+      --muted:       #6b7280;
+      --white:       #ffffff;
+      --radius:      12px;
+      --shadow:      0 2px 12px rgba(0,0,0,0.08);
+      --shadow-hover: 0 6px 24px rgba(0,0,0,0.14);
     }
+
+    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--ink); color: var(--white); overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--body-bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
 
-    /* ── DEMO BANNER ──────────────────────────────────────── */
-    .demo-bar {
-      background: var(--blue); color: #fff;
-      text-align: center; padding: 9px 24px;
-      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
-      position: relative; z-index: 400;
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      background: #f97316;
+      color: #fff;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      position: relative;
+      z-index: 500;
     }
-    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+    .demo-banner a { color: #fff; text-decoration: underline; font-weight: 700; }
 
-    /* ── NAV ──────────────────────────────────────────────── */
-    .nav {
-      position: fixed; left: 0; right: 0; z-index: 300;
-      padding: 0 44px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .35s, border-color .35s;
-    }
-    .nav.solid {
-      background: rgba(8,12,18,.97);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
+    /* ── NAV ── */
+    nav {
+      background: var(--nav-bg);
+      position: sticky;
+      top: 0;
+      z-index: 400;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
     .nav-logo {
-      font-family: var(--serif); font-size: 20px; font-weight: 800;
-      letter-spacing: .5px; text-transform: uppercase; color: var(--white);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      white-space: nowrap;
     }
-    .nav-logo span { color: var(--blue-lt); }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 28px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
     .nav-links a {
-      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
-      text-transform: uppercase; color: var(--muted);
-      transition: color .2s;
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--white); }
-    .nav-emergency {
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      background: var(--orange); color: #fff;
-      padding: 10px 22px; display: flex; align-items: center; gap: 8px;
-      transition: background .2s;
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.2s;
     }
-    .nav-emergency:hover { background: var(--orange-lt); }
+    .nav-cta:hover { background: var(--accent-dark) !important; }
+    .nav-mobile-cta { display: none; }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-mobile-cta { display: block; }
+      .nav-mobile-cta a {
+        background: var(--accent);
+        color: var(--white);
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
 
-    /* ── HERO ─────────────────────────────────────────────── */
+    /* ── HERO ── */
     .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 0 44px; overflow: hidden;
+      position: relative;
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      background: url('https://images.unsplash.com/photo-1603796846097-bee99e4a601f?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80')
-        center/cover no-repeat;
-      animation: kenBurns 22s ease-in-out infinite alternate;
-      transform-origin: center center;
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 100%);
     }
-    @keyframes kenBurns {
-      from { transform: scale(1) translateX(0); }
-      to   { transform: scale(1.1) translateX(2%); }
-    }
-    .hero-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(105deg,
-        rgba(8,12,18,.95) 0%,
-        rgba(8,12,18,.88) 50%,
-        rgba(8,12,18,.6) 100%);
-    }
-    /* Animated blue line accent */
-    .hero-bg::before {
-      content: ''; position: absolute;
-      left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(to bottom, transparent, var(--blue), var(--blue-lt), transparent);
+    .hero-content {
+      position: relative;
       z-index: 1;
-    }
-    .hero-inner {
-      position: relative; z-index: 2;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 60px; align-items: center;
-      max-width: 1200px; width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      width: 100%;
     }
     .hero-eyebrow {
-      font-size: 11px; font-weight: 500; letter-spacing: 5px;
-      text-transform: uppercase; color: var(--blue-lt);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #67e8f9;
       margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
     }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 2px;
-      background: var(--blue-lt);
-    }
-    .hero-h1 {
-      font-family: var(--serif);
-      font-size: clamp(72px, 11vw, 140px);
-      font-weight: 900; line-height: .88;
-      letter-spacing: -1px; text-transform: uppercase;
-      color: var(--white); margin-bottom: 24px;
-    }
-    .hero-h1 em {
-      font-style: normal; color: var(--blue-lt);
-      display: block;
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      max-width: 600px;
+      margin-bottom: 18px;
     }
     .hero-sub {
-      font-size: 16px; font-weight: 300; line-height: 1.7;
-      color: var(--muted); max-width: 440px; margin-bottom: 44px;
+      font-size: 17px;
+      color: rgba(255,255,255,0.85);
+      max-width: 500px;
+      margin-bottom: 36px;
+      line-height: 1.65;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
     .btn-primary {
-      font-family: var(--serif); font-size: 14px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      background: var(--blue); color: #fff;
-      padding: 16px 36px; display: inline-block;
-      transition: background .2s, transform .15s;
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
     }
-    .btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); }
-    .btn-ghost {
-      font-family: var(--serif); font-size: 14px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      background: transparent; color: var(--white);
-      padding: 16px 36px; border: 1px solid var(--border);
-      display: inline-block; transition: border-color .2s, color .2s;
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
     }
-    .btn-ghost:hover { border-color: var(--blue-lt); color: var(--blue-lt); }
-    /* Emergency call card */
-    .hero-cta-card {
-      background: var(--navy); border: 1px solid var(--border);
-      padding: 36px 32px; min-width: 260px;
-      position: relative; overflow: hidden;
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .hero-cta-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: var(--orange);
-    }
-    .cta-card-label {
-      font-size: 10px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 12px;
-    }
-    .cta-card-title {
-      font-family: var(--serif); font-size: 28px; font-weight: 800;
-      line-height: 1.1; margin-bottom: 20px; text-transform: uppercase;
-    }
-    .cta-card-phone {
-      font-family: var(--serif); font-size: 30px; font-weight: 900;
-      color: var(--white); display: block; margin-bottom: 18px;
-      letter-spacing: -.5px;
-    }
-    .pulse-btn {
-      display: block; width: 100%;
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: var(--orange); color: #fff;
-      padding: 14px 20px; text-align: center;
-      animation: pulseGlow 2.5s ease-in-out infinite;
-      transition: background .2s;
-    }
-    .pulse-btn:hover { background: var(--orange-lt); animation: none; }
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,.5); }
-      50%       { box-shadow: 0 0 0 12px rgba(234,88,12,0); }
+    .badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
     }
 
-    /* ── STATS STRIP ──────────────────────────────────────── */
-    .stats {
-      background: var(--navy); border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 40px 44px;
-      display: flex; justify-content: center; gap: 0;
+    /* ── SECTIONS ── */
+    section { padding: 72px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
     }
-    .stat {
-      flex: 1; text-align: center; padding: 0 24px;
-      border-right: 1px solid var(--border);
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.2;
     }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--serif); font-size: 52px; font-weight: 900;
-      line-height: 1; color: var(--blue-lt); letter-spacing: -1px;
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 48px;
+    }
+
+    /* ── SERVICES GRID ── */
+    .services-section { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+    .service-card-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .service-card-body {
+      padding: 20px;
+    }
+    .service-card-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .service-card-body p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .service-card-body a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .service-card-body a:hover { text-decoration: underline; }
+
+    /* ── STATS ── */
+    .stats-section {
+      background: var(--accent);
+      padding: 56px 24px;
+    }
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
       margin-bottom: 6px;
     }
     .stat-label {
-      font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
     }
 
-    /* ── SERVICES ─────────────────────────────────────────── */
-    .services { padding: 100px 44px; }
-    .section-header { margin-bottom: 60px; }
-    .section-tag {
-      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--blue-lt); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
+    /* ── AREAS ── */
+    .areas-section { background: var(--body-bg); }
+    .areas-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .section-tag::before {
-      content: ''; display: block; width: 28px; height: 2px; background: var(--blue-lt);
+    .area-pill {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color 0.2s, color 0.2s;
     }
-    .section-h2 {
-      font-family: var(--serif); font-size: clamp(44px, 7vw, 80px);
-      font-weight: 900; line-height: .9; text-transform: uppercase;
+    .area-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── CTA BAND ── */
+    .cta-section {
+      background: var(--nav-bg);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
       color: var(--white);
+      margin-bottom: 14px;
     }
-    .section-h2 span { color: var(--blue-lt); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .svc-card {
-      background: var(--card); padding: 40px 36px;
-      border-left: 2px solid transparent;
-      transition: border-color .25s, background .25s, transform .2s;
-      cursor: default; position: relative; overflow: hidden;
-    }
-    .svc-card::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--blue-gl); opacity: 0; transition: opacity .25s;
-    }
-    .svc-card:hover { border-left-color: var(--blue-lt); background: #141e2d; }
-    .svc-card:hover::after { opacity: 1; }
-    .svc-card:hover { transform: translateX(4px); }
-    .svc-icon {
-      font-size: 36px; margin-bottom: 20px; display: block;
-    }
-    .svc-num {
-      position: absolute; top: 20px; right: 24px;
-      font-family: var(--serif); font-size: 64px; font-weight: 900;
-      color: rgba(30,77,216,.08); line-height: 1;
-    }
-    .svc-title {
-      font-family: var(--serif); font-size: 28px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); margin-bottom: 12px;
-    }
-    .svc-desc {
-      font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .svc-link {
-      font-size: 11px; font-weight: 500; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--blue-lt);
-      display: flex; align-items: center; gap: 6px;
-      transition: gap .2s;
-    }
-    .svc-card:hover .svc-link { gap: 10px; }
 
-    /* ── PROCESS SECTION ─────────────────────────────────────── */
-    .process {
-      background: var(--card);
-      padding: 96px 44px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .process-grid {
-      max-width: 1200px; margin: 56px auto 0;
+    /* ── CONTACT FORM ── */
+    .contact-section { background: var(--white); }
+    .contact-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
     }
-    .process-step {
-      background: var(--navy);
-      padding: 48px 36px;
-      position: relative;
-      border-top: 2px solid var(--border);
-      transition: border-color 0.25s;
+    .contact-info h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 14px;
     }
-    .process-step:hover { border-top-color: var(--blue-lt); }
-    .process-connector {
-      position: absolute;
-      top: 50px; right: -1px;
-      width: 2px; height: 40px;
-      background: var(--border);
+    .contact-info p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.65;
     }
-    .process-step:last-child .process-connector { display: none; }
-    .process-step-num {
-      font-family: var(--serif);
-      font-size: 5.5rem; font-weight: 900;
-      color: rgba(59,130,246,0.07);
-      line-height: 1; margin-bottom: -14px;
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 12px;
     }
-    .process-step-icon {
-      font-size: 2rem; margin-bottom: 16px; display: block;
+    .contact-detail svg { flex-shrink: 0; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-    .process-step-title {
-      font-family: var(--serif);
-      font-size: 1.4rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: var(--white); margin-bottom: 12px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
     }
-    .process-step-desc {
-      font-size: 14px; font-weight: 300;
-      line-height: 1.75; color: var(--muted);
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
     }
-    @media (max-width: 960px) {
-      .process { padding: 60px 20px; }
-      .process-grid { grid-template-columns: 1fr; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(8,145,178,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--accent-dark); }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
-    /* ── EMERGENCY BAND ───────────────────────────────────── */
-    .emergency-band {
-      position: relative; overflow: hidden;
-      background: var(--orange);
-      padding: 72px 44px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; flex-wrap: wrap;
+    /* ── FOOTER ── */
+    footer {
+      background: var(--nav-bg);
+      padding: 56px 24px 32px;
+      color: rgba(255,255,255,0.7);
     }
-    .emergency-band::before {
-      content: '›'; position: absolute; right: -20px; top: 50%;
-      transform: translateY(-50%);
-      font-size: 320px; opacity: .06; line-height: 1;
-      pointer-events: none;
-    }
-    .emg-left h2 {
-      font-family: var(--serif); font-size: clamp(40px, 6vw, 72px);
-      font-weight: 900; text-transform: uppercase;
-      line-height: .9; color: #fff; margin-bottom: 12px;
-    }
-    .emg-left p {
-      font-size: 15px; font-weight: 300; color: rgba(255,255,255,.8);
-    }
-    .emg-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
-    .emg-phone {
-      font-family: var(--serif); font-size: 48px; font-weight: 900;
-      color: #fff; letter-spacing: -1px; line-height: 1;
-    }
-    .btn-white {
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: #fff; color: var(--orange);
-      padding: 16px 36px; display: inline-block;
-      transition: background .2s, color .2s;
-    }
-    .btn-white:hover { background: var(--ink); color: #fff; }
-
-    /* ── PHOTO CTA BAND ──────────────────────────────────────── */
-    .photo-cta-band {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-    }
-    .photo-cta-bg {
-      position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1583845112203-29329902332e?w=1800&q=80') center/cover no-repeat;
-      transform: scale(1.05);
-      transition: transform 8s ease;
-    }
-    .photo-cta-band:hover .photo-cta-bg { transform: scale(1); }
-    .photo-cta-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right,
-        rgba(8,12,18,0.92) 0%,
-        rgba(8,12,18,0.7) 55%,
-        rgba(8,12,18,0.5) 100%);
-    }
-    .photo-cta-inner {
-      position: relative; z-index: 2;
-      height: 100%;
-      display: flex; align-items: center;
-      padding: 0 80px;
-      max-width: 1200px;
+    .footer-grid {
+      max-width: 1100px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
     }
-    .photo-cta-content { max-width: 520px; }
-    .photo-cta-label {
-      font-size: 10px; font-weight: 500; letter-spacing: 5px;
-      text-transform: uppercase; color: var(--orange-lt); margin-bottom: 20px;
+    .footer-brand-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
     }
-    .photo-cta-headline {
-      font-family: var(--serif);
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 900; text-transform: uppercase;
-      line-height: 0.9; color: var(--white);
-      margin-bottom: 24px;
+    .footer-brand-name span { color: var(--accent); }
+    .footer-brand-desc {
+      font-size: 14px;
+      line-height: 1.65;
     }
-    .photo-cta-sub {
-      font-size: 15px; font-weight: 300;
-      color: rgba(240,246,255,0.7); line-height: 1.7;
-      margin-bottom: 36px; max-width: 400px;
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 16px;
     }
-    .photo-cta-phone {
-      font-family: var(--serif); font-size: 48px; font-weight: 900;
-      color: var(--white); letter-spacing: -1px;
-      display: block; margin-bottom: 20px;
-      text-decoration: none; transition: color 0.2s;
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 9px; }
+    .footer-col ul li a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.2s;
     }
-    .photo-cta-phone:hover { color: var(--orange-lt); }
-    @media (max-width: 960px) {
-      .photo-cta-band { height: auto; }
-      .photo-cta-inner { padding: 80px 24px; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-contact-item {
+      font-size: 14px;
+      margin-bottom: 9px;
+      display: flex;
+      gap: 8px;
     }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--white); }
+    .gs-credit { color: rgba(255,255,255,0.45); }
+    .gs-credit a { color: rgba(255,255,255,0.65); text-decoration: underline; }
 
-    /* ── WHY US ───────────────────────────────────────────── */
-    .why { background: var(--navy); padding: 100px 44px; }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 60px;
-    }
-    .why-item {
-      background: var(--card); padding: 44px 36px;
-      border-top: 2px solid var(--border);
-      transition: border-color .2s;
-    }
-    .why-item:hover { border-top-color: var(--blue-lt); }
-    .why-num {
-      font-family: var(--serif); font-size: 88px; font-weight: 900;
-      color: rgba(59,130,246,.08); line-height: 1; margin-bottom: -16px;
-    }
-    .why-title {
-      font-family: var(--serif); font-size: 22px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); margin-bottom: 12px;
-    }
-    .why-desc {
-      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
-    }
-
-    /* ── TESTIMONIALS ─────────────────────────────────────── */
-    .reviews { background: var(--ink); padding: 100px 44px; border-top: 1px solid var(--border); }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-      margin-top: 60px;
-    }
-    .review-card {
-      background: var(--card); padding: 40px 32px;
-      border-top: 3px solid transparent;
-      transition: border-color .25s;
-    }
-    .review-card:hover { border-top-color: var(--blue-lt); }
-    .review-stars { color: #facc15; font-size: 16px; margin-bottom: 18px; letter-spacing: 2px; }
-    .review-text {
-      font-size: 14.5px; font-weight: 300; line-height: 1.8;
-      color: rgba(240,246,255,.65); margin-bottom: 24px; font-style: italic;
-    }
-    .review-author {
-      font-family: var(--serif); font-size: 15px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
-    }
-    .review-loc {
-      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--muted); margin-top: 3px;
-    }
-    @media (max-width: 960px) { .reviews-grid { grid-template-columns: 1fr; } .reviews { padding: 60px 20px; } }
-
-    /* ── TRUST BADGES ─────────────────────────────────────── */
-    .trust {
-      padding: 56px 44px;
-      display: flex; justify-content: center;
-      gap: 60px; flex-wrap: wrap;
-      border-bottom: 1px solid var(--border);
-    }
-    .trust-item { text-align: center; }
-    .trust-icon { font-size: 28px; margin-bottom: 10px; }
-    .trust-label {
-      font-family: var(--serif); font-size: 16px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); margin-bottom: 3px;
-    }
-    .trust-sub {
-      font-size: 11px; font-weight: 300; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--muted);
-    }
-
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer { background: var(--navy); padding: 80px 44px 44px; }
-    .foot-top {
-      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 48px; padding-bottom: 60px;
-      border-bottom: 1px solid var(--border); margin-bottom: 36px;
-    }
-    .foot-brand {
-      font-family: var(--serif); font-size: 36px; font-weight: 900;
-      text-transform: uppercase; letter-spacing: .5px; line-height: 1;
-    }
-    .foot-brand span { color: var(--blue-lt); }
-    .foot-brand sub {
-      display: block; font-size: 10px; font-weight: 400; letter-spacing: 3px;
-      color: var(--muted); margin-top: 8px; text-transform: uppercase;
-    }
-    .foot-col-head {
-      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
-    }
-    .foot-info {
-      font-size: 13.5px; font-weight: 300;
-      color: rgba(240,246,255,.4); line-height: 2.1;
-    }
-    .foot-info a { color: rgba(240,246,255,.4); transition: color .2s; }
-    .foot-info a:hover { color: var(--blue-lt); }
-    .foot-cta {
-      display: inline-block;
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: var(--blue); color: #fff; padding: 15px 30px;
-      transition: background .2s;
-    }
-    .foot-cta:hover { background: var(--blue-lt); }
-    .foot-cta-note {
-      font-size: 12px; font-weight: 300; color: var(--muted);
-      margin-top: 12px; line-height: 1.6;
-    }
-    .foot-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 10px;
-    }
-    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(240,246,255,.2); }
-    .foot-copy a { color: var(--blue-lt); font-weight: 500; }
-
-    /* ── ANIMATIONS / SCROLL REVEAL ───────────────────────── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 960px) {
-      .nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero { padding: 0 20px; min-height: auto; padding-top: 120px; padding-bottom: 60px; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-cta-card { max-width: 340px; }
-      .stats { padding: 32px 20px; gap: 0; flex-wrap: wrap; }
-      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
-      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
-      .services { padding: 60px 20px; }
-      .services-grid { grid-template-columns: 1fr; gap: 2px; }
-      .why { padding: 60px 20px; }
-      .why-grid { grid-template-columns: 1fr; }
-      .emergency-band { padding: 56px 24px; }
-      .foot-top { grid-template-columns: 1fr; gap: 32px; }
-      .trust { gap: 32px; padding: 48px 24px; }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
   <!-- DEMO BANNER -->
-  <div class="demo-bar">
-    This is a demo site — an example of what your business could look like.&nbsp;
-    <a href="index.html">Built by Groundwork Studio →</a>
+  <div class="demo-banner">
+    Demo site built by <a href="https://groundworkstudio.co" target="_blank">Groundwork Studio</a> · groundworkstudio.co &nbsp;—&nbsp; Want a site like this? <a href="https://groundworkstudio.co" target="_blank">Let's talk →</a>
   </div>
 
   <!-- NAV -->
-  <nav class="nav" id="siteNav">
-    <div class="nav-logo">Valley Pro<span>.</span></div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#why">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a href="tel:+16025550184" class="nav-emergency"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline-block;vertical-align:middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> (602) 555-0184</a>
+  <nav>
+    <div class="nav-logo">FlowRight <span>Plumbing</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">📅 Schedule Service</a></li>
+    </ul>
+    <div class="nav-mobile-cta">
+      <a href="#contact">📅 Schedule</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-inner">
-      <div>
-        <p class="hero-eyebrow">Phoenix, Arizona — Est. 2009</p>
-        <h1 class="hero-h1">
-          Phoenix's<br>
-          <em>Trusted</em><br>
-          Plumbers.
-        </h1>
-        <p class="hero-sub">Available 7 days a week for repairs, installs, and emergency calls across the entire Phoenix metro. We show up — fast.</p>
-        <div class="hero-actions">
-          <a href="tel:+16025550184" class="btn-primary">Call Now</a>
-          <a href="#services" class="btn-ghost">Our Services</a>
-        </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Phoenix, AZ · Licensed & Insured</p>
+      <h1>Fast, Reliable Plumbing Service</h1>
+      <p class="hero-sub">Drain cleaning, pipe repair, water heaters, and emergency plumbing — Phoenix's go-to plumbers.</p>
+      <div class="hero-ctas">
+        <a href="tel:6025550193" class="btn-primary">📞 Call (602) 555-0193</a>
+        <a href="#contact" class="btn-outline">📅 Schedule Service</a>
       </div>
-      <div class="hero-cta-card">
-        <p class="cta-card-label">24 / 7 Emergency Line</p>
-        <h3 class="cta-card-title">Need a Plumber Right Now?</h3>
-        <a href="tel:+16025550184" class="cta-card-phone">(602) 555-0184</a>
-        <a href="tel:+16025550184" class="pulse-btn">Call Emergency Line →</a>
+      <div class="hero-badges">
+        <span class="badge">✓ Licensed & Insured</span>
+        <span class="badge">✓ 24/7 Emergency</span>
+        <span class="badge">✓ Upfront Pricing</span>
+        <span class="badge">✓ Same-Day Service</span>
       </div>
     </div>
   </section>
 
-  <main>
-
-    <!-- STATS -->
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num" data-target="24">24</div>
-        <div class="stat-label">Hours a Day</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" data-target="7">7</div>
-        <div class="stat-label">Days a Week</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" data-target="15">15</div>
-        <div class="stat-label">Years in Phoenix</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" data-target="100">100</div>
-        <div class="stat-label">% Licensed &amp; Insured</div>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <section class="services" id="services">
-      <div class="section-header reveal">
-        <p class="section-tag">What We Handle</p>
-        <h2 class="section-h2">Every Job.<br><span>Done Right.</span></h2>
-      </div>
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Plumbing Services in Phoenix</h2>
+      <p class="section-sub">From clogged drains to full pipe replacements, we handle every plumbing job fast and right.</p>
       <div class="services-grid">
-        <div class="svc-card reveal">
-          <span class="svc-num">01</span>
-          <span class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-          <h3 class="svc-title">Drain Cleaning</h3>
-          <p class="svc-desc">Clogged or slow drains cleared fast using professional-grade equipment. Same-day service available across Phoenix.</p>
-          <a href="tel:+16025550184" class="svc-link">Book a Call → </a>
+        <div class="service-card">
+          <img class="service-card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Drain Cleaning">
+          <div class="service-card-body">
+            <h3>Drain Cleaning</h3>
+            <p>Slow or clogged drains cleared fast using professional-grade equipment — no guesswork.</p>
+            <a href="#contact">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal">
-          <span class="svc-num">02</span>
-          <span class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
-          <h3 class="svc-title">Water Heater Install</h3>
-          <p class="svc-desc">Repair or replace — all makes and models, including tankless. Upfront pricing, no surprises.</p>
-          <a href="tel:+16025550184" class="svc-link">Book a Call → </a>
+        <div class="service-card">
+          <img class="service-card-img" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=600&q=80" alt="Pipe Repair & Replacement">
+          <div class="service-card-body">
+            <h3>Pipe Repair & Replacement</h3>
+            <p>Leak detection and full pipe repairs for homes and businesses, done with minimal disruption.</p>
+            <a href="#contact">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal">
-          <span class="svc-num">03</span>
-          <span class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
-          <h3 class="svc-title">Leak Repair</h3>
-          <p class="svc-desc">Burst pipes, fixture leaks, slab leaks. We find it and fix it — no guesswork, no callbacks.</p>
-          <a href="tel:+16025550184" class="svc-link">Book a Call → </a>
+        <div class="service-card">
+          <img class="service-card-img" src="https://images.unsplash.com/photo-1521791055366-0d553872952f?auto=format&fit=crop&w=600&q=80" alt="Water Heater Service">
+          <div class="service-card-body">
+            <h3>Water Heater Service</h3>
+            <p>Water heater repair, replacement, and installation — including tankless units.</p>
+            <a href="#contact">Learn More →</a>
+          </div>
         </div>
-        <div class="svc-card reveal">
-          <span class="svc-num">04</span>
-          <span class="svc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-          <h3 class="svc-title">Emergency Plumbing</h3>
-          <p class="svc-desc">24/7 same-day response across Phoenix. When water can't wait, neither do we.</p>
-          <a href="tel:+16025550184" class="svc-link">Call Now → </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="process">
-      <div class="section-header reveal" style="max-width:1200px;margin:0 auto;">
-        <p class="section-tag">Simple &amp; Straightforward</p>
-        <h2 class="section-h2">How It<br><span>Works.</span></h2>
-      </div>
-      <div class="process-grid">
-        <div class="process-step reveal">
-          <div class="process-connector"></div>
-          <div class="process-step-num">01</div>
-          <span class="process-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.44 2 2 0 0 1 3.56 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6 6l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <h3 class="process-step-title">Call or Book Online</h3>
-          <p class="process-step-desc">Reach us any time — we answer 24/7. Tell us what's wrong and we'll get a technician on the way fast, no runaround.</p>
-        </div>
-        <div class="process-step reveal" style="transition-delay:0.12s">
-          <div class="process-connector"></div>
-          <div class="process-step-num">02</div>
-          <span class="process-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-          <h3 class="process-step-title">Diagnose &amp; Quote</h3>
-          <p class="process-step-desc">Our licensed plumber arrives, identifies the problem completely, and gives you a flat-rate price before any work begins. No surprises.</p>
-        </div>
-        <div class="process-step reveal" style="transition-delay:0.24s">
-          <div class="process-step-num">03</div>
-          <span class="process-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <h3 class="process-step-title">Fixed Right. Done Fast.</h3>
-          <p class="process-step-desc">We complete the repair or install cleanly and efficiently. Most jobs are wrapped same day — you get a working system and a clear invoice.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHOTO CTA BAND -->
-    <div class="photo-cta-band">
-      <div class="photo-cta-bg"></div>
-      <div class="photo-cta-overlay"></div>
-      <div class="photo-cta-inner">
-        <div class="photo-cta-content reveal">
-          <p class="photo-cta-label">24 / 7 Emergency Response</p>
-          <h2 class="photo-cta-headline">Plumbing<br>Emergency?</h2>
-          <p class="photo-cta-sub">We answer every call. Day or night, weekends included. Our licensed technicians are across the Phoenix metro and ready to respond fast.</p>
-          <a href="tel:+16025550184" class="photo-cta-phone">(602) 555-0184</a>
-          <a href="tel:+16025550184" class="btn-primary">Call Now — We're Ready</a>
+        <div class="service-card">
+          <img class="service-card-img" src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?auto=format&fit=crop&w=600&q=80" alt="Emergency Plumbing">
+          <div class="service-card-body">
+            <h3>Emergency Plumbing</h3>
+            <p>Burst pipes, major leaks, sewage backups — we respond 24/7 so you're never left waiting.</p>
+            <a href="#contact">Learn More →</a>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- WHY US -->
-    <section class="why" id="why">
-      <div class="section-header reveal">
-        <p class="section-tag">Why Valley Pro</p>
-        <h2 class="section-h2">Why Phoenix<br><span>Trusts Us.</span></h2>
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">600+</div>
+        <div class="stat-label">Jobs Completed</div>
       </div>
-      <div class="why-grid">
-        <div class="why-item reveal">
-          <div class="why-num">01</div>
-          <h3 class="why-title">Licensed &amp; Insured in Arizona</h3>
-          <p class="why-desc">Fully licensed, bonded, and insured. Every technician is background-checked and certified. You're protected — always.</p>
-        </div>
-        <div class="why-item reveal">
-          <div class="why-num">02</div>
-          <h3 class="why-title">Same-Day Service Available</h3>
-          <p class="why-desc">Most jobs are scheduled and completed the same day you call. We don't make you wait a week for hot water.</p>
-        </div>
-        <div class="why-item reveal">
-          <div class="why-num">03</div>
-          <h3 class="why-title">Serving Phoenix Since 2009</h3>
-          <p class="why-desc">15+ years in the Valley. We know Phoenix plumbing inside out — the pipes, the heat, the problems that come with it.</p>
-        </div>
+      <div class="stat-item">
+        <div class="stat-number">5★</div>
+        <div class="stat-label">Average Rating</div>
       </div>
-    </section>
-
-    <!-- ============================================================
-     MEET THE TEAM
-     ============================================================ -->
-<section style="padding:72px 24px;background:#f9fafb;border-top:1px solid #e5e7eb;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#2563eb;text-transform:uppercase;margin-bottom:8px;">Our People</div>
-    <h2 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:8px;">Meet the Team</h2>
-    <p style="font-size:15px;color:#6b7280;margin-bottom:48px;max-width:520px;">Licensed master plumbers and service pros who show up on time and do the job right.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;">
-
-      <div style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
-        <div style="height:220px;background:url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&q=80') center/cover no-repeat;"></div>
-        <div style="padding:20px;">
-          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:2px;">Dave Reyes</div>
-          <div style="font-size:12px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Master Plumber</div>
-          <p style="font-size:13px;color:#6b7280;line-height:1.6;margin:0;">18 years in the trade, licensed in Arizona. Specializes in whole-home repiping and slab leak repairs.</p>
-        </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Emergency Available</div>
       </div>
-
-      <div style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
-        <div style="height:220px;background:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80') center/cover no-repeat;"></div>
-        <div style="padding:20px;">
-          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:2px;">Tony Garza</div>
-          <div style="font-size:12px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Service Technician</div>
-          <p style="font-size:13px;color:#6b7280;line-height:1.6;margin:0;">Quick, clean, professional. Tony handles emergency calls and drain service — usually same day.</p>
-        </div>
-      </div>
-
-      <div style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
-        <div style="height:220px;background:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80') center/cover no-repeat;"></div>
-        <div style="padding:20px;">
-          <div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:2px;">Sandra Kim</div>
-          <div style="font-size:12px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Office Manager</div>
-          <p style="font-size:13px;color:#6b7280;line-height:1.6;margin:0;">Handles scheduling, estimates, and follow-ups. The reason everything runs on time.</p>
-        </div>
-      </div>
-
     </div>
   </div>
-</section>
 
-    <!-- TESTIMONIALS -->
-    <section class="reviews">
-      <div class="section-header reveal">
-        <p class="section-tag">What Customers Say</p>
-        <h2 class="section-h2">Real Reviews.<br><span>Real Phoenix Homes.</span></h2>
-      </div>
-      <div class="reviews-grid">
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Called at 11pm with a burst pipe flooding my kitchen. They picked up immediately and had someone at my door within 45 minutes. Saved my floors. Can't recommend these guys enough."</p>
-          <div class="review-author">Mike T.</div>
-          <div class="review-loc">Ahwatukee · Google Review</div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Finally a plumber who gives you a real price before starting. No hidden fees, showed up on time, fixed our water heater same day. This is our go-to from now on."</p>
-          <div class="review-author">Sandra &amp; Rob K.</div>
-          <div class="review-loc">Chandler · Google Review</div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Had a slab leak that two other plumbers couldn't find. Valley Pro located it in 20 minutes and had it repaired the same afternoon. Professional, clean, and fair priced."</p>
-          <div class="review-author">David H.</div>
-          <div class="review-loc">Tempe · Google Review</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST STRIP -->
-    <div class="trust">
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="trust-label">Licensed</div>
-        <div class="trust-sub">State of Arizona</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="trust-label">Bonded</div>
-        <div class="trust-sub">Fully Protected</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline-block;vertical-align:middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div class="trust-label">Same-Day</div>
-        <div class="trust-sub">Service Available</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.59 3.44 2 2 0 0 1 3.56 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6 6l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div class="trust-label">24 / 7</div>
-        <div class="trust-sub">Emergency Line</div>
+  <!-- AREAS -->
+  <section class="areas-section" id="areas">
+    <div class="container">
+      <p class="section-label">Coverage</p>
+      <h2 class="section-title">Areas We Serve</h2>
+      <p class="section-sub">Serving Phoenix and the surrounding West Valley communities.</p>
+      <div class="areas-grid">
+        <span class="area-pill">📍 Phoenix</span>
+        <span class="area-pill">📍 Glendale</span>
+        <span class="area-pill">📍 Peoria</span>
+        <span class="area-pill">📍 Surprise</span>
+        <span class="area-pill">📍 Avondale</span>
+        <span class="area-pill">📍 Goodyear</span>
       </div>
     </div>
+  </section>
 
-  </main>
+  <!-- CTA BAND -->
+  <div class="cta-section">
+    <div class="container">
+      <h2>Got a Plumbing Problem? We Can Help Today.</h2>
+      <p>Don't let a small leak turn into a big repair bill. Call now or schedule online — fast response guaranteed.</p>
+      <a href="#contact" class="btn-primary">📅 Schedule Service</a>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="section-label">Get In Touch</p>
+          <h2 class="section-title">Schedule Your Service</h2>
+          <p>Fill out the form and we'll reach back out within one business hour. Emergency? Call us directly — we answer 24/7.</p>
+          <div class="contact-detail">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.13 1 .37 1.97.71 2.9a2 2 0 01-.45 2.11L6.09 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.93.34 1.9.58 2.9.71a2 2 0 011.72 2.02z"/></svg>
+            <a href="tel:6025550193">(602) 555-0193</a>
+          </div>
+          <div class="contact-detail">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>service@flowrightplumbing.com</span>
+          </div>
+          <div class="contact-detail">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon–Sun · 7am – 9pm · 24/7 Emergency Line</span>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="John">
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Smith">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="(602) 555-0000">
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="john@email.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="service">Service Needed</label>
+              <select id="service">
+                <option value="">— Select a service —</option>
+                <option>Drain Cleaning</option>
+                <option>Pipe Repair & Replacement</option>
+                <option>Water Heater Service</option>
+                <option>Emergency Plumbing</option>
+                <option>General Plumbing</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell Us More (Optional)</label>
+              <textarea id="message" placeholder="Describe the issue or any details that might help our plumber…"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">📅 Request Appointment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer id="contact">
-    <div class="foot-top">
+  <footer>
+    <div class="footer-grid">
       <div>
-        <div class="foot-brand">
-          Valley Pro<span>.</span>
-          <sub>Phoenix Plumbing Since 2009</sub>
-        </div>
+        <div class="footer-brand-name">FlowRight <span>Plumbing</span></div>
+        <p class="footer-brand-desc">Phoenix's fast, reliable plumbers. Licensed, insured, and available 24/7 for emergencies across the Valley.</p>
       </div>
-      <div>
-        <p class="foot-col-head">Find Us</p>
-        <div class="foot-info">
-          4820 N 35th Ave<br>
-          Phoenix, AZ 85017<br>
-          <a href="tel:+16025550184">(602) 555-0184</a><br>
-          <a href="mailto:info@valleyproplumbing.com">info@valleyproplumbing.com</a>
-        </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Drain Cleaning</a></li>
+          <li><a href="#services">Pipe Repair & Replacement</a></li>
+          <li><a href="#services">Water Heater Service</a></li>
+          <li><a href="#services">Emergency Plumbing</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+        </ul>
       </div>
-      <div>
-        <p class="foot-col-head">Get a Quote</p>
-        <a href="mailto:evan@teamground.work?subject=Website%20Quote%20Request" class="foot-cta">
-          Free Estimate →
-        </a>
-        <p class="foot-cta-note">No commitment. We'll call you<br>back within the hour.</p>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">📞 <a href="tel:6025550193" style="color:inherit">(602) 555-0193</a></div>
+        <div class="footer-contact-item">✉️ service@flowrightplumbing.com</div>
+        <div class="footer-contact-item">📍 Phoenix, AZ &amp; West Valley</div>
+        <div class="footer-contact-item">⏰ 24/7 Emergency Available</div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
-      <p class="foot-copy">© 2026 Valley Pro Plumbing</p>
+    <div class="footer-bottom">
+      <span>© 2025 FlowRight Plumbing · Phoenix, AZ</span>
+      <span class="gs-credit">Demo site built by <a href="https://groundworkstudio.co" target="_blank">Groundwork Studio</a></span>
     </div>
   </footer>
-
-  <script>
-    // Nav solid on scroll
-    const nav = document.getElementById('siteNav');
-    const banner = document.querySelector('.demo-bar');
-    function updateNav() {
-      const y = window.scrollY;
-      nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
-      nav.classList.toggle('solid', y > 80);
-    }
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
-
-    // Animated stat counters
-    const statNums = document.querySelectorAll('.stat-num[data-target]');
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = +el.dataset.target;
-        const duration = 1600;
-        const start = performance.now();
-        function tick(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          // Ease out cubic
-          const ease = 1 - Math.pow(1 - progress, 3);
-          const current = Math.round(ease * target);
-          el.textContent = current;
-          if (progress < 1) requestAnimationFrame(tick);
-          else el.textContent = target;
-        }
-        el.textContent = '0';
-        requestAnimationFrame(tick);
-        counterObserver.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-    statNums.forEach(el => counterObserver.observe(el));
-  </script>
 
 </body>
 </html>
