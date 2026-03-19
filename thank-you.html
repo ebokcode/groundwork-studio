@@ -22,13 +22,15 @@
     .back:hover { background: #15803d; }
     .contact { margin-top: 20px; font-size: 13px; color: #9ca3af; }
     .contact a { color: #6b7280; text-decoration: none; }
-    .logo { font-size: 16px; font-weight: 800; color: #111827; margin-bottom: 32px; }
-    .logo span { color: #16a34a; }
+    .logo { display:flex; align-items:baseline; gap:0; margin-bottom: 32px; line-height:1; }
+    .logo .g { font-family:Georgia,'Times New Roman',serif; font-size:20px; font-weight:700; color:#16a34a; }
+    .logo .w { font-family:Georgia,'Times New Roman',serif; font-size:20px; font-weight:400; color:#111827; }
+    .logo .s { font-family:-apple-system,sans-serif; font-size:9px; color:#9ca3af; letter-spacing:3px; margin-left:5px; align-self:center; }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="logo">Groundwork<span>.</span></div>
+    <div class="logo"><span class="g">Ground</span><span class="w">work</span><span class="s">STUDIO</span></div>
     <div class="icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12" />
