@@ -538,6 +538,196 @@
     .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(237,229,207,.2); }
     .foot-copy a { color: var(--sage-lt); font-weight: 500; }
 
+    /* ── TESTIMONIALS (Tier 3) ───────────────────────────── */
+    .testimonials-ls {
+      background: #131a14; padding: 100px 60px;
+      border-top: 1px solid rgba(141,160,106,.08);
+    }
+    .testimonials-ls .section-label { justify-content: flex-start; }
+    .testi-ls-head { margin-bottom: 56px; }
+    .testi-ls-h2 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.5vw, 60px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1.05; margin-bottom: 0;
+    }
+    .testi-ls-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    }
+    .testi-ls-card {
+      background: var(--dark); padding: 44px 36px;
+      border-top: 1px solid rgba(141,160,106,.15);
+      transition: background .3s;
+    }
+    .testi-ls-card:hover { background: #172019; }
+    .testi-ls-stars {
+      color: var(--sage-lt); font-size: 15px; letter-spacing: 3px;
+      margin-bottom: 22px; display: block;
+    }
+    .testi-ls-quote {
+      font-family: var(--serif);
+      font-size: 19px; font-weight: 300; font-style: italic;
+      color: rgba(237,229,207,.75); line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .testi-ls-author {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .testi-ls-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--sage-dk);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,.8); flex-shrink: 0;
+      letter-spacing: .5px;
+    }
+    .testi-ls-name {
+      font-size: 13px; font-weight: 400; color: rgba(237,229,207,.5);
+      letter-spacing: .5px;
+    }
+
+    /* ── FAQ (Tier 3) ────────────────────────────────────── */
+    .faq-ls {
+      background: var(--dark); padding: 100px 60px;
+      border-top: 1px solid rgba(141,160,106,.08);
+    }
+    .faq-ls-head { margin-bottom: 52px; }
+    .faq-ls-h2 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.5vw, 60px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1.05;
+    }
+    .faq-ls-list { max-width: 800px; }
+    .faq-ls-item {
+      border-bottom: 1px solid rgba(141,160,106,.12);
+    }
+    .faq-ls-btn {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      background: none; border: none; color: var(--text);
+      padding: 26px 0; cursor: pointer; text-align: left; gap: 20px;
+    }
+    .faq-ls-q {
+      font-size: 16px; font-weight: 400; color: rgba(237,229,207,.85);
+      line-height: 1.5;
+    }
+    .faq-ls-icon {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 1px solid rgba(141,160,106,.4); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--sage); font-size: 16px; line-height: 1;
+      transition: transform .35s, background .25s;
+    }
+    .faq-ls-item.open .faq-ls-icon {
+      transform: rotate(45deg); background: rgba(141,160,106,.1);
+    }
+    .faq-ls-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s cubic-bezier(.16,1,.3,1), padding .35s;
+    }
+    .faq-ls-item.open .faq-ls-answer {
+      max-height: 300px;
+    }
+    .faq-ls-answer-inner {
+      font-size: 14px; font-weight: 300; color: rgba(237,229,207,.45);
+      line-height: 1.9; padding-bottom: 26px;
+    }
+
+    /* ── FINANCING (Tier 3) ───────────────────────────────── */
+    .financing-ls {
+      background: var(--sage-dk); padding: 80px 60px;
+      position: relative; overflow: hidden;
+    }
+    .financing-ls::before {
+      content: '';
+      position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+      width: 420px; height: 420px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.07); pointer-events: none;
+    }
+    .financing-ls::after {
+      content: '';
+      position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+      width: 260px; height: 260px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.05); pointer-events: none;
+    }
+    .financing-ls-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 48px; align-items: center;
+    }
+    .financing-ls-badge {
+      display: inline-block;
+      font-size: 10px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.1); border-radius: 2px;
+      padding: 6px 14px; margin-bottom: 20px;
+    }
+    .financing-ls-h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1; margin-bottom: 16px;
+    }
+    .financing-ls-p {
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,.65);
+      line-height: 1.75; max-width: 480px;
+    }
+    .financing-ls-cta {
+      flex-shrink: 0;
+    }
+
+    /* ── SPECIALS (Tier 3) ────────────────────────────────── */
+    .specials-ls {
+      background: var(--black); padding: 100px 60px;
+      border-top: 1px solid rgba(141,160,106,.08);
+    }
+    .specials-ls-head { margin-bottom: 52px; }
+    .specials-ls-h2 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.5vw, 60px);
+      font-weight: 300; font-style: italic;
+      color: #fff; line-height: 1.05;
+    }
+    .specials-ls-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    }
+    .special-ls-card {
+      background: var(--dark); padding: 40px 36px;
+      border-top: 2px solid rgba(141,160,106,.2);
+      position: relative; transition: border-top-color .3s, background .3s;
+    }
+    .special-ls-card:hover {
+      border-top-color: var(--sage);
+      background: #131a14;
+    }
+    .special-ls-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--sage);
+      background: rgba(141,160,106,.1); border-radius: 2px;
+      padding: 5px 12px; margin-bottom: 20px;
+    }
+    .special-ls-title {
+      font-family: var(--serif);
+      font-size: 28px; font-weight: 400; font-style: italic;
+      color: #fff; line-height: 1.15; margin-bottom: 12px;
+    }
+    .special-ls-desc {
+      font-size: 13.5px; font-weight: 300; color: rgba(237,229,207,.4);
+      line-height: 1.8;
+    }
+
+    /* ── RESPONSIVE additions ─────────────────────────────── */
+    @media (max-width: 1024px) {
+      .testi-ls-grid { grid-template-columns: 1fr; }
+      .specials-ls-grid { grid-template-columns: 1fr; }
+      .testimonials-ls { padding: 72px 24px; }
+      .faq-ls { padding: 72px 24px; }
+      .financing-ls { padding: 64px 24px; }
+      .financing-ls-inner { grid-template-columns: 1fr; }
+      .specials-ls { padding: 72px 24px; }
+    }
+
     /* ── SCROLL REVEAL ───────────────────────────────────── */
     .reveal {
       opacity: 0; transform: translateY(28px);
@@ -908,6 +1098,130 @@
       </div>
     </section>
 
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-ls" id="testimonials">
+    <div class="testi-ls-head reveal">
+      <p class="section-label">Client Reviews</p>
+      <h2 class="testi-ls-h2">What Our Clients Say.</h2>
+    </div>
+    <div class="testi-ls-grid">
+      <div class="testi-ls-card reveal">
+        <span class="testi-ls-stars">★★★★★</span>
+        <p class="testi-ls-quote">"Desert Grounds completely transformed our backyard. We went from dead grass and overgrown shrubs to a stunning desert garden that our family actually uses. Couldn't be happier."</p>
+        <div class="testi-ls-author">
+          <div class="testi-ls-avatar">MT</div>
+          <div class="testi-ls-name">Maria T. — Tempe</div>
+        </div>
+      </div>
+      <div class="testi-ls-card reveal">
+        <span class="testi-ls-stars">★★★★★</span>
+        <p class="testi-ls-quote">"I've had other landscapers flake on me constantly. Desert Grounds shows up every single week, on time, and does the job right. That reliability alone is worth every penny."</p>
+        <div class="testi-ls-author">
+          <div class="testi-ls-avatar">JR</div>
+          <div class="testi-ls-name">James R. — Chandler</div>
+        </div>
+      </div>
+      <div class="testi-ls-card reveal">
+        <span class="testi-ls-stars">★★★★★</span>
+        <p class="testi-ls-quote">"The seasonal planting they did along our front walk is absolutely beautiful. They selected plants that bloom at different times — we have color year-round now. Exceptional work."</p>
+        <div class="testi-ls-author">
+          <div class="testi-ls-avatar">SK</div>
+          <div class="testi-ls-name">Sandra K. — Gilbert</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-ls" id="faq">
+    <div class="faq-ls-head reveal">
+      <p class="section-label">Common Questions</p>
+      <h2 class="faq-ls-h2">Frequently Asked.</h2>
+    </div>
+    <div class="faq-ls-list reveal">
+
+      <div class="faq-ls-item">
+        <button class="faq-ls-btn" aria-expanded="false">
+          <span class="faq-ls-q">Do you offer free estimates?</span>
+          <span class="faq-ls-icon">+</span>
+        </button>
+        <div class="faq-ls-answer">
+          <div class="faq-ls-answer-inner">Yes — we visit the property in person and provide a detailed, written quote within 48 hours. No pressure, no obligation.</div>
+        </div>
+      </div>
+
+      <div class="faq-ls-item">
+        <button class="faq-ls-btn" aria-expanded="false">
+          <span class="faq-ls-q">What's included in regular maintenance?</span>
+          <span class="faq-ls-icon">+</span>
+        </button>
+        <div class="faq-ls-answer">
+          <div class="faq-ls-answer-inner">Our standard maintenance includes mow, edge, blow, shrub trimming, weed removal, and seasonal fertilizing — everything needed to keep your property looking sharp.</div>
+        </div>
+      </div>
+
+      <div class="faq-ls-item">
+        <button class="faq-ls-btn" aria-expanded="false">
+          <span class="faq-ls-q">Do you handle HOA-compliant landscaping?</span>
+          <span class="faq-ls-icon">+</span>
+        </button>
+        <div class="faq-ls-answer">
+          <div class="faq-ls-answer-inner">Yes — we're familiar with common HOA requirements throughout the Valley and can design and maintain your property within those guidelines without issue.</div>
+        </div>
+      </div>
+
+      <div class="faq-ls-item">
+        <button class="faq-ls-btn" aria-expanded="false">
+          <span class="faq-ls-q">Can you help with drought-resistant landscaping?</span>
+          <span class="faq-ls-icon">+</span>
+        </button>
+        <div class="faq-ls-answer">
+          <div class="faq-ls-answer-inner">Absolutely — desert-adapted plants are our specialty. We design xeriscapes that are low-maintenance, water-efficient, and genuinely beautiful in the Arizona climate.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINANCING -->
+  <section class="financing-ls" id="financing">
+    <div class="financing-ls-inner reveal">
+      <div>
+        <span class="financing-ls-badge">Payment Options</span>
+        <h2 class="financing-ls-h2">Flexible Payment<br>Options.</h2>
+        <p class="financing-ls-p">Big landscaping projects shouldn't wait. We offer 0% financing for 12 months on projects over $2,000. Apply in minutes — no hard credit pull.</p>
+      </div>
+      <div class="financing-ls-cta">
+        <a href="mailto:evan@teamground.work?subject=Financing%20Inquiry" class="btn-white">Check Your Rate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALS -->
+  <section class="specials-ls" id="specials">
+    <div class="specials-ls-head reveal">
+      <p class="section-label">Limited Time</p>
+      <h2 class="specials-ls-h2">Current Offers.</h2>
+    </div>
+    <div class="specials-ls-grid">
+      <div class="special-ls-card reveal">
+        <span class="special-ls-tag">Seasonal Special</span>
+        <div class="special-ls-title">Spring Cleanup<br>Special — $149 flat</div>
+        <p class="special-ls-desc">Full yard cleanup, debris removal, and edge refresh. Get your property ready for spring in one visit.</p>
+      </div>
+      <div class="special-ls-card reveal">
+        <span class="special-ls-tag">New Clients</span>
+        <div class="special-ls-title">New Client<br>Discount — 20% off</div>
+        <p class="special-ls-desc">20% off your first service — valid on any service we offer. New customers only. Mention this offer when booking.</p>
+      </div>
+      <div class="special-ls-card reveal">
+        <span class="special-ls-tag">Referral Reward</span>
+        <div class="special-ls-title">Refer a Neighbor<br>— $50 credit</div>
+        <p class="special-ls-desc">Get $50 off your next invoice for every neighbor you refer. No limit — the more you refer, the more you save.</p>
+      </div>
+    </div>
+  </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -1003,6 +1317,17 @@
     document.querySelectorAll('a, button, .svc-card, img, .proc-card, .gallery-img').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('big'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+    });
+
+    // ── FAQ accordion ──────────────────────────────────────
+    document.querySelectorAll('.faq-ls-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-ls-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-ls-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+        btn.setAttribute('aria-expanded', !isOpen);
+      });
     });
 
     // ── Drag-to-scroll gallery ─────────────────────────────

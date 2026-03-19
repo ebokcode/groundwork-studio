@@ -888,6 +888,107 @@
         text-align: center;
       }
     }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      background: var(--off-white);
+      padding: 96px 24px;
+      border-top: 1px solid rgba(0,21,66,0.06);
+    }
+    .gallery-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--white);
+      padding: 96px 24px;
+    }
+    .faq-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,21,66,0.1);
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy);
+      transition: color 0.2s;
+    }
+    .faq-question:hover {
+      color: var(--gold);
+    }
+    .faq-icon {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.25s;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding-bottom: 20px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 220px;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body>
@@ -1159,6 +1260,84 @@
     </div>
   </div>
 
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-inner">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Project Photos</p>
+        <h2 class="section-title">Recent <span class="accent">Projects</span></h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Electrical panel" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Home exterior" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1489184801738-8a4f9c8e5e89?w=600&q=80" alt="Lighting" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&q=80" alt="Outlet installation" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Office lighting" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1524492412937-b28074a47d70?w=600&q=80" alt="Smart home" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Got Questions?</p>
+        <h2 class="section-title">Common <span class="accent">Questions</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Are you licensed and insured?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes — Volt Electric is fully licensed in the state of Arizona (AZ ROC #280441), and we carry $2 million in general liability coverage. Every technician is also background-checked. You're fully protected on every job.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Do you offer same-day service?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes — for most electrical emergencies we can dispatch same-day. Call our emergency line at (602) 555-0183 and we'll get someone to you as fast as possible, day or night.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What's included in an electrical inspection?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Our full inspection covers the main panel condition, breaker functionality, all outlets and switches, GFCI protection, smoke detector wiring, and an overall load assessment. We give you a written report and flag any safety concerns.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Do you install EV chargers?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes — Level 2 home EV charger installation is one of our most popular services. We handle the dedicated 240V circuit, the charger mount, and the permit. Most installs are completed in a single day.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-grid">
@@ -1241,6 +1420,24 @@
     }, { threshold: 0.5 });
 
     document.querySelectorAll('.stat-count').forEach(el => counterObserver.observe(el));
+
+    // ── FAQ ACCORDION ────────────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          el.querySelector('.faq-icon').textContent = '+';
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.querySelector('.faq-icon').textContent = '−';
+        }
+      });
+    });
   </script>
 </body>
 </html>
