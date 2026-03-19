@@ -1,3 +1,138 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+
+# ── Security Headers ────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# ── Bot probe paths → 404 ───────────────────────────────────────────────────
+# WordPress scanners
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/cms/wp-includes/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/test/wp-includes/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/wordpress/*"
+  to = "/404"
+  status = 404
+  force = true
+
+# Environment & config file probes
+[[redirects]]
+  from = "/.env"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env.*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.git/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/config.php"
+  to = "/404"
+  status = 404
+  force = true
+
+# Auth & payment plugin probes
+[[redirects]]
+  from = "/assets/js/auth.js"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/assets/js/qr_modal.js"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/assets/js/message.js"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/js/twint_ch.js"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/js/lkk_ch.js"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/css/support_parent.css"
+  to = "/404"
+  status = 404
+  force = true
+
+# Common CMS/admin probes
+[[redirects]]
+  from = "/admin/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/phpmyadmin/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/xmlrpc.php"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/shell.php"
+  to = "/404"
+  status = 404
+  force = true
