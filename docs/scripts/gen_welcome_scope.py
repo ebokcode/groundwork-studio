@@ -106,11 +106,13 @@ def story():
 
     # ── HEADER ────────────────────────────────────────────────────────────────
     s += [
-        blank(0.05),
+        blank(0.2),
         Paragraph("Welcome to Groundwork Studio", TITLE),
+        blank(0.12),
         Paragraph("Groundwork Studio AZ LLC  ·  teamground.work  ·  evan@teamground.work  ·  (480) 452-6473", SUB),
+        blank(0.18),
         hr(GS_GREEN, 1.5),
-        blank(0.05),
+        blank(0.15),
     ]
 
     # ── WELCOME NOTE ──────────────────────────────────────────────────────────

@@ -56,13 +56,16 @@ def story():
 
     # ── HEADER ────────────────────────────────────────────────────────────────
     s += [
-        blank(0.1),
+        blank(0.2),
         Paragraph("Web Design Services Agreement", TITLE),
+        blank(0.1),
         Paragraph("Groundwork Studio AZ LLC", sty("co", fontSize=11, fontName="Helvetica-Bold",
-                  textColor=GS_GREEN, alignment=TA_CENTER, spaceAfter=2)),
+                  textColor=GS_GREEN, alignment=TA_CENTER, spaceAfter=0)),
+        blank(0.07),
         Paragraph("Arizona Limited Liability Company · teamground.work", SUB),
+        blank(0.18),
         hr(GS_GREEN, 1.5),
-        blank(0.05),
+        blank(0.12),
     ]
 
     # ── PARTIES ───────────────────────────────────────────────────────────────
