@@ -166,29 +166,38 @@ def story():
          "Client warrants they own or have licensed rights to all content provided. Unless client opts out in writing at "
          "signing, client grants Groundwork Studio AZ LLC permission to display the completed website in its portfolio, "
          "case studies, and marketing materials."),
-        ("5. Cancellation",
-         "If client cancels after work has begun, the deposit is non-refundable. Any work completed beyond the deposit "
-         "value will be invoiced at $75/hour. Groundwork Studio AZ LLC may suspend or cancel this agreement with 14 days "
-         "written notice if client is unresponsive for 30+ consecutive days or if payment is outstanding beyond 30 days."),
-        ("6. Warranties & Liability",
+        ("5. 35-Day Satisfaction Guarantee",
+         "If client is not satisfied with the completed website, or the site has not generated measurable results, "
+         "client may request a full refund of the build fee within 35 days of the site going live. "
+         "To invoke this guarantee, client must submit a written refund request via email to evan@teamground.work "
+         "within the 35-day window. Upon receipt, Groundwork Studio AZ LLC will process the full build fee refund "
+         "within 5 business days. The website will be taken offline upon refund. "
+         "Any monthly retainer fees paid during the live period are also refunded in full under this clause. "
+         "This guarantee applies to the build fee only and does not apply if cancellation is requested before launch."),
+        ("6. Pre-Launch Cancellation",
+         "If client cancels after work has begun but before the site goes live, the deposit is non-refundable. "
+         "Any work completed beyond the deposit value will be invoiced at $75/hour. "
+         "Groundwork Studio AZ LLC may suspend or cancel this agreement with 14 days written notice if client is "
+         "unresponsive for 30+ consecutive days or if payment is outstanding beyond 30 days."),
+        ("7. Warranties & Liability",
          "Groundwork Studio AZ LLC will build the site to professional standards and maintain it under the monthly retainer. "
          "We warrant the site will function as designed on major current browsers (Chrome, Safari, Firefox, Edge) at launch. "
          "Groundwork Studio AZ LLC is not liable for losses resulting from website downtime, third-party service outages "
          "(including hosting providers, domain registrars, or payment processors), or errors in content provided by the client. "
          "Total liability under this agreement is limited to fees paid in the 30 days prior to the claim."),
-        ("7. Termination of Monthly Retainer",
+        ("8. Termination of Monthly Retainer",
          "Either party may terminate the monthly retainer by providing 30 days written notice via email. The retainer fee "
          "for the final 30-day notice period is non-refundable. The website will remain live through the end of the notice "
          "period. Upon termination, the site will be taken offline unless client has paid the migration fee ($250) in advance. "
          "All outstanding balances must be settled before any migration or handoff."),
-        ("8. Confidentiality",
+        ("9. Confidentiality",
          "Both parties agree to keep confidential any proprietary business information shared during the course of this "
          "engagement and not to disclose it to third parties without prior written consent, except as required by law."),
-        ("9. Governing Law",
+        ("10. Governing Law",
          "This agreement is governed by the laws of the State of Arizona. Groundwork Studio AZ LLC is a registered Arizona "
          "Limited Liability Company. Any disputes shall be resolved in Maricopa County, Arizona. The parties agree to attempt "
          "good-faith resolution before initiating formal proceedings."),
-        ("10. Entire Agreement",
+        ("11. Entire Agreement",
          "This document constitutes the entire agreement between the parties and supersedes all prior communications, "
          "proposals, or representations. Modifications must be made in writing and signed by both parties. "
          "This agreement is valid when signed by both parties, including via electronic signature (DocuSign or equivalent)."),
