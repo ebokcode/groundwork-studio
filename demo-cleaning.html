@@ -210,7 +210,24 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 32px 28px;
+      overflow: hidden;
       transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .svc-photo {
+      width: calc(100% + 56px);
+      margin: -32px -28px 20px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+    }
+    .svc-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
+      border-radius: 10px 10px 0 0;
     }
     .svc-card:hover {
       border-color: var(--accent);
@@ -544,36 +561,42 @@
         <div class="services-grid">
 
           <div class="svc-card">
+            <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=600&q=80')"></div>
             <span class="svc-icon">🏠</span>
             <h3 class="svc-title">House Cleaning</h3>
             <p class="svc-desc">Regular top-to-bottom cleaning for your home. We handle every room so you don't have to think about it.</p>
           </div>
 
           <div class="svc-card">
+            <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80')"></div>
             <span class="svc-icon">✨</span>
             <h3 class="svc-title">Deep Clean</h3>
             <p class="svc-desc">A thorough scrub-down covering appliance interiors, baseboards, grout, and every overlooked corner.</p>
           </div>
 
           <div class="svc-card">
+            <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80')"></div>
             <span class="svc-icon">📦</span>
             <h3 class="svc-title">Move In / Out Clean</h3>
             <p class="svc-desc">Get your deposit back or start fresh. We clean the whole property top to bottom before or after your move.</p>
           </div>
 
           <div class="svc-card">
+            <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80')"></div>
             <span class="svc-icon">🏢</span>
             <h3 class="svc-title">Office Cleaning</h3>
             <p class="svc-desc">Keep your workspace clean and professional. Flexible scheduling including after-hours and weekends.</p>
           </div>
 
           <div class="svc-card">
+            <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80')"></div>
             <span class="svc-icon">🛏️</span>
             <h3 class="svc-title">Apartment Clean</h3>
             <p class="svc-desc">Tailored for apartments and condos of any size. One-time or recurring — we work around your schedule.</p>
           </div>
 
           <div class="svc-card">
+            <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=600&q=80')"></div>
             <span class="svc-icon">🔨</span>
             <h3 class="svc-title">Post-Construction</h3>
             <p class="svc-desc">Dust, debris, and construction residue removed after a renovation or new build. Move-in ready.</p>
