@@ -126,39 +126,26 @@ def story():
     ]
 
     # ── SATISFACTION GUARANTEE BANNER ─────────────────────────────────────────
-    guarantee_inner = Table(
-        [[
-            Paragraph("35-DAY SATISFACTION GUARANTEE",
-                      sty("gg_title", fontSize=11, fontName="Helvetica-Bold",
-                          textColor=GS_GREEN, spaceAfter=4, letterSpacing=0.5)),
-        ]],
-        colWidths=[6.25*inch]
-    )
-    guarantee_inner.setStyle(TableStyle([
-        ("TOPPADDING",    (0,0),(-1,-1), 0),
-        ("BOTTOMPADDING", (0,0),(-1,-1), 0),
-    ]))
-
-    guarantee_body = Table(
-        [[
-            Paragraph(
+    guarantee_box = Table(
+        [
+            [Paragraph("35-DAY SATISFACTION GUARANTEE",
+                       sty("gg_title", fontSize=11, fontName="Helvetica-Bold",
+                           textColor=GS_GREEN, spaceAfter=0, letterSpacing=0.5))],
+            [Paragraph(
                 "If your site goes live and you\u2019re not satisfied \u2014 or it hasn\u2019t generated "
                 "results within <b>35 days of launch</b> \u2014 we\u2019ll refund your full build fee. "
                 "No hoops. Just a written request within the window and we\u2019ll take care of it.",
-                sty("gg_body", fontSize=9, fontName="Helvetica", textColor=GS_DARK, leading=14)),
-        ]],
-        colWidths=[6.25*inch]
-    )
-
-    guarantee_box = Table(
-        [[guarantee_inner], [guarantee_body]],
+                sty("gg_body", fontSize=9, fontName="Helvetica", textColor=GS_DARK, leading=14))],
+        ],
         colWidths=[6.25*inch]
     )
     guarantee_box.setStyle(TableStyle([
         ("BACKGROUND",    (0,0),(-1,-1), GS_LIGHT),
         ("BOX",           (0,0),(-1,-1), 1.5, GS_GREEN),
-        ("TOPPADDING",    (0,0),(-1,-1), 10),
-        ("BOTTOMPADDING", (0,0),(-1,-1), 10),
+        ("TOPPADDING",    (0,0), (0,0),  10),
+        ("BOTTOMPADDING", (0,0), (0,0),  4),
+        ("TOPPADDING",    (0,1), (0,1),  2),
+        ("BOTTOMPADDING", (0,1), (0,1),  12),
         ("LEFTPADDING",   (0,0),(-1,-1), 14),
         ("RIGHTPADDING",  (0,0),(-1,-1), 14),
     ]))
