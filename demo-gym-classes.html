@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Schedule — Iron Valley Fitness Scottsdale</title>
+  <meta name="description" content="Full weekly class schedule at Iron Valley Fitness. HIIT, Spin, Yoga, Boxing, Pilates, Strength. Book your spot today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black:#0a0a0a; --card:#111; --border:#1f1f1f; --yellow:#facc15; --yellow-dk:#eab308; --yellow-gl:rgba(250,204,21,.10); --white:#f5f5f5; --muted:#888; --nav-bg:rgba(10,10,10,.96); --radius:4px; --transition:200ms ease; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    ul { list-style:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; }
+
+    .demo-bar { background:var(--yellow); color:#111; text-align:center; padding:9px 24px; font-size:11.5px; font-weight:500; letter-spacing:.3px; z-index:600; position:relative; }
+    .demo-bar a { color:#111; font-weight:700; text-decoration:underline; }
+    .util-bar { background:#050505; border-bottom:1px solid var(--border); color:var(--muted); font-size:11px; padding:7px 40px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .util-bar a { color:var(--muted); transition:color var(--transition); }
+    .util-bar a:hover { color:var(--yellow); }
+    .util-left, .util-right { display:flex; align-items:center; gap:20px; }
+    .util-divider { color:var(--border); }
+
+    .nav { position:sticky; top:0; z-index:400; background:var(--nav-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; gap:32px; }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; color:var(--white); white-space:nowrap; flex-shrink:0; }
+    .nav-logo span { color:var(--yellow); }
+    .nav-links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
+    .nav-links > li { position:relative; }
+    .nav-links > li > a, .nav-links > li > button { display:flex; align-items:center; gap:4px; padding:8px 13px; font-size:12px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-radius:var(--radius); transition:color var(--transition),background var(--transition); white-space:nowrap; background:none; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color:var(--white); background:rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color:var(--yellow); }
+    .nav-chevron { font-size:9px; transition:transform var(--transition); }
+    .nav-links > li.open .nav-chevron { transform:rotate(180deg); }
+    .dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#111; border:1px solid var(--border); border-top:2px solid var(--yellow); min-width:300px; padding:8px 0; opacity:0; pointer-events:none; transform:translateY(6px); transition:opacity var(--transition),transform var(--transition); box-shadow:0 20px 50px rgba(0,0,0,.7); z-index:100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity:1; pointer-events:all; transform:translateY(0); }
+    .dropdown a { display:flex; align-items:flex-start; gap:12px; padding:10px 18px; transition:background var(--transition); }
+    .dropdown a:hover { background:rgba(255,255,255,.04); }
+    .dd-icon { width:32px; height:32px; background:var(--yellow-gl); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
+    .dd-text { display:flex; flex-direction:column; gap:2px; }
+    .dd-name { font-size:13px; font-weight:600; color:var(--white); transition:color var(--transition); }
+    .dropdown a:hover .dd-name { color:var(--yellow); }
+    .dd-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    .nav-cta { display:inline-flex; align-items:center; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:1.5px; padding:10px 22px; white-space:nowrap; flex-shrink:0; transition:background var(--transition),transform var(--transition); }
+    .nav-cta:hover { background:var(--yellow-dk); transform:translateY(-1px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; margin-left:auto; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--white); border-radius:2px; transition:transform var(--transition),opacity var(--transition); }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; background:#080808; z-index:999; flex-direction:column; padding:80px 32px 40px; overflow-y:auto; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a, .mobile-menu .m-label { display:block; font-size:17px; font-weight:500; color:var(--white); padding:13px 0; border-bottom:1px solid var(--border); }
+    .mobile-menu .m-label { color:var(--muted); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding-top:24px; }
+    .mobile-menu .m-sub a { font-size:14px; font-weight:400; padding:9px 0 9px 16px; color:var(--muted); }
+    .mobile-menu .m-cta { display:block; margin-top:28px; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px 32px; text-align:center; border-bottom:none; }
+
+    .page-hero { background:#0d0d0d; border-bottom:1px solid var(--border); padding:80px 40px 72px; }
+    .page-hero-inner { max-width:1280px; margin:0 auto; }
+    .page-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .page-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .page-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,8vw,108px); letter-spacing:0.05em; line-height:.9; color:var(--white); margin-bottom:20px; }
+    .page-h1 span { color:var(--yellow); }
+    .page-sub { font-size:16px; font-weight:300; line-height:1.75; color:var(--muted); max-width:560px; }
+
+    /* CLASS TYPE KEY */
+    .class-key { padding:48px 40px; background:var(--card); border-bottom:1px solid var(--border); }
+    .class-key-inner { max-width:1280px; margin:0 auto; }
+    .class-key-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:2px; margin-top:32px; }
+    .class-type-card { background:var(--black); padding:24px 20px; border-top:3px solid var(--border); text-align:center; transition:border-color .25s; }
+    .class-type-card:hover { border-top-color:var(--yellow); }
+    .class-type-icon { font-size:28px; margin-bottom:10px; }
+    .class-type-name { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:.05em; color:var(--white); margin-bottom:4px; }
+    .class-type-desc { font-size:11px; font-weight:300; color:var(--muted); line-height:1.5; }
+
+    /* SCHEDULE GRID */
+    .schedule-section { padding:72px 40px; background:var(--black); }
+    .schedule-inner { max-width:1280px; margin:0 auto; }
+    .section-tag { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+    .section-tag::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .section-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,68px); letter-spacing:0.04em; line-height:.92; color:var(--white); margin-bottom:48px; }
+    .section-h2 span { color:var(--yellow); }
+
+    .day-tabs { display:flex; gap:2px; margin-bottom:32px; flex-wrap:wrap; }
+    .day-tab { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:1.5px; padding:10px 20px; background:var(--card); color:var(--muted); border:1px solid var(--border); cursor:pointer; transition:all var(--transition); }
+    .day-tab.active, .day-tab:hover { background:var(--yellow); color:#111; border-color:var(--yellow); }
+
+    .day-panel { display:none; }
+    .day-panel.active { display:block; }
+    .sched-grid { display:grid; gap:2px; }
+    .sched-row { display:grid; grid-template-columns:100px 1fr 120px 110px; align-items:center; background:var(--card); padding:20px 24px; border-left:3px solid var(--border); gap:20px; transition:border-color var(--transition),background var(--transition); }
+    .sched-row:hover { border-left-color:var(--yellow); background:#131313; }
+    .sched-time { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:.05em; color:var(--yellow); }
+    .sched-name { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:.05em; color:var(--white); margin-bottom:3px; }
+    .sched-meta { font-size:11px; font-weight:300; color:var(--muted); }
+    .sched-instructor { font-size:12px; font-weight:500; color:rgba(245,245,245,.6); }
+    .sched-spots { text-align:right; }
+    .sched-spots-num { font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--yellow); display:block; }
+    .sched-spots-label { font-size:10px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+    .sched-spots-full { font-size:11px; font-weight:600; color:#ef4444; letter-spacing:1px; text-transform:uppercase; }
+    .pill { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; margin-right:6px; }
+    .pill-hiit { background:rgba(239,68,68,.15); color:#ef4444; }
+    .pill-spin { background:rgba(59,130,246,.15); color:#60a5fa; }
+    .pill-yoga { background:rgba(34,197,94,.15); color:#4ade80; }
+    .pill-box { background:rgba(249,115,22,.15); color:#fb923c; }
+    .pill-pilates { background:rgba(168,85,247,.15); color:#c084fc; }
+    .pill-strength { background:rgba(250,204,21,.15); color:var(--yellow); }
+
+    /* INSTRUCTOR BIOS */
+    .instructors { padding:80px 40px; background:var(--card); border-top:1px solid var(--border); }
+    .instructors-inner { max-width:1280px; margin:0 auto; }
+    .instructor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:48px; }
+    .instructor-card { background:var(--black); overflow:hidden; }
+    .instructor-photo { height:280px; overflow:hidden; }
+    .instructor-photo img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .5s; }
+    .instructor-card:hover .instructor-photo img { transform:scale(1.05); }
+    .instructor-body { padding:28px; }
+    .instructor-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:.05em; color:var(--white); margin-bottom:4px; }
+    .instructor-cert { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--yellow); margin-bottom:12px; }
+    .instructor-spec { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; }
+
+    /* HOW TO BOOK */
+    .how-to-book { padding:80px 40px; background:var(--black); }
+    .how-to-book-inner { max-width:1280px; margin:0 auto; }
+    .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:48px; }
+    .step-card { background:var(--card); padding:36px 28px; border-top:3px solid var(--border); position:relative; }
+    .step-num { font-family:'Bebas Neue',sans-serif; font-size:72px; color:rgba(250,204,21,.08); line-height:1; position:absolute; top:16px; right:20px; }
+    .step-icon { font-size:28px; margin-bottom:16px; }
+    .step-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.05em; color:var(--white); margin-bottom:10px; }
+    .step-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; }
+
+    /* CTA BAND */
+    .cta-band { background:var(--yellow); padding:80px 40px; text-align:center; position:relative; overflow:hidden; }
+    .cta-band::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,rgba(0,0,0,.03) 0px,rgba(0,0,0,.03) 1px,transparent 1px,transparent 18px); }
+    .cta-band-inner { position:relative; z-index:1; max-width:740px; margin:0 auto; }
+    .cta-band-tag { font-size:10px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:rgba(0,0,0,.45); margin-bottom:16px; }
+    .cta-band-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7vw,88px); letter-spacing:.04em; line-height:.9; color:#111; margin-bottom:18px; }
+    .cta-band-sub { font-size:16px; font-weight:400; color:rgba(0,0,0,.6); margin-bottom:36px; }
+    .btn-dark { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:#111; color:var(--yellow); padding:16px 48px; display:inline-block; transition:background var(--transition),transform var(--transition); }
+    .btn-dark:hover { background:#000; transform:translateY(-2px); }
+    .cta-band-note { font-size:12px; font-weight:300; color:rgba(0,0,0,.5); margin-top:18px; }
+
+    /* SPECIALTY SECTIONS */
+    .specialty-section { padding:72px 40px; border-top:1px solid var(--border); }
+    .specialty-section:nth-child(odd) { background:var(--card); }
+    .specialty-section:nth-child(even) { background:var(--black); }
+    .specialty-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .specialty-inner.reverse { direction:rtl; }
+    .specialty-inner.reverse > * { direction:ltr; }
+    .specialty-img { height:360px; overflow:hidden; }
+    .specialty-img img { width:100%; height:100%; object-fit:cover; }
+    .specialty-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:12px; }
+    .specialty-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,4vw,58px); letter-spacing:.05em; line-height:.92; color:var(--white); margin-bottom:16px; }
+    .specialty-desc { font-size:14px; font-weight:300; color:var(--muted); line-height:1.8; margin-bottom:24px; }
+    .specialty-list { margin-bottom:32px; }
+    .specialty-list li { font-size:13px; font-weight:300; color:rgba(245,245,245,.7); padding:6px 0; border-bottom:1px solid rgba(255,255,255,.04); display:flex; align-items:center; gap:8px; }
+    .specialty-list li::before { content:'→'; color:var(--yellow); flex-shrink:0; }
+    .btn-outline { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px; border:1px solid var(--border); color:var(--white); padding:12px 32px; display:inline-block; transition:border-color var(--transition),color var(--transition); }
+    .btn-outline:hover { border-color:var(--yellow); color:var(--yellow); }
+
+    /* FOOTER */
+    .footer { background:#050505; border-top:1px solid var(--border); padding:72px 40px 40px; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.08em; color:var(--white); margin-bottom:14px; }
+    .footer-logo span { color:var(--yellow); }
+    .footer-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; max-width:240px; margin-bottom:24px; }
+    .footer-social { display:flex; gap:12px; }
+    .footer-social a { width:36px; height:36px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--muted); transition:border-color var(--transition),color var(--transition); }
+    .footer-social a:hover { border-color:var(--yellow); color:var(--yellow); }
+    .footer-col h4 { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.08em; color:var(--white); margin-bottom:16px; }
+    .footer-col ul { display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:13px; font-weight:300; color:var(--muted); transition:color var(--transition); }
+    .footer-col ul li a:hover { color:var(--yellow); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:28px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-copy { font-size:12px; font-weight:300; color:var(--muted); }
+    .footer-copy a { color:var(--yellow); }
+
+    @media (max-width:1024px) {
+      .nav-links, .nav-cta { display:none; }
+      .hamburger { display:flex; }
+      .class-key-grid { grid-template-columns:repeat(3,1fr); }
+      .sched-row { grid-template-columns:90px 1fr 100px; }
+      .sched-instructor { display:none; }
+      .instructor-grid { grid-template-columns:1fr; max-width:480px; margin:0 auto; }
+      .steps-grid { grid-template-columns:1fr 1fr; }
+      .specialty-inner { grid-template-columns:1fr; gap:32px; }
+      .specialty-inner.reverse { direction:ltr; }
+      .footer-inner { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:640px) {
+      .util-bar { display:none; }
+      .page-hero, .schedule-section, .instructors, .how-to-book { padding:56px 20px; }
+      .class-key { padding:40px 20px; }
+      .class-key-grid { grid-template-columns:repeat(2,1fr); }
+      .sched-row { grid-template-columns:1fr; gap:6px; }
+      .sched-spots { text-align:left; }
+      .steps-grid { grid-template-columns:1fr; }
+      .specialty-section { padding:56px 20px; }
+      .footer-inner { grid-template-columns:1fr; gap:36px; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+      .cta-band { padding:64px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">💪 Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left">
+    <a href="tel:+14805550192">📞 (480) 555-0192</a>
+    <span class="util-divider">|</span>
+    <span>Mon–Fri 5am–11pm · Sat–Sun 7am–9pm</span>
+  </div>
+  <div class="util-right">
+    <a href="demo-gym-specials.html">🔥 Summer Shred Challenge — Ends Soon →</a>
+  </div>
+</div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="demo-gym.html" class="nav-logo">Iron <span>Valley</span></a>
+    <ul class="nav-links">
+      <li>
+        <button class="nav-dd-toggle" aria-haspopup="true">Programs <span class="nav-chevron">▾</span></button>
+        <div class="dropdown">
+          <a href="demo-gym-classes.html"><div class="dd-icon">💪</div><div class="dd-text"><span class="dd-name">Group Classes</span><span class="dd-desc">HIIT, Spin, Yoga, Pilates, Boxing</span></div></a>
+          <a href="demo-gym-classes.html#strength"><div class="dd-icon">🏋️</div><div class="dd-text"><span class="dd-name">Strength &amp; Conditioning</span><span class="dd-desc">Free weights, power racks</span></div></a>
+          <a href="demo-gym-classes.html#cardio"><div class="dd-icon">🏃</div><div class="dd-text"><span class="dd-name">Cardio Zone</span><span class="dd-desc">Treadmills, bikes, rowers</span></div></a>
+          <a href="demo-gym-classes.html#recovery"><div class="dd-icon">🧘</div><div class="dd-text"><span class="dd-name">Recovery &amp; Wellness</span><span class="dd-desc">Sauna, stretching, foam rolling</span></div></a>
+          <a href="demo-gym-personal-training.html"><div class="dd-icon">🎯</div><div class="dd-text"><span class="dd-name">Personal Training</span><span class="dd-desc">1-on-1 certified coaching</span></div></a>
+          <a href="demo-gym-classes.html#youth"><div class="dd-icon">👦</div><div class="dd-text"><span class="dd-name">Youth Programs</span><span class="dd-desc">Ages 10–17, supervised sessions</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-gym-memberships.html">Memberships</a></li>
+      <li><a href="demo-gym-classes.html" class="active">Schedule</a></li>
+      <li><a href="demo-gym-specials.html">Specials</a></li>
+      <li><a href="demo-gym-blog.html">Blog</a></li>
+      <li><a href="demo-gym-about.html">About</a></li>
+      <li><a href="demo-gym-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-gym-memberships.html" class="nav-cta">Start Free Trial</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Programs</span>
+  <div class="m-sub">
+    <a href="demo-gym-classes.html">Group Classes</a>
+    <a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a>
+    <a href="demo-gym-classes.html#cardio">Cardio Zone</a>
+    <a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a>
+    <a href="demo-gym-personal-training.html">Personal Training</a>
+    <a href="demo-gym-classes.html#youth">Youth Programs</a>
+  </div>
+  <a href="demo-gym-memberships.html">Memberships</a>
+  <a href="demo-gym-classes.html">Schedule</a>
+  <a href="demo-gym-specials.html">Specials</a>
+  <a href="demo-gym-blog.html">Blog</a>
+  <a href="demo-gym-about.html">About</a>
+  <a href="demo-gym-contact.html">Contact</a>
+  <a href="demo-gym-memberships.html" class="m-cta">Start Free Trial</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Iron Valley Fitness</p>
+    <h1 class="page-h1">Class <span>Schedule</span></h1>
+    <p class="page-sub">50+ classes weekly across all disciplines. Standard and Elite members get unlimited access. Book your spot through the member app or call the front desk.</p>
+  </div>
+</section>
+
+<!-- CLASS TYPE KEY -->
+<div class="class-key">
+  <div class="class-key-inner">
+    <p class="section-tag">What We Offer</p>
+    <div class="class-key-grid">
+      <div class="class-type-card">
+        <div class="class-type-icon">⚡</div>
+        <div class="class-type-name">HIIT</div>
+        <div class="class-type-desc">45 min · All levels · High intensity interval training</div>
+      </div>
+      <div class="class-type-card">
+        <div class="class-type-icon">🚴</div>
+        <div class="class-type-name">Spin</div>
+        <div class="class-type-desc">50 min · All levels · Indoor cycling to music</div>
+      </div>
+      <div class="class-type-card">
+        <div class="class-type-icon">🧘</div>
+        <div class="class-type-name">Yoga</div>
+        <div class="class-type-desc">60 min · All levels · Flow, strength &amp; breath</div>
+      </div>
+      <div class="class-type-card">
+        <div class="class-type-icon">🥊</div>
+        <div class="class-type-name">Boxing</div>
+        <div class="class-type-desc">45 min · Beginner+ · Bag work &amp; combos</div>
+      </div>
+      <div class="class-type-card">
+        <div class="class-type-icon">🌀</div>
+        <div class="class-type-name">Pilates</div>
+        <div class="class-type-desc">55 min · All levels · Core, control &amp; mobility</div>
+      </div>
+      <div class="class-type-card">
+        <div class="class-type-icon">🏋️</div>
+        <div class="class-type-name">Strength</div>
+        <div class="class-type-desc">60 min · Intermediate+ · Barbell &amp; functional lifts</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKLY SCHEDULE GRID -->
+<section class="schedule-section">
+  <div class="schedule-inner">
+    <p class="section-tag">Weekly Schedule</p>
+    <h2 class="section-h2">Pick Your <span>Day</span></h2>
+
+    <div class="day-tabs">
+      <button class="day-tab active" data-day="mon">Monday</button>
+      <button class="day-tab" data-day="tue">Tuesday</button>
+      <button class="day-tab" data-day="wed">Wednesday</button>
+      <button class="day-tab" data-day="thu">Thursday</button>
+      <button class="day-tab" data-day="fri">Friday</button>
+      <button class="day-tab" data-day="sat">Saturday</button>
+      <button class="day-tab" data-day="sun">Sunday</button>
+    </div>
+
+    <div class="day-panel active" id="panel-mon">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">6:00 AM</div><div><div class="sched-name">Power HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">45 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">4</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:30 AM</div><div><div class="sched-name">Morning Spin <span class="pill pill-spin">SPIN</span></div><div class="sched-meta">50 min · Spin Studio</div></div><div class="sched-instructor">Coach Elena Reyes</div><div class="sched-spots"><span class="sched-spots-num">8</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">9:00 AM</div><div><div class="sched-name">Morning Flow Yoga <span class="pill pill-yoga">YOGA</span></div><div class="sched-meta">60 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">12</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">12:00 PM</div><div><div class="sched-name">Lunchtime HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">30 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-full">FULL</span></div></div>
+        <div class="sched-row"><div class="sched-time">5:30 PM</div><div><div class="sched-name">Strength &amp; Power <span class="pill pill-strength">STRENGTH</span></div><div class="sched-meta">60 min · Weight Floor</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">6</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">6:45 PM</div><div><div class="sched-name">Boxing Fundamentals <span class="pill pill-box">BOXING</span></div><div class="sched-meta">45 min · Boxing Ring</div></div><div class="sched-instructor">Coach Derek Osei</div><div class="sched-spots"><span class="sched-spots-num">3</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:45 PM</div><div><div class="sched-name">Evening Pilates <span class="pill pill-pilates">PILATES</span></div><div class="sched-meta">55 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">9</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-panel" id="panel-tue">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">6:00 AM</div><div><div class="sched-name">Sunrise Spin <span class="pill pill-spin">SPIN</span></div><div class="sched-meta">50 min · Spin Studio</div></div><div class="sched-instructor">Coach Elena Reyes</div><div class="sched-spots"><span class="sched-spots-num">10</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:30 AM</div><div><div class="sched-name">Yoga Sculpt <span class="pill pill-yoga">YOGA</span></div><div class="sched-meta">60 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">7</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">9:30 AM</div><div><div class="sched-name">Core Pilates <span class="pill pill-pilates">PILATES</span></div><div class="sched-meta">55 min · Studio A</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">14</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">12:00 PM</div><div><div class="sched-name">Boxing Cardio <span class="pill pill-box">BOXING</span></div><div class="sched-meta">45 min · Boxing Ring</div></div><div class="sched-instructor">Coach Derek Osei</div><div class="sched-spots"><span class="sched-spots-num">5</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">5:30 PM</div><div><div class="sched-name">Explosive HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">45 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-full">FULL</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:00 PM</div><div><div class="sched-name">Evening Strength <span class="pill pill-strength">STRENGTH</span></div><div class="sched-meta">60 min · Weight Floor</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">8</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-panel" id="panel-wed">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">6:00 AM</div><div><div class="sched-name">Power HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">45 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">6</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:30 AM</div><div><div class="sched-name">Morning Spin <span class="pill pill-spin">SPIN</span></div><div class="sched-meta">50 min · Spin Studio</div></div><div class="sched-instructor">Coach Elena Reyes</div><div class="sched-spots"><span class="sched-spots-num">11</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">9:00 AM</div><div><div class="sched-name">Restorative Yoga <span class="pill pill-yoga">YOGA</span></div><div class="sched-meta">60 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">16</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">5:30 PM</div><div><div class="sched-name">Heavy Bag Boxing <span class="pill pill-box">BOXING</span></div><div class="sched-meta">45 min · Boxing Ring</div></div><div class="sched-instructor">Coach Derek Osei</div><div class="sched-spots"><span class="sched-spots-num">4</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">6:30 PM</div><div><div class="sched-name">Core &amp; Pilates <span class="pill pill-pilates">PILATES</span></div><div class="sched-meta">55 min · Studio A</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">10</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:45 PM</div><div><div class="sched-name">Strength &amp; Power <span class="pill pill-strength">STRENGTH</span></div><div class="sched-meta">60 min · Weight Floor</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">7</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-panel" id="panel-thu">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">6:00 AM</div><div><div class="sched-name">Sunrise Spin <span class="pill pill-spin">SPIN</span></div><div class="sched-meta">50 min · Spin Studio</div></div><div class="sched-instructor">Coach Elena Reyes</div><div class="sched-spots"><span class="sched-spots-num">9</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:30 AM</div><div><div class="sched-name">Vinyasa Yoga <span class="pill pill-yoga">YOGA</span></div><div class="sched-meta">60 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">13</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">12:00 PM</div><div><div class="sched-name">Lunchtime HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">30 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">2</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">5:30 PM</div><div><div class="sched-name">Explosive HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">45 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">5</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">6:45 PM</div><div><div class="sched-name">Boxing Fundamentals <span class="pill pill-box">BOXING</span></div><div class="sched-meta">45 min · Boxing Ring</div></div><div class="sched-instructor">Coach Derek Osei</div><div class="sched-spots"><span class="sched-spots-num">8</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-panel" id="panel-fri">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">6:00 AM</div><div><div class="sched-name">Power HIIT <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">45 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">3</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">7:30 AM</div><div><div class="sched-name">Friday Spin <span class="pill pill-spin">SPIN</span></div><div class="sched-meta">50 min · Spin Studio</div></div><div class="sched-instructor">Coach Elena Reyes</div><div class="sched-spots"><span class="sched-spots-num">6</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">9:00 AM</div><div><div class="sched-name">Morning Pilates <span class="pill pill-pilates">PILATES</span></div><div class="sched-meta">55 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">11</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">5:30 PM</div><div><div class="sched-name">Strength &amp; Power <span class="pill pill-strength">STRENGTH</span></div><div class="sched-meta">60 min · Weight Floor</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-full">FULL</span></div></div>
+        <div class="sched-row"><div class="sched-time">6:45 PM</div><div><div class="sched-name">Friday Boxing <span class="pill pill-box">BOXING</span></div><div class="sched-meta">45 min · Boxing Ring</div></div><div class="sched-instructor">Coach Derek Osei</div><div class="sched-spots"><span class="sched-spots-num">7</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-panel" id="panel-sat">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">8:00 AM</div><div><div class="sched-name">Saturday HIIT Blast <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">60 min · Studio A — All welcome</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">2</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">9:30 AM</div><div><div class="sched-name">Weekend Spin <span class="pill pill-spin">SPIN</span></div><div class="sched-meta">50 min · Spin Studio</div></div><div class="sched-instructor">Coach Elena Reyes</div><div class="sched-spots"><span class="sched-spots-num">12</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">11:00 AM</div><div><div class="sched-name">Deep Stretch Yoga <span class="pill pill-yoga">YOGA</span></div><div class="sched-meta">75 min · Studio B</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">18</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">1:00 PM</div><div><div class="sched-name">Boxing Sparring Skills <span class="pill pill-box">BOXING</span></div><div class="sched-meta">60 min · Boxing Ring</div></div><div class="sched-instructor">Coach Derek Osei</div><div class="sched-spots"><span class="sched-spots-num">5</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-panel" id="panel-sun">
+      <div class="sched-grid">
+        <div class="sched-row"><div class="sched-time">9:00 AM</div><div><div class="sched-name">Sunday Yoga Flow <span class="pill pill-yoga">YOGA</span></div><div class="sched-meta">75 min · Studio B — All welcome</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">20</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">10:30 AM</div><div><div class="sched-name">Pilates &amp; Core <span class="pill pill-pilates">PILATES</span></div><div class="sched-meta">55 min · Studio A</div></div><div class="sched-instructor">Instructor Priya Shah</div><div class="sched-spots"><span class="sched-spots-num">14</span><span class="sched-spots-label">spots left</span></div></div>
+        <div class="sched-row"><div class="sched-time">12:00 PM</div><div><div class="sched-name">Light HIIT Recovery <span class="pill pill-hiit">HIIT</span></div><div class="sched-meta">35 min · Studio A</div></div><div class="sched-instructor">Coach Marcus Webb</div><div class="sched-spots"><span class="sched-spots-num">9</span><span class="sched-spots-label">spots left</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR BIOS -->
+<section class="instructors">
+  <div class="instructors-inner">
+    <p class="section-tag">Meet the Coaches</p>
+    <h2 class="section-h2">Your <span>Instructors</span></h2>
+    <div class="instructor-grid">
+      <div class="instructor-card">
+        <div class="instructor-photo">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80" alt="Coach Marcus Webb" loading="lazy" />
+        </div>
+        <div class="instructor-body">
+          <h3 class="instructor-name">Marcus Webb</h3>
+          <p class="instructor-cert">NASM-CPT · HIIT &amp; Strength Specialist · 9 Years</p>
+          <p class="instructor-spec">Marcus is the energy behind our HIIT and Strength programs. A former college athlete turned certified coach, he specializes in performance-based training and has helped hundreds of members hit PRs they never imagined. His sessions are intense, precise, and — somehow — fun.</p>
+        </div>
+      </div>
+      <div class="instructor-card">
+        <div class="instructor-photo">
+          <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=600&q=80" alt="Coach Elena Reyes" loading="lazy" />
+        </div>
+        <div class="instructor-body">
+          <h3 class="instructor-name">Elena Reyes</h3>
+          <p class="instructor-cert">ACE-CPT · Spin &amp; Cycling Certified · 7 Years</p>
+          <p class="instructor-spec">Elena's spin classes have a cult following — members drive across the valley just to make her 6 AM class. She blends rhythm, endurance, and motivation in a way that makes 50 minutes on a bike feel like the best part of your week. Certified in indoor cycling and sports nutrition.</p>
+        </div>
+      </div>
+      <div class="instructor-card">
+        <div class="instructor-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Instructor Priya Shah" loading="lazy" />
+        </div>
+        <div class="instructor-body">
+          <h3 class="instructor-name">Priya Shah</h3>
+          <p class="instructor-cert">RYT-500 · Pilates Certified · 11 Years</p>
+          <p class="instructor-spec">Priya brings a calming presence and incredible technical depth to every Yoga and Pilates class. With training in Iyengar, Vinyasa, and restorative traditions, she meets every student where they are — whether you're recovering from injury or preparing for peak athletic performance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO BOOK -->
+<section class="how-to-book">
+  <div class="how-to-book-inner">
+    <p class="section-tag">It's Easy</p>
+    <h2 class="section-h2">How to <span>Book</span></h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">📱</div>
+        <h3 class="step-title">Download the App</h3>
+        <p class="step-desc">Download the Iron Valley member app on iOS or Android. Free for all members.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🔍</div>
+        <h3 class="step-title">Browse Classes</h3>
+        <p class="step-desc">View the full weekly schedule, filter by class type or instructor, see live spot counts.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">✅</div>
+        <h3 class="step-title">Reserve Your Spot</h3>
+        <p class="step-desc">Tap to book. Instant confirmation. Elite members get 48-hour advance booking.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">🏋️</div>
+        <h3 class="step-title">Show Up &amp; Train</h3>
+        <p class="step-desc">Check in at the front desk or tap your keycard. No paper, no fuss. Just train.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTY SECTIONS -->
+<section class="specialty-section" id="strength">
+  <div class="specialty-inner">
+    <div class="specialty-img">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Strength training" loading="lazy" />
+    </div>
+    <div>
+      <p class="specialty-eyebrow">Open Gym Access</p>
+      <h2 class="specialty-h2">Strength &amp; Conditioning Floor</h2>
+      <p class="specialty-desc">Our 3,200 sq ft strength floor is one of the most complete in Scottsdale. Free weights from 5 to 120 lbs, 8 power racks, platforms, cable machines, and everything you need to build serious strength on your own schedule.</p>
+      <ul class="specialty-list">
+        <li>8 full power racks with safety bars</li>
+        <li>Olympic lifting platforms</li>
+        <li>Dumbbells 5–120 lbs</li>
+        <li>Kettlebells, bands, TRX</li>
+        <li>Dedicated warm-up area</li>
+      </ul>
+      <a href="demo-gym-memberships.html" class="btn-outline">Join to Access</a>
+    </div>
+  </div>
+</section>
+
+<section class="specialty-section" id="cardio">
+  <div class="specialty-inner reverse">
+    <div class="specialty-img">
+      <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?auto=format&fit=crop&w=800&q=80" alt="Cardio zone" loading="lazy" />
+    </div>
+    <div>
+      <p class="specialty-eyebrow">Open Gym Access</p>
+      <h2 class="specialty-h2">Cardio Zone</h2>
+      <p class="specialty-desc">30 cardio machines with personal screens, fans, and bluetooth audio. Treadmills, ellipticals, rowers, assault bikes, and stair climbers — never wait for a machine during peak hours.</p>
+      <ul class="specialty-list">
+        <li>12 commercial treadmills</li>
+        <li>8 ellipticals</li>
+        <li>4 Concept2 rowing machines</li>
+        <li>Assault Air Bikes</li>
+        <li>StairMaster stair climbers</li>
+      </ul>
+      <a href="demo-gym-memberships.html" class="btn-outline">Join to Access</a>
+    </div>
+  </div>
+</section>
+
+<section class="specialty-section" id="recovery">
+  <div class="specialty-inner">
+    <div class="specialty-img">
+      <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=800&q=80" alt="Recovery zone" loading="lazy" />
+    </div>
+    <div>
+      <p class="specialty-eyebrow">Recovery &amp; Wellness</p>
+      <h2 class="specialty-h2">Recovery Zone</h2>
+      <p class="specialty-desc">Training is only half the equation. Our recovery zone gives you everything you need to come back stronger — infrared sauna, stretching studio, foam rolling station, and massage gun bar.</p>
+      <ul class="specialty-list">
+        <li>2-person infrared sauna</li>
+        <li>Dedicated stretching studio</li>
+        <li>Foam rolling &amp; mobility tools</li>
+        <li>Percussion massage gun bar</li>
+        <li>Cold-water immersion pod (Elite members)</li>
+      </ul>
+      <a href="demo-gym-memberships.html" class="btn-outline">Join to Access</a>
+    </div>
+  </div>
+</section>
+
+<section class="specialty-section" id="youth">
+  <div class="specialty-inner reverse">
+    <div class="specialty-img">
+      <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=800&q=80" alt="Youth programs" loading="lazy" />
+    </div>
+    <div>
+      <p class="specialty-eyebrow">Ages 10–17</p>
+      <h2 class="specialty-h2">Youth Programs</h2>
+      <p class="specialty-desc">Our supervised youth program teaches young athletes proper form, movement fundamentals, and a positive relationship with fitness — all in a safe, structured environment with dedicated coaches.</p>
+      <ul class="specialty-list">
+        <li>Dedicated supervised sessions</li>
+        <li>Age-appropriate strength training</li>
+        <li>Sport-specific conditioning</li>
+        <li>Parental supervision optional</li>
+        <li>Separate from adult training floor</li>
+      </ul>
+      <a href="demo-gym-contact.html" class="btn-outline">Inquire About Youth</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <p class="cta-band-tag">No Credit Card Required</p>
+    <h2 class="cta-band-h2">Try a Class Free</h2>
+    <p class="cta-band-sub">7-day free trial includes full gym access and unlimited group classes. No commitment.</p>
+    <a href="demo-gym-memberships.html" class="btn-dark">Start Free Trial</a>
+    <p class="cta-band-note">Or call <strong>(480) 555-0192</strong> to reserve your first class.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Iron <span>Valley</span> Fitness</div>
+      <p class="footer-tagline">Scottsdale's most dedicated fitness community. Built for people who are serious about results.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="TikTok">TK</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="demo-gym-classes.html">Group Classes</a></li>
+        <li><a href="demo-gym-personal-training.html">Personal Training</a></li>
+        <li><a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a></li>
+        <li><a href="demo-gym-classes.html#cardio">Cardio Zone</a></li>
+        <li><a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a></li>
+        <li><a href="demo-gym-classes.html#youth">Youth Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="demo-gym-about.html">About Us</a></li>
+        <li><a href="demo-gym-memberships.html">Memberships</a></li>
+        <li><a href="demo-gym-specials.html">Current Specials</a></li>
+        <li><a href="demo-gym-blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="demo-gym-contact.html">Contact Us</a></li>
+        <li><a href="demo-gym-contact.html">Directions</a></li>
+        <li><a href="tel:+14805550192">(480) 555-0192</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Iron Valley Fitness · 8200 E Camelback Rd, Scottsdale AZ 85251 · <a href="https://teamground.work">Demo by Groundwork Studio</a></p>
+    <p class="footer-copy">(480) 555-0192 · ironvalleyfitness@demo.com</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); const li = btn.closest('li'); const wasOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!wasOpen) li.classList.add('open'); });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  const ham = document.getElementById('hamburger'); const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+
+  // Day tabs
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.day).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brake Service — Desert Ridge Auto | Mesa, AZ</title>
+  <meta name="description" content="Expert brake service in Mesa, AZ. Pad replacement from $149/axle. Rotor resurfacing, full brake jobs, emergency brake repair. Same-day service available." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font: inherit; }
+    :root { --ink:#0d0d0d; --card:#161310; --border:#2a2118; --orange:#ea580c; --orange-dk:#c2410c; --orange-gl:rgba(234,88,12,.12); --cream:#f5f0eb; --muted:#a8958a; --serif:'Barlow Condensed',sans-serif; --sans:'DM Sans',sans-serif; --trans:200ms ease; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    .demo-bar { background: var(--orange); color: #fff; text-align: center; padding: 9px 24px; font-size: 11.5px; font-weight: 500; letter-spacing: .3px; position: relative; z-index: 500; }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+    .util-bar { background: #080806; border-bottom: 1px solid var(--border); padding: 7px 44px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); letter-spacing: .3px; z-index: 400; }
+    .util-left { display: flex; align-items: center; gap: 20px; }
+    .util-right { display: flex; align-items: center; gap: 20px; }
+    .util-phone { font-weight: 600; color: var(--orange) !important; }
+    .util-bar a { color: var(--muted); transition: color var(--trans); }
+    .util-bar a:hover { color: var(--orange); }
+    .nav { position: sticky; top: 0; z-index: 300; background: rgba(13,13,13,.97); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 44px; height: 68px; display: flex; align-items: center; gap: 32px; }
+    .nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--cream); white-space: nowrap; flex-shrink: 0; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > span { display: flex; align-items: center; gap: 4px; padding: 8px 14px; font-size: 12px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); transition: color var(--trans); cursor: pointer; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > span:hover, .nav-links > li:hover > span { color: var(--cream); }
+    .nav-links > li > a.active { color: var(--orange); }
+    .dropdown { position: absolute; top: calc(100% + 6px); left: 0; background: #1a1208; border: 1px solid var(--border); border-top: 2px solid var(--orange); min-width: 320px; padding: 6px 0; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity var(--trans), transform var(--trans); box-shadow: 0 20px 60px rgba(0,0,0,.8); }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: flex; align-items: flex-start; gap: 12px; padding: 12px 18px; transition: background var(--trans); }
+    .dropdown a:hover { background: #221a0e; }
+    .dd-icon { width: 36px; height: 36px; background: var(--orange-gl); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name { font-size: 13px; font-weight: 600; color: var(--cream); }
+    .dropdown a:hover .dd-name { color: var(--orange); }
+    .dd-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; font-family: var(--serif); font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 24px; white-space: nowrap; flex-shrink: 0; transition: background var(--trans), transform var(--trans); }
+    .nav-cta:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); transition: transform var(--trans), opacity var(--trans); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--ink); z-index: 999; flex-direction: column; padding: 90px 32px 40px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu .m-label { display: block; font-size: 17px; font-weight: 500; color: var(--cream); padding: 13px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu .m-label { color: var(--muted); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding-top: 24px; }
+    .mobile-menu .m-sub a { font-size: 14px; padding: 10px 0 10px 16px; color: var(--muted); }
+    .mobile-menu .m-cta { display: block; margin-top: 28px; background: var(--orange); color: #fff; font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 15px 32px; text-align: center; border-bottom: none; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 44px; }
+    .section-tag { font-size: 10.5px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .section-tag::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); }
+    .section-h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 900; line-height: .92; text-transform: uppercase; color: var(--cream); }
+    .section-h2 span { color: var(--orange); }
+    .page-hero { position: relative; height: 480px; display: flex; align-items: flex-end; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .page-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,13,13,.97) 0%, rgba(13,13,13,.6) 60%, rgba(13,13,13,.3) 100%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 60px 44px; max-width: 1280px; width: 100%; margin: 0 auto; }
+    .breadcrumb { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .breadcrumb a { color: var(--muted); transition: color var(--trans); }
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb span { color: var(--orange); }
+    .page-h1 { font-family: var(--serif); font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: .88; text-transform: uppercase; color: var(--cream); margin-bottom: 16px; }
+    .page-h1 span { color: var(--orange); }
+    .page-sub { font-size: 16px; font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.7; }
+    .content-section { padding: 80px 0; }
+    .content-section + .content-section { border-top: 1px solid var(--border); }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .warning-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; }
+    .warning-card { background: var(--card); padding: 32px 28px; border-top: 3px solid var(--border); transition: border-color var(--trans); }
+    .warning-card:hover { border-top-color: var(--orange); }
+    .warning-icon { font-size: 32px; margin-bottom: 14px; }
+    .warning-title { font-family: var(--serif); font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--cream); margin-bottom: 8px; }
+    .warning-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .pricing-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+    .pricing-table th { font-family: var(--serif); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+    .pricing-table td { padding: 20px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--cream); vertical-align: top; }
+    .pricing-table tr:hover td { background: var(--card); }
+    .price-amount { font-family: var(--serif); font-size: 28px; font-weight: 900; color: var(--orange); }
+    .price-note { font-size: 11px; color: var(--muted); margin-top: 3px; }
+    .price-name { font-family: var(--serif); font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--cream); }
+    .price-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .price-badge { display: inline-block; background: var(--orange-gl); color: var(--orange); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; margin-top: 6px; }
+    .steps { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+    .step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { font-family: var(--serif); font-size: 56px; font-weight: 900; color: var(--orange); line-height: 1; flex-shrink: 0; width: 64px; opacity: .4; }
+    .step-body { padding-top: 8px; }
+    .step-title { font-family: var(--serif); font-size: 22px; font-weight: 800; text-transform: uppercase; color: var(--cream); margin-bottom: 8px; }
+    .step-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .faq { margin-top: 32px; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--card); border-left: 2px solid var(--border); transition: border-color var(--trans); }
+    .faq-item:hover { border-left-color: var(--orange); }
+    .faq-q { font-family: var(--serif); font-size: 18px; font-weight: 700; text-transform: uppercase; color: var(--cream); padding: 22px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; letter-spacing: .5px; }
+    .faq-q::after { content: '+'; color: var(--orange); font-size: 22px; flex-shrink: 0; }
+    .faq-a { padding: 0 24px 22px; font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
+    .cta-strip { background: var(--orange); padding: 60px 44px; text-align: center; }
+    .cta-strip-headline { font-family: var(--serif); font-size: clamp(32px, 5vw, 56px); font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+    .cta-strip-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.8); margin-bottom: 28px; }
+    .btn-white { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: #fff; color: var(--orange); padding: 16px 36px; display: inline-block; transition: transform var(--trans); margin: 0 8px; }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-outline-white { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); padding: 14px 36px; display: inline-block; transition: border-color var(--trans); margin: 0 8px; }
+    .btn-outline-white:hover { border-color: #fff; }
+    .btn-primary { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: var(--orange); color: #fff; padding: 16px 36px; display: inline-block; transition: background var(--trans), transform var(--trans); }
+    .btn-primary:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .btn-ghost { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: transparent; color: var(--cream); padding: 15px 36px; border: 1px solid var(--border); display: inline-block; transition: border-color var(--trans), color var(--trans); }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+    .footer { background: #080806; border-top: 1px solid var(--border); padding: 64px 0 32px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 44px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-brand-logo { font-family: var(--serif); font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; color: var(--cream); }
+    .footer-brand-logo span { color: var(--orange); }
+    .footer-tagline { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--muted); }
+    .footer-col-title { font-family: var(--serif); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--cream); margin-bottom: 18px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--muted); transition: color var(--trans); }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom { max-width: 1280px; margin: 40px auto 0; padding: 20px 44px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); transition: color var(--trans); }
+    .footer-bottom a:hover { color: var(--orange); }
+    @media (max-width: 1024px) { .util-bar { padding: 7px 24px; } .nav-inner { padding: 0 24px; } .container { padding: 0 24px; } .content-grid { grid-template-columns: 1fr; gap: 40px; } .warning-grid { grid-template-columns: 1fr 1fr; } .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } .page-hero-content { padding: 40px 24px; } .cta-strip { padding: 60px 24px; } }
+    @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .util-bar { display: none; } .page-hero { height: auto; min-height: 360px; } .warning-grid { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 10px; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">🔧 Groundwork Studio Demo — Tier 4 Multi-Page Build &nbsp;·&nbsp; <a href="https://teamground.work" style="color:#fff;font-weight:700;">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left"><span>📍 1847 W Main St, Mesa, AZ 85201</span><span>Mon–Fri 7am–6pm · Sat 8am–4pm</span></div>
+  <div class="util-right"><a href="demo-autorepair-specials.html">🔥 Current Specials</a><a href="tel:4805550192" class="util-phone">☎ (480) 555-0192</a></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="demo-autorepair.html" class="nav-logo">Desert Ridge <span>Auto</span></a>
+    <ul class="nav-links">
+      <li>
+        <span>Services ▾</span>
+        <div class="dropdown">
+          <a href="demo-autorepair-oil-change.html"><div class="dd-icon">🔧</div><div class="dd-text"><span class="dd-name">Oil Change &amp; Lube</span><span class="dd-desc">Quick service, same-day</span></div></a>
+          <a href="demo-autorepair-brakes.html"><div class="dd-icon">🛑</div><div class="dd-text"><span class="dd-name">Brake Service</span><span class="dd-desc">Pads, rotors, fluid flush</span></div></a>
+          <a href="demo-autorepair-diagnostics.html"><div class="dd-icon">🔍</div><div class="dd-text"><span class="dd-name">Engine Diagnostics</span><span class="dd-desc">Check engine, codes, inspection</span></div></a>
+          <a href="demo-autorepair-diagnostics.html#battery"><div class="dd-icon">🔋</div><div class="dd-text"><span class="dd-name">Battery &amp; Electrical</span><span class="dd-desc">Test, replace, charging system</span></div></a>
+          <a href="demo-autorepair-contact.html#ac"><div class="dd-icon">❄️</div><div class="dd-text"><span class="dd-name">AC &amp; Heating</span><span class="dd-desc">Recharge, repair, leak detection</span></div></a>
+          <a href="demo-autorepair-contact.html#transmission"><div class="dd-icon">⚙️</div><div class="dd-text"><span class="dd-name">Transmission</span><span class="dd-desc">Service, flush, repair</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-autorepair-financing.html">Financing</a></li>
+      <li><a href="demo-autorepair-specials.html">Specials</a></li>
+      <li><a href="demo-autorepair-blog.html">Blog</a></li>
+      <li><a href="demo-autorepair-about.html">About</a></li>
+      <li><a href="demo-autorepair-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-autorepair-contact.html" class="nav-cta">📅 Schedule Service</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Services</span>
+  <div class="m-sub">
+    <a href="demo-autorepair-oil-change.html">🔧 Oil Change &amp; Lube</a>
+    <a href="demo-autorepair-brakes.html">🛑 Brake Service</a>
+    <a href="demo-autorepair-diagnostics.html">🔍 Engine Diagnostics</a>
+    <a href="demo-autorepair-diagnostics.html#battery">🔋 Battery &amp; Electrical</a>
+    <a href="demo-autorepair-contact.html#ac">❄️ AC &amp; Heating</a>
+    <a href="demo-autorepair-contact.html#transmission">⚙️ Transmission</a>
+  </div>
+  <a href="demo-autorepair-financing.html">Financing</a>
+  <a href="demo-autorepair-specials.html">Specials</a>
+  <a href="demo-autorepair-blog.html">Blog</a>
+  <a href="demo-autorepair-about.html">About</a>
+  <a href="demo-autorepair-contact.html">Contact</a>
+  <a href="demo-autorepair-contact.html" class="m-cta">📅 Schedule Service</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1400&q=80')"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="demo-autorepair.html">Home</a> &nbsp;/&nbsp; <a href="demo-autorepair.html#services">Services</a> &nbsp;/&nbsp; <span>Brake Service</span></div>
+    <h1 class="page-h1">Brake<br><span>Service</span></h1>
+    <p class="page-sub">Don't ignore your brakes — they're your most critical safety system. Expert diagnosis and repair from ASE-certified technicians. Same-day service available.</p>
+  </div>
+</section>
+
+<!-- WARNING SIGNS -->
+<section class="content-section">
+  <div class="container">
+    <div class="section-tag">Know the Signs</div>
+    <h2 class="section-h2">Warning Signs Your<br><span>Brakes Need Help</span></h2>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:16px;max-width:600px;">Your brakes communicate. If you notice any of these symptoms, schedule an inspection immediately — catching issues early can prevent costly repairs and accidents.</p>
+    <div class="warning-grid">
+      <div class="warning-card">
+        <div class="warning-icon">🔊</div>
+        <div class="warning-title">Squealing or Squeaking</div>
+        <p class="warning-desc">A high-pitched squeal when braking usually means worn brake pads. The wear indicator is doing its job — don't ignore it.</p>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">💥</div>
+        <div class="warning-title">Grinding Noise</div>
+        <p class="warning-desc">Metal-on-metal grinding means pads are completely worn through. This damages rotors rapidly and requires immediate attention.</p>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">↔️</div>
+        <div class="warning-title">Vehicle Pulling to One Side</div>
+        <p class="warning-desc">If your car pulls left or right when braking, a caliper may be sticking or brake lines may be uneven. A safety risk that needs diagnosis.</p>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">🌀</div>
+        <div class="warning-title">Vibrating Brake Pedal</div>
+        <p class="warning-desc">Pulsing or vibrating through the pedal when stopping typically indicates warped rotors — common after hard stops or heat stress.</p>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">🦶</div>
+        <div class="warning-title">Soft or Spongy Pedal</div>
+        <p class="warning-desc">If your pedal sinks further than usual or feels soft, you may have air in the brake lines or a fluid leak. Do not drive — call us immediately.</p>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">💡</div>
+        <div class="warning-title">Brake Warning Light</div>
+        <p class="warning-desc">The red BRAKE or ABS light on your dash signals a system fault. This could be low fluid, a sensor issue, or a hydraulic failure — get it checked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="content-section" style="background:var(--card);">
+  <div class="container">
+    <div class="content-grid">
+      <div>
+        <div class="section-tag">Transparent Pricing</div>
+        <h2 class="section-h2">Brake Service<br><span>Pricing</span></h2>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:20px;">We always give you an estimate before any work begins. No surprises. Every brake job includes a thorough inspection of the entire braking system.</p>
+        <div style="margin-top:24px;padding:20px 24px;background:var(--ink);border-left:3px solid var(--orange);">
+          <div style="font-family:var(--serif);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--orange);margin-bottom:6px;">Free Inspection</div>
+          <p style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;">Bring in your vehicle for a free brake inspection. We'll measure pad depth, check rotor thickness, inspect calipers, and give you a full written report — no obligation.</p>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="demo-autorepair-contact.html" class="btn-primary">Book Inspection →</a>
+        </div>
+      </div>
+      <div>
+        <table class="pricing-table">
+          <thead><tr><th>Service</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="price-name">Brake Pad Replacement</div><div class="price-desc">Per axle · premium pads · hardware included</div><div class="price-badge">Most Common</div></td>
+              <td><div class="price-amount">From $149</div><div class="price-note">per axle</div></td>
+            </tr>
+            <tr>
+              <td><div class="price-name">Rotor Resurfacing</div><div class="price-desc">Per rotor when thickness allows · machine turn</div></td>
+              <td><div class="price-amount">$89</div><div class="price-note">per rotor</div></td>
+            </tr>
+            <tr>
+              <td><div class="price-name">Full Brake Job</div><div class="price-desc">Pads + rotors + hardware · front or rear axle</div></td>
+              <td><div class="price-amount">From $299</div><div class="price-note">per axle</div></td>
+            </tr>
+            <tr>
+              <td><div class="price-name">Emergency / Parking Brake</div><div class="price-desc">Cable, shoe, or actuator adjustment</div></td>
+              <td><div class="price-amount">$129</div><div class="price-note">+ parts if needed</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="content-section">
+  <div class="container">
+    <div class="content-grid">
+      <div>
+        <div class="section-tag">Our Process</div>
+        <h2 class="section-h2">How We Handle<br><span>Your Brakes</span></h2>
+        <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:20px;">Every brake service follows the same thorough process — no shortcuts, no guesswork. Our ASE-certified techs do it right the first time.</p>
+      </div>
+      <div>
+        <div class="steps">
+          <div class="step"><div class="step-num">01</div><div class="step-body"><div class="step-title">Full System Inspection</div><p class="step-desc">We remove all four wheels and measure pad thickness, rotor depth, caliper condition, and brake fluid quality with precision tools.</p></div></div>
+          <div class="step"><div class="step-num">02</div><div class="step-body"><div class="step-title">Written Estimate</div><p class="step-desc">We present you with a clear, itemized estimate before any work begins. We'll tell you what's urgent, what can wait, and what we recommend.</p></div></div>
+          <div class="step"><div class="step-num">03</div><div class="step-body"><div class="step-title">Parts &amp; Labor</div><p class="step-desc">We install quality pads and rotors, clean and lube all contact points, compress calipers properly, and torque everything to spec.</p></div></div>
+          <div class="step"><div class="step-num">04</div><div class="step-body"><div class="step-title">Road Test &amp; Confirm</div><p class="step-desc">We road test every brake job before returning your vehicle. Brake pedal feel, stopping distance, and noise are all verified before you drive away.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="content-section" style="background:var(--card);">
+  <div class="container" style="max-width:800px;">
+    <div class="section-tag">Questions Answered</div>
+    <h2 class="section-h2">Brake Service<br><span>FAQ</span></h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">How long does brake service take?</div>
+        <div class="faq-a">A standard pad replacement takes 1–2 hours. A full brake job with rotor replacement takes 2–3 hours. If you need more extensive work on the hydraulic system, we'll estimate the time upfront.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to replace all four brakes at once?</div>
+        <div class="faq-a">Not always. We replace per axle — so if your front pads are worn but rears are fine, we'll only replace the fronts. We'll show you the measurements from each corner so you can make an informed decision.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's your warranty on brake work?</div>
+        <div class="faq-a">All brake service includes our 12-month / 12,000-mile warranty on parts and labor. If anything we replaced fails within the warranty period, we'll fix it at no charge.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-headline">Don't Drive on Bad Brakes</div>
+  <p class="cta-strip-sub">Schedule your free brake inspection today. Same-day service available in most cases.</p>
+  <a href="demo-autorepair-contact.html" class="btn-white">Book Free Inspection</a>
+  <a href="tel:4805550192" class="btn-outline-white">Call (480) 555-0192</a>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-logo">Desert Ridge <span>Auto</span></div>
+      <p class="footer-tagline">Mesa's trusted independent auto repair shop since 2008. ASE-certified technicians, honest pricing, and same-day service on most repairs.</p>
+      <div class="footer-contact-item">📍 1847 W Main St, Mesa, AZ 85201</div>
+      <div class="footer-contact-item">☎ <a href="tel:4805550192" style="color:var(--orange)">(480) 555-0192</a></div>
+      <div class="footer-contact-item">⏰ Mon–Fri 7am–6pm · Sat 8am–4pm</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-oil-change.html">Oil Change &amp; Lube</a>
+        <a href="demo-autorepair-brakes.html">Brake Service</a>
+        <a href="demo-autorepair-diagnostics.html">Engine Diagnostics</a>
+        <a href="demo-autorepair-diagnostics.html#battery">Battery &amp; Electrical</a>
+        <a href="demo-autorepair-contact.html#ac">AC &amp; Heating</a>
+        <a href="demo-autorepair-contact.html#transmission">Transmission</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-about.html">About Us</a>
+        <a href="demo-autorepair-blog.html">Blog</a>
+        <a href="demo-autorepair-specials.html">Current Specials</a>
+        <a href="demo-autorepair-financing.html">Financing</a>
+        <a href="demo-autorepair-contact.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-contact.html">Book Appointment</a>
+        <a href="tel:4805550192">Call Us Now</a>
+        <a href="demo-autorepair-specials.html">Today's Deals</a>
+        <a href="demo-autorepair-financing.html">Apply for Financing</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Desert Ridge Auto — Mesa, AZ. All rights reserved.</span>
+    <span>Demo by <a href="https://teamground.work">Groundwork Studio</a></span>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+  document.querySelectorAll('.nav-links > li > span').forEach(el => { el.addEventListener('click', (e) => { e.stopPropagation(); const li = el.parentElement; const isOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!isOpen) li.classList.add('open'); }); });
+  document.addEventListener('click', () => { document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  const current = location.pathname.split('/').pop();
+  document.querySelectorAll('.nav-links a').forEach(a => { if (a.getAttribute('href') === current) a.classList.add('active'); });
+</script>
+</body>
+</html>

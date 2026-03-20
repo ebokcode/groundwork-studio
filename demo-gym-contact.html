@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Iron Valley Fitness Scottsdale</title>
+  <meta name="description" content="Contact Iron Valley Fitness. 8200 E Camelback Rd, Scottsdale AZ. (480) 555-0192. Mon–Fri 5am–11pm, Sat–Sun 7am–9pm. Free parking available." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black:#0a0a0a; --card:#111; --border:#1f1f1f; --yellow:#facc15; --yellow-dk:#eab308; --yellow-gl:rgba(250,204,21,.10); --white:#f5f5f5; --muted:#888; --nav-bg:rgba(10,10,10,.96); --radius:4px; --transition:200ms ease; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    ul { list-style:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; }
+
+    .demo-bar { background:var(--yellow); color:#111; text-align:center; padding:9px 24px; font-size:11.5px; font-weight:500; letter-spacing:.3px; z-index:600; position:relative; }
+    .demo-bar a { color:#111; font-weight:700; text-decoration:underline; }
+    .util-bar { background:#050505; border-bottom:1px solid var(--border); color:var(--muted); font-size:11px; padding:7px 40px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .util-bar a { color:var(--muted); transition:color var(--transition); }
+    .util-bar a:hover { color:var(--yellow); }
+    .util-left, .util-right { display:flex; align-items:center; gap:20px; }
+    .util-divider { color:var(--border); }
+
+    .nav { position:sticky; top:0; z-index:400; background:var(--nav-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; gap:32px; }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; color:var(--white); white-space:nowrap; flex-shrink:0; }
+    .nav-logo span { color:var(--yellow); }
+    .nav-links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
+    .nav-links > li { position:relative; }
+    .nav-links > li > a, .nav-links > li > button { display:flex; align-items:center; gap:4px; padding:8px 13px; font-size:12px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-radius:var(--radius); transition:color var(--transition),background var(--transition); white-space:nowrap; background:none; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color:var(--white); background:rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color:var(--yellow); }
+    .nav-chevron { font-size:9px; transition:transform var(--transition); }
+    .nav-links > li.open .nav-chevron { transform:rotate(180deg); }
+    .dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#111; border:1px solid var(--border); border-top:2px solid var(--yellow); min-width:300px; padding:8px 0; opacity:0; pointer-events:none; transform:translateY(6px); transition:opacity var(--transition),transform var(--transition); box-shadow:0 20px 50px rgba(0,0,0,.7); z-index:100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity:1; pointer-events:all; transform:translateY(0); }
+    .dropdown a { display:flex; align-items:flex-start; gap:12px; padding:10px 18px; transition:background var(--transition); }
+    .dropdown a:hover { background:rgba(255,255,255,.04); }
+    .dd-icon { width:32px; height:32px; background:var(--yellow-gl); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
+    .dd-text { display:flex; flex-direction:column; gap:2px; }
+    .dd-name { font-size:13px; font-weight:600; color:var(--white); transition:color var(--transition); }
+    .dropdown a:hover .dd-name { color:var(--yellow); }
+    .dd-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    .nav-cta { display:inline-flex; align-items:center; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:1.5px; padding:10px 22px; white-space:nowrap; flex-shrink:0; transition:background var(--transition),transform var(--transition); }
+    .nav-cta:hover { background:var(--yellow-dk); transform:translateY(-1px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; margin-left:auto; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--white); border-radius:2px; transition:transform var(--transition),opacity var(--transition); }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; background:#080808; z-index:999; flex-direction:column; padding:80px 32px 40px; overflow-y:auto; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a, .mobile-menu .m-label { display:block; font-size:17px; font-weight:500; color:var(--white); padding:13px 0; border-bottom:1px solid var(--border); }
+    .mobile-menu .m-label { color:var(--muted); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding-top:24px; }
+    .mobile-menu .m-sub a { font-size:14px; font-weight:400; padding:9px 0 9px 16px; color:var(--muted); }
+    .mobile-menu .m-cta { display:block; margin-top:28px; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px 32px; text-align:center; border-bottom:none; }
+
+    .page-hero { background:#0d0d0d; border-bottom:1px solid var(--border); padding:80px 40px 72px; }
+    .page-hero-inner { max-width:1280px; margin:0 auto; }
+    .page-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .page-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .page-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,8vw,108px); letter-spacing:0.05em; line-height:.9; color:var(--white); margin-bottom:20px; }
+    .page-h1 span { color:var(--yellow); }
+    .page-sub { font-size:16px; font-weight:300; line-height:1.75; color:var(--muted); max-width:560px; }
+
+    /* CONTACT SECTION */
+    .contact-section { padding:80px 40px; background:var(--black); }
+    .contact-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 400px; gap:64px; align-items:start; }
+
+    /* FORM */
+    .contact-form-wrap { background:var(--card); border:1px solid var(--border); border-top:3px solid var(--yellow); padding:48px 44px; }
+    .form-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:.05em; color:var(--white); margin-bottom:8px; }
+    .form-sub { font-size:13px; font-weight:300; color:var(--muted); margin-bottom:36px; line-height:1.6; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+    .form-row { margin-bottom:18px; }
+    .form-row-full { grid-column:1/-1; }
+    .form-label { display:block; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .form-input { width:100%; background:#0a0a0a; border:1px solid var(--border); color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; padding:13px 16px; transition:border-color var(--transition); outline:none; }
+    .form-input:focus { border-color:var(--yellow); }
+    select.form-input { cursor:pointer; }
+    textarea.form-input { resize:vertical; min-height:120px; }
+    .form-submit { display:block; width:100%; font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:2px; background:var(--yellow); color:#111; padding:15px 24px; text-align:center; cursor:pointer; transition:background var(--transition); border:none; margin-top:24px; }
+    .form-submit:hover { background:var(--yellow-dk); }
+    .form-note { font-size:11px; font-weight:300; color:var(--muted); text-align:center; margin-top:14px; }
+
+    /* INFO SIDEBAR */
+    .info-sidebar { display:flex; flex-direction:column; gap:2px; }
+    .info-card { background:var(--card); padding:28px 28px; border-left:3px solid var(--border); transition:border-color .25s; }
+    .info-card:hover { border-left-color:var(--yellow); }
+    .info-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--yellow); margin-bottom:10px; }
+    .info-value { font-size:14px; font-weight:400; color:var(--white); line-height:1.6; }
+    .info-value a { color:var(--white); transition:color var(--transition); }
+    .info-value a:hover { color:var(--yellow); }
+
+    /* HOURS TABLE */
+    .hours-table { width:100%; border-collapse:collapse; margin-top:4px; }
+    .hours-table tr td { font-size:13px; font-weight:300; padding:5px 0; color:var(--muted); border-bottom:1px solid rgba(255,255,255,.04); }
+    .hours-table tr td:first-child { color:rgba(245,245,245,.8); font-weight:500; }
+    .hours-table tr:last-child td { border-bottom:none; }
+
+    /* MAP PLACEHOLDER */
+    .map-section { padding:0 40px 80px; background:var(--black); }
+    .map-inner { max-width:1280px; margin:0 auto; }
+    .map-placeholder { background:var(--card); border:1px solid var(--border); height:320px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
+    .map-icon { font-size:48px; }
+    .map-text { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.05em; color:var(--muted); }
+    .map-address { font-size:13px; font-weight:300; color:var(--muted); }
+    .map-link { display:inline-block; margin-top:8px; font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px; color:var(--yellow); border-bottom:1px solid rgba(250,204,21,.3); transition:border-color var(--transition); }
+    .map-link:hover { border-bottom-color:var(--yellow); }
+
+    /* PARKING NOTE */
+    .parking-note { padding:40px; background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); text-align:center; }
+    .parking-inner { max-width:860px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+    .parking-icon { font-size:32px; }
+    .parking-text { font-size:14px; font-weight:300; color:var(--muted); line-height:1.6; }
+    .parking-text strong { color:var(--white); }
+
+    /* CTA BAND */
+    .cta-band { background:var(--yellow); padding:80px 40px; text-align:center; position:relative; overflow:hidden; }
+    .cta-band::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,rgba(0,0,0,.03) 0px,rgba(0,0,0,.03) 1px,transparent 1px,transparent 18px); }
+    .cta-band-inner { position:relative; z-index:1; max-width:740px; margin:0 auto; }
+    .cta-band-tag { font-size:10px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:rgba(0,0,0,.45); margin-bottom:16px; }
+    .cta-band-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7vw,88px); letter-spacing:.04em; line-height:.9; color:#111; margin-bottom:18px; }
+    .cta-band-sub { font-size:16px; font-weight:400; color:rgba(0,0,0,.6); margin-bottom:36px; }
+    .btn-dark { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:#111; color:var(--yellow); padding:16px 48px; display:inline-block; transition:background var(--transition),transform var(--transition); }
+    .btn-dark:hover { background:#000; transform:translateY(-2px); }
+    .cta-band-note { font-size:12px; font-weight:300; color:rgba(0,0,0,.5); margin-top:18px; }
+
+    /* FOOTER */
+    .footer { background:#050505; border-top:1px solid var(--border); padding:72px 40px 40px; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.08em; color:var(--white); margin-bottom:14px; }
+    .footer-logo span { color:var(--yellow); }
+    .footer-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; max-width:240px; margin-bottom:24px; }
+    .footer-social { display:flex; gap:12px; }
+    .footer-social a { width:36px; height:36px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--muted); transition:border-color var(--transition),color var(--transition); }
+    .footer-social a:hover { border-color:var(--yellow); color:var(--yellow); }
+    .footer-col h4 { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.08em; color:var(--white); margin-bottom:16px; }
+    .footer-col ul { display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:13px; font-weight:300; color:var(--muted); transition:color var(--transition); }
+    .footer-col ul li a:hover { color:var(--yellow); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:28px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-copy { font-size:12px; font-weight:300; color:var(--muted); }
+    .footer-copy a { color:var(--yellow); }
+
+    @media (max-width:1024px) { .nav-links, .nav-cta { display:none; } .hamburger { display:flex; } .contact-inner { grid-template-columns:1fr; } .info-sidebar { grid-row:1; } .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media (max-width:640px) { .util-bar { display:none; } .page-hero, .contact-section { padding:56px 20px; } .map-section, .parking-note { padding:0 20px 56px; } .parking-note { padding:32px 20px; } .contact-form-wrap { padding:32px 24px; } .form-grid { grid-template-columns:1fr; } .cta-band { padding:64px 20px; } .footer-inner { grid-template-columns:1fr; gap:36px; } .footer-bottom { flex-direction:column; text-align:center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">💪 Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left">
+    <a href="tel:+14805550192">📞 (480) 555-0192</a>
+    <span class="util-divider">|</span>
+    <span>Mon–Fri 5am–11pm · Sat–Sun 7am–9pm</span>
+  </div>
+  <div class="util-right">
+    <a href="demo-gym-specials.html">🔥 Summer Shred Challenge — Ends Soon →</a>
+  </div>
+</div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="demo-gym.html" class="nav-logo">Iron <span>Valley</span></a>
+    <ul class="nav-links">
+      <li>
+        <button class="nav-dd-toggle" aria-haspopup="true">Programs <span class="nav-chevron">▾</span></button>
+        <div class="dropdown">
+          <a href="demo-gym-classes.html"><div class="dd-icon">💪</div><div class="dd-text"><span class="dd-name">Group Classes</span><span class="dd-desc">HIIT, Spin, Yoga, Pilates, Boxing</span></div></a>
+          <a href="demo-gym-classes.html#strength"><div class="dd-icon">🏋️</div><div class="dd-text"><span class="dd-name">Strength &amp; Conditioning</span><span class="dd-desc">Free weights, power racks</span></div></a>
+          <a href="demo-gym-classes.html#cardio"><div class="dd-icon">🏃</div><div class="dd-text"><span class="dd-name">Cardio Zone</span><span class="dd-desc">Treadmills, bikes, rowers</span></div></a>
+          <a href="demo-gym-classes.html#recovery"><div class="dd-icon">🧘</div><div class="dd-text"><span class="dd-name">Recovery &amp; Wellness</span><span class="dd-desc">Sauna, stretching, foam rolling</span></div></a>
+          <a href="demo-gym-personal-training.html"><div class="dd-icon">🎯</div><div class="dd-text"><span class="dd-name">Personal Training</span><span class="dd-desc">1-on-1 certified coaching</span></div></a>
+          <a href="demo-gym-classes.html#youth"><div class="dd-icon">👦</div><div class="dd-text"><span class="dd-name">Youth Programs</span><span class="dd-desc">Ages 10–17, supervised sessions</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-gym-memberships.html">Memberships</a></li>
+      <li><a href="demo-gym-classes.html">Schedule</a></li>
+      <li><a href="demo-gym-specials.html">Specials</a></li>
+      <li><a href="demo-gym-blog.html">Blog</a></li>
+      <li><a href="demo-gym-about.html">About</a></li>
+      <li><a href="demo-gym-contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="demo-gym-memberships.html" class="nav-cta">Start Free Trial</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Programs</span>
+  <div class="m-sub">
+    <a href="demo-gym-classes.html">Group Classes</a>
+    <a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a>
+    <a href="demo-gym-classes.html#cardio">Cardio Zone</a>
+    <a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a>
+    <a href="demo-gym-personal-training.html">Personal Training</a>
+    <a href="demo-gym-classes.html#youth">Youth Programs</a>
+  </div>
+  <a href="demo-gym-memberships.html">Memberships</a>
+  <a href="demo-gym-classes.html">Schedule</a>
+  <a href="demo-gym-specials.html">Specials</a>
+  <a href="demo-gym-blog.html">Blog</a>
+  <a href="demo-gym-about.html">About</a>
+  <a href="demo-gym-contact.html">Contact</a>
+  <a href="demo-gym-memberships.html" class="m-cta">Start Free Trial</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Iron Valley Fitness</p>
+    <h1 class="page-h1">Get in <span>Touch</span></h1>
+    <p class="page-sub">Questions about membership, class schedules, personal training, or our facilities? We're here 7 days a week — reach out however you prefer.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-inner">
+
+    <!-- FORM -->
+    <div class="contact-form-wrap">
+      <h2 class="form-title">Send Us a Message</h2>
+      <p class="form-sub">We respond to all inquiries within one business day. For urgent matters, call us directly at (480) 555-0192.</p>
+      <div class="form-grid">
+        <div>
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="Jane" />
+        </div>
+        <div>
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Smith" />
+        </div>
+        <div>
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="jane@email.com" />
+        </div>
+        <div>
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" placeholder="(480) 555-0000" />
+        </div>
+        <div class="form-row-full">
+          <label class="form-label">I'm Interested In</label>
+          <select class="form-input">
+            <option value="">Select a topic...</option>
+            <option>Membership &amp; Pricing</option>
+            <option>Group Classes &amp; Schedule</option>
+            <option>Personal Training</option>
+            <option>Free Trial</option>
+            <option>Corporate Wellness</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row-full">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" placeholder="Tell us what you're looking for..."></textarea>
+        </div>
+      </div>
+      <button class="form-submit">Send Message →</button>
+      <p class="form-note">We'll respond within 1 business day. No spam, ever.</p>
+    </div>
+
+    <!-- INFO SIDEBAR -->
+    <div class="info-sidebar">
+      <div class="info-card">
+        <p class="info-label">Address</p>
+        <p class="info-value">
+          8200 E Camelback Rd<br />
+          Suite 110<br />
+          Scottsdale, AZ 85251
+        </p>
+      </div>
+      <div class="info-card">
+        <p class="info-label">Phone</p>
+        <p class="info-value"><a href="tel:+14805550192">(480) 555-0192</a></p>
+      </div>
+      <div class="info-card">
+        <p class="info-label">Email</p>
+        <p class="info-value"><a href="mailto:hello@ironvalleyfitness.com">hello@ironvalleyfitness.com</a></p>
+      </div>
+      <div class="info-card">
+        <p class="info-label">Hours</p>
+        <table class="hours-table">
+          <tr><td>Monday</td><td>5:00 AM – 11:00 PM</td></tr>
+          <tr><td>Tuesday</td><td>5:00 AM – 11:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>5:00 AM – 11:00 PM</td></tr>
+          <tr><td>Thursday</td><td>5:00 AM – 11:00 PM</td></tr>
+          <tr><td>Friday</td><td>5:00 AM – 11:00 PM</td></tr>
+          <tr><td>Saturday</td><td>7:00 AM – 9:00 PM</td></tr>
+          <tr><td>Sunday</td><td>7:00 AM – 9:00 PM</td></tr>
+        </table>
+      </div>
+      <div class="info-card">
+        <p class="info-label">Follow Us</p>
+        <p class="info-value" style="display:flex;gap:12px;margin-top:4px;">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">TikTok</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP PLACEHOLDER -->
+<div class="map-section">
+  <div class="map-inner">
+    <div class="map-placeholder">
+      <div class="map-icon">📍</div>
+      <div class="map-text">8200 E Camelback Rd · Scottsdale, AZ 85251</div>
+      <div class="map-address">Corner of Camelback &amp; Scottsdale Rd · Suite 110</div>
+      <a href="https://maps.google.com" target="_blank" rel="noopener" class="map-link">Open in Google Maps →</a>
+    </div>
+  </div>
+</div>
+
+<!-- PARKING NOTE -->
+<div class="parking-note">
+  <div class="parking-inner">
+    <span class="parking-icon">🅿️</span>
+    <p class="parking-text">
+      <strong>Free parking available.</strong> Enter off Camelback Rd — look for the Iron Valley sign. Surface lot directly in front of the entrance with 40+ spaces. Additional street parking on 82nd Street. EV charging stations available in rear lot.
+    </p>
+  </div>
+</div>
+
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <p class="cta-band-tag">No Commitment Required</p>
+    <h2 class="cta-band-h2">Try Before You Join</h2>
+    <p class="cta-band-sub">7 days free, no credit card. Walk in and experience everything Iron Valley has to offer before making any decision.</p>
+    <a href="demo-gym-memberships.html" class="btn-dark">Start Free Trial</a>
+    <p class="cta-band-note">Or call <strong>(480) 555-0192</strong> and we'll walk you through everything.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Iron <span>Valley</span> Fitness</div>
+      <p class="footer-tagline">Scottsdale's most dedicated fitness community. Built for people who are serious about results.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="TikTok">TK</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="demo-gym-classes.html">Group Classes</a></li>
+        <li><a href="demo-gym-personal-training.html">Personal Training</a></li>
+        <li><a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a></li>
+        <li><a href="demo-gym-classes.html#cardio">Cardio Zone</a></li>
+        <li><a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a></li>
+        <li><a href="demo-gym-classes.html#youth">Youth Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="demo-gym-about.html">About Us</a></li>
+        <li><a href="demo-gym-memberships.html">Memberships</a></li>
+        <li><a href="demo-gym-specials.html">Current Specials</a></li>
+        <li><a href="demo-gym-blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="demo-gym-contact.html">Contact Us</a></li>
+        <li><a href="demo-gym-contact.html">Directions</a></li>
+        <li><a href="tel:+14805550192">(480) 555-0192</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Iron Valley Fitness · 8200 E Camelback Rd, Scottsdale AZ 85251 · <a href="https://teamground.work">Demo by Groundwork Studio</a></p>
+    <p class="footer-copy">(480) 555-0192 · ironvalleyfitness@demo.com</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); const li = btn.closest('li'); const wasOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!wasOpen) li.classList.add('open'); });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  const ham = document.getElementById('hamburger'); const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+</script>
+</body>
+</html>

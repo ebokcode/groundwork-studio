@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Training — Iron Valley Fitness Scottsdale</title>
+  <meta name="description" content="1-on-1 personal training at Iron Valley Fitness. Certified coaches, custom programs. Single sessions $75 or packages from $299. Free consultation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black:#0a0a0a; --card:#111; --border:#1f1f1f; --yellow:#facc15; --yellow-dk:#eab308; --yellow-gl:rgba(250,204,21,.10); --white:#f5f5f5; --muted:#888; --nav-bg:rgba(10,10,10,.96); --radius:4px; --transition:200ms ease; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    ul { list-style:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; }
+
+    .demo-bar { background:var(--yellow); color:#111; text-align:center; padding:9px 24px; font-size:11.5px; font-weight:500; letter-spacing:.3px; z-index:600; position:relative; }
+    .demo-bar a { color:#111; font-weight:700; text-decoration:underline; }
+    .util-bar { background:#050505; border-bottom:1px solid var(--border); color:var(--muted); font-size:11px; padding:7px 40px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .util-bar a { color:var(--muted); transition:color var(--transition); }
+    .util-bar a:hover { color:var(--yellow); }
+    .util-left, .util-right { display:flex; align-items:center; gap:20px; }
+    .util-divider { color:var(--border); }
+
+    .nav { position:sticky; top:0; z-index:400; background:var(--nav-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; gap:32px; }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; color:var(--white); white-space:nowrap; flex-shrink:0; }
+    .nav-logo span { color:var(--yellow); }
+    .nav-links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
+    .nav-links > li { position:relative; }
+    .nav-links > li > a, .nav-links > li > button { display:flex; align-items:center; gap:4px; padding:8px 13px; font-size:12px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-radius:var(--radius); transition:color var(--transition),background var(--transition); white-space:nowrap; background:none; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color:var(--white); background:rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color:var(--yellow); }
+    .nav-chevron { font-size:9px; transition:transform var(--transition); }
+    .nav-links > li.open .nav-chevron { transform:rotate(180deg); }
+    .dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#111; border:1px solid var(--border); border-top:2px solid var(--yellow); min-width:300px; padding:8px 0; opacity:0; pointer-events:none; transform:translateY(6px); transition:opacity var(--transition),transform var(--transition); box-shadow:0 20px 50px rgba(0,0,0,.7); z-index:100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity:1; pointer-events:all; transform:translateY(0); }
+    .dropdown a { display:flex; align-items:flex-start; gap:12px; padding:10px 18px; transition:background var(--transition); }
+    .dropdown a:hover { background:rgba(255,255,255,.04); }
+    .dd-icon { width:32px; height:32px; background:var(--yellow-gl); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
+    .dd-text { display:flex; flex-direction:column; gap:2px; }
+    .dd-name { font-size:13px; font-weight:600; color:var(--white); transition:color var(--transition); }
+    .dropdown a:hover .dd-name { color:var(--yellow); }
+    .dd-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    .nav-cta { display:inline-flex; align-items:center; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:1.5px; padding:10px 22px; white-space:nowrap; flex-shrink:0; transition:background var(--transition),transform var(--transition); }
+    .nav-cta:hover { background:var(--yellow-dk); transform:translateY(-1px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; margin-left:auto; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--white); border-radius:2px; transition:transform var(--transition),opacity var(--transition); }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; background:#080808; z-index:999; flex-direction:column; padding:80px 32px 40px; overflow-y:auto; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a, .mobile-menu .m-label { display:block; font-size:17px; font-weight:500; color:var(--white); padding:13px 0; border-bottom:1px solid var(--border); }
+    .mobile-menu .m-label { color:var(--muted); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding-top:24px; }
+    .mobile-menu .m-sub a { font-size:14px; font-weight:400; padding:9px 0 9px 16px; color:var(--muted); }
+    .mobile-menu .m-cta { display:block; margin-top:28px; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px 32px; text-align:center; border-bottom:none; }
+
+    .page-hero { position:relative; min-height:56vh; display:flex; align-items:center; padding:100px 40px 80px; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+    .hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(105deg,rgba(10,10,10,.95) 0%,rgba(10,10,10,.85) 50%,rgba(10,10,10,.6) 100%); }
+    .page-hero-inner { position:relative; z-index:2; max-width:1280px; width:100%; margin:0 auto; }
+    .page-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .page-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .page-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,8vw,108px); letter-spacing:0.05em; line-height:.9; color:var(--white); margin-bottom:20px; }
+    .page-h1 span { color:var(--yellow); }
+    .page-sub { font-size:16px; font-weight:300; line-height:1.75; color:var(--muted); max-width:560px; margin-bottom:36px; }
+    .btn-primary { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:var(--yellow); color:#111; padding:14px 38px; display:inline-block; transition:background var(--transition),transform var(--transition); }
+    .btn-primary:hover { background:var(--yellow-dk); transform:translateY(-1px); }
+
+    /* WHAT TO EXPECT */
+    .expect-section { padding:80px 40px; background:var(--card); border-bottom:1px solid var(--border); }
+    .expect-inner { max-width:1280px; margin:0 auto; }
+    .section-tag { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+    .section-tag::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .section-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,68px); letter-spacing:0.04em; line-height:.92; color:var(--white); margin-bottom:48px; }
+    .section-h2 span { color:var(--yellow); }
+    .expect-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .expect-card { background:var(--black); padding:36px 28px; border-top:3px solid var(--border); transition:border-color .25s; }
+    .expect-card:hover { border-top-color:var(--yellow); }
+    .expect-icon { font-size:32px; margin-bottom:16px; }
+    .expect-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.05em; color:var(--white); margin-bottom:12px; }
+    .expect-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.8; }
+
+    /* TRAINER PROFILES */
+    .trainers { padding:80px 40px; background:var(--black); }
+    .trainers-inner { max-width:1280px; margin:0 auto; }
+    .trainer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:48px; }
+    .trainer-card { background:var(--card); overflow:hidden; }
+    .trainer-photo { height:300px; overflow:hidden; }
+    .trainer-photo img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .5s; }
+    .trainer-card:hover .trainer-photo img { transform:scale(1.04); }
+    .trainer-body { padding:30px; }
+    .trainer-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:.05em; color:var(--white); margin-bottom:6px; }
+    .trainer-meta { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; }
+    .trainer-specs { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
+    .trainer-spec-item { background:rgba(250,204,21,.06); padding:10px 14px; border:1px solid rgba(250,204,21,.12); }
+    .trainer-spec-label { font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+    .trainer-spec-val { font-size:13px; font-weight:500; color:var(--white); }
+    .trainer-bio { font-size:13px; font-weight:300; color:var(--muted); line-height:1.8; }
+
+    /* PRICING TABLE */
+    .pricing { padding:80px 40px; background:var(--card); border-top:1px solid var(--border); }
+    .pricing-inner { max-width:1280px; margin:0 auto; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:48px; }
+    .pkg-card { background:var(--black); padding:40px 32px; border-top:3px solid var(--border); text-align:center; position:relative; transition:border-color .25s; }
+    .pkg-card.featured { border-top-color:var(--yellow); background:#0d0d08; }
+    .pkg-card:not(.featured):hover { border-top-color:var(--yellow); }
+    .pkg-name { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.05em; color:var(--muted); margin-bottom:8px; text-transform:uppercase; }
+    .pkg-sessions { font-family:'Bebas Neue',sans-serif; font-size:64px; letter-spacing:-2px; color:var(--yellow); line-height:1; margin-bottom:4px; }
+    .pkg-sessions-label { font-size:11px; font-weight:300; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; }
+    .pkg-price { font-family:'Bebas Neue',sans-serif; font-size:40px; letter-spacing:.02em; color:var(--white); margin-bottom:4px; }
+    .pkg-per { font-size:11px; font-weight:300; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+    .pkg-savings { display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#111; background:var(--yellow); padding:3px 10px; margin-bottom:24px; }
+    .pkg-divider { height:1px; background:var(--border); margin-bottom:20px; }
+    .pkg-features { margin-bottom:32px; text-align:left; }
+    .pkg-features li { font-size:12.5px; font-weight:300; color:rgba(245,245,245,.65); padding:6px 0; border-bottom:1px solid rgba(255,255,255,.04); display:flex; align-items:center; gap:8px; }
+    .pkg-features li::before { content:'✓'; color:var(--yellow); font-size:10px; font-weight:700; flex-shrink:0; }
+    .pkg-cta { display:block; width:100%; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-align:center; transition:background var(--transition),color var(--transition),border-color var(--transition); }
+    .pkg-cta-primary { background:var(--yellow); color:#111; border:1px solid var(--yellow); }
+    .pkg-cta-primary:hover { background:var(--yellow-dk); border-color:var(--yellow-dk); }
+    .pkg-cta-ghost { background:transparent; color:var(--white); border:1px solid var(--border); }
+    .pkg-cta-ghost:hover { border-color:var(--yellow); color:var(--yellow); }
+
+    /* FREE CONSULT BAND */
+    .consult-band { background:#0d0d0d; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:72px 40px; }
+    .consult-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .consult-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; }
+    .consult-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,70px); letter-spacing:.05em; line-height:.9; color:var(--white); margin-bottom:16px; }
+    .consult-desc { font-size:14px; font-weight:300; color:var(--muted); line-height:1.8; margin-bottom:32px; }
+    .consult-list { margin-bottom:36px; }
+    .consult-list li { font-size:13px; font-weight:300; color:rgba(245,245,245,.7); padding:7px 0; border-bottom:1px solid rgba(255,255,255,.04); display:flex; align-items:center; gap:8px; }
+    .consult-list li::before { content:'→'; color:var(--yellow); flex-shrink:0; }
+    .consult-form { background:var(--card); border:1px solid var(--border); border-top:3px solid var(--yellow); padding:40px 36px; }
+    .form-row { margin-bottom:18px; }
+    .form-label { display:block; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .form-input { width:100%; background:#0a0a0a; border:1px solid var(--border); color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; padding:12px 16px; transition:border-color var(--transition); outline:none; }
+    .form-input:focus { border-color:var(--yellow); }
+    .form-submit { display:block; width:100%; font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:var(--yellow); color:#111; padding:14px 24px; text-align:center; cursor:pointer; transition:background var(--transition); border:none; }
+    .form-submit:hover { background:var(--yellow-dk); }
+
+    /* FAQ */
+    .faq-section { padding:80px 40px; background:var(--black); }
+    .faq-inner { max-width:860px; margin:0 auto; }
+    .faq-item { border-bottom:1px solid var(--border); }
+    .faq-q { width:100%; display:flex; justify-content:space-between; align-items:center; padding:22px 0; font-size:15px; font-weight:500; color:var(--white); gap:16px; background:none; text-align:left; transition:color var(--transition); }
+    .faq-q:hover { color:var(--yellow); }
+    .faq-icon { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--yellow); flex-shrink:0; transition:transform var(--transition); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+    .faq-a p { font-size:14px; font-weight:300; line-height:1.8; color:var(--muted); padding-bottom:20px; }
+    .faq-item.open .faq-a { max-height:300px; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); }
+
+    /* FOOTER */
+    .footer { background:#050505; border-top:1px solid var(--border); padding:72px 40px 40px; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.08em; color:var(--white); margin-bottom:14px; }
+    .footer-logo span { color:var(--yellow); }
+    .footer-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; max-width:240px; margin-bottom:24px; }
+    .footer-social { display:flex; gap:12px; }
+    .footer-social a { width:36px; height:36px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--muted); transition:border-color var(--transition),color var(--transition); }
+    .footer-social a:hover { border-color:var(--yellow); color:var(--yellow); }
+    .footer-col h4 { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.08em; color:var(--white); margin-bottom:16px; }
+    .footer-col ul { display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:13px; font-weight:300; color:var(--muted); transition:color var(--transition); }
+    .footer-col ul li a:hover { color:var(--yellow); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:28px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-copy { font-size:12px; font-weight:300; color:var(--muted); }
+    .footer-copy a { color:var(--yellow); }
+
+    @media (max-width:1024px) { .nav-links, .nav-cta { display:none; } .hamburger { display:flex; } .expect-grid, .trainer-grid { grid-template-columns:1fr; max-width:480px; margin:0 auto; } .pricing-grid { grid-template-columns:1fr 1fr; } .consult-inner { grid-template-columns:1fr; gap:40px; } .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media (max-width:640px) { .util-bar { display:none; } .page-hero { padding:80px 20px 60px; } .expect-section, .trainers, .pricing, .faq-section { padding:56px 20px; } .consult-band { padding:56px 20px; } .pricing-grid { grid-template-columns:1fr; max-width:360px; margin:48px auto 0; } .footer-inner { grid-template-columns:1fr; gap:36px; } .footer-bottom { flex-direction:column; text-align:center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">💪 Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left">
+    <a href="tel:+14805550192">📞 (480) 555-0192</a>
+    <span class="util-divider">|</span>
+    <span>Mon–Fri 5am–11pm · Sat–Sun 7am–9pm</span>
+  </div>
+  <div class="util-right">
+    <a href="demo-gym-specials.html">🔥 Summer Shred Challenge — Ends Soon →</a>
+  </div>
+</div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="demo-gym.html" class="nav-logo">Iron <span>Valley</span></a>
+    <ul class="nav-links">
+      <li>
+        <button class="nav-dd-toggle" aria-haspopup="true">Programs <span class="nav-chevron">▾</span></button>
+        <div class="dropdown">
+          <a href="demo-gym-classes.html"><div class="dd-icon">💪</div><div class="dd-text"><span class="dd-name">Group Classes</span><span class="dd-desc">HIIT, Spin, Yoga, Pilates, Boxing</span></div></a>
+          <a href="demo-gym-classes.html#strength"><div class="dd-icon">🏋️</div><div class="dd-text"><span class="dd-name">Strength &amp; Conditioning</span><span class="dd-desc">Free weights, power racks</span></div></a>
+          <a href="demo-gym-classes.html#cardio"><div class="dd-icon">🏃</div><div class="dd-text"><span class="dd-name">Cardio Zone</span><span class="dd-desc">Treadmills, bikes, rowers</span></div></a>
+          <a href="demo-gym-classes.html#recovery"><div class="dd-icon">🧘</div><div class="dd-text"><span class="dd-name">Recovery &amp; Wellness</span><span class="dd-desc">Sauna, stretching, foam rolling</span></div></a>
+          <a href="demo-gym-personal-training.html"><div class="dd-icon">🎯</div><div class="dd-text"><span class="dd-name">Personal Training</span><span class="dd-desc">1-on-1 certified coaching</span></div></a>
+          <a href="demo-gym-classes.html#youth"><div class="dd-icon">👦</div><div class="dd-text"><span class="dd-name">Youth Programs</span><span class="dd-desc">Ages 10–17, supervised sessions</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-gym-memberships.html">Memberships</a></li>
+      <li><a href="demo-gym-classes.html">Schedule</a></li>
+      <li><a href="demo-gym-specials.html">Specials</a></li>
+      <li><a href="demo-gym-blog.html">Blog</a></li>
+      <li><a href="demo-gym-about.html">About</a></li>
+      <li><a href="demo-gym-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-gym-memberships.html" class="nav-cta">Start Free Trial</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Programs</span>
+  <div class="m-sub">
+    <a href="demo-gym-classes.html">Group Classes</a>
+    <a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a>
+    <a href="demo-gym-classes.html#cardio">Cardio Zone</a>
+    <a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a>
+    <a href="demo-gym-personal-training.html">Personal Training</a>
+    <a href="demo-gym-classes.html#youth">Youth Programs</a>
+  </div>
+  <a href="demo-gym-memberships.html">Memberships</a>
+  <a href="demo-gym-classes.html">Schedule</a>
+  <a href="demo-gym-specials.html">Specials</a>
+  <a href="demo-gym-blog.html">Blog</a>
+  <a href="demo-gym-about.html">About</a>
+  <a href="demo-gym-contact.html">Contact</a>
+  <a href="demo-gym-memberships.html" class="m-cta">Start Free Trial</a>
+</div>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">1-on-1 Coaching</p>
+    <h1 class="page-h1">Personal <span>Training</span></h1>
+    <p class="page-sub">Work directly with a certified coach who builds your program around your goals, your body, and your schedule. No generic workouts. No guessing. Just results.</p>
+    <a href="#consult" class="btn-primary">Book Free Consultation</a>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect-section">
+  <div class="expect-inner">
+    <p class="section-tag">The Process</p>
+    <h2 class="section-h2">What to <span>Expect</span></h2>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <div class="expect-icon">📋</div>
+        <h3 class="expect-title">Assessment First</h3>
+        <p class="expect-desc">Every new PT client starts with a full movement screen, body composition analysis, and goal-setting session. We build from your baseline — not a template.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-icon">🎯</div>
+        <h3 class="expect-title">Custom Programming</h3>
+        <p class="expect-desc">Your trainer writes a program specific to you — periodized training blocks, progressive overload, and built-in recovery. Delivered to your app weekly.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-icon">📈</div>
+        <h3 class="expect-title">Tracked Progress</h3>
+        <p class="expect-desc">Monthly re-assessments, photo check-ins if you opt in, and detailed strength tracking so you always know exactly how far you've come.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINER PROFILES -->
+<section class="trainers">
+  <div class="trainers-inner">
+    <p class="section-tag">The Coaching Team</p>
+    <h2 class="section-h2">Meet Your <span>Trainers</span></h2>
+    <div class="trainer-grid">
+      <div class="trainer-card">
+        <div class="trainer-photo">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80" alt="Marcus Webb" loading="lazy" />
+        </div>
+        <div class="trainer-body">
+          <h3 class="trainer-name">Marcus Webb</h3>
+          <p class="trainer-meta">Head of Strength &amp; Performance · 9 Years</p>
+          <div class="trainer-specs">
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Certification</div><div class="trainer-spec-val">NASM-CPT, CSCS</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Specialty</div><div class="trainer-spec-val">Strength &amp; HIIT</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Experience</div><div class="trainer-spec-val">9 Years</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Focus</div><div class="trainer-spec-val">Athletic Performance</div></div>
+          </div>
+          <p class="trainer-bio">Former NCAA athlete and certified strength coach. Marcus specializes in performance training, functional strength, and body composition for serious athletes and ambitious beginners alike. His no-nonsense approach gets results fast.</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-photo">
+          <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=600&q=80" alt="Elena Reyes" loading="lazy" />
+        </div>
+        <div class="trainer-body">
+          <h3 class="trainer-name">Elena Reyes</h3>
+          <p class="trainer-meta">Cardio &amp; Lifestyle Coach · 7 Years</p>
+          <div class="trainer-specs">
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Certification</div><div class="trainer-spec-val">ACE-CPT, Precision Nutrition</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Specialty</div><div class="trainer-spec-val">Weight Loss &amp; Cardio</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Experience</div><div class="trainer-spec-val">7 Years</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Focus</div><div class="trainer-spec-val">Lifestyle &amp; Sustainability</div></div>
+          </div>
+          <p class="trainer-bio">Elena combines fitness and nutrition coaching to help clients build habits that last. She's helped over 200 members lose weight, build confidence, and fundamentally change their relationship with exercise. Certified in Precision Nutrition Level 1.</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Derek Osei" loading="lazy" />
+        </div>
+        <div class="trainer-body">
+          <h3 class="trainer-name">Derek Osei</h3>
+          <p class="trainer-meta">Boxing &amp; Combat Conditioning · 6 Years</p>
+          <div class="trainer-specs">
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Certification</div><div class="trainer-spec-val">NASM-CPT, USA Boxing</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Specialty</div><div class="trainer-spec-val">Boxing &amp; MMA Fitness</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Experience</div><div class="trainer-spec-val">6 Years</div></div>
+            <div class="trainer-spec-item"><div class="trainer-spec-label">Focus</div><div class="trainer-spec-val">Combat Sports &amp; Agility</div></div>
+          </div>
+          <p class="trainer-bio">Derek is a USA Boxing certified trainer and former amateur competitor. He brings an athlete's intensity to every personal training session — combining boxing fundamentals, footwork, and conditioning into a workout like nothing else in Scottsdale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING PACKAGES -->
+<section class="pricing">
+  <div class="pricing-inner">
+    <p class="section-tag">Session Packages</p>
+    <h2 class="section-h2">Transparent <span>Pricing</span></h2>
+    <div class="pricing-grid">
+      <div class="pkg-card">
+        <div class="pkg-name">Single</div>
+        <div class="pkg-sessions">1</div>
+        <div class="pkg-sessions-label">Session</div>
+        <div class="pkg-price">$75</div>
+        <div class="pkg-per">per session</div>
+        <div style="height:28px;"></div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>60-minute session</li>
+          <li>Custom workout plan</li>
+          <li>Form coaching</li>
+          <li>Progress notes</li>
+        </ul>
+        <a href="demo-gym-contact.html" class="pkg-cta pkg-cta-ghost">Book Now</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-name">Starter Pack</div>
+        <div class="pkg-sessions">5</div>
+        <div class="pkg-sessions-label">Sessions</div>
+        <div class="pkg-price">$299</div>
+        <div class="pkg-per">$59.80 / session</div>
+        <div class="pkg-savings">Save $75</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>5 × 60-min sessions</li>
+          <li>Initial assessment included</li>
+          <li>Custom program design</li>
+          <li>App workout delivery</li>
+        </ul>
+        <a href="demo-gym-contact.html" class="pkg-cta pkg-cta-ghost">Book Now</a>
+      </div>
+      <div class="pkg-card featured">
+        <div class="pkg-name">Best Value</div>
+        <div class="pkg-sessions">10</div>
+        <div class="pkg-sessions-label">Sessions</div>
+        <div class="pkg-price">$549</div>
+        <div class="pkg-per">$54.90 / session</div>
+        <div class="pkg-savings">Save $201</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>10 × 60-min sessions</li>
+          <li>Full assessment &amp; re-check</li>
+          <li>Nutrition coaching included</li>
+          <li>Priority scheduling</li>
+        </ul>
+        <a href="demo-gym-contact.html" class="pkg-cta pkg-cta-primary">Book Now</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-name">Commitment</div>
+        <div class="pkg-sessions">20</div>
+        <div class="pkg-sessions-label">Sessions</div>
+        <div class="pkg-price">$999</div>
+        <div class="pkg-per">$49.95 / session</div>
+        <div class="pkg-savings">Save $501</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>20 × 60-min sessions</li>
+          <li>Monthly re-assessments</li>
+          <li>Full nutrition program</li>
+          <li>Dedicated coach access</li>
+        </ul>
+        <a href="demo-gym-contact.html" class="pkg-cta pkg-cta-ghost">Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE CONSULTATION -->
+<section class="consult-band" id="consult">
+  <div class="consult-inner">
+    <div>
+      <p class="consult-eyebrow">No Commitment</p>
+      <h2 class="consult-h2">Free Consultation</h2>
+      <p class="consult-desc">Not sure which trainer or package is right for you? Book a free 30-minute consultation. We'll talk goals, assess your current fitness level, and recommend the best path forward.</p>
+      <ul class="consult-list">
+        <li>30-minute in-person meeting</li>
+        <li>Goal-setting &amp; needs assessment</li>
+        <li>Trainer matching</li>
+        <li>Package recommendation with no pressure</li>
+        <li>Tour of the facility</li>
+      </ul>
+    </div>
+    <div class="consult-form">
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;margin-bottom:24px;">Book Your Free Consult</p>
+      <div class="form-row">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" placeholder="Jane Smith" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="jane@email.com" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-input" placeholder="(480) 555-0000" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Primary Goal</label>
+        <select class="form-input" style="cursor:pointer;">
+          <option>Lose Weight</option>
+          <option>Build Muscle</option>
+          <option>Athletic Performance</option>
+          <option>General Fitness</option>
+          <option>Injury Recovery</option>
+        </select>
+      </div>
+      <button class="form-submit">Request Free Consultation →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <p class="section-tag">Have Questions?</p>
+    <h2 class="section-h2">PT FAQs</h2>
+    <div class="faq-item">
+      <button class="faq-q">Do I need a gym membership to do personal training? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Yes — all personal training clients must hold an active Iron Valley membership (Basic or higher). This gives you access to the full facility between your PT sessions so you can continue training on your own schedule.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How often should I train with a personal trainer? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Most clients see the best results training 2–3 times per week with a trainer and doing 1–2 independent sessions in between. Your trainer will recommend a frequency based on your goals and recovery capacity during your consultation.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I switch trainers if it's not a good fit? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Absolutely. If the chemistry isn't right, we'll pair you with another coach at no charge. We want you to have the best possible experience and results — that starts with the right relationship.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do packages expire? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Single sessions and 5-session packages expire in 60 days. 10-session packages expire in 4 months. 20-session packages expire in 6 months. We offer extensions in cases of injury or medical leave.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Iron <span>Valley</span> Fitness</div>
+      <p class="footer-tagline">Scottsdale's most dedicated fitness community. Built for people who are serious about results.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="TikTok">TK</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="demo-gym-classes.html">Group Classes</a></li>
+        <li><a href="demo-gym-personal-training.html">Personal Training</a></li>
+        <li><a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a></li>
+        <li><a href="demo-gym-classes.html#cardio">Cardio Zone</a></li>
+        <li><a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a></li>
+        <li><a href="demo-gym-classes.html#youth">Youth Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="demo-gym-about.html">About Us</a></li>
+        <li><a href="demo-gym-memberships.html">Memberships</a></li>
+        <li><a href="demo-gym-specials.html">Current Specials</a></li>
+        <li><a href="demo-gym-blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="demo-gym-contact.html">Contact Us</a></li>
+        <li><a href="demo-gym-contact.html">Directions</a></li>
+        <li><a href="tel:+14805550192">(480) 555-0192</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Iron Valley Fitness · 8200 E Camelback Rd, Scottsdale AZ 85251 · <a href="https://teamground.work">Demo by Groundwork Studio</a></p>
+    <p class="footer-copy">(480) 555-0192 · ironvalleyfitness@demo.com</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); const li = btn.closest('li'); const wasOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!wasOpen) li.classList.add('open'); });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  const ham = document.getElementById('hamburger'); const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => { const item = btn.closest('.faq-item'); const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!isOpen) item.classList.add('open'); });
+  });
+</script>
+</body>
+</html>

@@ -1,1636 +1,645 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iron Valley Fitness — Scottsdale Gym</title>
-  <meta name="description" content="Scottsdale's premier fitness gym. Classes, personal training, and memberships starting at $49/mo. Try your first week free.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iron Valley Fitness — Scottsdale's Premier Gym</title>
+  <meta name="description" content="Scottsdale's premier fitness gym. Group classes, personal training, and memberships starting at $39/mo. 8,000 sq ft facility. Try your first week free." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
   <style>
+    /* ── TOKENS ── */
     :root {
-      --ink:       #0a0a0a;
-      --navy:      #111111;
-      --card:      #161616;
-      --border:    #272727;
-      --yellow:    #facc15;
+      --black: #0a0a0a;
+      --card: #111;
+      --border: #1f1f1f;
+      --yellow: #facc15;
       --yellow-dk: #eab308;
       --yellow-gl: rgba(250,204,21,.10);
-      --white:     #f5f5f5;
-      --muted:     #888888;
-      --serif:     'Barlow Condensed', sans-serif;
-      --sans:      'DM Sans', sans-serif;
+      --white: #f5f5f5;
+      --muted: #888;
+      --nav-bg: rgba(10,10,10,.96);
+      --radius: 4px;
+      --transition: 200ms ease;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--ink); color: var(--white); overflow-x: hidden; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
 
-    /* ── DEMO BANNER ──────────────────────────────────────── */
-    .demo-bar {
-      background: var(--yellow); color: #111827;
-      text-align: center; padding: 9px 24px;
-      font-size: 11.5px; font-weight: 500; letter-spacing: .3px;
-      position: relative; z-index: 400;
-    }
-    .demo-bar a { color: #111827; font-weight: 700; text-decoration: underline; }
+    /* ── DEMO BANNER ── */
+    .demo-bar { background: var(--yellow); color: #111; text-align: center; padding: 9px 24px; font-size: 11.5px; font-weight: 500; letter-spacing: .3px; position: relative; z-index: 600; }
+    .demo-bar a { color: #111; font-weight: 700; text-decoration: underline; }
 
-    /* ── NAV ──────────────────────────────────────────────── */
-    .nav {
-      position: fixed; left: 0; right: 0; z-index: 300;
-      padding: 0 44px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .35s, border-color .35s;
-    }
-    .nav.solid {
-      background: rgba(10,10,10,.97);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-    .nav-logo {
-      font-family: var(--serif); font-size: 20px; font-weight: 800;
-      letter-spacing: .5px; text-transform: uppercase; color: var(--white);
-    }
+    /* ── UTILITY BAR ── */
+    .util-bar { background: #050505; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 11px; padding: 7px 40px; display: flex; justify-content: space-between; align-items: center; gap: 12px; position: relative; z-index: 500; }
+    .util-bar a { color: var(--muted); transition: color var(--transition); }
+    .util-bar a:hover { color: var(--yellow); }
+    .util-left, .util-right { display: flex; align-items: center; gap: 20px; }
+    .util-divider { color: var(--border); }
+
+    /* ── NAV ── */
+    .nav { position: sticky; top: 0; z-index: 400; background: var(--nav-bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; gap: 32px; }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); white-space: nowrap; flex-shrink: 0; }
     .nav-logo span { color: var(--yellow); }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a {
-      font-size: 12px; font-weight: 400; letter-spacing: 1.8px;
-      text-transform: uppercase; color: var(--muted);
-      transition: color .2s;
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a,
+    .nav-links > li > button {
+      display: flex; align-items: center; gap: 4px;
+      padding: 8px 13px; font-size: 12px; font-weight: 500;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--muted); border-radius: var(--radius);
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap; background: none;
     }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      background: var(--yellow); color: #111827;
-      padding: 10px 22px; display: flex; align-items: center; gap: 8px;
-      transition: background .2s;
-    }
-    .nav-cta:hover { background: var(--yellow-dk); }
+    .nav-links > li > a:hover,
+    .nav-links > li > button:hover,
+    .nav-links > li.open > button { color: var(--white); background: rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color: var(--yellow); }
+    .nav-chevron { font-size: 9px; transition: transform var(--transition); }
+    .nav-links > li.open .nav-chevron { transform: rotate(180deg); }
 
-    /* ── HERO ─────────────────────────────────────────────── */
-    .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 0 44px; overflow: hidden;
+    /* Dropdown */
+    .dropdown {
+      position: absolute; top: calc(100% + 6px); left: 0;
+      background: #111; border: 1px solid var(--border);
+      border-top: 2px solid var(--yellow);
+      min-width: 300px; padding: 8px 0;
+      opacity: 0; pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity var(--transition), transform var(--transition);
+      box-shadow: 0 20px 50px rgba(0,0,0,.7);
+      z-index: 100;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80')
-        center/cover no-repeat;
-      animation: kenBurns 22s ease-in-out infinite alternate;
-      transform-origin: center center;
-    }
-    @keyframes kenBurns {
-      from { transform: scale(1) translateX(0); }
-      to   { transform: scale(1.1) translateX(2%); }
-    }
-    .hero-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(105deg,
-        rgba(10,10,10,.95) 0%,
-        rgba(10,10,10,.88) 50%,
-        rgba(10,10,10,.6) 100%);
-    }
-    /* Animated yellow line accent */
-    .hero-bg::before {
-      content: ''; position: absolute;
-      left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(to bottom, transparent, var(--yellow), var(--yellow-dk), transparent);
-      z-index: 1;
-    }
-    .hero-inner {
-      position: relative; z-index: 2;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 60px; align-items: center;
-      max-width: 1200px; width: 100%;
-    }
-    .hero-eyebrow {
-      font-size: 11px; font-weight: 500; letter-spacing: 5px;
-      text-transform: uppercase; color: var(--yellow);
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 2px;
-      background: var(--yellow);
-    }
-    .hero-h1 {
-      font-family: var(--serif);
-      font-size: clamp(72px, 11vw, 140px);
-      font-weight: 900; line-height: .88;
-      letter-spacing: -1px; text-transform: uppercase;
-      color: var(--white); margin-bottom: 24px;
-    }
-    .hero-h1 em {
-      font-style: normal; color: var(--yellow);
-      display: block;
-    }
-    .hero-sub {
-      font-size: 16px; font-weight: 300; line-height: 1.7;
-      color: var(--muted); max-width: 440px; margin-bottom: 44px;
-    }
+    .nav-links > li:hover .dropdown,
+    .nav-links > li.open .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: flex; align-items: flex-start; gap: 12px; padding: 10px 18px; transition: background var(--transition); }
+    .dropdown a:hover { background: rgba(255,255,255,.04); }
+    .dd-icon { width: 32px; height: 32px; background: var(--yellow-gl); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name { font-size: 13px; font-weight: 600; color: var(--white); transition: color var(--transition); }
+    .dropdown a:hover .dd-name { color: var(--yellow); }
+    .dd-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* Nav CTA */
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--yellow); color: #111; font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 1.5px; padding: 10px 22px; white-space: nowrap; flex-shrink: 0; transition: background var(--transition), transform var(--transition); }
+    .nav-cta:hover { background: var(--yellow-dk); transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: transform var(--transition), opacity var(--transition); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu { display: none; position: fixed; inset: 0; background: #080808; z-index: 999; flex-direction: column; padding: 80px 32px 40px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu .m-label { display: block; font-size: 17px; font-weight: 500; color: var(--white); padding: 13px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu .m-label { color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding-top: 24px; }
+    .mobile-menu .m-sub a { font-size: 14px; font-weight: 400; padding: 9px 0 9px 16px; color: var(--muted); }
+    .mobile-menu .m-cta { display: block; margin-top: 28px; background: var(--yellow); color: #111; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; padding: 14px 32px; text-align: center; border-bottom: none; }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 86vh; display: flex; align-items: center; padding: 140px 40px 100px; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(10,10,10,.93) 0%, rgba(10,10,10,.82) 50%, rgba(10,10,10,.55) 100%); }
+    .hero-bg::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, transparent 0%, var(--yellow) 25%, var(--yellow-dk) 75%, transparent 100%); z-index: 1; }
+    .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; max-width: 1280px; width: 100%; margin: 0 auto; }
+    .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--yellow); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--yellow); }
+    .hero-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 10vw, 130px); line-height: .88; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 28px; }
+    .hero-h1 em { font-style: normal; color: var(--yellow); display: block; }
+    .hero-sub { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--muted); max-width: 460px; margin-bottom: 44px; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary {
-      font-family: var(--serif); font-size: 14px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      background: var(--yellow); color: #111827;
-      padding: 16px 36px; display: inline-block;
-      transition: background .2s, transform .15s;
-    }
+    .btn-primary { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; background: var(--yellow); color: #111; padding: 14px 38px; display: inline-block; transition: background var(--transition), transform var(--transition); }
     .btn-primary:hover { background: var(--yellow-dk); transform: translateY(-1px); }
-    .btn-ghost {
-      font-family: var(--serif); font-size: 14px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      background: transparent; color: var(--white);
-      padding: 16px 36px; border: 1px solid var(--border);
-      display: inline-block; transition: border-color .2s, color .2s;
-    }
+    .btn-ghost { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; background: transparent; color: var(--white); padding: 14px 38px; border: 1px solid rgba(255,255,255,.25); display: inline-block; transition: border-color var(--transition), color var(--transition); }
     .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
-    /* Free week card */
-    .hero-cta-card {
-      background: var(--navy); border: 1px solid var(--border);
-      padding: 36px 32px; min-width: 260px;
-      position: relative; overflow: hidden;
-    }
-    .hero-cta-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: var(--yellow);
-    }
-    .cta-card-label {
-      font-size: 10px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 12px;
-    }
-    .cta-card-title {
-      font-family: var(--serif); font-size: 28px; font-weight: 800;
-      line-height: 1.1; margin-bottom: 20px; text-transform: uppercase;
-    }
-    .cta-card-phone {
-      font-family: var(--serif); font-size: 30px; font-weight: 900;
-      color: var(--white); display: block; margin-bottom: 18px;
-      letter-spacing: -.5px;
-    }
-    .pulse-btn {
-      display: block; width: 100%;
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: var(--yellow); color: #111827;
-      padding: 14px 20px; text-align: center;
-      animation: pulseGlow 2.5s ease-in-out infinite;
-      transition: background .2s;
-    }
+
+    /* Hero CTA card */
+    .hero-cta-card { background: rgba(17,17,17,.97); border: 1px solid var(--border); border-top: 3px solid var(--yellow); padding: 36px 32px; min-width: 268px; }
+    .cta-card-label { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+    .cta-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: .05em; line-height: 1.1; margin-bottom: 18px; }
+    .cta-card-phone { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--white); display: block; margin-bottom: 18px; }
+    .cta-card-phone:hover { color: var(--yellow); }
+    .pulse-btn { display: block; width: 100%; font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; background: var(--yellow); color: #111; padding: 13px 20px; text-align: center; animation: pulseGlow 2.5s ease-in-out infinite; transition: background var(--transition); }
     .pulse-btn:hover { background: var(--yellow-dk); animation: none; }
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,.45); }
-      50%       { box-shadow: 0 0 0 14px rgba(250,204,21,0); }
-    }
+    @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,.4); } 50% { box-shadow: 0 0 0 14px rgba(250,204,21,0); } }
 
-    /* ── STATS STRIP ──────────────────────────────────────── */
-    .stats {
-      background: var(--navy); border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 40px 44px;
-      display: flex; justify-content: center; gap: 0;
-    }
-    .stat {
-      flex: 1; text-align: center; padding: 0 24px;
-      border-right: 1px solid var(--border);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--serif); font-size: 52px; font-weight: 900;
-      line-height: 1; color: var(--yellow); letter-spacing: -1px;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 11px; font-weight: 400; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--muted);
-    }
+    /* ── STATS STRIP ── */
+    .stats-strip { background: #0d0d0d; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 44px 24px; text-align: center; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 58px; letter-spacing: 0.03em; color: var(--yellow); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 11px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); }
 
-    /* ── MEMBERSHIPS ──────────────────────────────────────── */
-    .services { padding: 100px 44px; }
-    .section-header { margin-bottom: 60px; }
-    .section-tag {
-      font-size: 10.5px; font-weight: 500; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-tag::before {
-      content: ''; display: block; width: 28px; height: 2px; background: var(--yellow);
-    }
-    .section-h2 {
-      font-family: var(--serif); font-size: clamp(44px, 7vw, 80px);
-      font-weight: 900; line-height: .9; text-transform: uppercase;
-      color: var(--white);
-    }
+    /* ── SECTION HELPERS ── */
+    .section-tag { font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--yellow); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .section-tag::before { content: ''; display: block; width: 24px; height: 2px; background: var(--yellow); }
+    .section-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 78px); letter-spacing: 0.04em; line-height: .92; text-transform: uppercase; color: var(--white); }
     .section-h2 span { color: var(--yellow); }
+    .section-header { margin-bottom: 56px; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
 
-    /* Membership tier cards */
-    .membership-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-      max-width: 1200px;
-    }
-    .tier-card {
-      background: var(--card); padding: 48px 36px;
-      border-top: 3px solid var(--border);
-      position: relative; overflow: hidden;
-      transition: border-color .25s, background .25s;
-      cursor: default;
-    }
-    .tier-card.featured {
-      border-top-color: var(--yellow);
-      background: #1a1a0a;
-    }
+    /* ── MEMBERSHIPS ── */
+    .memberships { padding: 100px 40px; background: var(--black); }
+    .membership-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1280px; margin: 0 auto; }
+    .tier-card { background: var(--card); padding: 44px 36px; border-top: 3px solid var(--border); position: relative; overflow: hidden; transition: border-color .25s; }
+    .tier-card.featured { border-top-color: var(--yellow); background: #131308; }
     .tier-card:not(.featured):hover { border-top-color: var(--yellow); }
-    .tier-badge {
-      display: inline-block;
-      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: #111827;
-      background: var(--yellow); padding: 4px 10px;
-      margin-bottom: 20px;
-    }
-    .tier-name {
-      font-family: var(--serif); font-size: 36px; font-weight: 900;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); margin-bottom: 8px;
-    }
-    .tier-price {
-      font-family: var(--serif); font-size: 60px; font-weight: 900;
-      line-height: 1; color: var(--yellow); letter-spacing: -1px;
-      margin-bottom: 4px;
-    }
-    .tier-price-note {
-      font-size: 12px; font-weight: 300; color: var(--muted);
-      letter-spacing: 1.5px; text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-    .tier-divider {
-      height: 1px; background: var(--border); margin-bottom: 24px;
-    }
-    .tier-desc {
-      font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--muted);
-      margin-bottom: 32px;
-    }
-    .tier-cta {
-      display: block; width: 100%;
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 14px 20px; text-align: center;
-      transition: background .2s, color .2s, border-color .2s;
-    }
-    .tier-cta-primary {
-      background: var(--yellow); color: #111827; border: 1px solid var(--yellow);
-    }
+    .tier-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #111; background: var(--yellow); padding: 4px 10px; margin-bottom: 18px; }
+    .tier-name { font-family: 'Bebas Neue', sans-serif; font-size: 38px; letter-spacing: .05em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
+    .tier-price { font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: -1px; color: var(--yellow); line-height: 1; margin-bottom: 4px; }
+    .tier-price-note { font-size: 11px; font-weight: 300; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+    .tier-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+    .tier-features { margin-bottom: 32px; }
+    .tier-features li { font-size: 13px; font-weight: 300; color: rgba(245,245,245,.7); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; align-items: center; gap: 8px; }
+    .tier-features li::before { content: '✓'; color: var(--yellow); font-size: 11px; font-weight: 700; flex-shrink: 0; }
+    .tier-cta { display: block; width: 100%; font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; padding: 13px 20px; text-align: center; transition: background var(--transition), color var(--transition), border-color var(--transition); }
+    .tier-cta-primary { background: var(--yellow); color: #111; border: 1px solid var(--yellow); }
     .tier-cta-primary:hover { background: var(--yellow-dk); border-color: var(--yellow-dk); }
-    .tier-cta-ghost {
-      background: transparent; color: var(--white); border: 1px solid var(--border);
-    }
+    .tier-cta-ghost { background: transparent; color: var(--white); border: 1px solid var(--border); }
     .tier-cta-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+    .tier-more { display: block; text-align: center; margin-top: 40px; font-size: 13px; color: var(--muted); }
+    .tier-more a { color: var(--yellow); text-decoration: underline; }
 
-    /* ── CLASS SCHEDULE ───────────────────────────────────── */
-    .process {
-      background: var(--card);
-      padding: 96px 44px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .schedule-grid {
-      max-width: 1200px; margin: 56px auto 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-    .schedule-item {
-      background: var(--navy);
-      padding: 40px 32px;
-      position: relative;
-      border-top: 2px solid var(--border);
-      transition: border-color 0.25s, background .25s;
-    }
-    .schedule-item:hover { border-top-color: var(--yellow); background: #121208; }
-    .schedule-icon {
-      font-size: 2rem; margin-bottom: 16px; display: block;
-    }
-    .schedule-class {
-      font-family: var(--serif);
-      font-size: 1.6rem; font-weight: 900;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      color: var(--white); margin-bottom: 10px;
-    }
-    .schedule-times {
-      font-size: 13px; font-weight: 400; color: var(--yellow);
-      letter-spacing: 1px; margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-    .schedule-days {
-      font-size: 12px; font-weight: 300;
-      color: var(--muted); letter-spacing: .5px;
-    }
-    @media (max-width: 960px) {
-      .process { padding: 60px 20px; }
-      .schedule-grid { grid-template-columns: 1fr; }
-    }
+    /* ── CLASS SCHEDULE PREVIEW ── */
+    .schedule-preview { background: var(--card); padding: 100px 40px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .next-classes { max-width: 1280px; margin: 0 auto; }
+    .class-list { display: grid; gap: 2px; margin-top: 48px; }
+    .class-row { display: grid; grid-template-columns: 120px 1fr auto; align-items: center; background: #0e0e0e; padding: 24px 28px; border-left: 3px solid var(--border); gap: 24px; transition: border-color var(--transition), background var(--transition); }
+    .class-row:hover { border-left-color: var(--yellow); background: #111; }
+    .class-time { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: .05em; color: var(--yellow); }
+    .class-info-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .05em; color: var(--white); margin-bottom: 3px; }
+    .class-info-meta { font-size: 12px; font-weight: 300; color: var(--muted); letter-spacing: .5px; }
+    .class-spots { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); text-align: right; }
+    .class-spots strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--yellow); }
+    .sched-cta { margin-top: 40px; text-align: center; }
 
-    /* ── PHOTO CTA BAND ──────────────────────────────────────── */
-    .photo-cta-band {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-    }
-    .photo-cta-bg {
-      position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1600&q=80') center/cover no-repeat;
-      transform: scale(1.05);
-      transition: transform 8s ease;
-    }
-    .photo-cta-band:hover .photo-cta-bg { transform: scale(1); }
-    .photo-cta-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right,
-        rgba(10,10,10,0.92) 0%,
-        rgba(10,10,10,0.7) 55%,
-        rgba(10,10,10,0.5) 100%);
-    }
-    .photo-cta-inner {
-      position: relative; z-index: 2;
-      height: 100%;
-      display: flex; align-items: center;
-      padding: 0 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .photo-cta-content { max-width: 520px; }
-    .photo-cta-label {
-      font-size: 10px; font-weight: 500; letter-spacing: 5px;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 20px;
-    }
-    .photo-cta-headline {
-      font-family: var(--serif);
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 900; text-transform: uppercase;
-      line-height: 0.9; color: var(--white);
-      margin-bottom: 24px;
-    }
-    .photo-cta-sub {
-      font-size: 15px; font-weight: 300;
-      color: rgba(245,245,245,0.7); line-height: 1.7;
-      margin-bottom: 36px; max-width: 400px;
-    }
-    .photo-cta-phone {
-      font-family: var(--serif); font-size: 48px; font-weight: 900;
-      color: var(--white); letter-spacing: -1px;
-      display: block; margin-bottom: 20px;
-      text-decoration: none; transition: color 0.2s;
-    }
-    .photo-cta-phone:hover { color: var(--yellow); }
-    @media (max-width: 960px) {
-      .photo-cta-band { height: auto; }
-      .photo-cta-inner { padding: 80px 24px; }
-    }
-
-    /* ── WHY US ───────────────────────────────────────────── */
-    .why { background: var(--navy); padding: 100px 44px; }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 60px;
-    }
-    .why-item {
-      background: var(--card); padding: 44px 36px;
-      border-top: 2px solid var(--border);
-      transition: border-color .2s;
-    }
-    .why-item:hover { border-top-color: var(--yellow); }
-    .why-num {
-      font-family: var(--serif); font-size: 88px; font-weight: 900;
-      color: rgba(250,204,21,.06); line-height: 1; margin-bottom: -16px;
-    }
-    .why-title {
-      font-family: var(--serif); font-size: 22px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); margin-bottom: 12px;
-    }
-    .why-desc {
-      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
-    }
-
-    /* ── TESTIMONIALS ─────────────────────────────────────── */
-    .reviews { background: var(--ink); padding: 100px 44px; border-top: 1px solid var(--border); }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-      margin-top: 60px;
-    }
-    .review-card {
-      background: var(--card); padding: 40px 32px;
-      border-top: 3px solid transparent;
-      transition: border-color .25s;
-    }
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 100px 40px; background: var(--black); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1280px; margin: 0 auto; }
+    .review-card { background: var(--card); padding: 38px 32px; border-top: 3px solid transparent; transition: border-color .25s; }
     .review-card:hover { border-top-color: var(--yellow); }
-    .review-stars { color: #facc15; font-size: 16px; margin-bottom: 18px; letter-spacing: 2px; }
-    .review-text {
-      font-size: 14.5px; font-weight: 300; line-height: 1.8;
-      color: rgba(245,245,245,.65); margin-bottom: 24px; font-style: italic;
-    }
-    .review-author {
-      font-family: var(--serif); font-size: 15px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
-    }
-    .review-loc {
-      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--muted); margin-top: 3px;
-    }
-    @media (max-width: 960px) { .reviews-grid { grid-template-columns: 1fr; } .reviews { padding: 60px 20px; } }
+    .review-stars { color: var(--yellow); font-size: 14px; margin-bottom: 16px; letter-spacing: 3px; }
+    .review-text { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(245,245,245,.65); margin-bottom: 22px; font-style: italic; }
+    .review-author { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: .05em; text-transform: uppercase; color: var(--white); }
+    .review-loc { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
 
-    /* ── TRUST BADGES ─────────────────────────────────────── */
-    .trust {
-      padding: 56px 44px;
-      display: flex; justify-content: center;
-      gap: 60px; flex-wrap: wrap;
-      border-bottom: 1px solid var(--border);
-    }
-    .trust-item { text-align: center; }
-    .trust-icon { font-size: 28px; margin-bottom: 10px; }
-    .trust-label {
-      font-family: var(--serif); font-size: 16px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); margin-bottom: 3px;
-    }
-    .trust-sub {
-      font-size: 11px; font-weight: 300; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--muted);
-    }
-
-    /* ── ABOUT SECTION ────────────────────────────────────── */
-    .about {
-      padding: 100px 44px;
-      background: var(--navy);
-      border-top: 1px solid var(--border);
-    }
-    .about-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .about-body {
-      font-size: 15px; font-weight: 300; line-height: 1.85;
-      color: rgba(245,245,245,.7); margin-bottom: 32px;
-    }
-    .about-stats {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 24px; margin-bottom: 40px;
-    }
-    .about-stat-item {
-      background: var(--card); padding: 20px 24px;
-      border-left: 3px solid var(--yellow);
-    }
-    .about-stat-num {
-      font-family: var(--serif); font-size: 36px; font-weight: 900;
-      color: var(--yellow); line-height: 1; margin-bottom: 4px;
-    }
-    .about-stat-label {
-      font-size: 11px; font-weight: 400; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .about-trust-icons {
-      display: flex; gap: 16px; flex-wrap: wrap;
-    }
-    .about-badge {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--card); border: 1px solid var(--border);
-      padding: 10px 18px;
-    }
-    .about-badge-icon { font-size: 18px; }
-    .about-badge-text {
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
-    }
-    .about-image {
-      position: relative;
-    }
-    .about-image img {
-      width: 100%; height: 500px; object-fit: cover;
-      position: relative; z-index: 1;
-    }
-    .about-image::before {
-      content: ''; position: absolute;
-      top: -12px; left: -12px; right: 12px; bottom: 12px;
-      border: 2px solid var(--yellow); z-index: 0; pointer-events: none;
-    }
-    @media (max-width: 960px) {
-      .about { padding: 60px 20px; }
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      .about-image::before { display: none; }
-    }
-
-    /* ── GALLERY ──────────────────────────────────────────── */
-    .gallery {
-      padding: 100px 44px;
-      background: var(--ink);
-      border-top: 1px solid var(--border);
-    }
-    .gallery-inner { max-width: 1200px; margin: 0 auto; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-      margin-top: 56px;
-    }
-    .gallery-item {
-      position: relative; overflow: hidden;
-      height: 250px; cursor: pointer;
-    }
-    .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .gallery-item:hover img { transform: scale(1.08); }
-    .gallery-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,.85) 0%, rgba(10,10,10,0) 60%);
-      opacity: 0; transition: opacity .35s;
-      display: flex; align-items: flex-end;
-      padding: 20px 22px;
-    }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay-label {
-      font-family: var(--serif); font-size: 16px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 1px; color: var(--white);
-    }
-    @media (max-width: 960px) {
-      .gallery { padding: 60px 20px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* ── FREE TRIAL BAND ──────────────────────────────────── */
-    .financing {
-      background: var(--yellow);
-      padding: 80px 44px;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .financing::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        rgba(0,0,0,.04) 0px,
-        rgba(0,0,0,.04) 1px,
-        transparent 1px,
-        transparent 20px
-      );
-    }
-    .financing-inner {
-      position: relative; z-index: 1;
-      max-width: 860px; margin: 0 auto;
-    }
-    .financing-tag {
-      font-size: 10px; font-weight: 700; letter-spacing: 5px;
-      text-transform: uppercase; color: rgba(0,0,0,.5);
-      margin-bottom: 20px;
-    }
-    .financing-h2 {
-      font-family: var(--serif); font-size: clamp(40px, 6vw, 72px);
-      font-weight: 900; text-transform: uppercase; line-height: .9;
-      color: #111827; margin-bottom: 24px;
-    }
-    .financing-sub {
-      font-size: 17px; font-weight: 400; line-height: 1.7;
-      color: rgba(0,0,0,.65); margin-bottom: 40px;
-      max-width: 620px; margin-left: auto; margin-right: auto;
-    }
-    .financing-note {
-      font-size: 13px; font-weight: 300; color: rgba(0,0,0,.5);
-      margin-top: 20px;
-    }
-    .btn-financing-primary {
-      font-family: var(--serif); font-size: 14px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      background: #111827; color: var(--yellow);
-      padding: 18px 48px; display: inline-block;
-      transition: background .2s, transform .15s;
-    }
-    .btn-financing-primary:hover { background: #000; transform: translateY(-2px); }
-    @media (max-width: 960px) { .financing { padding: 60px 20px; } }
-
-    /* ── SPECIALS / PROMOTIONS ────────────────────────────── */
-    .specials {
-      padding: 100px 44px;
-      background: var(--card);
-      border-top: 1px solid var(--border);
-    }
-    .specials-inner { max-width: 1200px; margin: 0 auto; }
-    .specials-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 56px;
-    }
-    .promo-card {
-      background: var(--navy); padding: 44px 36px;
-      border-top: 3px solid var(--yellow);
-      position: relative; overflow: hidden;
-      transition: transform .2s;
-    }
-    .promo-card:hover { transform: translateY(-4px); }
-    .promo-badge {
-      display: inline-block;
-      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: #111827;
-      background: var(--yellow); padding: 4px 12px;
-      margin-bottom: 20px;
-    }
-    .promo-title {
-      font-family: var(--serif); font-size: 26px; font-weight: 900;
-      text-transform: uppercase; letter-spacing: .5px;
-      color: var(--white); line-height: 1.1; margin-bottom: 12px;
-    }
-    .promo-price {
-      font-family: var(--serif); font-size: 48px; font-weight: 900;
-      color: var(--yellow); line-height: 1; margin-bottom: 4px;
-    }
-    .promo-reg {
-      font-size: 12px; font-weight: 300; color: var(--muted);
-      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px;
-    }
-    .promo-desc {
-      font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75;
-      margin-bottom: 28px;
-    }
-    .promo-cta {
-      font-family: var(--serif); font-size: 12px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--yellow);
-      display: flex; align-items: center; gap: 8px;
-      transition: gap .2s;
-    }
-    .promo-card:hover .promo-cta { gap: 12px; }
-    @media (max-width: 960px) {
-      .specials { padding: 60px 20px; }
-      .specials-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── BOOKING SECTION ──────────────────────────────────── */
-    .booking {
-      padding: 100px 44px;
-      background: var(--navy);
-      border-top: 1px solid var(--border);
-    }
-    .booking-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.3fr;
-      gap: 80px; align-items: start;
-    }
-    .booking-intro { padding-top: 8px; }
-    .booking-intro-body {
-      font-size: 15px; font-weight: 300; line-height: 1.85;
-      color: rgba(245,245,245,.65); margin: 24px 0 40px;
-    }
-    .booking-info-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      margin-bottom: 24px;
-    }
-    .booking-info-icon {
-      width: 40px; height: 40px; min-width: 40px;
-      background: var(--yellow-gl); border: 1px solid var(--yellow);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--yellow); font-size: 16px;
-    }
-    .booking-info-text-title {
-      font-family: var(--serif); font-size: 14px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .5px; color: var(--white);
-      margin-bottom: 2px;
-    }
-    .booking-info-text-sub {
-      font-size: 13px; font-weight: 300; color: var(--muted);
-    }
-    .booking-form {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 48px 44px;
-      position: relative; overflow: hidden;
-    }
-    .booking-form::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(to right, var(--yellow), var(--yellow-dk));
-    }
-    .form-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-      margin-bottom: 16px;
-    }
-    .form-group { margin-bottom: 16px; }
-    .form-label {
-      display: block;
-      font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .form-control {
-      width: 100%;
-      background: var(--navy); border: 1px solid var(--border);
-      color: var(--white); font-family: var(--sans); font-size: 14px;
-      font-weight: 300; padding: 12px 16px;
-      outline: none; transition: border-color .2s;
-      appearance: none; -webkit-appearance: none;
-    }
-    .form-control:focus { border-color: var(--yellow); }
-    .form-control::placeholder { color: var(--muted); }
-    select.form-control {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 40px;
-      cursor: pointer;
-    }
-    textarea.form-control { resize: vertical; min-height: 90px; }
-    .form-submit {
-      width: 100%; margin-top: 8px;
-      font-family: var(--serif); font-size: 14px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: var(--yellow); color: #111827; border: none;
-      padding: 18px 32px; cursor: pointer;
-      transition: background .2s, transform .15s;
-    }
-    .form-submit:hover { background: var(--yellow-dk); transform: translateY(-1px); }
-    @media (max-width: 960px) {
-      .booking { padding: 60px 20px; }
-      .booking-inner { grid-template-columns: 1fr; gap: 48px; }
-      .booking-form { padding: 32px 24px; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-
-    /* ── BLOG PREVIEW ─────────────────────────────────────── */
-    .blog {
-      padding: 100px 44px;
-      background: var(--ink);
-      border-top: 1px solid var(--border);
-    }
-    .blog-inner { max-width: 1200px; margin: 0 auto; }
-    .blog-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 56px;
-    }
-    .blog-card {
-      background: var(--card);
-      transition: transform .2s;
-      cursor: pointer;
-    }
+    /* ── BLOG TEASER ── */
+    .blog-teaser { padding: 100px 40px; background: var(--card); border-top: 1px solid var(--border); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1280px; margin: 0 auto; }
+    .blog-card { background: var(--black); overflow: hidden; transition: transform .25s; }
     .blog-card:hover { transform: translateY(-4px); }
-    .blog-thumb {
-      height: 200px; overflow: hidden;
-    }
-    .blog-thumb img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .blog-card:hover .blog-thumb img { transform: scale(1.06); }
+    .blog-img { height: 200px; overflow: hidden; }
+    .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .blog-card:hover .blog-img img { transform: scale(1.06); }
     .blog-body { padding: 28px 28px 32px; }
-    .blog-cat {
-      display: inline-block;
-      font-size: 9px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--yellow-dk);
-      background: var(--yellow-gl); border: 1px solid rgba(250,204,21,.25);
-      padding: 4px 10px; margin-bottom: 14px;
-    }
-    .blog-title {
-      font-family: var(--serif); font-size: 22px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .5px; line-height: 1.15;
-      color: var(--white); margin-bottom: 12px;
-    }
-    .blog-excerpt {
-      font-size: 13.5px; font-weight: 300; line-height: 1.75;
-      color: var(--muted); margin-bottom: 20px;
-    }
-    .blog-more {
-      font-size: 11px; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--yellow);
-      transition: letter-spacing .2s;
-    }
-    .blog-card:hover .blog-more { letter-spacing: 3px; }
-    @media (max-width: 960px) {
-      .blog { padding: 60px 20px; }
-      .blog-grid { grid-template-columns: 1fr; }
-    }
+    .blog-cat { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+    .blog-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .04em; color: var(--white); margin-bottom: 10px; line-height: 1.15; }
+    .blog-excerpt { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+    .blog-read { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--yellow); display: flex; align-items: center; gap: 6px; transition: gap var(--transition); }
+    .blog-card:hover .blog-read { gap: 10px; }
+    .blog-more { margin-top: 40px; text-align: center; }
 
-    /* ── FAQ ──────────────────────────────────────────────── */
-    .faq {
-      padding: 100px 44px;
-      background: var(--card);
-      border-top: 1px solid var(--border);
-    }
-    .faq-inner {
-      max-width: 860px; margin: 0 auto;
-    }
-    .faq-list { margin-top: 56px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-    .faq-question {
-      width: 100%; background: none; border: none;
-      color: var(--white); font-family: var(--sans); font-size: 15px; font-weight: 500;
-      text-align: left; padding: 24px 0;
-      display: flex; justify-content: space-between; align-items: center;
-      cursor: pointer; gap: 20px;
-      transition: color .2s;
-    }
-    .faq-question:hover { color: var(--yellow); }
-    .faq-item.open .faq-question { color: var(--yellow); }
-    .faq-icon {
-      width: 28px; height: 28px; min-width: 28px;
-      border: 1px solid var(--border); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 300; color: var(--muted);
-      transition: background .25s, border-color .25s, color .25s, transform .25s;
-      line-height: 1;
-    }
-    .faq-item.open .faq-icon {
-      background: var(--yellow); border-color: var(--yellow);
-      color: #111827; transform: rotate(45deg);
-    }
-    .faq-answer {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height .4s ease, padding .3s ease;
-    }
-    .faq-item.open .faq-answer { max-height: 300px; }
-    .faq-answer-inner {
-      font-size: 14.5px; font-weight: 300; line-height: 1.8;
-      color: rgba(245,245,245,.65); padding-bottom: 24px;
-    }
-    @media (max-width: 960px) { .faq { padding: 60px 20px; } }
+    /* ── CTA BAND ── */
+    .cta-band { background: var(--yellow); padding: 88px 40px; text-align: center; position: relative; overflow: hidden; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, rgba(0,0,0,.03) 0px, rgba(0,0,0,.03) 1px, transparent 1px, transparent 18px); }
+    .cta-band-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .cta-band-tag { font-size: 10px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: rgba(0,0,0,.45); margin-bottom: 16px; }
+    .cta-band-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 90px); letter-spacing: .04em; line-height: .9; color: #111; margin-bottom: 20px; }
+    .cta-band-sub { font-size: 17px; font-weight: 400; line-height: 1.7; color: rgba(0,0,0,.6); margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .btn-dark { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; background: #111; color: var(--yellow); padding: 16px 48px; display: inline-block; transition: background var(--transition), transform var(--transition); }
+    .btn-dark:hover { background: #000; transform: translateY(-2px); }
+    .cta-band-note { font-size: 12px; font-weight: 300; color: rgba(0,0,0,.5); margin-top: 18px; }
 
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer { background: var(--navy); padding: 80px 44px 44px; }
-    .foot-top {
-      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 48px; padding-bottom: 60px;
-      border-bottom: 1px solid var(--border); margin-bottom: 36px;
-    }
-    .foot-brand {
-      font-family: var(--serif); font-size: 36px; font-weight: 900;
-      text-transform: uppercase; letter-spacing: .5px; line-height: 1;
-    }
-    .foot-brand span { color: var(--yellow); }
-    .foot-brand sub {
-      display: block; font-size: 10px; font-weight: 400; letter-spacing: 3px;
-      color: var(--muted); margin-top: 8px; text-transform: uppercase;
-    }
-    .foot-col-head {
-      font-size: 10px; font-weight: 500; letter-spacing: 3.5px;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
-    }
-    .foot-info {
-      font-size: 13.5px; font-weight: 300;
-      color: rgba(245,245,245,.4); line-height: 2.1;
-    }
-    .foot-info a { color: rgba(245,245,245,.4); transition: color .2s; }
-    .foot-info a:hover { color: var(--yellow); }
-    .foot-cta {
-      display: inline-block;
-      font-family: var(--serif); font-size: 13px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: var(--yellow); color: #111827; padding: 15px 30px;
-      transition: background .2s;
-    }
-    .foot-cta:hover { background: var(--yellow-dk); }
-    .foot-cta-note {
-      font-size: 12px; font-weight: 300; color: var(--muted);
-      margin-top: 12px; line-height: 1.6;
-    }
-    .foot-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 10px;
-    }
-    .foot-copy { font-size: 11.5px; font-weight: 300; color: rgba(245,245,245,.2); }
-    .foot-copy a { color: var(--yellow); font-weight: 500; }
+    /* ── FOOTER ── */
+    .footer { background: #050505; border-top: 1px solid var(--border); padding: 72px 40px 40px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 56px; }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: .08em; color: var(--white); margin-bottom: 14px; }
+    .footer-logo span { color: var(--yellow); }
+    .footer-tagline { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 240px; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--muted); transition: border-color var(--transition), color var(--transition); }
+    .footer-social a:hover { border-color: var(--yellow); color: var(--yellow); }
+    .footer-col h4 { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: .08em; color: var(--white); margin-bottom: 16px; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 13px; font-weight: 300; color: var(--muted); transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--yellow); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .footer-copy { font-size: 12px; font-weight: 300; color: var(--muted); }
+    .footer-copy a { color: var(--yellow); }
 
-    /* ── ANIMATIONS / SCROLL REVEAL ───────────────────────── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 960px) {
-      .nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero { padding: 0 20px; min-height: auto; padding-top: 120px; padding-bottom: 60px; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-cta-card { max-width: 340px; }
-      .stats { padding: 32px 20px; gap: 0; flex-wrap: wrap; }
-      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
-      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
-      .services { padding: 60px 20px; }
-      .membership-grid { grid-template-columns: 1fr; gap: 2px; }
-      .why { padding: 60px 20px; }
-      .why-grid { grid-template-columns: 1fr; }
-      .foot-top { grid-template-columns: 1fr; gap: 32px; }
-      .trust { gap: 32px; padding: 48px 24px; }
+      .hero-cta-card { display: none; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .membership-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .reviews-grid, .blog-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .util-bar { display: none; }
+      .hero { padding: 100px 20px 60px; min-height: 75vh; }
+      .memberships, .schedule-preview, .testimonials, .blog-teaser { padding: 60px 20px; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .class-row { grid-template-columns: 1fr; gap: 8px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .cta-band { padding: 64px 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- DEMO BANNER -->
-  <div class="demo-bar">
-    Gym &amp; Fitness Demo — an example of what your business could look like.&nbsp;
-    <a href="index.html">Built by Groundwork Studio →</a>
+<!-- DEMO BANNER -->
+<div class="demo-bar">
+  💪 Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a>
+</div>
+
+<!-- UTILITY BAR -->
+<div class="util-bar">
+  <div class="util-left">
+    <a href="tel:+14805550192">📞 (480) 555-0192</a>
+    <span class="util-divider">|</span>
+    <span>Mon–Fri 5am–11pm · Sat–Sun 7am–9pm</span>
   </div>
+  <div class="util-right">
+    <a href="demo-gym-specials.html">🔥 Summer Shred Challenge — Ends Soon →</a>
+  </div>
+</div>
 
-  <!-- NAV -->
-  <nav class="nav" id="siteNav">
-    <div class="nav-logo">Iron Valley<span>.</span></div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#services">Memberships</a>
-        <a href="#schedule">Classes</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a href="tel:+14805550317" class="nav-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline-block;vertical-align:middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> (480) 555-0317</a>
-    </div>
-  </nav>
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="demo-gym.html" class="nav-logo">Iron <span>Valley</span></a>
+    <ul class="nav-links">
+      <li>
+        <button class="nav-dd-toggle" aria-haspopup="true">Programs <span class="nav-chevron">▾</span></button>
+        <div class="dropdown">
+          <a href="demo-gym-classes.html"><div class="dd-icon">💪</div><div class="dd-text"><span class="dd-name">Group Classes</span><span class="dd-desc">HIIT, Spin, Yoga, Pilates, Boxing</span></div></a>
+          <a href="demo-gym-classes.html#strength"><div class="dd-icon">🏋️</div><div class="dd-text"><span class="dd-name">Strength &amp; Conditioning</span><span class="dd-desc">Free weights, power racks</span></div></a>
+          <a href="demo-gym-classes.html#cardio"><div class="dd-icon">🏃</div><div class="dd-text"><span class="dd-name">Cardio Zone</span><span class="dd-desc">Treadmills, bikes, rowers</span></div></a>
+          <a href="demo-gym-classes.html#recovery"><div class="dd-icon">🧘</div><div class="dd-text"><span class="dd-name">Recovery &amp; Wellness</span><span class="dd-desc">Sauna, stretching, foam rolling</span></div></a>
+          <a href="demo-gym-personal-training.html"><div class="dd-icon">🎯</div><div class="dd-text"><span class="dd-name">Personal Training</span><span class="dd-desc">1-on-1 certified coaching</span></div></a>
+          <a href="demo-gym-classes.html#youth"><div class="dd-icon">👦</div><div class="dd-text"><span class="dd-name">Youth Programs</span><span class="dd-desc">Ages 10–17, supervised sessions</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-gym-memberships.html">Memberships</a></li>
+      <li><a href="demo-gym-classes.html">Schedule</a></li>
+      <li><a href="demo-gym-specials.html">Specials</a></li>
+      <li><a href="demo-gym-blog.html">Blog</a></li>
+      <li><a href="demo-gym-about.html">About</a></li>
+      <li><a href="demo-gym-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-gym-memberships.html" class="nav-cta">Start Free Trial</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-inner">
-      <div>
-        <p class="hero-eyebrow">Scottsdale, AZ</p>
-        <h1 class="hero-h1">
-          Iron Valley<br>
-          <em>Fitness.</em>
-        </h1>
-        <div style="font-size:20px;font-weight:700;color:#facc15;margin-bottom:16px;letter-spacing:0.5px;">Train Hard. Stay Consistent. See Results.</div>
-        <p class="hero-sub">State-of-the-art equipment, expert coaches, and a community that keeps you coming back.</p>
-        <div class="hero-actions">
-          <a href="#services" class="btn-primary">Claim Your Free Week</a>
-          <a href="#services" class="btn-ghost">View Memberships</a>
-        </div>
-      </div>
-      <div class="hero-cta-card">
-        <p class="cta-card-label">First Week Free</p>
-        <h3 class="cta-card-title">Ready to Start Training?</h3>
-        <a href="tel:+14805550317" class="cta-card-phone">(480) 555-0317</a>
-        <a href="tel:+14805550317" class="pulse-btn">Claim Free Week →</a>
-      </div>
-    </div>
-  </section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Programs</span>
+  <div class="m-sub">
+    <a href="demo-gym-classes.html">Group Classes</a>
+    <a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a>
+    <a href="demo-gym-classes.html#cardio">Cardio Zone</a>
+    <a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a>
+    <a href="demo-gym-personal-training.html">Personal Training</a>
+    <a href="demo-gym-classes.html#youth">Youth Programs</a>
+  </div>
+  <a href="demo-gym-memberships.html">Memberships</a>
+  <a href="demo-gym-classes.html">Schedule</a>
+  <a href="demo-gym-specials.html">Specials</a>
+  <a href="demo-gym-blog.html">Blog</a>
+  <a href="demo-gym-about.html">About</a>
+  <a href="demo-gym-contact.html">Contact</a>
+  <a href="demo-gym-memberships.html" class="m-cta">Start Free Trial</a>
+</div>
 
-  <main>
-
-    <!-- STATS -->
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num">2,400+</div>
-        <div class="stat-label">Members</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Weekly Classes</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">5★</div>
-        <div class="stat-label">Rated</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">365</div>
-        <div class="stat-label">Days Open</div>
-      </div>
-    </div>
-
-    <!-- MEMBERSHIPS -->
-    <section class="services" id="services">
-      <div class="section-header reveal">
-        <p class="section-tag">Choose Your Plan</p>
-        <h2 class="section-h2">Membership<br><span>Options.</span></h2>
-      </div>
-      <div class="membership-grid">
-        <div class="tier-card reveal">
-          <h3 class="tier-name">Day Pass</h3>
-          <div class="tier-price">$15</div>
-          <div class="tier-price-note">per day</div>
-          <div class="tier-divider"></div>
-          <p class="tier-desc">Full facility access with no commitment required. Perfect for visitors or testing the waters before you join.</p>
-          <a href="tel:+14805550317" class="tier-cta tier-cta-ghost">Get a Pass →</a>
-        </div>
-        <div class="tier-card featured reveal">
-          <div class="tier-badge">Most Popular</div>
-          <h3 class="tier-name">Monthly</h3>
-          <div class="tier-price">$49</div>
-          <div class="tier-price-note">per month</div>
-          <div class="tier-divider"></div>
-          <p class="tier-desc">Unlimited facility access plus all group classes included — HIIT, Strength, Yoga, Spin, Boxing, and more.</p>
-          <a href="tel:+14805550317" class="tier-cta tier-cta-primary">Start Free Week →</a>
-        </div>
-        <div class="tier-card reveal">
-          <div class="tier-badge" style="background:#444;color:#f5f5f5;">Best Value</div>
-          <h3 class="tier-name">Annual</h3>
-          <div class="tier-price">$39</div>
-          <div class="tier-price-note">per month, billed annually</div>
-          <div class="tier-divider"></div>
-          <p class="tier-desc">Everything in Monthly plus one personal training session per month included at no extra cost.</p>
-          <a href="tel:+14805550317" class="tier-cta tier-cta-ghost">Get Annual →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CLASS SCHEDULE -->
-    <section class="process" id="schedule">
-      <div class="section-header reveal" style="max-width:1200px;margin:0 auto;">
-        <p class="section-tag">Weekly Schedule</p>
-        <h2 class="section-h2">Class<br><span>Schedule.</span></h2>
-      </div>
-      <div class="schedule-grid">
-        <div class="schedule-item reveal">
-          <span class="schedule-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span>
-          <h3 class="schedule-class">HIIT</h3>
-          <div class="schedule-times">6am &amp; 5pm</div>
-          <div class="schedule-days">Monday / Wednesday / Friday</div>
-        </div>
-        <div class="schedule-item reveal" style="transition-delay:0.08s">
-          <span class="schedule-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M6.5 6.5h11M6.5 17.5h11M3 9.5h3v5H3zM18 9.5h3v5h-3zM6.5 12h11"/></svg></span>
-          <h3 class="schedule-class">Strength</h3>
-          <div class="schedule-times">7am &amp; 6pm</div>
-          <div class="schedule-days">Tuesday / Thursday</div>
-        </div>
-        <div class="schedule-item reveal" style="transition-delay:0.16s">
-          <span class="schedule-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-          <h3 class="schedule-class">Yoga</h3>
-          <div class="schedule-times">7pm</div>
-          <div class="schedule-days">Monday / Wednesday</div>
-        </div>
-        <div class="schedule-item reveal" style="transition-delay:0.24s">
-          <span class="schedule-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg></span>
-          <h3 class="schedule-class">Spin</h3>
-          <div class="schedule-times">6am</div>
-          <div class="schedule-days">Tuesday / Thursday / Saturday</div>
-        </div>
-        <div class="schedule-item reveal" style="transition-delay:0.32s">
-          <span class="schedule-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-          <h3 class="schedule-class">Boxing</h3>
-          <div class="schedule-times">7pm</div>
-          <div class="schedule-days">Monday / Wednesday / Friday</div>
-        </div>
-        <div class="schedule-item reveal" style="transition-delay:0.40s">
-          <span class="schedule-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M3 9.5h3v5H3z"/><path d="M18 9.5h3v5h-3z"/><path d="M6.5 12h11"/></svg></span>
-          <h3 class="schedule-class">Open Gym</h3>
-          <div class="schedule-times">5am – 11pm</div>
-          <div class="schedule-days">Daily — 7 Days a Week</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHOTO CTA BAND -->
-    <div class="photo-cta-band">
-      <div class="photo-cta-bg"></div>
-      <div class="photo-cta-overlay"></div>
-      <div class="photo-cta-inner">
-        <div class="photo-cta-content reveal">
-          <p class="photo-cta-label">No Commitment. No Credit Card.</p>
-          <h2 class="photo-cta-headline">Your First<br>Week Is On Us.</h2>
-          <p class="photo-cta-sub">No commitment. No credit card. Just show up.</p>
-          <a href="tel:+14805550317" class="photo-cta-phone">(480) 555-0317</a>
-          <a href="tel:+14805550317" class="btn-primary">Claim Free Week →</a>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Scottsdale, Arizona · Est. 2019</p>
+      <h1 class="hero-h1">Train Harder.<em>Live Better.</em></h1>
+      <p class="hero-sub">8,000 sq ft of world-class equipment, 50+ weekly classes, and certified trainers who push you past every limit you thought was final.</p>
+      <div class="hero-actions">
+        <a href="demo-gym-memberships.html" class="btn-primary">Start Free Trial</a>
+        <a href="demo-gym-classes.html" class="btn-ghost">View Schedule</a>
       </div>
     </div>
-
-    <!-- WHY US -->
-    <section class="why" id="why">
-      <div class="section-header reveal">
-        <p class="section-tag">Why Iron Valley</p>
-        <h2 class="section-h2">Why Scottsdale<br><span>Trains Here.</span></h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-item reveal">
-          <div class="why-num">01</div>
-          <h3 class="why-title">Expert Coaches</h3>
-          <p class="why-desc">Every coach is certified and invested in your progress. Whether you're a first-timer or a seasoned athlete, you'll get real guidance — not just a gym floor.</p>
-        </div>
-        <div class="why-item reveal">
-          <div class="why-num">02</div>
-          <h3 class="why-title">Top-Tier Equipment</h3>
-          <p class="why-desc">State-of-the-art machines, free weights, and functional training zones. Everything is maintained daily so your workout never gets interrupted by broken gear.</p>
-        </div>
-        <div class="why-item reveal">
-          <div class="why-num">03</div>
-          <h3 class="why-title">A Community That Shows Up</h3>
-          <p class="why-desc">The biggest reason people quit is going it alone. Iron Valley has a culture of accountability and encouragement — members here actually know your name.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         MEET THE TEAM
-         ============================================================ -->
-<section style="padding:72px 24px;background:#111111;border-top:1px solid #222;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:#facc15;text-transform:uppercase;margin-bottom:8px;">Our Coaches</div>
-    <h2 style="font-size:28px;font-weight:800;color:#ffffff;margin-bottom:8px;">Meet the Team</h2>
-    <p style="font-size:15px;color:#9ca3af;margin-bottom:48px;max-width:520px;">Real coaches. Real results. People who actually know your name.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;">
-
-      <div style="background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;">
-        <div style="height:220px;background:url('https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80') center/cover no-repeat;"></div>
-        <div style="padding:20px;">
-          <div style="font-size:17px;font-weight:700;color:#ffffff;margin-bottom:2px;">Jake Morrison</div>
-          <div style="font-size:12px;font-weight:600;color:#facc15;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Head Coach</div>
-          <p style="font-size:13px;color:#9ca3af;line-height:1.6;margin:0;">NASM-certified personal trainer with 10 years of coaching. Specializes in strength programming and body composition.</p>
-        </div>
-      </div>
-
-      <div style="background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;">
-        <div style="height:220px;background:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80') center/cover no-repeat;"></div>
-        <div style="padding:20px;">
-          <div style="font-size:17px;font-weight:700;color:#ffffff;margin-bottom:2px;">Tara Nguyen</div>
-          <div style="font-size:12px;font-weight:600;color:#facc15;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Group Fitness Instructor</div>
-          <p style="font-size:13px;color:#9ca3af;line-height:1.6;margin:0;">Leads HIIT, Spin, and Boxing classes. High energy, zero fluff — her classes fill up first every time.</p>
-        </div>
-      </div>
-
-      <div style="background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;">
-        <div style="height:220px;background:url('https://images.unsplash.com/photo-1534308143711-cf80fe65a9b2?w=400&q=80') center/cover no-repeat;"></div>
-        <div style="padding:20px;">
-          <div style="font-size:17px;font-weight:700;color:#ffffff;margin-bottom:2px;">Rachel Cruz</div>
-          <div style="font-size:12px;font-weight:600;color:#facc15;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Nutrition & Wellness Coach</div>
-          <p style="font-size:13px;color:#9ca3af;line-height:1.6;margin:0;">Certified nutrition coach who helps members build sustainable habits. The missing piece for most fitness goals.</p>
-        </div>
-      </div>
-
+    <div class="hero-cta-card">
+      <p class="cta-card-label">Limited Offer</p>
+      <p class="cta-card-title">7 Days Free — No Credit Card</p>
+      <a href="tel:+14805550192" class="cta-card-phone">(480) 555-0192</a>
+      <a href="demo-gym-memberships.html" class="pulse-btn">Claim Free Week →</a>
     </div>
   </div>
 </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="reviews">
-      <div class="section-header reveal">
-        <p class="section-tag">Member Stories</p>
-        <h2 class="section-h2">Real Results.<br><span>Real Members.</span></h2>
-      </div>
-      <div class="reviews-grid">
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Best gym in Scottsdale. Equipment is always clean and the staff actually knows your name."</p>
-          <div class="review-author">Ashley B.</div>
-          <div class="review-loc">Scottsdale · Google Review</div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Lost 30 lbs in 4 months. The coaches here are the real deal."</p>
-          <div class="review-author">Marcus T.</div>
-          <div class="review-loc">Phoenix · Google Review</div>
-        </div>
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Switched from a big chain gym. Never going back. Community here is unmatched."</p>
-          <div class="review-author">Nina R.</div>
-          <div class="review-loc">Tempe · Google Review</div>
-        </div>
-      </div>
-    </section>
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">8,000</div>
+      <div class="stat-label">Square Feet</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Classes / Week</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Active Members</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+  </div>
+</div>
 
-    <!-- TRUST STRIP -->
-    <div class="trust">
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="trust-label">2,400+</div>
-        <div class="trust-sub">Members</div>
+<!-- MEMBERSHIPS TEASER -->
+<section class="memberships">
+  <div style="max-width:1280px;margin:0 auto 56px;">
+    <p class="section-tag">Memberships</p>
+    <h2 class="section-h2">Choose Your <span>Level</span></h2>
+  </div>
+  <div class="membership-grid">
+    <div class="tier-card">
+      <p class="tier-badge">Basic</p>
+      <h3 class="tier-name">Basic</h3>
+      <div class="tier-price">$39</div>
+      <p class="tier-price-note">per month · no contract</p>
+      <div class="tier-divider"></div>
+      <ul class="tier-features">
+        <li>Full gym floor access</li>
+        <li>Locker room &amp; showers</li>
+        <li>Free parking</li>
+        <li>Open hours 5am–11pm</li>
+        <li>Initial fitness assessment</li>
+      </ul>
+      <a href="demo-gym-memberships.html" class="tier-cta tier-cta-ghost">Get Started</a>
+    </div>
+    <div class="tier-card featured">
+      <p class="tier-badge">Most Popular</p>
+      <h3 class="tier-name">Standard</h3>
+      <div class="tier-price">$59</div>
+      <p class="tier-price-note">per month · no contract</p>
+      <div class="tier-divider"></div>
+      <ul class="tier-features">
+        <li>Everything in Basic</li>
+        <li>Unlimited group classes</li>
+        <li>2 guest passes/month</li>
+        <li>Nutrition app access</li>
+        <li>App workout tracking</li>
+      </ul>
+      <a href="demo-gym-memberships.html" class="tier-cta tier-cta-primary">Get Started</a>
+    </div>
+    <div class="tier-card">
+      <p class="tier-badge">Elite</p>
+      <h3 class="tier-name">Elite</h3>
+      <div class="tier-price">$89</div>
+      <p class="tier-price-note">per month · no contract</p>
+      <div class="tier-divider"></div>
+      <ul class="tier-features">
+        <li>Everything in Standard</li>
+        <li>2 PT sessions/month</li>
+        <li>Nutrition consultation</li>
+        <li>Priority class booking</li>
+        <li>Towel service included</li>
+      </ul>
+      <a href="demo-gym-memberships.html" class="tier-cta tier-cta-ghost">Get Started</a>
+    </div>
+  </div>
+  <p class="tier-more">All plans — no long-term contracts, cancel anytime. <a href="demo-gym-memberships.html">Compare all features →</a></p>
+</section>
+
+<!-- CLASS SCHEDULE PREVIEW -->
+<section class="schedule-preview">
+  <div class="next-classes">
+    <div class="section-header">
+      <p class="section-tag">Today's Schedule</p>
+      <h2 class="section-h2">Next <span>5 Classes</span></h2>
+    </div>
+    <div class="class-list">
+      <div class="class-row">
+        <div class="class-time">6:00 AM</div>
+        <div class="class-info">
+          <div class="class-info-name">Power HIIT</div>
+          <div class="class-info-meta">45 min · Studio A · Coach Marcus Webb</div>
+        </div>
+        <div class="class-spots"><strong>4</strong> spots left</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <div class="trust-label">50+</div>
-        <div class="trust-sub">Weekly Classes</div>
+      <div class="class-row">
+        <div class="class-time">7:30 AM</div>
+        <div class="class-info">
+          <div class="class-info-name">Indoor Cycling</div>
+          <div class="class-info-meta">50 min · Spin Studio · Coach Elena Reyes</div>
+        </div>
+        <div class="class-spots"><strong>8</strong> spots left</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline-block;vertical-align:middle;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="trust-label">5-Star</div>
-        <div class="trust-sub">Rated</div>
+      <div class="class-row">
+        <div class="class-time">9:00 AM</div>
+        <div class="class-info">
+          <div class="class-info-name">Morning Yoga Flow</div>
+          <div class="class-info-meta">60 min · Studio B · Instructor Priya Shah</div>
+        </div>
+        <div class="class-spots"><strong>12</strong> spots left</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <div class="trust-label">Open 365</div>
-        <div class="trust-sub">Days a Year</div>
+      <div class="class-row">
+        <div class="class-time">12:00 PM</div>
+        <div class="class-info">
+          <div class="class-info-name">Boxing Fundamentals</div>
+          <div class="class-info-meta">45 min · Boxing Ring · Coach Derek Osei</div>
+        </div>
+        <div class="class-spots"><strong>2</strong> spots left</div>
+      </div>
+      <div class="class-row">
+        <div class="class-time">5:30 PM</div>
+        <div class="class-info">
+          <div class="class-info-name">Strength &amp; Power</div>
+          <div class="class-info-meta">60 min · Weight Floor · Coach Marcus Webb</div>
+        </div>
+        <div class="class-spots"><strong>6</strong> spots left</div>
       </div>
     </div>
+    <div class="sched-cta">
+      <a href="demo-gym-classes.html" class="btn-primary">View Full Schedule</a>
+    </div>
+  </div>
+</section>
 
-    <!-- ============================================================
-         ABOUT SECTION
-         ============================================================ -->
-    <section class="about" id="about">
-      <div class="about-inner">
-        <div class="about-text reveal">
-          <p class="section-tag">Our Story</p>
-          <h2 class="section-h2" style="margin-bottom:28px;">About Iron<br><span>Valley.</span></h2>
-          <p class="about-body">Iron Valley opened in 2019 with a single mission: build a gym that Scottsdale actually deserved. Not another franchise with broken machines and overcrowded locker rooms — a real training facility with coaches who give a damn and a community worth showing up for.</p>
-          <p class="about-body">We've grown to over 8,000 sq ft of training space, 50+ classes per week, and a team of certified coaches ready to meet you wherever you are in your fitness journey — whether that's your first workout or your thousandth.</p>
-          <div class="about-stats">
-            <div class="about-stat-item">
-              <div class="about-stat-num">2019</div>
-              <div class="about-stat-label">Year Opened</div>
-            </div>
-            <div class="about-stat-item">
-              <div class="about-stat-num">8,000</div>
-              <div class="about-stat-label">Sq Ft of Space</div>
-            </div>
-            <div class="about-stat-item">
-              <div class="about-stat-num">50+</div>
-              <div class="about-stat-label">Classes / Week</div>
-            </div>
-            <div class="about-stat-item">
-              <div class="about-stat-num">100%</div>
-              <div class="about-stat-label">Certified Trainers</div>
-            </div>
-          </div>
-          <div class="about-trust-icons">
-            <div class="about-badge">
-              <span class="about-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
-              <span class="about-badge-text">IHRSA Member</span>
-            </div>
-            <div class="about-badge">
-              <span class="about-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-              <span class="about-badge-text">CPR Certified Staff</span>
-            </div>
-            <div class="about-badge">
-              <span class="about-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></span>
-              <span class="about-badge-text">24/7 Access</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-image reveal" style="transition-delay:.15s">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=80" alt="Iron Valley Fitness gym floor" loading="lazy">
-        </div>
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div style="max-width:1280px;margin:0 auto 56px;">
+    <p class="section-tag">Member Stories</p>
+    <h2 class="section-h2">Real <span>Results</span></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I've been to a lot of gyms in Scottsdale and Iron Valley is on another level. The trainers actually care about your progress. Down 28 lbs in 4 months."</p>
+      <div class="review-author">Jessica M.</div>
+      <div class="review-loc">Scottsdale, AZ · Elite Member</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The HIIT classes are no joke — challenging, fun, and the community keeps you coming back. Best $59/month I've ever spent. My whole office signed up."</p>
+      <div class="review-author">Ryan T.</div>
+      <div class="review-loc">Tempe, AZ · Standard Member</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Marcus completely transformed my training program. After 3 months of personal training I hit a deadlift PR I thought was impossible. This gym is home."</p>
+      <div class="review-author">Anthony K.</div>
+      <div class="review-loc">Chandler, AZ · Elite Member</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG TEASER -->
+<section class="blog-teaser">
+  <div style="max-width:1280px;margin:0 auto 56px;">
+    <p class="section-tag">From the Blog</p>
+    <h2 class="section-h2">Training <span>Tips</span></h2>
+  </div>
+  <div class="blog-grid">
+    <a href="demo-gym-blog.html" class="blog-card">
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80" alt="HIIT workout" loading="lazy" /></div>
+      <div class="blog-body">
+        <p class="blog-cat">Workouts</p>
+        <h3 class="blog-title">The 20-Minute HIIT Routine That Burns 400 Calories</h3>
+        <p class="blog-excerpt">Short on time? This science-backed circuit keeps your metabolism elevated for hours after you finish.</p>
+        <span class="blog-read">Read More →</span>
       </div>
-    </section>
-
-    <!-- ============================================================
-         GALLERY
-         ============================================================ -->
-    <section class="gallery">
-      <div class="gallery-inner">
-        <div class="section-header reveal">
-          <p class="section-tag">See the Space</p>
-          <h2 class="section-h2">Inside Iron<br><span>Valley.</span></h2>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-item reveal">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=80" alt="Gym floor" loading="lazy">
-            <div class="gallery-overlay"><span class="gallery-overlay-label">Main Floor</span></div>
-          </div>
-          <div class="gallery-item reveal" style="transition-delay:.07s">
-            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80" alt="Weight room" loading="lazy">
-            <div class="gallery-overlay"><span class="gallery-overlay-label">Weight Room</span></div>
-          </div>
-          <div class="gallery-item reveal" style="transition-delay:.14s">
-            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=700&q=80" alt="Group class" loading="lazy">
-            <div class="gallery-overlay"><span class="gallery-overlay-label">Group Classes</span></div>
-          </div>
-          <div class="gallery-item reveal" style="transition-delay:.21s">
-            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=700&q=80" alt="Cardio area" loading="lazy">
-            <div class="gallery-overlay"><span class="gallery-overlay-label">Cardio Zone</span></div>
-          </div>
-          <div class="gallery-item reveal" style="transition-delay:.28s">
-            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=700&q=80" alt="Strength training" loading="lazy">
-            <div class="gallery-overlay"><span class="gallery-overlay-label">Strength Training</span></div>
-          </div>
-          <div class="gallery-item reveal" style="transition-delay:.35s">
-            <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=700&q=80" alt="Training session" loading="lazy">
-            <div class="gallery-overlay"><span class="gallery-overlay-label">Personal Training</span></div>
-          </div>
-        </div>
+    </a>
+    <a href="demo-gym-blog.html" class="blog-card">
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1485727578161-f957d5b3ffd3?auto=format&fit=crop&w=600&q=80" alt="Nutrition" loading="lazy" /></div>
+      <div class="blog-body">
+        <p class="blog-cat">Nutrition</p>
+        <h3 class="blog-title">Pre-Workout Nutrition: What to Eat Before Training</h3>
+        <p class="blog-excerpt">Fuel your session the right way. Our head trainer breaks down macros, timing, and what to avoid.</p>
+        <span class="blog-read">Read More →</span>
       </div>
-    </section>
-
-    <!-- ============================================================
-         FREE TRIAL BAND
-         ============================================================ -->
-    <section class="financing">
-      <div class="financing-inner">
-        <p class="financing-tag">Zero Risk. Zero Commitment.</p>
-        <h2 class="financing-h2">Start Free,<br>Stay Forever.</h2>
-        <p class="financing-sub">Try Iron Valley FREE for 7 days. No credit card. No commitment. Just show up, work hard, and see what you've been missing.</p>
-        <a href="tel:+14805550317" class="btn-financing-primary">Claim Your Free Week →</a>
-        <p class="financing-note">Founding member rates available — lock in $39/mo before spots fill up.</p>
+    </a>
+    <a href="demo-gym-blog.html" class="blog-card">
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80" alt="Member spotlight" loading="lazy" /></div>
+      <div class="blog-body">
+        <p class="blog-cat">Member Spotlight</p>
+        <h3 class="blog-title">From Couch to 5K: Sandra's 90-Day Transformation</h3>
+        <p class="blog-excerpt">Sandra walked in nervous and barely made it through a warm-up. Three months later she ran her first race.</p>
+        <span class="blog-read">Read More →</span>
       </div>
-    </section>
+    </a>
+  </div>
+  <div class="blog-more">
+    <a href="demo-gym-blog.html" class="btn-ghost">View All Articles</a>
+  </div>
+</section>
 
-    <!-- ============================================================
-         SPECIALS / PROMOTIONS
-         ============================================================ -->
-    <section class="specials">
-      <div class="specials-inner">
-        <div class="section-header reveal">
-          <p class="section-tag">Member Offers</p>
-          <h2 class="section-h2">Current<br><span>Deals.</span></h2>
-        </div>
-        <div class="specials-grid">
-          <div class="promo-card reveal">
-            <span class="promo-badge">Limited Spots</span>
-            <h3 class="promo-title">Founding Member Rate</h3>
-            <div class="promo-price">$39<span style="font-size:24px;">/mo</span></div>
-            <div class="promo-reg">Normally $59/mo</div>
-            <p class="promo-desc">Lock in the founding member rate before it's gone. Full facility access, all classes included, plus one monthly personal training session.</p>
-            <a href="tel:+14805550317" class="promo-cta">Claim This Rate →</a>
-          </div>
-          <div class="promo-card reveal" style="transition-delay:.1s">
-            <span class="promo-badge">Ongoing</span>
-            <h3 class="promo-title">Student &amp; Military Discount</h3>
-            <div class="promo-price">20%</div>
-            <div class="promo-reg">Off all membership plans</div>
-            <p class="promo-desc">We honor your service and your hustle. Show a valid student ID or military ID and receive 20% off any monthly or annual membership plan.</p>
-            <a href="tel:+14805550317" class="promo-cta">Get Started →</a>
-          </div>
-          <div class="promo-card reveal" style="transition-delay:.2s">
-            <span class="promo-badge">Referral Offer</span>
-            <h3 class="promo-title">Bring a Friend</h3>
-            <div class="promo-price">2:1</div>
-            <div class="promo-reg">2 months for the price of 1</div>
-            <p class="promo-desc">Bring a friend and you both win. Pay for one month, get two. No catch — just a better reason to show up together and stay consistent.</p>
-            <a href="tel:+14805550317" class="promo-cta">Refer a Friend →</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <p class="cta-band-tag">Limited Time</p>
+    <h2 class="cta-band-h2">First Week Is On Us</h2>
+    <p class="cta-band-sub">No credit card. No commitment. Just show up, train hard, and see what Iron Valley is all about.</p>
+    <a href="demo-gym-memberships.html" class="btn-dark">Claim Free Trial</a>
+    <p class="cta-band-note">Or call us at <strong>(480) 555-0192</strong> — we're here 7 days a week.</p>
+  </div>
+</section>
 
-    <!-- ============================================================
-         ONLINE BOOKING
-         ============================================================ -->
-    <section class="booking" id="booking">
-      <div class="booking-inner">
-        <div class="booking-intro reveal">
-          <p class="section-tag">Reserve Your Spot</p>
-          <h2 class="section-h2">Book a Class<br><span>or Tour.</span></h2>
-          <p class="booking-intro-body">Ready to see Iron Valley in person? Book a class, schedule a tour, or set up a free intro session with one of our coaches. Takes less than 2 minutes.</p>
-          <div class="booking-info-item">
-            <div class="booking-info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <div>
-              <div class="booking-info-text-title">Classes Daily</div>
-              <div class="booking-info-text-sub">50+ classes per week across all formats</div>
-            </div>
-          </div>
-          <div class="booking-info-item">
-            <div class="booking-info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <div class="booking-info-text-title">First Session Free</div>
-              <div class="booking-info-text-sub">Free intro with any new membership</div>
-            </div>
-          </div>
-          <div class="booking-info-item">
-            <div class="booking-info-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-            </div>
-            <div>
-              <div class="booking-info-text-title">Free Parking</div>
-              <div class="booking-info-text-sub">80-space lot, never a wait</div>
-            </div>
-          </div>
-        </div>
-        <div class="booking-form reveal" style="transition-delay:.15s">
-          <div class="form-group">
-            <label class="form-label" for="class-type">Class or Session Type</label>
-            <select id="class-type" class="form-control">
-              <option value="">Select a class or session</option>
-              <option>Spin</option>
-              <option>HIIT</option>
-              <option>Yoga</option>
-              <option>Strength</option>
-              <option>Boxing</option>
-              <option>Pilates</option>
-              <option>Personal Training</option>
-              <option>Facility Tour</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="class-date">Preferred Date</label>
-              <input type="date" id="class-date" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="class-time">Time Preference</label>
-              <select id="class-time" class="form-control">
-                <option value="">Select a preference</option>
-                <option>Morning (5am – 12pm)</option>
-                <option>Afternoon (12pm – 5pm)</option>
-                <option>Evening (5pm – 10pm)</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="book-name">Your Name</label>
-              <input type="text" id="book-name" class="form-control" placeholder="Full name">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="book-phone">Phone</label>
-              <input type="tel" id="book-phone" class="form-control" placeholder="(480) 000-0000">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="book-email">Email</label>
-            <input type="email" id="book-email" class="form-control" placeholder="you@email.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="book-goal">Your Primary Goal</label>
-            <select id="book-goal" class="form-control">
-              <option value="">Select your goal</option>
-              <option>Lose weight</option>
-              <option>Build muscle</option>
-              <option>General fitness</option>
-              <option>Athlete training</option>
-              <option>Just checking it out</option>
-            </select>
-          </div>
-          <button type="submit" class="form-submit">Reserve My Spot →</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         BLOG PREVIEW
-         ============================================================ -->
-    <section class="blog">
-      <div class="blog-inner">
-        <div class="section-header reveal">
-          <p class="section-tag">Training Advice</p>
-          <h2 class="section-h2">Fitness Tips<br><span>&amp; News.</span></h2>
-        </div>
-        <div class="blog-grid">
-          <div class="blog-card reveal">
-            <div class="blog-thumb">
-              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=700&q=80" alt="Workout routine" loading="lazy">
-            </div>
-            <div class="blog-body">
-              <span class="blog-cat">Training Tips</span>
-              <h3 class="blog-title">How to Build a Sustainable Workout Routine</h3>
-              <p class="blog-excerpt">Most people quit within 6 weeks. Here's the framework our coaches use to help members build habits that actually stick for life.</p>
-              <span class="blog-more">Read More →</span>
-            </div>
-          </div>
-          <div class="blog-card reveal" style="transition-delay:.1s">
-            <div class="blog-thumb">
-              <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=700&q=80" alt="Nutrition and fitness" loading="lazy">
-            </div>
-            <div class="blog-body">
-              <span class="blog-cat">Nutrition</span>
-              <h3 class="blog-title">Nutrition Timing: When to Eat Around Your Workouts</h3>
-              <p class="blog-excerpt">Pre-workout, post-workout, or both? What you eat and when can make a significant difference in your performance and recovery.</p>
-              <span class="blog-more">Read More →</span>
-            </div>
-          </div>
-          <div class="blog-card reveal" style="transition-delay:.2s">
-            <div class="blog-thumb">
-              <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=700&q=80" alt="Iron Valley community" loading="lazy">
-            </div>
-            <div class="blog-body">
-              <span class="blog-cat">Community</span>
-              <h3 class="blog-title">The Iron Valley 30-Day Transformation Challenge</h3>
-              <p class="blog-excerpt">Last quarter's 30-day challenge saw 140 members compete. Here's what happened, who won, and why it was bigger than the results.</p>
-              <span class="blog-more">Read More →</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         FAQ
-         ============================================================ -->
-    <section class="faq">
-      <div class="faq-inner">
-        <div class="section-header reveal">
-          <p class="section-tag">Common Questions</p>
-          <h2 class="section-h2">Got<br><span>Questions?</span></h2>
-        </div>
-        <div class="faq-list" id="faqList">
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Is there a contract?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">No long-term contract required. We offer flexible month-to-month plans for full control, or 12-month plans that save you 20% annually. Cancel month-to-month at any time with 30 days notice.</div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              What are the gym hours?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Members have 24/7 keycard access to the facility. Staff is on-site from 6am–10pm daily for support, coaching, and class instruction.</div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Do you offer personal training?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Yes — we have certified personal trainers available for individual sessions, 6-week programs, and ongoing coaching. Your first personal training session is free with any new membership.</div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Is there parking?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Yes — free parking in our dedicated 80-space lot. Even during peak morning hours, there's never a wait. No validation required.</div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Can I freeze my membership?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Absolutely. Members can freeze their membership for up to 3 months per calendar year at no charge. Perfect for travel, injury, or life events. Just let us know 5 days in advance.</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    <div class="foot-top">
-      <div>
-        <div class="foot-brand">
-          Iron Valley<span>.</span>
-          <sub>Scottsdale, AZ</sub>
-        </div>
-      </div>
-      <div>
-        <p class="foot-col-head">Find Us</p>
-        <div class="foot-info">
-          Scottsdale, AZ<br>
-          <a href="tel:+14805550317">(480) 555-0317</a><br><br>
-          Memberships<br>
-          Group Classes<br>
-          Personal Training<br>
-          Open Gym<br>
-          Nutrition Coaching
-        </div>
-      </div>
-      <div>
-        <p class="foot-col-head">Claim Free Week</p>
-        <a href="mailto:evan@teamground.work?subject=Gym%20Demo%20Quote%20Request" class="foot-cta">
-          Get Started →
-        </a>
-        <p class="foot-cta-note">No commitment. No credit card.<br>Just show up.</p>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Iron <span>Valley</span> Fitness</div>
+      <p class="footer-tagline">Scottsdale's most dedicated fitness community. Built for people who are serious about results.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="TikTok">TK</a>
+        <a href="#" aria-label="YouTube">YT</a>
       </div>
     </div>
-    <div class="foot-bottom">
-      <p class="foot-copy">Demo site — <a href="index.html">Site by Groundwork Studio</a></p>
-      <p class="foot-copy">© 2026 Iron Valley Fitness</p>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="demo-gym-classes.html">Group Classes</a></li>
+        <li><a href="demo-gym-personal-training.html">Personal Training</a></li>
+        <li><a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a></li>
+        <li><a href="demo-gym-classes.html#cardio">Cardio Zone</a></li>
+        <li><a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a></li>
+        <li><a href="demo-gym-classes.html#youth">Youth Programs</a></li>
+      </ul>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="demo-gym-about.html">About Us</a></li>
+        <li><a href="demo-gym-memberships.html">Memberships</a></li>
+        <li><a href="demo-gym-specials.html">Current Specials</a></li>
+        <li><a href="demo-gym-blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="demo-gym-contact.html">Contact Us</a></li>
+        <li><a href="demo-gym-contact.html">Directions</a></li>
+        <li><a href="tel:+14805550192">(480) 555-0192</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Iron Valley Fitness · 8200 E Camelback Rd, Scottsdale AZ 85251 · <a href="https://teamground.work">Demo by Groundwork Studio</a></p>
+    <p class="footer-copy">(480) 555-0192 · ironvalleyfitness@demo.com</p>
+  </div>
+</footer>
 
-  <script>
-    // Nav solid on scroll
-    const nav = document.getElementById('siteNav');
-    const banner = document.querySelector('.demo-bar');
-    function updateNav() {
-      const y = window.scrollY;
-      nav.style.top = Math.max(0, banner.offsetHeight - y) + 'px';
-      nav.classList.toggle('solid', y > 80);
-    }
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
-
-    // FAQ accordion
-    document.getElementById('faqList').addEventListener('click', function(e) {
-      const btn = e.target.closest('.faq-question');
-      if (!btn) return;
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      // Close all
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      // Toggle clicked
-      if (!isOpen) item.classList.add('open');
+<script>
+  // Dropdown — hover CSS + click JS toggle + outside click + Escape
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const li = btn.closest('li');
+      const wasOpen = li.classList.contains('open');
+      document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open'));
+      if (!wasOpen) li.classList.add('open');
     });
-  </script>
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open'));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open'));
+  });
 
+  // Hamburger
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+</script>
 </body>
 </html>

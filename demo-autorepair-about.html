@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Desert Ridge Auto | Mesa, AZ Auto Repair Since 2008</title>
+  <meta name="description" content="Family-owned auto repair shop in Mesa, AZ since 2008. Meet our ASE-certified team and learn why thousands of Mesa drivers trust Desert Ridge Auto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font: inherit; }
+    :root { --ink:#0d0d0d; --card:#161310; --border:#2a2118; --orange:#ea580c; --orange-dk:#c2410c; --orange-gl:rgba(234,88,12,.12); --cream:#f5f0eb; --muted:#a8958a; --serif:'Barlow Condensed',sans-serif; --sans:'DM Sans',sans-serif; --trans:200ms ease; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    .demo-bar { background: var(--orange); color: #fff; text-align: center; padding: 9px 24px; font-size: 11.5px; font-weight: 500; letter-spacing: .3px; z-index: 500; }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+    .util-bar { background: #080806; border-bottom: 1px solid var(--border); padding: 7px 44px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .util-left { display: flex; align-items: center; gap: 20px; }
+    .util-right { display: flex; align-items: center; gap: 20px; }
+    .util-phone { font-weight: 600; color: var(--orange) !important; }
+    .util-bar a { color: var(--muted); transition: color var(--trans); }
+    .util-bar a:hover { color: var(--orange); }
+    .nav { position: sticky; top: 0; z-index: 300; background: rgba(13,13,13,.97); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 44px; height: 68px; display: flex; align-items: center; gap: 32px; }
+    .nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--cream); white-space: nowrap; flex-shrink: 0; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > span { display: flex; align-items: center; gap: 4px; padding: 8px 14px; font-size: 12px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); transition: color var(--trans); cursor: pointer; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > span:hover, .nav-links > li:hover > span { color: var(--cream); }
+    .nav-links > li > a.active { color: var(--orange); }
+    .dropdown { position: absolute; top: calc(100% + 6px); left: 0; background: #1a1208; border: 1px solid var(--border); border-top: 2px solid var(--orange); min-width: 320px; padding: 6px 0; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity var(--trans), transform var(--trans); box-shadow: 0 20px 60px rgba(0,0,0,.8); }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: flex; align-items: flex-start; gap: 12px; padding: 12px 18px; transition: background var(--trans); }
+    .dropdown a:hover { background: #221a0e; }
+    .dd-icon { width: 36px; height: 36px; background: var(--orange-gl); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name { font-size: 13px; font-weight: 600; color: var(--cream); }
+    .dropdown a:hover .dd-name { color: var(--orange); }
+    .dd-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; font-family: var(--serif); font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 24px; white-space: nowrap; flex-shrink: 0; transition: background var(--trans), transform var(--trans); }
+    .nav-cta:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); transition: transform var(--trans), opacity var(--trans); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--ink); z-index: 999; flex-direction: column; padding: 90px 32px 40px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu .m-label { display: block; font-size: 17px; font-weight: 500; color: var(--cream); padding: 13px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu .m-label { color: var(--muted); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding-top: 24px; }
+    .mobile-menu .m-sub a { font-size: 14px; padding: 10px 0 10px 16px; color: var(--muted); }
+    .mobile-menu .m-cta { display: block; margin-top: 28px; background: var(--orange); color: #fff; font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 15px 32px; text-align: center; border-bottom: none; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 44px; }
+    .section-tag { font-size: 10.5px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .section-tag::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); }
+    .section-h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 900; line-height: .92; text-transform: uppercase; color: var(--cream); }
+    .section-h2 span { color: var(--orange); }
+
+    /* HERO */
+    .page-hero { position: relative; height: 520px; display: flex; align-items: flex-end; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .page-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,13,13,.97) 0%, rgba(13,13,13,.55) 60%, rgba(13,13,13,.25) 100%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 60px 44px; max-width: 1280px; width: 100%; margin: 0 auto; }
+    .breadcrumb { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .breadcrumb a { color: var(--muted); transition: color var(--trans); }
+    .breadcrumb a:hover { color: var(--orange); }
+    .breadcrumb span { color: var(--orange); }
+    .page-h1 { font-family: var(--serif); font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: .88; text-transform: uppercase; color: var(--cream); margin-bottom: 16px; }
+    .page-h1 span { color: var(--orange); }
+    .page-sub { font-size: 16px; font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.7; }
+
+    /* STATS */
+    .stats { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; display: flex; justify-content: center; gap: 0; }
+    .stat { flex: 1; text-align: center; padding: 0 24px; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: var(--serif); font-size: 54px; font-weight: 900; line-height: 1; color: var(--orange); letter-spacing: -1px; margin-bottom: 6px; }
+    .stat-label { font-size: 11px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); }
+
+    .content-section { padding: 80px 0; }
+    .content-section + .content-section { border-top: 1px solid var(--border); }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+    /* STORY */
+    .story-body p { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--muted); margin-bottom: 20px; }
+    .story-body p strong { color: var(--cream); font-weight: 500; }
+    .story-milestone { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .story-milestone:last-child { border-bottom: none; }
+    .milestone-year { font-family: var(--serif); font-size: 28px; font-weight: 900; color: var(--orange); flex-shrink: 0; width: 72px; }
+    .milestone-text { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.6; padding-top: 6px; }
+    .milestone-text strong { color: var(--cream); }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .team-card { background: var(--card); overflow: hidden; transition: transform var(--trans); }
+    .team-card:hover { transform: translateY(-3px); }
+    .team-avatar { height: 220px; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 72px; position: relative; overflow: hidden; }
+    .team-avatar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, var(--card) 100%); }
+    .team-body { padding: 24px 28px 32px; }
+    .team-name { font-family: var(--serif); font-size: 24px; font-weight: 800; text-transform: uppercase; color: var(--cream); margin-bottom: 4px; }
+    .team-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+    .team-bio { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .team-cert { display: inline-block; margin-top: 12px; background: var(--orange-gl); color: var(--orange); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; }
+
+    /* VALUES */
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .value-card { background: var(--card); padding: 36px 32px; border-top: 3px solid var(--border); transition: border-color var(--trans); }
+    .value-card:hover { border-top-color: var(--orange); }
+    .value-icon { font-size: 36px; margin-bottom: 16px; }
+    .value-title { font-family: var(--serif); font-size: 24px; font-weight: 800; text-transform: uppercase; color: var(--cream); margin-bottom: 10px; }
+    .value-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+    /* TRUST BADGES */
+    .trust-badges { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 56px 44px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 32px; margin-bottom: 10px; }
+    .trust-label { font-family: var(--serif); font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--cream); margin-bottom: 4px; }
+    .trust-sub { font-size: 11px; font-weight: 300; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+
+    /* CTA */
+    .cta-strip { background: var(--orange); padding: 60px 44px; text-align: center; }
+    .cta-strip-headline { font-family: var(--serif); font-size: clamp(32px, 5vw, 56px); font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+    .cta-strip-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.8); margin-bottom: 28px; }
+    .btn-white { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: #fff; color: var(--orange); padding: 16px 36px; display: inline-block; transition: transform var(--trans); margin: 0 8px; }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-outline-white { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); padding: 14px 36px; display: inline-block; transition: border-color var(--trans); margin: 0 8px; }
+    .btn-outline-white:hover { border-color: #fff; }
+    .footer { background: #080806; border-top: 1px solid var(--border); padding: 64px 0 32px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 44px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-brand-logo { font-family: var(--serif); font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; color: var(--cream); }
+    .footer-brand-logo span { color: var(--orange); }
+    .footer-tagline { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--muted); }
+    .footer-col-title { font-family: var(--serif); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--cream); margin-bottom: 18px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--muted); transition: color var(--trans); }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom { max-width: 1280px; margin: 40px auto 0; padding: 20px 44px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); transition: color var(--trans); }
+    .footer-bottom a:hover { color: var(--orange); }
+    @media (max-width: 1024px) { .util-bar { padding: 7px 24px; } .nav-inner { padding: 0 24px; } .container { padding: 0 24px; } .content-grid { grid-template-columns: 1fr; gap: 40px; } .team-grid { grid-template-columns: 1fr 1fr; } .values-grid { grid-template-columns: 1fr 1fr; } .trust-badges { gap: 32px; padding: 40px 24px; } .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } .cta-strip { padding: 60px 24px; } .page-hero-content { padding: 40px 24px; } }
+    @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .util-bar { display: none; } .page-hero { height: auto; min-height: 380px; } .team-grid { grid-template-columns: 1fr; } .values-grid { grid-template-columns: 1fr; } .stats { flex-direction: column; gap: 0; padding: 0; } .stat { padding: 28px 24px; border-right: none; border-bottom: 1px solid var(--border); } .footer-inner { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 10px; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">🔧 Groundwork Studio Demo — Tier 4 Multi-Page Build &nbsp;·&nbsp; <a href="https://teamground.work" style="color:#fff;font-weight:700;">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left"><span>📍 1847 W Main St, Mesa, AZ 85201</span><span>Mon–Fri 7am–6pm · Sat 8am–4pm</span></div>
+  <div class="util-right"><a href="demo-autorepair-specials.html">🔥 Current Specials</a><a href="tel:4805550192" class="util-phone">☎ (480) 555-0192</a></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="demo-autorepair.html" class="nav-logo">Desert Ridge <span>Auto</span></a>
+    <ul class="nav-links">
+      <li>
+        <span>Services ▾</span>
+        <div class="dropdown">
+          <a href="demo-autorepair-oil-change.html"><div class="dd-icon">🔧</div><div class="dd-text"><span class="dd-name">Oil Change &amp; Lube</span><span class="dd-desc">Quick service, same-day</span></div></a>
+          <a href="demo-autorepair-brakes.html"><div class="dd-icon">🛑</div><div class="dd-text"><span class="dd-name">Brake Service</span><span class="dd-desc">Pads, rotors, fluid flush</span></div></a>
+          <a href="demo-autorepair-diagnostics.html"><div class="dd-icon">🔍</div><div class="dd-text"><span class="dd-name">Engine Diagnostics</span><span class="dd-desc">Check engine, codes, inspection</span></div></a>
+          <a href="demo-autorepair-diagnostics.html#battery"><div class="dd-icon">🔋</div><div class="dd-text"><span class="dd-name">Battery &amp; Electrical</span><span class="dd-desc">Test, replace, charging system</span></div></a>
+          <a href="demo-autorepair-contact.html#ac"><div class="dd-icon">❄️</div><div class="dd-text"><span class="dd-name">AC &amp; Heating</span><span class="dd-desc">Recharge, repair, leak detection</span></div></a>
+          <a href="demo-autorepair-contact.html#transmission"><div class="dd-icon">⚙️</div><div class="dd-text"><span class="dd-name">Transmission</span><span class="dd-desc">Service, flush, repair</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-autorepair-financing.html">Financing</a></li>
+      <li><a href="demo-autorepair-specials.html">Specials</a></li>
+      <li><a href="demo-autorepair-blog.html">Blog</a></li>
+      <li><a href="demo-autorepair-about.html" class="active">About</a></li>
+      <li><a href="demo-autorepair-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-autorepair-contact.html" class="nav-cta">📅 Schedule Service</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Services</span>
+  <div class="m-sub">
+    <a href="demo-autorepair-oil-change.html">🔧 Oil Change &amp; Lube</a>
+    <a href="demo-autorepair-brakes.html">🛑 Brake Service</a>
+    <a href="demo-autorepair-diagnostics.html">🔍 Engine Diagnostics</a>
+    <a href="demo-autorepair-diagnostics.html#battery">🔋 Battery &amp; Electrical</a>
+    <a href="demo-autorepair-contact.html#ac">❄️ AC &amp; Heating</a>
+    <a href="demo-autorepair-contact.html#transmission">⚙️ Transmission</a>
+  </div>
+  <a href="demo-autorepair-financing.html">Financing</a>
+  <a href="demo-autorepair-specials.html">Specials</a>
+  <a href="demo-autorepair-blog.html">Blog</a>
+  <a href="demo-autorepair-about.html">About</a>
+  <a href="demo-autorepair-contact.html">Contact</a>
+  <a href="demo-autorepair-contact.html" class="m-cta">📅 Schedule Service</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1400&q=80')"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="demo-autorepair.html">Home</a> &nbsp;/&nbsp; <span>About Us</span></div>
+    <h1 class="page-h1">Mesa's <span>Auto Shop</span><br>Since 2008</h1>
+    <p class="page-sub">Family-owned, ASE-certified, and committed to honest service. We've been fixing Mesa's cars for over 15 years — and we plan to be here for 15 more.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years in Business</div></div>
+  <div class="stat"><div class="stat-num">4,000+</div><div class="stat-label">Vehicles Serviced</div></div>
+  <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Google Rating</div></div>
+  <div class="stat"><div class="stat-num">ASE</div><div class="stat-label">All Techs Certified</div></div>
+</div>
+
+<!-- OUR STORY -->
+<section class="content-section">
+  <div class="container">
+    <div class="content-grid">
+      <div>
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-h2">Founded on <span>Honesty</span></h2>
+        <div class="story-body" style="margin-top:24px;">
+          <p>Desert Ridge Auto was founded in 2008 by <strong>Marcus and Elena Delgado</strong>, a husband-and-wife team who moved to Mesa from Tucson after Marcus spent a decade working at dealership service centers. Tired of upsell culture and watching customers get overcharged, Marcus wanted to build something different.</p>
+          <p>The shop started with two lifts and a whole lot of word-of-mouth. Within three years, they had expanded to their current six-bay facility on West Main Street. The philosophy hasn't changed: <strong>tell the customer the truth, charge a fair price, and do the work right the first time.</strong></p>
+          <p>Today, Desert Ridge Auto services thousands of vehicles a year, employs a team of ASE-certified technicians, and holds a 4.9-star rating on Google. Customers drive from all across the East Valley — Gilbert, Chandler, Tempe, Scottsdale — because they trust us.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-tag">Timeline</div>
+        <h2 class="section-h2" style="margin-bottom:24px;">How We <span>Got Here</span></h2>
+        <div>
+          <div class="story-milestone"><div class="milestone-year">2008</div><div class="milestone-text"><strong>Founded by Marcus &amp; Elena Delgado.</strong> Two lifts, one hoist, and a handshake promise to always be honest.</div></div>
+          <div class="story-milestone"><div class="milestone-year">2011</div><div class="milestone-text"><strong>Expanded to 6-bay facility</strong> on W Main St. Hired first two additional technicians.</div></div>
+          <div class="story-milestone"><div class="milestone-year">2014</div><div class="milestone-text"><strong>Earned AAA Approved Shop designation.</strong> Added alignment and advanced diagnostic equipment.</div></div>
+          <div class="story-milestone"><div class="milestone-year">2018</div><div class="milestone-text"><strong>10-year anniversary.</strong> Surpassed 2,500 repeat customers. Introduced 12-month/12,000-mile warranty on all repairs.</div></div>
+          <div class="story-milestone"><div class="milestone-year">2023</div><div class="milestone-text"><strong>Reached 4.9★ on Google</strong> with over 200 reviews. 4,000+ vehicles serviced annually.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="content-section" style="background:var(--card);">
+  <div class="container">
+    <div class="section-tag">The People Behind the Lifts</div>
+    <h2 class="section-h2">Meet Our <span>Team</span></h2>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:16px;max-width:560px;">Every technician at Desert Ridge Auto holds ASE certification. We invest in ongoing training so our team stays current with the latest vehicle technology.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">🔧</div>
+        <div class="team-body">
+          <div class="team-name">Marcus Delgado</div>
+          <div class="team-title">Owner &amp; Master Technician</div>
+          <p class="team-bio">20+ years of hands-on experience. Specializes in engine performance and drivetrain diagnostics. Still turns wrenches every day alongside his team.</p>
+          <div class="team-cert">ASE Master Tech · L1 Advanced</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">⚙️</div>
+        <div class="team-body">
+          <div class="team-name">Ray Ortega</div>
+          <div class="team-title">Lead Technician</div>
+          <p class="team-bio">12 years with Desert Ridge Auto. Ray is our transmission and electrical specialist. If it has a module, Ray can read it, reprogram it, or repair it.</p>
+          <div class="team-cert">ASE Certified · Electrical Specialist</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🛑</div>
+        <div class="team-body">
+          <div class="team-name">Jasmine Torres</div>
+          <div class="team-title">Service Technician</div>
+          <p class="team-bio">Joined in 2019 after graduating from Mesa Community College's automotive program. Jasmine's specialty is brakes, suspension, and wheel alignment on late-model vehicles.</p>
+          <div class="team-cert">ASE Certified · Brakes &amp; Suspension</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="content-section">
+  <div class="container">
+    <div class="section-tag">What We Stand For</div>
+    <h2 class="section-h2">Our Core <span>Values</span></h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">💰</div>
+        <div class="value-title">Honest Pricing</div>
+        <p class="value-desc">You get a written estimate before we touch your car. The price we quote is the price you pay. No surprise charges, ever. If something unexpected comes up, we call you first.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🚫</div>
+        <div class="value-title">No Upselling</div>
+        <p class="value-desc">We'll tell you what your car needs today, what it will need soon, and what can wait. We never recommend repairs just to pad the invoice. That's how we've kept customers for 15 years.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Same-Day Service</div>
+        <p class="value-desc">We know your time matters. Most repairs are completed same-day. If we can't finish by close, we'll give you an honest timeline and a loaner recommendation so you're not stranded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<div class="trust-badges">
+  <div class="trust-item"><div class="trust-icon">🏅</div><div class="trust-label">ASE Certified</div><div class="trust-sub">All Technicians</div></div>
+  <div class="trust-item"><div class="trust-icon">🚗</div><div class="trust-label">AAA Approved</div><div class="trust-sub">Since 2014</div></div>
+  <div class="trust-item"><div class="trust-icon">⭐</div><div class="trust-label">BBB A+ Rating</div><div class="trust-sub">Accredited Business</div></div>
+  <div class="trust-item"><div class="trust-icon">🔒</div><div class="trust-label">12-Month Warranty</div><div class="trust-sub">Parts &amp; Labor</div></div>
+  <div class="trust-item"><div class="trust-icon">📋</div><div class="trust-label">Free Estimates</div><div class="trust-sub">No Obligation</div></div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-headline">Come See the Difference</div>
+  <p class="cta-strip-sub">Bring your car in and experience what honest, professional auto service feels like.</p>
+  <a href="demo-autorepair-contact.html" class="btn-white">Book an Appointment</a>
+  <a href="tel:4805550192" class="btn-outline-white">Call (480) 555-0192</a>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-logo">Desert Ridge <span>Auto</span></div>
+      <p class="footer-tagline">Mesa's trusted independent auto repair shop since 2008. ASE-certified technicians, honest pricing, and same-day service on most repairs.</p>
+      <div class="footer-contact-item">📍 1847 W Main St, Mesa, AZ 85201</div>
+      <div class="footer-contact-item">☎ <a href="tel:4805550192" style="color:var(--orange)">(480) 555-0192</a></div>
+      <div class="footer-contact-item">⏰ Mon–Fri 7am–6pm · Sat 8am–4pm</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-oil-change.html">Oil Change &amp; Lube</a>
+        <a href="demo-autorepair-brakes.html">Brake Service</a>
+        <a href="demo-autorepair-diagnostics.html">Engine Diagnostics</a>
+        <a href="demo-autorepair-diagnostics.html#battery">Battery &amp; Electrical</a>
+        <a href="demo-autorepair-contact.html#ac">AC &amp; Heating</a>
+        <a href="demo-autorepair-contact.html#transmission">Transmission</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-about.html">About Us</a>
+        <a href="demo-autorepair-blog.html">Blog</a>
+        <a href="demo-autorepair-specials.html">Current Specials</a>
+        <a href="demo-autorepair-financing.html">Financing</a>
+        <a href="demo-autorepair-contact.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-contact.html">Book Appointment</a>
+        <a href="tel:4805550192">Call Us Now</a>
+        <a href="demo-autorepair-specials.html">Today's Deals</a>
+        <a href="demo-autorepair-financing.html">Apply for Financing</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Desert Ridge Auto — Mesa, AZ. All rights reserved.</span>
+    <span>Demo by <a href="https://teamground.work">Groundwork Studio</a></span>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+  document.querySelectorAll('.nav-links > li > span').forEach(el => { el.addEventListener('click', (e) => { e.stopPropagation(); const li = el.parentElement; const isOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!isOpen) li.classList.add('open'); }); });
+  document.addEventListener('click', () => { document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+</script>
+</body>
+</html>

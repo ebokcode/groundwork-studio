@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financing — Desert Ridge Auto | Mesa, AZ</title>
+  <meta name="description" content="0% financing for 6–12 months on auto repairs. Apply in minutes at Desert Ridge Auto in Mesa, AZ. Don't delay safety repairs — drive now, pay later." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; font: inherit; }
+    :root { --ink:#0d0d0d; --card:#161310; --border:#2a2118; --orange:#ea580c; --orange-dk:#c2410c; --orange-gl:rgba(234,88,12,.12); --cream:#f5f0eb; --muted:#a8958a; --serif:'Barlow Condensed',sans-serif; --sans:'DM Sans',sans-serif; --trans:200ms ease; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    .demo-bar { background: var(--orange); color: #fff; text-align: center; padding: 9px 24px; font-size: 11.5px; font-weight: 500; letter-spacing: .3px; z-index: 500; }
+    .demo-bar a { color: #fff; font-weight: 700; text-decoration: underline; }
+    .util-bar { background: #080806; border-bottom: 1px solid var(--border); padding: 7px 44px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .util-left { display: flex; align-items: center; gap: 20px; }
+    .util-right { display: flex; align-items: center; gap: 20px; }
+    .util-phone { font-weight: 600; color: var(--orange) !important; }
+    .util-bar a { color: var(--muted); transition: color var(--trans); }
+    .util-bar a:hover { color: var(--orange); }
+    .nav { position: sticky; top: 0; z-index: 300; background: rgba(13,13,13,.97); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 44px; height: 68px; display: flex; align-items: center; gap: 32px; }
+    .nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--cream); white-space: nowrap; flex-shrink: 0; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > span { display: flex; align-items: center; gap: 4px; padding: 8px 14px; font-size: 12px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); transition: color var(--trans); cursor: pointer; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > span:hover, .nav-links > li:hover > span { color: var(--cream); }
+    .nav-links > li > a.active { color: var(--orange); }
+    .dropdown { position: absolute; top: calc(100% + 6px); left: 0; background: #1a1208; border: 1px solid var(--border); border-top: 2px solid var(--orange); min-width: 320px; padding: 6px 0; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity var(--trans), transform var(--trans); box-shadow: 0 20px 60px rgba(0,0,0,.8); }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: flex; align-items: flex-start; gap: 12px; padding: 12px 18px; transition: background var(--trans); }
+    .dropdown a:hover { background: #221a0e; }
+    .dd-icon { width: 36px; height: 36px; background: var(--orange-gl); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name { font-size: 13px; font-weight: 600; color: var(--cream); }
+    .dropdown a:hover .dd-name { color: var(--orange); }
+    .dd-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; font-family: var(--serif); font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 11px 24px; white-space: nowrap; flex-shrink: 0; transition: background var(--trans), transform var(--trans); }
+    .nav-cta:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); transition: transform var(--trans), opacity var(--trans); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--ink); z-index: 999; flex-direction: column; padding: 90px 32px 40px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu .m-label { display: block; font-size: 17px; font-weight: 500; color: var(--cream); padding: 13px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu .m-label { color: var(--muted); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding-top: 24px; }
+    .mobile-menu .m-sub a { font-size: 14px; padding: 10px 0 10px 16px; color: var(--muted); }
+    .mobile-menu .m-cta { display: block; margin-top: 28px; background: var(--orange); color: #fff; font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 15px 32px; text-align: center; border-bottom: none; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 44px; }
+    .section-tag { font-size: 10.5px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .section-tag::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); }
+    .section-h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 900; line-height: .92; text-transform: uppercase; color: var(--cream); }
+    .section-h2 span { color: var(--orange); }
+
+    /* FIN HERO */
+    .fin-hero { background: var(--card); padding: 100px 44px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .fin-hero::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(to bottom, transparent, var(--orange), var(--orange-dk), transparent); }
+    .fin-hero-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+    .fin-hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+    .fin-hero-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--orange); }
+    .fin-hero-h1 { font-family: var(--serif); font-size: clamp(60px, 9vw, 112px); font-weight: 900; line-height: .88; text-transform: uppercase; color: var(--cream); margin-bottom: 24px; }
+    .fin-hero-h1 span { color: var(--orange); display: block; }
+    .fin-hero-sub { font-size: 16px; font-weight: 300; color: var(--muted); max-width: 500px; line-height: 1.75; margin-bottom: 36px; }
+    .fin-badge-group { display: flex; gap: 16px; flex-wrap: wrap; }
+    .fin-badge { background: var(--orange-gl); border: 1px solid var(--orange); padding: 10px 18px; font-family: var(--serif); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--cream); }
+
+    .content-section { padding: 80px 0; }
+    .content-section + .content-section { border-top: 1px solid var(--border); }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .btn-primary { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: var(--orange); color: #fff; padding: 16px 36px; display: inline-block; transition: background var(--trans), transform var(--trans); }
+    .btn-primary:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .btn-ghost { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: transparent; color: var(--cream); padding: 15px 36px; border: 1px solid var(--border); display: inline-block; transition: border-color var(--trans), color var(--trans); }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* OPTIONS CARDS */
+    .fin-options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .fin-option-card { background: var(--card); padding: 40px 32px; position: relative; overflow: hidden; border-top: 3px solid var(--border); transition: border-color var(--trans), transform var(--trans); }
+    .fin-option-card.featured { border-top-color: var(--orange); }
+    .fin-option-card:hover { border-top-color: var(--orange); transform: translateY(-3px); }
+    .fin-option-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .fin-option-rate { font-family: var(--serif); font-size: 72px; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 4px; }
+    .fin-option-rate-suffix { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 16px; }
+    .fin-option-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .fin-option-req { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--border); }
+
+    /* HOW TO APPLY STEPS */
+    .apply-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .apply-step { background: var(--card); padding: 36px 32px; }
+    .apply-step-num { font-family: var(--serif); font-size: 64px; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 16px; opacity: .35; }
+    .apply-step-title { font-family: var(--serif); font-size: 24px; font-weight: 800; text-transform: uppercase; color: var(--cream); margin-bottom: 10px; }
+    .apply-step-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+    /* FAQ */
+    .faq { margin-top: 32px; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--card); border-left: 2px solid var(--border); transition: border-color var(--trans); }
+    .faq-item:hover { border-left-color: var(--orange); }
+    .faq-q { font-family: var(--serif); font-size: 18px; font-weight: 700; text-transform: uppercase; color: var(--cream); padding: 22px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; letter-spacing: .5px; }
+    .faq-q::after { content: '+'; color: var(--orange); font-size: 22px; flex-shrink: 0; }
+    .faq-a { padding: 0 24px 22px; font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
+
+    /* CTA */
+    .cta-strip { background: var(--orange); padding: 60px 44px; text-align: center; }
+    .cta-strip-headline { font-family: var(--serif); font-size: clamp(32px, 5vw, 56px); font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+    .cta-strip-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.8); margin-bottom: 28px; }
+    .btn-white { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: #fff; color: var(--orange); padding: 16px 36px; display: inline-block; transition: transform var(--trans); margin: 0 8px; }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-outline-white { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); padding: 14px 36px; display: inline-block; transition: border-color var(--trans); margin: 0 8px; }
+    .btn-outline-white:hover { border-color: #fff; }
+
+    .footer { background: #080806; border-top: 1px solid var(--border); padding: 64px 0 32px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 44px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-brand-logo { font-family: var(--serif); font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; color: var(--cream); }
+    .footer-brand-logo span { color: var(--orange); }
+    .footer-tagline { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--muted); }
+    .footer-col-title { font-family: var(--serif); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--cream); margin-bottom: 18px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--muted); transition: color var(--trans); }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom { max-width: 1280px; margin: 40px auto 0; padding: 20px 44px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); transition: color var(--trans); }
+    .footer-bottom a:hover { color: var(--orange); }
+    @media (max-width: 1024px) { .util-bar { padding: 7px 24px; } .nav-inner { padding: 0 24px; } .container { padding: 0 24px; } .fin-hero { padding: 80px 24px; } .fin-hero-inner { grid-template-columns: 1fr; gap: 32px; } .content-grid { grid-template-columns: 1fr; gap: 40px; } .fin-options-grid { grid-template-columns: 1fr 1fr; } .apply-steps { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; } .cta-strip { padding: 60px 24px; } }
+    @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .util-bar { display: none; } .fin-options-grid { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 10px; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">🔧 Groundwork Studio Demo — Tier 4 Multi-Page Build &nbsp;·&nbsp; <a href="https://teamground.work" style="color:#fff;font-weight:700;">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left"><span>📍 1847 W Main St, Mesa, AZ 85201</span><span>Mon–Fri 7am–6pm · Sat 8am–4pm</span></div>
+  <div class="util-right"><a href="demo-autorepair-specials.html">🔥 Current Specials</a><a href="tel:4805550192" class="util-phone">☎ (480) 555-0192</a></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="demo-autorepair.html" class="nav-logo">Desert Ridge <span>Auto</span></a>
+    <ul class="nav-links">
+      <li>
+        <span>Services ▾</span>
+        <div class="dropdown">
+          <a href="demo-autorepair-oil-change.html"><div class="dd-icon">🔧</div><div class="dd-text"><span class="dd-name">Oil Change &amp; Lube</span><span class="dd-desc">Quick service, same-day</span></div></a>
+          <a href="demo-autorepair-brakes.html"><div class="dd-icon">🛑</div><div class="dd-text"><span class="dd-name">Brake Service</span><span class="dd-desc">Pads, rotors, fluid flush</span></div></a>
+          <a href="demo-autorepair-diagnostics.html"><div class="dd-icon">🔍</div><div class="dd-text"><span class="dd-name">Engine Diagnostics</span><span class="dd-desc">Check engine, codes, inspection</span></div></a>
+          <a href="demo-autorepair-diagnostics.html#battery"><div class="dd-icon">🔋</div><div class="dd-text"><span class="dd-name">Battery &amp; Electrical</span><span class="dd-desc">Test, replace, charging system</span></div></a>
+          <a href="demo-autorepair-contact.html#ac"><div class="dd-icon">❄️</div><div class="dd-text"><span class="dd-name">AC &amp; Heating</span><span class="dd-desc">Recharge, repair, leak detection</span></div></a>
+          <a href="demo-autorepair-contact.html#transmission"><div class="dd-icon">⚙️</div><div class="dd-text"><span class="dd-name">Transmission</span><span class="dd-desc">Service, flush, repair</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-autorepair-financing.html" class="active">Financing</a></li>
+      <li><a href="demo-autorepair-specials.html">Specials</a></li>
+      <li><a href="demo-autorepair-blog.html">Blog</a></li>
+      <li><a href="demo-autorepair-about.html">About</a></li>
+      <li><a href="demo-autorepair-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-autorepair-contact.html" class="nav-cta">📅 Schedule Service</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Services</span>
+  <div class="m-sub">
+    <a href="demo-autorepair-oil-change.html">🔧 Oil Change &amp; Lube</a>
+    <a href="demo-autorepair-brakes.html">🛑 Brake Service</a>
+    <a href="demo-autorepair-diagnostics.html">🔍 Engine Diagnostics</a>
+    <a href="demo-autorepair-diagnostics.html#battery">🔋 Battery &amp; Electrical</a>
+    <a href="demo-autorepair-contact.html#ac">❄️ AC &amp; Heating</a>
+    <a href="demo-autorepair-contact.html#transmission">⚙️ Transmission</a>
+  </div>
+  <a href="demo-autorepair-financing.html">Financing</a>
+  <a href="demo-autorepair-specials.html">Specials</a>
+  <a href="demo-autorepair-blog.html">Blog</a>
+  <a href="demo-autorepair-about.html">About</a>
+  <a href="demo-autorepair-contact.html">Contact</a>
+  <a href="demo-autorepair-contact.html" class="m-cta">📅 Schedule Service</a>
+</div>
+
+<!-- FINANCING HERO -->
+<section class="fin-hero">
+  <div class="fin-hero-inner">
+    <div>
+      <div class="fin-hero-eyebrow">Flexible Payment Options</div>
+      <h1 class="fin-hero-h1">Drive Now,<span>Pay Later.</span></h1>
+      <p class="fin-hero-sub">Don't delay safety-critical repairs because of budget. We offer flexible financing options with quick approval so you can get back on the road without financial stress.</p>
+      <div class="fin-badge-group">
+        <div class="fin-badge">✓ Approved in Minutes</div>
+        <div class="fin-badge">✓ No Hidden Fees</div>
+        <div class="fin-badge">✓ 0% Interest Available</div>
+      </div>
+    </div>
+    <div style="background:var(--ink);border:1px solid var(--border);border-top:3px solid var(--orange);padding:40px 36px;min-width:240px;text-align:center;">
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Best Rate Available</div>
+      <div style="font-family:var(--serif);font-size:80px;font-weight:900;color:var(--orange);line-height:1;">0%</div>
+      <div style="font-family:var(--serif);font-size:20px;font-weight:700;text-transform:uppercase;color:var(--cream);margin-bottom:8px;">Interest</div>
+      <div style="font-size:12px;color:var(--muted);">For up to 12 months</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCING OPTIONS -->
+<section class="content-section">
+  <div class="container">
+    <div class="section-tag">Choose Your Plan</div>
+    <h2 class="section-h2">Financing <span>Options</span></h2>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:16px;max-width:600px;">We partner with top financing providers to offer you flexible options no matter your credit situation. Get repairs done today and spread the cost over time.</p>
+    <div class="fin-options-grid">
+      <div class="fin-option-card">
+        <div class="fin-option-label">Short-Term Option</div>
+        <div class="fin-option-rate">0%</div>
+        <div class="fin-option-rate-suffix">For 6 Months</div>
+        <p class="fin-option-desc">Zero interest for six months when you finance repairs totaling $500 or more. Pay off the balance in 6 equal monthly installments at no extra cost.</p>
+        <div class="fin-option-req">Minimum repair: $500 · Subject to credit approval</div>
+      </div>
+      <div class="fin-option-card featured">
+        <div class="fin-option-label">Best Value · Most Popular</div>
+        <div class="fin-option-rate">0%</div>
+        <div class="fin-option-rate-suffix">For 12 Months</div>
+        <p class="fin-option-desc">Our most popular plan. Zero interest for a full year on repairs $1,500 and over. Ideal for transmission work, major engine repairs, or multiple services at once.</p>
+        <div class="fin-option-req">Minimum repair: $1,500 · Subject to credit approval</div>
+      </div>
+      <div class="fin-option-card">
+        <div class="fin-option-label">Long-Term Option</div>
+        <div class="fin-option-rate" style="font-size:52px;">Low</div>
+        <div class="fin-option-rate-suffix">Monthly Plan</div>
+        <p class="fin-option-desc">Extended payment terms available for customers who need more flexibility. Low monthly payments spread over 24–36 months. Ask our advisor for details.</p>
+        <div class="fin-option-req">Available on all repair amounts · Subject to credit approval</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO APPLY -->
+<section class="content-section" style="background:var(--card);">
+  <div class="container">
+    <div class="section-tag">Simple Process</div>
+    <h2 class="section-h2">How to <span>Apply</span></h2>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-top:16px;max-width:560px;">Applying for financing takes less than 5 minutes. Most customers receive an instant decision.</p>
+    <div class="apply-steps">
+      <div class="apply-step">
+        <div class="apply-step-num">01</div>
+        <div class="apply-step-title">Visit or Call Us</div>
+        <p class="apply-step-desc">Bring your vehicle in for service or call ahead to describe your repair needs. Our service advisor will confirm the repair total and walk you through financing options.</p>
+      </div>
+      <div class="apply-step">
+        <div class="apply-step-num">02</div>
+        <div class="apply-step-title">Fill Out the Application</div>
+        <p class="apply-step-desc">Complete a simple financing application at our front desk — takes about 3 minutes. We'll need your name, address, income info, and a valid ID. No lengthy paperwork.</p>
+      </div>
+      <div class="apply-step">
+        <div class="apply-step-num">03</div>
+        <div class="apply-step-title">Get Approved &amp; Drive Home</div>
+        <p class="apply-step-desc">Most applications receive an instant decision. Once approved, we complete the repairs and you drive home today. Your first payment isn't due for 30 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="content-section">
+  <div class="container" style="max-width:800px;">
+    <div class="section-tag">Questions Answered</div>
+    <h2 class="section-h2">Financing <span>FAQ</span></h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">What credit score do I need to qualify?</div>
+        <div class="faq-a">We work with multiple financing partners to accommodate a wide range of credit scores. While the 0% interest plans typically require fair-to-good credit, our low monthly plan options are available to a broader range of applicants. Apply and see — there's no cost to check.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does applying affect my credit score?</div>
+        <div class="faq-a">The initial application typically uses a soft credit inquiry which does not affect your credit score. A hard inquiry may be performed if you proceed with the financing, which has a minimal, temporary impact on your score.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I pay off my balance early?</div>
+        <div class="faq-a">Yes. There are no prepayment penalties. You can pay off the full balance at any time. If you're on the 0% plan, paying it off before the promotional period ends means you pay zero interest.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens if I don't pay off the 0% balance in time?</div>
+        <div class="faq-a">If the promotional balance isn't paid off by the end of the 0% period, deferred interest may apply from the original purchase date. We recommend setting up automatic payments to avoid this. Your financing documents will include the full terms.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-headline">Don't Put Off the Repairs You Need</div>
+  <p class="cta-strip-sub">Apply in minutes. Drive home today. Safety shouldn't wait for a paycheck.</p>
+  <a href="demo-autorepair-contact.html" class="btn-white">Apply for Financing</a>
+  <a href="tel:4805550192" class="btn-outline-white">Call (480) 555-0192</a>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-logo">Desert Ridge <span>Auto</span></div>
+      <p class="footer-tagline">Mesa's trusted independent auto repair shop since 2008. ASE-certified technicians, honest pricing, and same-day service on most repairs.</p>
+      <div class="footer-contact-item">📍 1847 W Main St, Mesa, AZ 85201</div>
+      <div class="footer-contact-item">☎ <a href="tel:4805550192" style="color:var(--orange)">(480) 555-0192</a></div>
+      <div class="footer-contact-item">⏰ Mon–Fri 7am–6pm · Sat 8am–4pm</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-oil-change.html">Oil Change &amp; Lube</a>
+        <a href="demo-autorepair-brakes.html">Brake Service</a>
+        <a href="demo-autorepair-diagnostics.html">Engine Diagnostics</a>
+        <a href="demo-autorepair-diagnostics.html#battery">Battery &amp; Electrical</a>
+        <a href="demo-autorepair-contact.html#ac">AC &amp; Heating</a>
+        <a href="demo-autorepair-contact.html#transmission">Transmission</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-about.html">About Us</a>
+        <a href="demo-autorepair-blog.html">Blog</a>
+        <a href="demo-autorepair-specials.html">Current Specials</a>
+        <a href="demo-autorepair-financing.html">Financing</a>
+        <a href="demo-autorepair-contact.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <div class="footer-links">
+        <a href="demo-autorepair-contact.html">Book Appointment</a>
+        <a href="tel:4805550192">Call Us Now</a>
+        <a href="demo-autorepair-specials.html">Today's Deals</a>
+        <a href="demo-autorepair-financing.html">Apply for Financing</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Desert Ridge Auto — Mesa, AZ. All rights reserved.</span>
+    <span>Demo by <a href="https://teamground.work">Groundwork Studio</a></span>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+  document.querySelectorAll('.nav-links > li > span').forEach(el => { el.addEventListener('click', (e) => { e.stopPropagation(); const li = el.parentElement; const isOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!isOpen) li.classList.add('open'); }); });
+  document.addEventListener('click', () => { document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Iron Valley Fitness Scottsdale</title>
+  <meta name="description" content="Workout tips, nutrition advice, member spotlights, and fitness news from the Iron Valley Fitness coaching team in Scottsdale, AZ." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black:#0a0a0a; --card:#111; --border:#1f1f1f; --yellow:#facc15; --yellow-dk:#eab308; --yellow-gl:rgba(250,204,21,.10); --white:#f5f5f5; --muted:#888; --nav-bg:rgba(10,10,10,.96); --radius:4px; --transition:200ms ease; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    ul { list-style:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; }
+
+    .demo-bar { background:var(--yellow); color:#111; text-align:center; padding:9px 24px; font-size:11.5px; font-weight:500; letter-spacing:.3px; z-index:600; position:relative; }
+    .demo-bar a { color:#111; font-weight:700; text-decoration:underline; }
+    .util-bar { background:#050505; border-bottom:1px solid var(--border); color:var(--muted); font-size:11px; padding:7px 40px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .util-bar a { color:var(--muted); transition:color var(--transition); }
+    .util-bar a:hover { color:var(--yellow); }
+    .util-left, .util-right { display:flex; align-items:center; gap:20px; }
+    .util-divider { color:var(--border); }
+
+    .nav { position:sticky; top:0; z-index:400; background:var(--nav-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; gap:32px; }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; color:var(--white); white-space:nowrap; flex-shrink:0; }
+    .nav-logo span { color:var(--yellow); }
+    .nav-links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
+    .nav-links > li { position:relative; }
+    .nav-links > li > a, .nav-links > li > button { display:flex; align-items:center; gap:4px; padding:8px 13px; font-size:12px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-radius:var(--radius); transition:color var(--transition),background var(--transition); white-space:nowrap; background:none; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color:var(--white); background:rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color:var(--yellow); }
+    .nav-chevron { font-size:9px; transition:transform var(--transition); }
+    .nav-links > li.open .nav-chevron { transform:rotate(180deg); }
+    .dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#111; border:1px solid var(--border); border-top:2px solid var(--yellow); min-width:300px; padding:8px 0; opacity:0; pointer-events:none; transform:translateY(6px); transition:opacity var(--transition),transform var(--transition); box-shadow:0 20px 50px rgba(0,0,0,.7); z-index:100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity:1; pointer-events:all; transform:translateY(0); }
+    .dropdown a { display:flex; align-items:flex-start; gap:12px; padding:10px 18px; transition:background var(--transition); }
+    .dropdown a:hover { background:rgba(255,255,255,.04); }
+    .dd-icon { width:32px; height:32px; background:var(--yellow-gl); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
+    .dd-text { display:flex; flex-direction:column; gap:2px; }
+    .dd-name { font-size:13px; font-weight:600; color:var(--white); transition:color var(--transition); }
+    .dropdown a:hover .dd-name { color:var(--yellow); }
+    .dd-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    .nav-cta { display:inline-flex; align-items:center; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:1.5px; padding:10px 22px; white-space:nowrap; flex-shrink:0; transition:background var(--transition),transform var(--transition); }
+    .nav-cta:hover { background:var(--yellow-dk); transform:translateY(-1px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; margin-left:auto; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--white); border-radius:2px; transition:transform var(--transition),opacity var(--transition); }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; background:#080808; z-index:999; flex-direction:column; padding:80px 32px 40px; overflow-y:auto; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a, .mobile-menu .m-label { display:block; font-size:17px; font-weight:500; color:var(--white); padding:13px 0; border-bottom:1px solid var(--border); }
+    .mobile-menu .m-label { color:var(--muted); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding-top:24px; }
+    .mobile-menu .m-sub a { font-size:14px; font-weight:400; padding:9px 0 9px 16px; color:var(--muted); }
+    .mobile-menu .m-cta { display:block; margin-top:28px; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px 32px; text-align:center; border-bottom:none; }
+
+    .page-hero { background:#0d0d0d; border-bottom:1px solid var(--border); padding:80px 40px 72px; }
+    .page-hero-inner { max-width:1280px; margin:0 auto; }
+    .page-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .page-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .page-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,8vw,108px); letter-spacing:0.05em; line-height:.9; color:var(--white); margin-bottom:20px; }
+    .page-h1 span { color:var(--yellow); }
+    .page-sub { font-size:16px; font-weight:300; line-height:1.75; color:var(--muted); max-width:560px; }
+
+    /* FEATURED POST */
+    .featured-post { padding:72px 40px 0; background:var(--black); }
+    .featured-inner { max-width:1280px; margin:0 auto; }
+    .featured-card { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--card); overflow:hidden; }
+    .featured-img { height:440px; overflow:hidden; }
+    .featured-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s; }
+    .featured-card:hover .featured-img img { transform:scale(1.04); }
+    .featured-body { padding:56px 48px; display:flex; flex-direction:column; justify-content:center; }
+    .featured-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#111; background:var(--yellow); padding:3px 10px; display:inline-block; margin-bottom:18px; }
+    .featured-cat { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--yellow); margin-bottom:12px; }
+    .featured-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,3vw,50px); letter-spacing:.04em; line-height:.95; color:var(--white); margin-bottom:16px; }
+    .featured-excerpt { font-size:14px; font-weight:300; color:var(--muted); line-height:1.8; margin-bottom:28px; }
+    .featured-meta { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+    .featured-author { font-size:12px; font-weight:500; color:rgba(245,245,245,.6); }
+    .featured-date { font-size:11px; color:var(--muted); }
+    .btn-ghost { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px; background:transparent; color:var(--white); padding:12px 32px; border:1px solid var(--border); display:inline-block; transition:border-color var(--transition),color var(--transition); }
+    .btn-ghost:hover { border-color:var(--yellow); color:var(--yellow); }
+
+    /* BLOG GRID */
+    .blog-section { padding:56px 40px 80px; background:var(--black); }
+    .blog-inner { max-width:1280px; margin:0 auto; }
+    .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .blog-card { background:var(--card); overflow:hidden; transition:transform .25s; }
+    .blog-card:hover { transform:translateY(-4px); }
+    .blog-img { height:200px; overflow:hidden; }
+    .blog-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .blog-card:hover .blog-img img { transform:scale(1.06); }
+    .blog-body { padding:28px; }
+    .blog-cat { display:inline-block; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#111; background:var(--yellow); padding:3px 9px; margin-bottom:12px; }
+    .blog-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.04em; color:var(--white); margin-bottom:10px; line-height:1.15; }
+    .blog-excerpt { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:16px; }
+    .blog-meta { display:flex; justify-content:space-between; align-items:center; }
+    .blog-author { font-size:11px; font-weight:500; color:rgba(245,245,245,.5); }
+    .blog-read { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); display:flex; align-items:center; gap:5px; transition:gap var(--transition); }
+    .blog-card:hover .blog-read { gap:9px; }
+
+    /* NEWSLETTER */
+    .newsletter { padding:72px 40px; background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .newsletter-inner { max-width:640px; margin:0 auto; text-align:center; }
+    .newsletter-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; }
+    .newsletter-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,4vw,56px); letter-spacing:.04em; color:var(--white); margin-bottom:14px; }
+    .newsletter-sub { font-size:14px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:32px; }
+    .newsletter-form { display:flex; gap:2px; }
+    .newsletter-input { flex:1; background:var(--black); border:1px solid var(--border); color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; padding:14px 18px; outline:none; transition:border-color var(--transition); }
+    .newsletter-input:focus { border-color:var(--yellow); }
+    .newsletter-btn { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px; background:var(--yellow); color:#111; padding:14px 28px; white-space:nowrap; cursor:pointer; border:none; transition:background var(--transition); }
+    .newsletter-btn:hover { background:var(--yellow-dk); }
+
+    /* FOOTER */
+    .footer { background:#050505; border-top:1px solid var(--border); padding:72px 40px 40px; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.08em; color:var(--white); margin-bottom:14px; }
+    .footer-logo span { color:var(--yellow); }
+    .footer-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; max-width:240px; margin-bottom:24px; }
+    .footer-social { display:flex; gap:12px; }
+    .footer-social a { width:36px; height:36px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--muted); transition:border-color var(--transition),color var(--transition); }
+    .footer-social a:hover { border-color:var(--yellow); color:var(--yellow); }
+    .footer-col h4 { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.08em; color:var(--white); margin-bottom:16px; }
+    .footer-col ul { display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:13px; font-weight:300; color:var(--muted); transition:color var(--transition); }
+    .footer-col ul li a:hover { color:var(--yellow); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:28px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-copy { font-size:12px; font-weight:300; color:var(--muted); }
+    .footer-copy a { color:var(--yellow); }
+
+    @media (max-width:1024px) { .nav-links, .nav-cta { display:none; } .hamburger { display:flex; } .featured-card { grid-template-columns:1fr; } .featured-img { height:280px; } .blog-grid { grid-template-columns:1fr 1fr; } .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media (max-width:640px) { .util-bar { display:none; } .page-hero, .featured-post, .blog-section, .newsletter { padding:56px 20px; } .blog-grid { grid-template-columns:1fr; } .featured-body { padding:32px 24px; } .newsletter-form { flex-direction:column; } .footer-inner { grid-template-columns:1fr; gap:36px; } .footer-bottom { flex-direction:column; text-align:center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">💪 Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left">
+    <a href="tel:+14805550192">📞 (480) 555-0192</a>
+    <span class="util-divider">|</span>
+    <span>Mon–Fri 5am–11pm · Sat–Sun 7am–9pm</span>
+  </div>
+  <div class="util-right">
+    <a href="demo-gym-specials.html">🔥 Summer Shred Challenge — Ends Soon →</a>
+  </div>
+</div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="demo-gym.html" class="nav-logo">Iron <span>Valley</span></a>
+    <ul class="nav-links">
+      <li>
+        <button class="nav-dd-toggle" aria-haspopup="true">Programs <span class="nav-chevron">▾</span></button>
+        <div class="dropdown">
+          <a href="demo-gym-classes.html"><div class="dd-icon">💪</div><div class="dd-text"><span class="dd-name">Group Classes</span><span class="dd-desc">HIIT, Spin, Yoga, Pilates, Boxing</span></div></a>
+          <a href="demo-gym-classes.html#strength"><div class="dd-icon">🏋️</div><div class="dd-text"><span class="dd-name">Strength &amp; Conditioning</span><span class="dd-desc">Free weights, power racks</span></div></a>
+          <a href="demo-gym-classes.html#cardio"><div class="dd-icon">🏃</div><div class="dd-text"><span class="dd-name">Cardio Zone</span><span class="dd-desc">Treadmills, bikes, rowers</span></div></a>
+          <a href="demo-gym-classes.html#recovery"><div class="dd-icon">🧘</div><div class="dd-text"><span class="dd-name">Recovery &amp; Wellness</span><span class="dd-desc">Sauna, stretching, foam rolling</span></div></a>
+          <a href="demo-gym-personal-training.html"><div class="dd-icon">🎯</div><div class="dd-text"><span class="dd-name">Personal Training</span><span class="dd-desc">1-on-1 certified coaching</span></div></a>
+          <a href="demo-gym-classes.html#youth"><div class="dd-icon">👦</div><div class="dd-text"><span class="dd-name">Youth Programs</span><span class="dd-desc">Ages 10–17, supervised sessions</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-gym-memberships.html">Memberships</a></li>
+      <li><a href="demo-gym-classes.html">Schedule</a></li>
+      <li><a href="demo-gym-specials.html">Specials</a></li>
+      <li><a href="demo-gym-blog.html" class="active">Blog</a></li>
+      <li><a href="demo-gym-about.html">About</a></li>
+      <li><a href="demo-gym-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-gym-memberships.html" class="nav-cta">Start Free Trial</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Programs</span>
+  <div class="m-sub">
+    <a href="demo-gym-classes.html">Group Classes</a>
+    <a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a>
+    <a href="demo-gym-classes.html#cardio">Cardio Zone</a>
+    <a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a>
+    <a href="demo-gym-personal-training.html">Personal Training</a>
+    <a href="demo-gym-classes.html#youth">Youth Programs</a>
+  </div>
+  <a href="demo-gym-memberships.html">Memberships</a>
+  <a href="demo-gym-classes.html">Schedule</a>
+  <a href="demo-gym-specials.html">Specials</a>
+  <a href="demo-gym-blog.html">Blog</a>
+  <a href="demo-gym-about.html">About</a>
+  <a href="demo-gym-contact.html">Contact</a>
+  <a href="demo-gym-memberships.html" class="m-cta">Start Free Trial</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Iron Valley Fitness</p>
+    <h1 class="page-h1">Training <span>Blog</span></h1>
+    <p class="page-sub">Workouts, nutrition, member stories, and mindset — straight from our coaching team in Scottsdale.</p>
+  </div>
+</section>
+
+<!-- FEATURED POST -->
+<section class="featured-post">
+  <div class="featured-inner">
+    <a href="#" class="featured-card">
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80" alt="Train harder" loading="lazy" />
+      </div>
+      <div class="featured-body">
+        <span class="featured-label">Featured</span>
+        <p class="featured-cat">Workout Routines</p>
+        <h2 class="featured-title">The 20-Minute HIIT Routine That Burns 400 Calories</h2>
+        <p class="featured-excerpt">Short on time? This science-backed circuit keeps your metabolism elevated for hours after you finish. Coach Marcus breaks down exactly how to structure it — whether you're a beginner or a seasoned athlete chasing a new benchmark.</p>
+        <div class="featured-meta">
+          <span class="featured-author">by Coach Marcus Webb</span>
+          <span class="featured-date">March 12, 2025</span>
+        </div>
+        <span class="btn-ghost">Read Article →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="blog-section">
+  <div class="blog-inner">
+    <div class="blog-grid">
+
+      <a href="#" class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80" alt="Nutrition tips" loading="lazy" /></div>
+        <div class="blog-body">
+          <span class="blog-cat">Nutrition Tips</span>
+          <h3 class="blog-title">Pre-Workout Nutrition: What to Eat Before Training</h3>
+          <p class="blog-excerpt">Fuel your session the right way. Elena breaks down macros, timing windows, and the foods you should absolutely avoid before a hard session.</p>
+          <div class="blog-meta">
+            <span class="blog-author">Elena Reyes</span>
+            <span class="blog-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1485727578161-f957d5b3ffd3?auto=format&fit=crop&w=600&q=80" alt="Member spotlight" loading="lazy" /></div>
+        <div class="blog-body">
+          <span class="blog-cat">Member Spotlight</span>
+          <h3 class="blog-title">From Couch to 5K: Sandra's 90-Day Transformation</h3>
+          <p class="blog-excerpt">Sandra walked in nervous and barely made it through a warm-up. Three months later she ran her first 5K. Her story will make you put down your phone and go train.</p>
+          <div class="blog-meta">
+            <span class="blog-author">Iron Valley Staff</span>
+            <span class="blog-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80" alt="Gym news" loading="lazy" /></div>
+        <div class="blog-body">
+          <span class="blog-cat">Gym News</span>
+          <h3 class="blog-title">We're Expanding: New Recovery Zone Now Open</h3>
+          <p class="blog-excerpt">The infrared sauna, massage gun bar, and cold plunge pod are officially live. Here's everything you need to know about our new recovery wing and how to access it.</p>
+          <div class="blog-meta">
+            <span class="blog-author">Iron Valley Fitness</span>
+            <span class="blog-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?auto=format&fit=crop&w=600&q=80" alt="Mindset" loading="lazy" /></div>
+        <div class="blog-body">
+          <span class="blog-cat">Mindset</span>
+          <h3 class="blog-title">5 Mental Habits That Separate Elite Athletes From Everyone Else</h3>
+          <p class="blog-excerpt">The physical part is the easy part. Coach Marcus explores the mental frameworks that keep high performers consistent — even when motivation disappears.</p>
+          <div class="blog-meta">
+            <span class="blog-author">Marcus Webb</span>
+            <span class="blog-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=600&q=80" alt="Recovery" loading="lazy" /></div>
+        <div class="blog-body">
+          <span class="blog-cat">Recovery</span>
+          <h3 class="blog-title">Why Your Rest Days Are Actually Your Best Training Days</h3>
+          <p class="blog-excerpt">Most people train too much and recover too little. Priya explains the science of active recovery, sleep optimization, and why doing less sometimes means gaining more.</p>
+          <div class="blog-meta">
+            <span class="blog-author">Priya Shah</span>
+            <span class="blog-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80" alt="Workout routine" loading="lazy" /></div>
+        <div class="blog-body">
+          <span class="blog-cat">Workout Routines</span>
+          <h3 class="blog-title">The 4-Day Split That Builds Muscle Without Burning Out</h3>
+          <p class="blog-excerpt">Tired of feeling wrecked all week? This evidence-based 4-day program balances strength, volume, and recovery so you can actually enjoy the process of getting stronger.</p>
+          <div class="blog-meta">
+            <span class="blog-author">Marcus Webb</span>
+            <span class="blog-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <p class="newsletter-eyebrow">Stay in the Loop</p>
+    <h2 class="newsletter-h2">Get Tips in Your Inbox</h2>
+    <p class="newsletter-sub">Weekly workout tips, nutrition advice, and member stories from the Iron Valley coaching team. No spam, no fluff — just actionable content that helps you train smarter.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@email.com" />
+      <button class="newsletter-btn">Subscribe →</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Iron <span>Valley</span> Fitness</div>
+      <p class="footer-tagline">Scottsdale's most dedicated fitness community. Built for people who are serious about results.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="TikTok">TK</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="demo-gym-classes.html">Group Classes</a></li>
+        <li><a href="demo-gym-personal-training.html">Personal Training</a></li>
+        <li><a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a></li>
+        <li><a href="demo-gym-classes.html#cardio">Cardio Zone</a></li>
+        <li><a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a></li>
+        <li><a href="demo-gym-classes.html#youth">Youth Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="demo-gym-about.html">About Us</a></li>
+        <li><a href="demo-gym-memberships.html">Memberships</a></li>
+        <li><a href="demo-gym-specials.html">Current Specials</a></li>
+        <li><a href="demo-gym-blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="demo-gym-contact.html">Contact Us</a></li>
+        <li><a href="demo-gym-contact.html">Directions</a></li>
+        <li><a href="tel:+14805550192">(480) 555-0192</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Iron Valley Fitness · 8200 E Camelback Rd, Scottsdale AZ 85251 · <a href="https://teamground.work">Demo by Groundwork Studio</a></p>
+    <p class="footer-copy">(480) 555-0192 · ironvalleyfitness@demo.com</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); const li = btn.closest('li'); const wasOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!wasOpen) li.classList.add('open'); });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  const ham = document.getElementById('hamburger'); const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+</script>
+</body>
+</html>

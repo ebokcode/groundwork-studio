@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Specials &amp; Promotions — Iron Valley Fitness Scottsdale</title>
+  <meta name="description" content="Current deals at Iron Valley Fitness. Founding member rates, free trial, student/military discounts, referral credits, and corporate wellness packages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black:#0a0a0a; --card:#111; --border:#1f1f1f; --yellow:#facc15; --yellow-dk:#eab308; --yellow-gl:rgba(250,204,21,.10); --white:#f5f5f5; --muted:#888; --nav-bg:rgba(10,10,10,.96); --radius:4px; --transition:200ms ease; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    ul { list-style:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; }
+
+    .demo-bar { background:var(--yellow); color:#111; text-align:center; padding:9px 24px; font-size:11.5px; font-weight:500; letter-spacing:.3px; z-index:600; position:relative; }
+    .demo-bar a { color:#111; font-weight:700; text-decoration:underline; }
+    .util-bar { background:#050505; border-bottom:1px solid var(--border); color:var(--muted); font-size:11px; padding:7px 40px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .util-bar a { color:var(--muted); transition:color var(--transition); }
+    .util-bar a:hover { color:var(--yellow); }
+    .util-left, .util-right { display:flex; align-items:center; gap:20px; }
+    .util-divider { color:var(--border); }
+
+    .nav { position:sticky; top:0; z-index:400; background:var(--nav-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 40px; height:68px; display:flex; align-items:center; gap:32px; }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; color:var(--white); white-space:nowrap; flex-shrink:0; }
+    .nav-logo span { color:var(--yellow); }
+    .nav-links { display:flex; align-items:center; gap:2px; flex:1; justify-content:center; }
+    .nav-links > li { position:relative; }
+    .nav-links > li > a, .nav-links > li > button { display:flex; align-items:center; gap:4px; padding:8px 13px; font-size:12px; font-weight:500; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-radius:var(--radius); transition:color var(--transition),background var(--transition); white-space:nowrap; background:none; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color:var(--white); background:rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color:var(--yellow); }
+    .nav-chevron { font-size:9px; transition:transform var(--transition); }
+    .nav-links > li.open .nav-chevron { transform:rotate(180deg); }
+    .dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#111; border:1px solid var(--border); border-top:2px solid var(--yellow); min-width:300px; padding:8px 0; opacity:0; pointer-events:none; transform:translateY(6px); transition:opacity var(--transition),transform var(--transition); box-shadow:0 20px 50px rgba(0,0,0,.7); z-index:100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity:1; pointer-events:all; transform:translateY(0); }
+    .dropdown a { display:flex; align-items:flex-start; gap:12px; padding:10px 18px; transition:background var(--transition); }
+    .dropdown a:hover { background:rgba(255,255,255,.04); }
+    .dd-icon { width:32px; height:32px; background:var(--yellow-gl); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
+    .dd-text { display:flex; flex-direction:column; gap:2px; }
+    .dd-name { font-size:13px; font-weight:600; color:var(--white); transition:color var(--transition); }
+    .dropdown a:hover .dd-name { color:var(--yellow); }
+    .dd-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    .nav-cta { display:inline-flex; align-items:center; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:1.5px; padding:10px 22px; white-space:nowrap; flex-shrink:0; transition:background var(--transition),transform var(--transition); }
+    .nav-cta:hover { background:var(--yellow-dk); transform:translateY(-1px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; margin-left:auto; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--white); border-radius:2px; transition:transform var(--transition),opacity var(--transition); }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; background:#080808; z-index:999; flex-direction:column; padding:80px 32px 40px; overflow-y:auto; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a, .mobile-menu .m-label { display:block; font-size:17px; font-weight:500; color:var(--white); padding:13px 0; border-bottom:1px solid var(--border); }
+    .mobile-menu .m-label { color:var(--muted); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding-top:24px; }
+    .mobile-menu .m-sub a { font-size:14px; font-weight:400; padding:9px 0 9px 16px; color:var(--muted); }
+    .mobile-menu .m-cta { display:block; margin-top:28px; background:var(--yellow); color:#111; font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px 32px; text-align:center; border-bottom:none; }
+
+    .page-hero { background:#0d0d0d; border-bottom:1px solid var(--border); padding:80px 40px 72px; }
+    .page-hero-inner { max-width:1280px; margin:0 auto; }
+    .page-eyebrow { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .page-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--yellow); }
+    .page-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,8vw,108px); letter-spacing:0.05em; line-height:.9; color:var(--white); margin-bottom:20px; }
+    .page-h1 span { color:var(--yellow); }
+    .page-sub { font-size:16px; font-weight:300; line-height:1.75; color:var(--muted); max-width:560px; }
+
+    /* DEALS GRID */
+    .deals-section { padding:80px 40px; background:var(--black); }
+    .deals-inner { max-width:1280px; margin:0 auto; }
+    .deals-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:0; }
+    .deal-card { background:var(--card); padding:40px 32px; border:1px solid var(--yellow); position:relative; overflow:hidden; transition:background .25s; }
+    .deal-card:hover { background:#131308; }
+    .deal-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--yellow); }
+    .deal-badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#111; background:var(--yellow); padding:4px 10px; margin-bottom:18px; }
+    .deal-icon { font-size:36px; margin-bottom:14px; }
+    .deal-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:.05em; color:var(--white); margin-bottom:8px; }
+    .deal-headline { font-family:'Bebas Neue',sans-serif; font-size:48px; letter-spacing:-1px; color:var(--yellow); line-height:1; margin-bottom:6px; }
+    .deal-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; margin-bottom:20px; }
+    .deal-terms { font-size:10px; font-weight:400; color:rgba(136,136,136,.6); letter-spacing:.5px; border-top:1px solid var(--border); padding-top:14px; margin-top:auto; }
+    .deal-cta { display:inline-block; font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; background:var(--yellow); color:#111; padding:10px 24px; margin-top:20px; transition:background var(--transition); }
+    .deal-cta:hover { background:var(--yellow-dk); }
+    .deal-cta-ghost { background:transparent; color:var(--yellow); border:1px solid var(--yellow); }
+    .deal-cta-ghost:hover { background:var(--yellow); color:#111; }
+
+    /* URGENCY BAND */
+    .urgency-band { background:#0d0d0d; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:40px; text-align:center; }
+    .urgency-text { font-family:'Bebas Neue',sans-serif; font-size:clamp(24px,3vw,40px); letter-spacing:.04em; color:var(--white); }
+    .urgency-text span { color:var(--yellow); }
+
+    /* CTA BAND */
+    .cta-band { background:var(--yellow); padding:80px 40px; text-align:center; position:relative; overflow:hidden; }
+    .cta-band::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,rgba(0,0,0,.03) 0px,rgba(0,0,0,.03) 1px,transparent 1px,transparent 18px); }
+    .cta-band-inner { position:relative; z-index:1; max-width:740px; margin:0 auto; }
+    .cta-band-tag { font-size:10px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:rgba(0,0,0,.45); margin-bottom:16px; }
+    .cta-band-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7vw,88px); letter-spacing:.04em; line-height:.9; color:#111; margin-bottom:18px; }
+    .cta-band-sub { font-size:16px; font-weight:400; color:rgba(0,0,0,.6); margin-bottom:36px; }
+    .btn-dark { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:#111; color:var(--yellow); padding:16px 48px; display:inline-block; transition:background var(--transition),transform var(--transition); }
+    .btn-dark:hover { background:#000; transform:translateY(-2px); }
+    .cta-band-note { font-size:12px; font-weight:300; color:rgba(0,0,0,.5); margin-top:18px; }
+
+    /* FOOTER */
+    .footer { background:#050505; border-top:1px solid var(--border); padding:72px 40px 40px; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:.08em; color:var(--white); margin-bottom:14px; }
+    .footer-logo span { color:var(--yellow); }
+    .footer-tagline { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; max-width:240px; margin-bottom:24px; }
+    .footer-social { display:flex; gap:12px; }
+    .footer-social a { width:36px; height:36px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--muted); transition:border-color var(--transition),color var(--transition); }
+    .footer-social a:hover { border-color:var(--yellow); color:var(--yellow); }
+    .footer-col h4 { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.08em; color:var(--white); margin-bottom:16px; }
+    .footer-col ul { display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:13px; font-weight:300; color:var(--muted); transition:color var(--transition); }
+    .footer-col ul li a:hover { color:var(--yellow); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:28px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .footer-copy { font-size:12px; font-weight:300; color:var(--muted); }
+    .footer-copy a { color:var(--yellow); }
+
+    @media (max-width:1024px) { .nav-links, .nav-cta { display:none; } .hamburger { display:flex; } .deals-grid { grid-template-columns:1fr 1fr; } .footer-inner { grid-template-columns:1fr 1fr; } }
+    @media (max-width:640px) { .util-bar { display:none; } .page-hero, .deals-section { padding:56px 20px; } .deals-grid { grid-template-columns:1fr; } .cta-band { padding:64px 20px; } .footer-inner { grid-template-columns:1fr; gap:36px; } .footer-bottom { flex-direction:column; text-align:center; } }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">💪 Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+<div class="util-bar">
+  <div class="util-left">
+    <a href="tel:+14805550192">📞 (480) 555-0192</a>
+    <span class="util-divider">|</span>
+    <span>Mon–Fri 5am–11pm · Sat–Sun 7am–9pm</span>
+  </div>
+  <div class="util-right">
+    <span>🔥 Limited-time offers — read below</span>
+  </div>
+</div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="demo-gym.html" class="nav-logo">Iron <span>Valley</span></a>
+    <ul class="nav-links">
+      <li>
+        <button class="nav-dd-toggle" aria-haspopup="true">Programs <span class="nav-chevron">▾</span></button>
+        <div class="dropdown">
+          <a href="demo-gym-classes.html"><div class="dd-icon">💪</div><div class="dd-text"><span class="dd-name">Group Classes</span><span class="dd-desc">HIIT, Spin, Yoga, Pilates, Boxing</span></div></a>
+          <a href="demo-gym-classes.html#strength"><div class="dd-icon">🏋️</div><div class="dd-text"><span class="dd-name">Strength &amp; Conditioning</span><span class="dd-desc">Free weights, power racks</span></div></a>
+          <a href="demo-gym-classes.html#cardio"><div class="dd-icon">🏃</div><div class="dd-text"><span class="dd-name">Cardio Zone</span><span class="dd-desc">Treadmills, bikes, rowers</span></div></a>
+          <a href="demo-gym-classes.html#recovery"><div class="dd-icon">🧘</div><div class="dd-text"><span class="dd-name">Recovery &amp; Wellness</span><span class="dd-desc">Sauna, stretching, foam rolling</span></div></a>
+          <a href="demo-gym-personal-training.html"><div class="dd-icon">🎯</div><div class="dd-text"><span class="dd-name">Personal Training</span><span class="dd-desc">1-on-1 certified coaching</span></div></a>
+          <a href="demo-gym-classes.html#youth"><div class="dd-icon">👦</div><div class="dd-text"><span class="dd-name">Youth Programs</span><span class="dd-desc">Ages 10–17, supervised sessions</span></div></a>
+        </div>
+      </li>
+      <li><a href="demo-gym-memberships.html">Memberships</a></li>
+      <li><a href="demo-gym-classes.html">Schedule</a></li>
+      <li><a href="demo-gym-specials.html" class="active">Specials</a></li>
+      <li><a href="demo-gym-blog.html">Blog</a></li>
+      <li><a href="demo-gym-about.html">About</a></li>
+      <li><a href="demo-gym-contact.html">Contact</a></li>
+    </ul>
+    <a href="demo-gym-memberships.html" class="nav-cta">Start Free Trial</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="m-label">Programs</span>
+  <div class="m-sub">
+    <a href="demo-gym-classes.html">Group Classes</a>
+    <a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a>
+    <a href="demo-gym-classes.html#cardio">Cardio Zone</a>
+    <a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a>
+    <a href="demo-gym-personal-training.html">Personal Training</a>
+    <a href="demo-gym-classes.html#youth">Youth Programs</a>
+  </div>
+  <a href="demo-gym-memberships.html">Memberships</a>
+  <a href="demo-gym-classes.html">Schedule</a>
+  <a href="demo-gym-specials.html">Specials</a>
+  <a href="demo-gym-blog.html">Blog</a>
+  <a href="demo-gym-about.html">About</a>
+  <a href="demo-gym-contact.html">Contact</a>
+  <a href="demo-gym-memberships.html" class="m-cta">Start Free Trial</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Iron Valley Fitness</p>
+    <h1 class="page-h1">Current <span>Specials</span></h1>
+    <p class="page-sub">Limited-time offers, ongoing programs, and member perks. Don't leave money on the table — see what's available right now.</p>
+  </div>
+</section>
+
+<div class="urgency-band">
+  <p class="urgency-text">Some offers are <span>time-limited.</span> Call <span>(480) 555-0192</span> to lock in your rate today.</p>
+</div>
+
+<section class="deals-section">
+  <div class="deals-inner">
+    <div class="deals-grid">
+
+      <!-- Deal 1 -->
+      <div class="deal-card">
+        <p class="deal-badge">🔒 Rate Lock</p>
+        <div class="deal-icon">🏆</div>
+        <h3 class="deal-name">Founding Member Rate</h3>
+        <div class="deal-headline">$39/mo</div>
+        <p class="deal-desc">Join now and lock in our original Standard membership at $39/month — forever. As we grow and expand, your rate never changes. This is our thank-you to early adopters who believed in what we're building.</p>
+        <a href="demo-gym-contact.html" class="deal-cta">Claim This Rate</a>
+        <p class="deal-terms">Valid for new members only. Rate locked for life of active membership. No contract — cancel anytime. Limited spots remaining.</p>
+      </div>
+
+      <!-- Deal 2 -->
+      <div class="deal-card">
+        <p class="deal-badge">🎁 Free Trial</p>
+        <div class="deal-icon">🎟️</div>
+        <h3 class="deal-name">Free 7-Day Trial</h3>
+        <div class="deal-headline">$0</div>
+        <p class="deal-desc">Train free for a full week. No credit card. No commitment. Full access to the gym floor, group classes (Standard level), and all common areas. Just show up with a valid ID.</p>
+        <a href="demo-gym-memberships.html" class="deal-cta">Start Free Trial</a>
+        <p class="deal-terms">One trial per person. Valid ID required. Must be 18+ (or parent/guardian signature for 16–17). Not available to former members.</p>
+      </div>
+
+      <!-- Deal 3 -->
+      <div class="deal-card">
+        <p class="deal-badge">🎓 Discount</p>
+        <div class="deal-icon">🪖</div>
+        <h3 class="deal-name">Student &amp; Military 20% Off</h3>
+        <div class="deal-headline">20% Off</div>
+        <p class="deal-desc">Active military, veterans, first responders, and full-time students all receive 20% off any membership tier. We honor your service and your pursuit of education with a discount that applies every single month.</p>
+        <a href="demo-gym-contact.html" class="deal-cta">Verify &amp; Enroll</a>
+        <p class="deal-terms">Valid government-issued ID or .edu email required. Military/first responder discount requires proof of active status or honorable discharge. Not combinable with other discounts.</p>
+      </div>
+
+      <!-- Deal 4 -->
+      <div class="deal-card">
+        <p class="deal-badge">🤝 Referral</p>
+        <div class="deal-icon">💰</div>
+        <h3 class="deal-name">Refer a Friend — $50 Credit</h3>
+        <div class="deal-headline">$50</div>
+        <p class="deal-desc">You know your gym is great — so tell someone. Every friend you refer who joins as a paid member earns you $50 in Iron Valley credit. Apply it toward your membership, PT sessions, or merch. No limit on referrals.</p>
+        <a href="demo-gym-contact.html" class="deal-cta">Get Referral Link</a>
+        <p class="deal-terms">Credit issued after referred member completes 30 days. Referred member must be new and sign up for at least Standard membership. Credit valid for 6 months.</p>
+      </div>
+
+      <!-- Deal 5 -->
+      <div class="deal-card">
+        <p class="deal-badge">🔥 Challenge</p>
+        <div class="deal-icon">☀️</div>
+        <h3 class="deal-name">Summer Shred Challenge</h3>
+        <div class="deal-headline">12 Weeks</div>
+        <p class="deal-desc">Our signature 12-week transformation program. Group accountability, structured progressive programming, weekly check-ins, nutrition guidance, and a $500 prize pool for top transformations. Next cohort starts June 1.</p>
+        <a href="demo-gym-contact.html" class="deal-cta">Join the Challenge</a>
+        <p class="deal-terms">Enrollment fee: $49 (Standard/Elite members get 50% off). Program runs June 1 – August 23. Includes 3 group sessions/week plus app programming. Must be active member to enroll.</p>
+      </div>
+
+      <!-- Deal 6 -->
+      <div class="deal-card">
+        <p class="deal-badge">🏢 Corporate</p>
+        <div class="deal-icon">🤝</div>
+        <h3 class="deal-name">Corporate Wellness</h3>
+        <div class="deal-headline">Custom</div>
+        <p class="deal-desc">Offer your team a world-class fitness benefit. Corporate wellness packages include discounted group rates, dedicated class times, onsite wellness workshops, and a branded employee wellness portal. Custom pricing based on team size.</p>
+        <a href="demo-gym-contact.html" class="deal-cta deal-cta-ghost">Contact for Pricing</a>
+        <p class="deal-terms">Minimum 5 employees. Annual agreement required. Rates available for groups of 5, 10, 25, 50+. Includes quarterly wellness report. Ask about our HR partner program.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <p class="cta-band-tag">Don't Wait</p>
+    <h2 class="cta-band-h2">Lock In Your Rate Today</h2>
+    <p class="cta-band-sub">Several of these offers have limited availability. The founding member rate especially won't last long.</p>
+    <a href="demo-gym-contact.html" class="btn-dark">Contact Us Now</a>
+    <p class="cta-band-note">Or call <strong>(480) 555-0192</strong> to speak with a membership advisor right now.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Iron <span>Valley</span> Fitness</div>
+      <p class="footer-tagline">Scottsdale's most dedicated fitness community. Built for people who are serious about results.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="TikTok">TK</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="demo-gym-classes.html">Group Classes</a></li>
+        <li><a href="demo-gym-personal-training.html">Personal Training</a></li>
+        <li><a href="demo-gym-classes.html#strength">Strength &amp; Conditioning</a></li>
+        <li><a href="demo-gym-classes.html#cardio">Cardio Zone</a></li>
+        <li><a href="demo-gym-classes.html#recovery">Recovery &amp; Wellness</a></li>
+        <li><a href="demo-gym-classes.html#youth">Youth Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="demo-gym-about.html">About Us</a></li>
+        <li><a href="demo-gym-memberships.html">Memberships</a></li>
+        <li><a href="demo-gym-specials.html">Current Specials</a></li>
+        <li><a href="demo-gym-blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="demo-gym-contact.html">Contact Us</a></li>
+        <li><a href="demo-gym-contact.html">Directions</a></li>
+        <li><a href="tel:+14805550192">(480) 555-0192</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Iron Valley Fitness · 8200 E Camelback Rd, Scottsdale AZ 85251 · <a href="https://teamground.work">Demo by Groundwork Studio</a></p>
+    <p class="footer-copy">(480) 555-0192 · ironvalleyfitness@demo.com</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); const li = btn.closest('li'); const wasOpen = li.classList.contains('open'); document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); if (!wasOpen) li.classList.add('open'); });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+  const ham = document.getElementById('hamburger'); const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+</script>
+</body>
+</html>
