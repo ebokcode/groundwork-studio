@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Copper &amp; Sage Kitchen · Scottsdale, AZ</title>
+  <meta name="description" content="Explore our seasonal farm-to-table menu: starters, mains, desserts, cocktails &amp; wine. Menu changes with the harvest." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d0d0d;
+      --bg-1:      #1a1510;
+      --amber:     #d97706;
+      --amber-lt:  #fbbf24;
+      --amber-dk:  #b45309;
+      --amber-dim: rgba(217,119,6,.14);
+      --amber-bdr: rgba(217,119,6,.25);
+      --cream:     #faf7f2;
+      --muted:     #8a8070;
+      --border:    #2a2420;
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'DM Sans', sans-serif;
+      --r:         6px;
+      --r-lg:      14px;
+      --trans:     200ms ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+
+    /* DEMO BANNER */
+    .demo-bar { background: var(--amber); color: #0d0d0d; text-align: center; padding: 9px 24px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; position: relative; z-index: 600; }
+    .demo-bar a { color: #0d0d0d; font-weight: 700; text-decoration: underline; }
+
+    /* UTILITY BAR */
+    .util-bar { background: #080808; border-bottom: 1px solid var(--border); padding: 7px 52px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); position: relative; z-index: 590; }
+    .util-left, .util-right { display: flex; align-items: center; gap: 18px; }
+    .util-dot { color: var(--border); }
+    .util-phone { font-weight: 600; color: var(--amber) !important; }
+    .util-bar a { color: var(--muted); transition: color var(--trans); }
+    .util-bar a:hover { color: var(--amber); }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 500; background: rgba(13,13,13,.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 52px; height: 68px; display: flex; align-items: center; gap: 36px; }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--cream); white-space: nowrap; flex-shrink: 0; line-height: 1.2; }
+    .nav-logo span { display: block; font-family: var(--sans); font-size: 9px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--amber); margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > button { display: flex; align-items: center; gap: 5px; padding: 8px 13px; font-size: 11.5px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); border-radius: var(--r); transition: color var(--trans), background var(--trans); white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color: var(--cream); background: rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color: var(--amber); }
+    .nav-arrow { font-size: 9px; transition: transform var(--trans); }
+    .nav-links > li.open .nav-arrow { transform: rotate(180deg); }
+    .dropdown { position: absolute; top: calc(100% + 10px); left: 0; background: #181310; border: 1px solid var(--border); border-top: 2px solid var(--amber); border-radius: var(--r-lg); min-width: 320px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity var(--trans), transform var(--trans); box-shadow: 0 24px 64px rgba(0,0,0,.75); padding: 8px 0; z-index: 100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: flex; align-items: flex-start; gap: 13px; padding: 11px 18px; transition: background var(--trans); }
+    .dropdown a:hover { background: rgba(255,255,255,.04); }
+    .dd-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--amber-dim); border: 1px solid var(--amber-bdr); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name { font-size: 12.5px; font-weight: 500; color: var(--cream); transition: color var(--trans); }
+    .dropdown a:hover .dd-name { color: var(--amber); }
+    .dd-desc { font-size: 10.5px; color: var(--muted); line-height: 1.45; }
+    .dd-divider { height: 1px; background: var(--border); margin: 6px 0; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 7px; background: var(--amber); color: #0d0d0d !important; padding: 9px 20px; border-radius: var(--r); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; transition: background var(--trans), transform var(--trans); }
+    .nav-cta:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform var(--trans), opacity var(--trans); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 490; flex-direction: column; padding: 100px 32px 40px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu .m-section { display: block; padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 17px; font-weight: 500; color: var(--cream); }
+    .mobile-menu .m-section { font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding-top: 24px; border-bottom: none; }
+    .mobile-menu .m-sub a { font-size: 14px; color: var(--muted); padding: 9px 0 9px 16px; }
+    .mobile-menu .m-cta { display: block; margin-top: 28px; background: var(--amber); color: #0d0d0d; font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: var(--r); text-align: center; border-bottom: none; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* LAYOUT */
+    .section { padding: 80px 52px; }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .section-label { font-size: 10px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.9rem, 3.8vw, 2.9rem); font-weight: 500; line-height: 1.15; color: var(--cream); margin-bottom: 18px; }
+    .section-title em { font-style: italic; color: var(--amber-lt); }
+    .divider { height: 1px; background: var(--border); margin: 0 52px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: #0d0d0d; padding: 13px 28px; border-radius: var(--r); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: background var(--trans), transform var(--trans); }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    /* PAGE HEADER */
+    .page-header { background: var(--bg-1); border-bottom: 1px solid var(--border); padding: 72px 52px 56px; text-align: center; }
+    .page-header .section-label { margin-bottom: 12px; }
+    .page-header h1 { font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 500; line-height: 1.1; color: var(--cream); margin-bottom: 14px; }
+    .page-header h1 em { font-style: italic; color: var(--amber-lt); }
+    .page-header p { font-size: .95rem; font-weight: 300; color: var(--muted); max-width: 500px; margin: 0 auto; }
+
+    /* SEASONAL NOTE */
+    .seasonal-note { background: var(--amber-dim); border: 1px solid var(--amber-bdr); border-radius: var(--r); padding: 14px 20px; display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+    .seasonal-note span { font-size: .85rem; color: var(--cream); }
+    .seasonal-note strong { color: var(--amber-lt); }
+
+    /* TABS */
+    .menu-tabs { display: flex; gap: 4px; background: var(--bg-1); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 6px; margin-bottom: 48px; flex-wrap: wrap; }
+    .menu-tab { flex: 1; min-width: 120px; padding: 11px 20px; border-radius: calc(var(--r-lg) - 4px); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: background var(--trans), color var(--trans); text-align: center; }
+    .menu-tab:hover { color: var(--cream); }
+    .menu-tab.active { background: var(--amber); color: #0d0d0d; }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+
+    /* MENU ITEMS */
+    .menu-section-label { font-size: 10px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .menu-item { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--border); }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--cream); margin-bottom: 5px; }
+    .menu-item-desc { font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+    .menu-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; border: 1px solid; }
+    .tag-gf { color: #86efac; border-color: rgba(134,239,172,.3); background: rgba(134,239,172,.08); }
+    .tag-v  { color: #6ee7b7; border-color: rgba(110,231,183,.3); background: rgba(110,231,183,.08); }
+    .tag-vg { color: #a7f3d0; border-color: rgba(167,243,208,.3); background: rgba(167,243,208,.08); }
+    .menu-item-price { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--amber-lt); white-space: nowrap; margin-top: 4px; }
+
+    /* DRINK SECTIONS */
+    .drinks-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+    .drinks-sub { margin-bottom: 40px; }
+    .drinks-sub h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--cream); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+
+    /* STICKY CTA */
+    .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13,13,13,.96); backdrop-filter: blur(16px); border-top: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; justify-content: center; gap: 16px; z-index: 400; }
+    .sticky-cta p { font-size: .85rem; color: var(--muted); }
+    .sticky-cta p strong { color: var(--cream); }
+    body { padding-bottom: 72px; }
+
+    /* FOOTER */
+    .footer { background: #080808; border-top: 1px solid var(--border); padding: 72px 52px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; padding-bottom: 56px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+    .footer-brand .footer-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--cream); margin-bottom: 14px; }
+    .footer-brand .footer-logo span { display: block; font-family: var(--sans); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); margin-top: 2px; }
+    .footer-tagline { font-size: .85rem; font-weight: 300; color: var(--muted); line-height: 1.75; margin-bottom: 24px; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; transition: border-color var(--trans), color var(--trans); }
+    .footer-social a:hover { border-color: var(--amber); color: var(--amber); }
+    .footer-col h4 { font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin-bottom: 20px; }
+    .footer-col a { display: block; font-size: .85rem; font-weight: 300; color: var(--muted); margin-bottom: 10px; transition: color var(--trans); }
+    .footer-col a:hover { color: var(--amber); }
+    .footer-col address { font-style: normal; font-size: .85rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .footer-col address strong { color: var(--cream); font-weight: 500; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; font-size: .78rem; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); transition: color var(--trans); }
+    .footer-bottom a:hover { color: var(--amber); }
+
+    @media (max-width: 1024px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .util-bar { padding: 7px 24px; }
+      .util-right { display: none; }
+      .section { padding-left: 24px; padding-right: 24px; }
+      .page-header { padding: 52px 24px 40px; }
+      .divider { margin: 0 24px; }
+      .footer { padding: 52px 24px 0; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-brand { grid-column: span 2; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .menu-tabs { gap: 4px; }
+      .menu-tab { font-size: 10px; padding: 10px 12px; }
+      .drinks-col { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+      .nav-inner { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-bar">🍽️ Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+  <!-- UTILITY BAR -->
+  <div class="util-bar">
+    <div class="util-left"><a href="tel:+14805550192" class="util-phone">Reservations: (480) 555-0192</a></div>
+    <div class="util-right"><span>Dinner Tue–Sun 5pm</span><span class="util-dot">·</span><span>Brunch Sat–Sun 10am</span></div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="demo-restaurant.html" class="nav-logo">Copper &amp; Sage<span>Kitchen · Scottsdale</span></a>
+      <ul class="nav-links">
+        <li>
+          <button class="nav-dd-trigger" aria-haspopup="true" aria-expanded="false">Dining <span class="nav-arrow">▾</span></button>
+          <div class="dropdown">
+            <a href="demo-restaurant.html#dinner-service"><span class="dd-icon">🍽️</span><span class="dd-text"><span class="dd-name">Dinner Service</span><span class="dd-desc">Tue–Sun 5pm–10pm · Full seasonal menu</span></span></a>
+            <a href="demo-restaurant.html#brunch"><span class="dd-icon">🥂</span><span class="dd-text"><span class="dd-name">Weekend Brunch</span><span class="dd-desc">Sat &amp; Sun 10am–2pm · Farm-fresh morning fare</span></span></a>
+            <a href="demo-restaurant.html#happyhour"><span class="dd-icon">🍸</span><span class="dd-text"><span class="dd-name">Happy Hour</span><span class="dd-desc">Tue–Fri 4pm–6pm · Bar menu &amp; craft cocktails</span></span></a>
+            <div class="dd-divider"></div>
+            <a href="demo-restaurant-events.html"><span class="dd-icon">🎉</span><span class="dd-text"><span class="dd-name">Private Dining</span><span class="dd-desc">Events for 10–60 guests · Custom menus</span></span></a>
+            <a href="demo-restaurant-reservations.html#chefs-table"><span class="dd-icon">👨‍🍳</span><span class="dd-text"><span class="dd-name">Chef's Table</span><span class="dd-desc">7-course tasting menu · By reservation only</span></span></a>
+            <a href="demo-restaurant.html#bar"><span class="dd-icon">🍷</span><span class="dd-text"><span class="dd-name">Bar &amp; Lounge</span><span class="dd-desc">Craft cocktails, curated wine &amp; small plates</span></span></a>
+          </div>
+        </li>
+        <li><a href="demo-restaurant-menu.html" class="active">Menu</a></li>
+        <li><a href="demo-restaurant-reservations.html">Reservations</a></li>
+        <li><a href="demo-restaurant-events.html">Events</a></li>
+        <li><a href="demo-restaurant-blog.html">The Journal</a></li>
+        <li><a href="demo-restaurant-about.html">About</a></li>
+        <li><a href="demo-restaurant-contact.html">Contact</a></li>
+      </ul>
+      <a href="demo-restaurant-reservations.html" class="nav-cta">Reserve a Table</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="m-section">Dining</div>
+    <div class="m-sub">
+      <a href="demo-restaurant.html#dinner-service">Dinner Service</a>
+      <a href="demo-restaurant.html#brunch">Weekend Brunch</a>
+      <a href="demo-restaurant.html#happyhour">Happy Hour</a>
+      <a href="demo-restaurant-events.html">Private Dining</a>
+      <a href="demo-restaurant-reservations.html#chefs-table">Chef's Table</a>
+      <a href="demo-restaurant.html#bar">Bar &amp; Lounge</a>
+    </div>
+    <a href="demo-restaurant-menu.html">Menu</a>
+    <a href="demo-restaurant-reservations.html">Reservations</a>
+    <a href="demo-restaurant-events.html">Events</a>
+    <a href="demo-restaurant-blog.html">The Journal</a>
+    <a href="demo-restaurant-about.html">About</a>
+    <a href="demo-restaurant-contact.html">Contact</a>
+    <a href="demo-restaurant-reservations.html" class="m-cta">Reserve a Table</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="section-label">Copper &amp; Sage Kitchen</div>
+    <h1>Our <em>Menu</em></h1>
+    <p>Seasonal, locally-sourced, and crafted with care. Every dish changes with the harvest.</p>
+  </div>
+
+  <!-- MENU CONTENT -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Seasonal Note -->
+      <div class="seasonal-note">
+        <span>🌿</span>
+        <span><strong>Seasonal note:</strong> Our menu changes with the seasons — last updated <strong>March 2026</strong>. Please inform your server of any dietary restrictions.</span>
+      </div>
+
+      <!-- Tabs -->
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" data-tab="starters" role="tab">Starters</button>
+        <button class="menu-tab" data-tab="mains" role="tab">Mains</button>
+        <button class="menu-tab" data-tab="desserts" role="tab">Desserts</button>
+        <button class="menu-tab" data-tab="drinks" role="tab">Drinks</button>
+      </div>
+
+      <!-- STARTERS -->
+      <div class="menu-panel active" id="panel-starters">
+        <div class="menu-section-label">Starters &amp; Small Plates</div>
+
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Ember-Roasted Beet Salad</div>
+            <div class="menu-item-desc">Chioggia &amp; golden beets, Arizona goat cheese, candied pepitas, citrus-herb vinaigrette, micro greens</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$22</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Burrata &amp; Heirloom Tomato</div>
+            <div class="menu-item-desc">Fresh burrata, Steadfast Farm heirloom tomatoes, basil oil, aged balsamic, flaked Maldon salt</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$20</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Seared Diver Scallops</div>
+            <div class="menu-item-desc">Three U-10 scallops, sweet corn purée, crispy prosciutto, tarragon beurre blanc, chive oil</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$22</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Mushroom &amp; Truffle Crostini</div>
+            <div class="menu-item-desc">Foraged Sonoran chanterelles, truffle ricotta, toasted sourdough, shaved Parmesan, lemon zest</div>
+            <div class="menu-tags"><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$17</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Charred Leek Soup</div>
+            <div class="menu-item-desc">Roasted leeks, Hayden Flour Mills croutons, crème fraîche, chive oil, black pepper</div>
+            <div class="menu-tags"><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$14</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Charcuterie &amp; Artisan Board</div>
+            <div class="menu-item-desc">Selection of house-cured meats, local artisan cheeses, seasonal preserves, honeycomb, toasted crisps</div>
+            <div class="menu-tags"></div>
+          </div>
+          <div class="menu-item-price">$28</div>
+        </div>
+      </div>
+
+      <!-- MAINS -->
+      <div class="menu-panel" id="panel-mains">
+        <div class="menu-section-label">Main Courses</div>
+
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Seared Duck Breast</div>
+            <div class="menu-item-desc">Cherry Creek farm duck, aged balsamic reduction, roasted stone fruit, wilted greens, duck jus</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$48</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Mesquite-Grilled Filet Mignon</div>
+            <div class="menu-item-desc">8oz prime center-cut, bone marrow butter, truffle pommes purée, seasonal root vegetables, red wine reduction</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$58</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Pan-Seared Halibut</div>
+            <div class="menu-item-desc">Pacific halibut, saffron beurre blanc, Anasazi bean ragout, roasted fennel, citrus gremolata</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$44</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Mesquite-Smoked Lamb Chops</div>
+            <div class="menu-item-desc">Arizona Highland lamb, herb chimichurri, pomegranate molasses, farro pilaf, roasted garlic</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$52</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Desert Mushroom Risotto</div>
+            <div class="menu-item-desc">Foraged Sonoran chanterelles, Arborio, aged Parmesan, truffle oil, chive oil, shaved black truffle</div>
+            <div class="menu-tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$38</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Roasted Airline Chicken</div>
+            <div class="menu-item-desc">Hayden Farms heritage chicken, preserved lemon jus, roasted fingerling potatoes, wilted spinach, pan drippings</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$38</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Braised Short Rib</div>
+            <div class="menu-item-desc">72-hour red wine braise, whipped Parmesan polenta, crispy shallots, horseradish gremolata</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$46</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Heirloom Vegetable Tasting</div>
+            <div class="menu-item-desc">Chef's selection of three seasonal preparations — varies nightly based on the morning's delivery</div>
+            <div class="menu-tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></div>
+          </div>
+          <div class="menu-item-price">$34</div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="menu-panel" id="panel-desserts">
+        <div class="menu-section-label">Desserts &amp; Sweets</div>
+
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Sage Honey Tart</div>
+            <div class="menu-item-desc">Local wildflower honey, fresh sage pastry cream, burnt caramel, desert lavender, fleur de sel</div>
+            <div class="menu-tags"><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$16</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Bergamot Panna Cotta</div>
+            <div class="menu-item-desc">Bergamot cream, blood orange gelée, candied basil, pistachio crumble, aged honey drizzle</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$14</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Warm Valrhona Chocolate Tart</div>
+            <div class="menu-item-desc">72% dark chocolate, salted caramel center, Bourbon vanilla bean ice cream, hazelnut praline</div>
+            <div class="menu-tags"><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$15</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Arizona Citrus Pavlova</div>
+            <div class="menu-item-desc">Crisp meringue, Meyer lemon curd, fresh-squeezed citrus, candied zest, whipped cream</div>
+            <div class="menu-tags"><span class="tag tag-gf">GF</span><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$13</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Artisan Cheese Board</div>
+            <div class="menu-item-desc">Three Arizona &amp; imported selections, seasonal jam, marcona almonds, honeycomb, lavash</div>
+            <div class="menu-tags"><span class="tag tag-v">V</span></div>
+          </div>
+          <div class="menu-item-price">$22</div>
+        </div>
+      </div>
+
+      <!-- DRINKS -->
+      <div class="menu-panel" id="panel-drinks">
+        <div class="drinks-col">
+          <div>
+            <div class="drinks-sub">
+              <div class="menu-section-label">Craft Cocktails</div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">The Copper Sage</div><div class="menu-item-desc">Blanco tequila, sage-infused honey, grapefruit, lime, salted rim</div></div>
+                <div class="menu-item-price">$17</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Sonoran Sunset</div><div class="menu-item-desc">Mezcal, blood orange, Aperol, Luxardo, smoked salt</div></div>
+                <div class="menu-item-price">$18</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Harvest Old Fashioned</div><div class="menu-item-desc">Bourbon, apple cider reduction, Angostura, cinnamon bitters, orange peel</div></div>
+                <div class="menu-item-price">$16</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Desert Rose Spritz</div><div class="menu-item-desc">Elderflower liqueur, rosé wine, hibiscus syrup, sparkling water, fresh rose petals</div></div>
+                <div class="menu-item-price">$15</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Prickly Pear Mule</div><div class="menu-item-desc">Vodka, prickly pear syrup, ginger beer, lime, fresh mint</div></div>
+                <div class="menu-item-price">$14</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Smoky Lavender Martini</div><div class="menu-item-desc">Gin, lavender syrup, St. Germain, lemon, smoked rosemary garnish</div></div>
+                <div class="menu-item-price">$17</div>
+              </div>
+            </div>
+            <div class="drinks-sub">
+              <div class="menu-section-label">Non-Alcoholic</div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Garden Shrub Soda</div><div class="menu-item-desc">House-made cucumber-mint shrub, sparkling water, lime</div></div>
+                <div class="menu-item-price">$8</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Desert Citrus Agua Fresca</div><div class="menu-item-desc">Seasonal citrus, hibiscus, agave, sparkling water</div></div>
+                <div class="menu-item-price">$7</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Cold Brew Cardamom</div><div class="menu-item-desc">House cold brew, cardamom syrup, oat milk, Maldon salt</div></div>
+                <div class="menu-item-price">$8</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Spiced Cider</div><div class="menu-item-desc">Fresh-pressed Arizona apple cider, cinnamon, star anise, orange</div></div>
+                <div class="menu-item-price">$7</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="drinks-sub">
+              <div class="menu-section-label">Wine — By the Glass</div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Whispering Angel Rosé</div><div class="menu-item-desc">Provence, France — delicate strawberry, peach, floral notes</div></div>
+                <div class="menu-item-price">$18</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Cakebread Cellars Chardonnay</div><div class="menu-item-desc">Napa Valley — ripe pear, vanilla, toasted oak, creamy finish</div></div>
+                <div class="menu-item-price">$19</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Sancerre Blanc</div><div class="menu-item-desc">Loire Valley, France — crisp minerality, gooseberry, citrus zest</div></div>
+                <div class="menu-item-price">$21</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Silver Oak Cabernet</div><div class="menu-item-desc">Alexander Valley — blackberry, cassis, cedar, structured tannins</div></div>
+                <div class="menu-item-price">$24</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Meiomi Pinot Noir</div><div class="menu-item-desc">California Coast — strawberry, blackberry, mocha, silky</div></div>
+                <div class="menu-item-price">$17</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Barolo Serralunga</div><div class="menu-item-desc">Piedmont, Italy — tar, rose, cherry, bold tannins, long finish</div></div>
+                <div class="menu-item-price">$28</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Veuve Clicquot Brut</div><div class="menu-item-desc">Champagne, France — brioche, green apple, toasty, elegant bubbles</div></div>
+                <div class="menu-item-price">$22</div>
+              </div>
+              <div class="menu-item">
+                <div><div class="menu-item-name">Gruner Veltliner</div><div class="menu-item-desc">Wachau, Austria — white pepper, lime, minerality, food-friendly</div></div>
+                <div class="menu-item-price">$16</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STICKY CTA -->
+  <div class="sticky-cta">
+    <p><strong>Ready to dine?</strong> Reservations are recommended.</p>
+    <a href="demo-restaurant-reservations.html" class="btn-primary">Reserve a Table</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Copper &amp; Sage Kitchen<span>Scottsdale, Arizona</span></div>
+        <p class="footer-tagline">Farm-to-table dining in the heart of the Sonoran Desert. Every plate, a story of place and season.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TK</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Dining &amp; Experience</h4>
+        <a href="demo-restaurant.html#dinner-service">Dinner Service</a>
+        <a href="demo-restaurant.html#brunch">Weekend Brunch</a>
+        <a href="demo-restaurant.html#happyhour">Happy Hour</a>
+        <a href="demo-restaurant-reservations.html#chefs-table">Chef's Table</a>
+        <a href="demo-restaurant-events.html">Private Dining</a>
+        <a href="demo-restaurant.html#bar">Bar &amp; Lounge</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <address>
+          <strong>7340 E Shoeman Ln</strong><br>
+          Scottsdale, AZ 85251<br><br>
+          Tue–Sun · Dinner 5–10pm<br>
+          Brunch Sat–Sun 10am–2pm<br>
+          Happy Hour Tue–Fri 4–6pm
+        </address>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="tel:+14805550192">(480) 555-0192</a>
+        <a href="mailto:hello@coppersage.com">hello@coppersage.com</a>
+        <a href="demo-restaurant-reservations.html">Book a Table</a>
+        <a href="demo-restaurant-contact.html">Directions &amp; Parking</a>
+        <a href="demo-restaurant-blog.html">The Journal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Copper &amp; Sage Kitchen. All rights reserved.</span>
+      <span>Demo by <a href="https://teamground.work">Groundwork Studio</a> · Tier 4</span>
+    </div>
+  </footer>
+
+  <script>
+    // Tabs
+    const tabs = document.querySelectorAll('.menu-tab');
+    const panels = document.querySelectorAll('.menu-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Dropdown
+    document.querySelectorAll('.nav-dd-trigger').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const li = btn.closest('li');
+        const isOpen = li.classList.contains('open');
+        document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open'));
+        if (!isOpen) li.classList.add('open');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+    document.addEventListener('click', () => { document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
+  </script>
+</body>
+</html>

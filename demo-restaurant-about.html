@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Copper &amp; Sage Kitchen · Scottsdale, AZ</title>
+  <meta name="description" content="The story of Copper &amp; Sage Kitchen — Chef Marcus Webb, our farm partners, our team, and the philosophy behind every plate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d0d0d;
+      --bg-1:      #1a1510;
+      --amber:     #d97706;
+      --amber-lt:  #fbbf24;
+      --amber-dk:  #b45309;
+      --amber-dim: rgba(217,119,6,.14);
+      --amber-bdr: rgba(217,119,6,.25);
+      --cream:     #faf7f2;
+      --muted:     #8a8070;
+      --border:    #2a2420;
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'DM Sans', sans-serif;
+      --r:         6px;
+      --r-lg:      14px;
+      --trans:     200ms ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+
+    .demo-bar { background: var(--amber); color: #0d0d0d; text-align: center; padding: 9px 24px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; z-index: 600; position: relative; }
+    .demo-bar a { color: #0d0d0d; font-weight: 700; text-decoration: underline; }
+    .util-bar { background: #080808; border-bottom: 1px solid var(--border); padding: 7px 52px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); z-index: 590; position: relative; }
+    .util-left, .util-right { display: flex; align-items: center; gap: 18px; }
+    .util-dot { color: var(--border); }
+    .util-phone { font-weight: 600; color: var(--amber) !important; }
+    .util-bar a { color: var(--muted); transition: color var(--trans); }
+    .util-bar a:hover { color: var(--amber); }
+
+    .nav { position: sticky; top: 0; z-index: 500; background: rgba(13,13,13,.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 52px; height: 68px; display: flex; align-items: center; gap: 36px; }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--cream); white-space: nowrap; flex-shrink: 0; line-height: 1.2; }
+    .nav-logo span { display: block; font-family: var(--sans); font-size: 9px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--amber); margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > button { display: flex; align-items: center; gap: 5px; padding: 8px 13px; font-size: 11.5px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); border-radius: var(--r); transition: color var(--trans), background var(--trans); white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { color: var(--cream); background: rgba(255,255,255,.05); }
+    .nav-links > li > a.active { color: var(--amber); }
+    .nav-arrow { font-size: 9px; transition: transform var(--trans); }
+    .nav-links > li.open .nav-arrow { transform: rotate(180deg); }
+    .dropdown { position: absolute; top: calc(100% + 10px); left: 0; background: #181310; border: 1px solid var(--border); border-top: 2px solid var(--amber); border-radius: var(--r-lg); min-width: 320px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity var(--trans), transform var(--trans); box-shadow: 0 24px 64px rgba(0,0,0,.75); padding: 8px 0; z-index: 100; }
+    .nav-links > li:hover .dropdown, .nav-links > li.open .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown a { display: flex; align-items: flex-start; gap: 13px; padding: 11px 18px; transition: background var(--trans); }
+    .dropdown a:hover { background: rgba(255,255,255,.04); }
+    .dd-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--amber-dim); border: 1px solid var(--amber-bdr); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
+    .dd-text { display: flex; flex-direction: column; gap: 2px; }
+    .dd-name { font-size: 12.5px; font-weight: 500; color: var(--cream); transition: color var(--trans); }
+    .dropdown a:hover .dd-name { color: var(--amber); }
+    .dd-desc { font-size: 10.5px; color: var(--muted); line-height: 1.45; }
+    .dd-divider { height: 1px; background: var(--border); margin: 6px 0; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 7px; background: var(--amber); color: #0d0d0d !important; padding: 9px 20px; border-radius: var(--r); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; transition: background var(--trans), transform var(--trans); }
+    .nav-cta:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform var(--trans), opacity var(--trans); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 490; flex-direction: column; padding: 100px 32px 40px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu .m-section { display: block; padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 17px; font-weight: 500; color: var(--cream); }
+    .mobile-menu .m-section { font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding-top: 24px; border-bottom: none; }
+    .mobile-menu .m-sub a { font-size: 14px; color: var(--muted); padding: 9px 0 9px 16px; }
+    .mobile-menu .m-cta { display: block; margin-top: 28px; background: var(--amber); color: #0d0d0d; font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: var(--r); text-align: center; border-bottom: none; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* LAYOUT */
+    .section { padding: 80px 52px; }
+    .section-sm { padding: 56px 52px; }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .section-label { font-size: 10px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.9rem, 3.8vw, 2.9rem); font-weight: 500; line-height: 1.15; color: var(--cream); margin-bottom: 18px; }
+    .section-title em { font-style: italic; color: var(--amber-lt); }
+    .section-body { font-size: .95rem; font-weight: 300; line-height: 1.82; color: var(--muted); margin-bottom: 14px; }
+    .divider { height: 1px; background: var(--border); margin: 0 52px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: #0d0d0d; padding: 13px 28px; border-radius: var(--r); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: background var(--trans), transform var(--trans); }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.22); color: var(--cream); padding: 13px 28px; border-radius: var(--r); font-size: 11.5px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; transition: border-color var(--trans), background var(--trans); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.05); }
+
+    /* ABOUT HERO */
+    .about-hero { position: relative; height: 50vh; min-height: 400px; display: flex; align-items: flex-end; overflow: hidden; }
+    .about-hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80'); background-size: cover; background-position: center 30%; }
+    .about-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,13,13,.95) 0%, rgba(13,13,13,.25) 55%); }
+    .about-hero-content { position: relative; z-index: 2; padding: 52px; width: 100%; max-width: 1160px; margin: 0 auto; }
+    .about-hero-content .section-label { margin-bottom: 8px; }
+    .about-hero-content h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 500; color: var(--cream); line-height: 1.1; }
+    .about-hero-content h1 em { font-style: italic; color: var(--amber-lt); }
+
+    /* STORY */
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .story-img { height: 520px; border-radius: var(--r-lg); overflow: hidden; }
+    .story-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* FARMS */
+    .farms-section { background: var(--bg-1); }
+    .farms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .farm-card { background: #0d0d0d; border: 1px solid var(--border); border-radius: var(--r-lg); padding: 24px; transition: border-color var(--trans); }
+    .farm-card:hover { border-color: var(--amber-bdr); }
+    .farm-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .farm-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--cream); margin-bottom: 5px; }
+    .farm-location { font-size: .78rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+    .farm-desc { font-size: .83rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+    .team-card { background: var(--bg-1); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; transition: border-color var(--trans); }
+    .team-card:hover { border-color: var(--amber-bdr); }
+    .team-photo { height: 280px; overflow: hidden; }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
+    .team-card:hover .team-photo img { transform: scale(1.05); }
+    .team-info { padding: 22px 20px; }
+    .team-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--cream); margin-bottom: 4px; }
+    .team-title { font-size: .78rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+    .team-bio { font-size: .82rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+
+    /* AWARDS */
+    .awards-strip { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .awards-inner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border-radius: var(--r-lg); overflow: hidden; }
+    .award-cell { background: #0d0d0d; padding: 28px 20px; text-align: center; transition: background var(--trans); }
+    .award-cell:hover { background: var(--bg-1); }
+    .award-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .award-name { font-family: var(--serif); font-size: .95rem; font-weight: 500; color: var(--cream); line-height: 1.3; margin-bottom: 4px; }
+    .award-year { font-size: .75rem; color: var(--amber); font-weight: 500; letter-spacing: .1em; }
+
+    /* PHILOSOPHY QUOTE */
+    .philosophy { background: var(--amber); padding: 80px 52px; text-align: center; }
+    .philosophy blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 400; color: #0d0d0d; line-height: 1.5; max-width: 860px; margin: 0 auto 20px; }
+    .philosophy cite { font-family: var(--sans); font-style: normal; font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(13,13,13,.65); }
+    .philosophy-actions { margin-top: 32px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 8px; background: #0d0d0d; color: var(--cream); padding: 13px 28px; border-radius: var(--r); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: background var(--trans), transform var(--trans); }
+    .btn-dark:hover { background: #1a1510; transform: translateY(-1px); }
+    .btn-dark-ghost { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(13,13,13,.4); color: #0d0d0d; padding: 13px 28px; border-radius: var(--r); font-size: 11.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; transition: border-color var(--trans), background var(--trans); }
+    .btn-dark-ghost:hover { background: rgba(13,13,13,.08); border-color: rgba(13,13,13,.6); }
+
+    /* FOOTER */
+    .footer { background: #080808; border-top: 1px solid var(--border); padding: 72px 52px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; padding-bottom: 56px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+    .footer-brand .footer-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--cream); margin-bottom: 14px; }
+    .footer-brand .footer-logo span { display: block; font-family: var(--sans); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); margin-top: 2px; }
+    .footer-tagline { font-size: .85rem; font-weight: 300; color: var(--muted); line-height: 1.75; margin-bottom: 24px; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; transition: border-color var(--trans), color var(--trans); }
+    .footer-social a:hover { border-color: var(--amber); color: var(--amber); }
+    .footer-col h4 { font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin-bottom: 20px; }
+    .footer-col a { display: block; font-size: .85rem; font-weight: 300; color: var(--muted); margin-bottom: 10px; transition: color var(--trans); }
+    .footer-col a:hover { color: var(--amber); }
+    .footer-col address { font-style: normal; font-size: .85rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .footer-col address strong { color: var(--cream); font-weight: 500; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; font-size: .78rem; color: var(--muted); }
+    .footer-bottom a { color: var(--muted); transition: color var(--trans); }
+    .footer-bottom a:hover { color: var(--amber); }
+
+    @media (max-width: 1024px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .util-bar { padding: 7px 24px; }
+      .util-right { display: none; }
+      .section, .section-sm { padding-left: 24px; padding-right: 24px; }
+      .philosophy { padding: 56px 24px; }
+      .divider { margin: 0 24px; }
+      .about-hero-content { padding: 40px 24px; }
+      .footer { padding: 52px 24px 0; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-brand { grid-column: span 2; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: 1fr; gap: 40px; }
+      .story-img { height: 280px; }
+      .farms-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .awards-inner { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+      .nav-inner { padding: 0 20px; }
+    }
+    @media (max-width: 520px) {
+      .farms-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .awards-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-bar">🍽️ Groundwork Studio Demo — Tier 4 Multi-Page Build · <a href="https://teamground.work">teamground.work</a></div>
+
+  <div class="util-bar">
+    <div class="util-left"><a href="tel:+14805550192" class="util-phone">Reservations: (480) 555-0192</a></div>
+    <div class="util-right"><span>Dinner Tue–Sun 5pm</span><span class="util-dot">·</span><span>Brunch Sat–Sun 10am</span></div>
+  </div>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="demo-restaurant.html" class="nav-logo">Copper &amp; Sage<span>Kitchen · Scottsdale</span></a>
+      <ul class="nav-links">
+        <li>
+          <button class="nav-dd-trigger" aria-haspopup="true" aria-expanded="false">Dining <span class="nav-arrow">▾</span></button>
+          <div class="dropdown">
+            <a href="demo-restaurant.html#dinner-service"><span class="dd-icon">🍽️</span><span class="dd-text"><span class="dd-name">Dinner Service</span><span class="dd-desc">Tue–Sun 5pm–10pm · Full seasonal menu</span></span></a>
+            <a href="demo-restaurant.html#brunch"><span class="dd-icon">🥂</span><span class="dd-text"><span class="dd-name">Weekend Brunch</span><span class="dd-desc">Sat &amp; Sun 10am–2pm · Farm-fresh morning fare</span></span></a>
+            <a href="demo-restaurant.html#happyhour"><span class="dd-icon">🍸</span><span class="dd-text"><span class="dd-name">Happy Hour</span><span class="dd-desc">Tue–Fri 4pm–6pm · Bar menu &amp; craft cocktails</span></span></a>
+            <div class="dd-divider"></div>
+            <a href="demo-restaurant-events.html"><span class="dd-icon">🎉</span><span class="dd-text"><span class="dd-name">Private Dining</span><span class="dd-desc">Events for 10–60 guests · Custom menus</span></span></a>
+            <a href="demo-restaurant-reservations.html#chefs-table"><span class="dd-icon">👨‍🍳</span><span class="dd-text"><span class="dd-name">Chef's Table</span><span class="dd-desc">7-course tasting menu · By reservation only</span></span></a>
+            <a href="demo-restaurant.html#bar"><span class="dd-icon">🍷</span><span class="dd-text"><span class="dd-name">Bar &amp; Lounge</span><span class="dd-desc">Craft cocktails, curated wine &amp; small plates</span></span></a>
+          </div>
+        </li>
+        <li><a href="demo-restaurant-menu.html">Menu</a></li>
+        <li><a href="demo-restaurant-reservations.html">Reservations</a></li>
+        <li><a href="demo-restaurant-events.html">Events</a></li>
+        <li><a href="demo-restaurant-blog.html">The Journal</a></li>
+        <li><a href="demo-restaurant-about.html" class="active">About</a></li>
+        <li><a href="demo-restaurant-contact.html">Contact</a></li>
+      </ul>
+      <a href="demo-restaurant-reservations.html" class="nav-cta">Reserve a Table</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="m-section">Dining</div>
+    <div class="m-sub">
+      <a href="demo-restaurant.html#dinner-service">Dinner Service</a>
+      <a href="demo-restaurant.html#brunch">Weekend Brunch</a>
+      <a href="demo-restaurant.html#happyhour">Happy Hour</a>
+      <a href="demo-restaurant-events.html">Private Dining</a>
+      <a href="demo-restaurant-reservations.html#chefs-table">Chef's Table</a>
+      <a href="demo-restaurant.html#bar">Bar &amp; Lounge</a>
+    </div>
+    <a href="demo-restaurant-menu.html">Menu</a>
+    <a href="demo-restaurant-reservations.html">Reservations</a>
+    <a href="demo-restaurant-events.html">Events</a>
+    <a href="demo-restaurant-blog.html">The Journal</a>
+    <a href="demo-restaurant-about.html">About</a>
+    <a href="demo-restaurant-contact.html">Contact</a>
+    <a href="demo-restaurant-reservations.html" class="m-cta">Reserve a Table</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+      <div class="section-label">Our Story</div>
+      <h1>The Copper &amp; Sage <em>Story</em></h1>
+    </div>
+  </section>
+
+  <!-- STORY SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="story-grid">
+        <div>
+          <div class="section-label">Founded 2021</div>
+          <h2 class="section-title">Rooted in the <em>Desert. Driven by the Harvest.</em></h2>
+          <p class="section-body">Copper &amp; Sage Kitchen opened its doors in 2021 with a singular conviction: that the finest dining grows from the deepest roots. Founded by Executive Chef Marcus Webb — a James Beard Award semifinalist with experience in some of the country's most acclaimed kitchens — the restaurant was conceived as a love letter to Arizona's land and the people who farm it.</p>
+          <p class="section-body">Located in the heart of Scottsdale, our kitchen operates on a farm-first philosophy. Each morning, deliveries arrive from our network of six local farm and ranch partners, and the day's menu takes shape around what is ripest, most vibrant, and most honest.</p>
+          <p class="section-body">In just five years, Copper &amp; Sage has earned a Michelin Bib Gourmand, a Wine Spectator Award, and recognition from both the Arizona Republic and Eater Phoenix — but our proudest achievement is the table of guests who return, season after season, because they taste the difference that real sourcing makes.</p>
+        </div>
+        <div class="story-img">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80" alt="Chef Marcus Webb at work" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FARM PARTNERS -->
+  <section class="section farms-section">
+    <div class="container">
+      <div class="section-label">Our Partners</div>
+      <h2 class="section-title">Six Farms. <em>One Kitchen.</em></h2>
+      <p class="section-body" style="max-width: 640px;">Every ingredient on our menu travels from trusted hands. These six Arizona growers and ranchers are the backbone of everything we cook.</p>
+      <div class="farms-grid">
+        <div class="farm-card">
+          <div class="farm-icon">🌿</div>
+          <div class="farm-name">Steadfast Farm</div>
+          <div class="farm-location">Cave Creek, AZ · Est. 1998</div>
+          <div class="farm-desc">Organic microgreens, heirloom lettuce, edible flowers, and herbs. The Whitfield family has farmed this land for over 25 years without synthetic inputs.</div>
+        </div>
+        <div class="farm-card">
+          <div class="farm-icon">🐄</div>
+          <div class="farm-name">Quail Creek Ranch</div>
+          <div class="farm-location">Prescott, AZ · Est. 2004</div>
+          <div class="farm-desc">Heritage rabbit and pasture-raised beef. Their animals graze on open rangeland — the flavor difference is unmistakable.</div>
+        </div>
+        <div class="farm-card">
+          <div class="farm-icon">🍅</div>
+          <div class="farm-name">Mesa Verde Growers</div>
+          <div class="farm-location">Tempe, AZ · Est. 2011</div>
+          <div class="farm-desc">Heirloom and specialty tomatoes, peppers, and warm-season vegetables grown using regenerative practices and water-wise drip irrigation.</div>
+        </div>
+        <div class="farm-card">
+          <div class="farm-icon">🐑</div>
+          <div class="farm-name">Arizona Highland Lamb</div>
+          <div class="farm-location">Prescott Valley, AZ · Est. 2009</div>
+          <div class="farm-desc">Pasture-raised Dorper and Rambouillet cross lamb with a mild, clean flavor unique to Arizona's high desert grasslands.</div>
+        </div>
+        <div class="farm-card">
+          <div class="farm-icon">🍯</div>
+          <div class="farm-name">Desert Bloom Apiary</div>
+          <div class="farm-location">Scottsdale, AZ · Est. 2015</div>
+          <div class="farm-desc">Raw wildflower and saguaro blossom honey harvested from Sonoran Desert hives. Our pastry kitchen uses their honey in over a dozen preparations.</div>
+        </div>
+        <div class="farm-card">
+          <div class="farm-icon">🌾</div>
+          <div class="farm-name">Hayden Flour Mills</div>
+          <div class="farm-location">Queen Creek, AZ · Est. 2009</div>
+          <div class="farm-desc">Stone-milled heritage grains and specialty flours. Our bread service, pasta, and pastry all begin with their exceptional White Sonora wheat.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TEAM -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The People Behind the Plates</div>
+      <h2 class="section-title">Meet Our <em>Team</em></h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=400&q=80" alt="Chef Marcus Webb" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Marcus Webb</div>
+            <div class="team-title">Executive Chef &amp; Co-Founder</div>
+            <div class="team-bio">James Beard semifinalist. Trained under Dominique Crenn in San Francisco before returning to Arizona to open Copper &amp; Sage in 2021. His cooking is disciplined, seasonal, and deeply personal.</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=400&q=80" alt="Sous Chef Delia Torres" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Delia Torres</div>
+            <div class="team-title">Sous Chef</div>
+            <div class="team-bio">A Tucson native and Le Cordon Bleu graduate, Delia brings classical French technique to a deeply Arizona pantry. She leads the kitchen on Sunday and Monday services.</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=400&q=80" alt="Pastry Chef Nadia Farrow" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Nadia Farrow</div>
+            <div class="team-title">Pastry Chef</div>
+            <div class="team-bio">Nadia was previously at The French Laundry's pastry department. She joined Copper &amp; Sage in 2022 and built our dessert program around local honey, citrus, and foraged desert botanicals.</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Sommelier Lucia Hartfield" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Lucia Hartfield</div>
+            <div class="team-title">Head Sommelier</div>
+            <div class="team-bio">WSET Level 4 Diploma. Lucia curates our 200-label wine program with a focus on small-production, sustainable, and biodynamic producers from around the world.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS STRIP -->
+  <section class="section-sm awards-strip">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 32px;">
+        <div class="section-label">Recognition</div>
+        <h2 class="section-title" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">Honored to Be <em>Recognized</em></h2>
+      </div>
+      <div class="awards-inner">
+        <div class="award-cell">
+          <div class="award-icon">⭐</div>
+          <div class="award-name">Michelin Bib Gourmand</div>
+          <div class="award-year">2023 · 2024 · 2025</div>
+        </div>
+        <div class="award-cell">
+          <div class="award-icon">🍷</div>
+          <div class="award-name">Wine Spectator Award of Excellence</div>
+          <div class="award-year">2024 · 2025</div>
+        </div>
+        <div class="award-cell">
+          <div class="award-icon">📰</div>
+          <div class="award-name">AZ Republic Best New Restaurant</div>
+          <div class="award-year">2022</div>
+        </div>
+        <div class="award-cell">
+          <div class="award-icon">🏆</div>
+          <div class="award-name">Eater Phoenix Top 10</div>
+          <div class="award-year">2024 · 2025 · 2026</div>
+        </div>
+        <div class="award-cell">
+          <div class="award-icon">🌱</div>
+          <div class="award-name">Green Certified · Composting &amp; Local Sourcing</div>
+          <div class="award-year">Certified 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY QUOTE -->
+  <section class="philosophy">
+    <blockquote>"The land here is extraordinary — volcanic soil, desert light, a temperature swing that concentrates flavor in ways I've never experienced anywhere else. My job is simply to get out of the way and let it speak."</blockquote>
+    <cite>— Chef Marcus Webb, Executive Chef &amp; Co-Founder</cite>
+    <div class="philosophy-actions">
+      <a href="demo-restaurant-reservations.html" class="btn-dark">Reserve a Table →</a>
+      <a href="demo-restaurant-menu.html" class="btn-dark-ghost">View Our Menu</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Copper &amp; Sage Kitchen<span>Scottsdale, Arizona</span></div>
+        <p class="footer-tagline">Farm-to-table dining in the heart of the Sonoran Desert. Every plate, a story of place and season.</p>
+        <div class="footer-social"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="TikTok">TK</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>Dining &amp; Experience</h4>
+        <a href="demo-restaurant.html#dinner-service">Dinner Service</a>
+        <a href="demo-restaurant.html#brunch">Weekend Brunch</a>
+        <a href="demo-restaurant.html#happyhour">Happy Hour</a>
+        <a href="demo-restaurant-reservations.html#chefs-table">Chef's Table</a>
+        <a href="demo-restaurant-events.html">Private Dining</a>
+        <a href="demo-restaurant.html#bar">Bar &amp; Lounge</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <address><strong>7340 E Shoeman Ln</strong><br>Scottsdale, AZ 85251<br><br>Tue–Sun · Dinner 5–10pm<br>Brunch Sat–Sun 10am–2pm<br>Happy Hour Tue–Fri 4–6pm</address>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="tel:+14805550192">(480) 555-0192</a>
+        <a href="mailto:hello@coppersage.com">hello@coppersage.com</a>
+        <a href="demo-restaurant-menu.html">Full Menu</a>
+        <a href="demo-restaurant-reservations.html">Book a Table</a>
+        <a href="demo-restaurant-contact.html">Directions &amp; Parking</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Copper &amp; Sage Kitchen. All rights reserved.</span>
+      <span>Demo by <a href="https://teamground.work">Groundwork Studio</a> · Tier 4</span>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.nav-dd-trigger').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const li = btn.closest('li');
+        const isOpen = li.classList.contains('open');
+        document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open'));
+        if (!isOpen) li.classList.add('open');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+    document.addEventListener('click', () => { document.querySelectorAll('.nav-links > li').forEach(l => l.classList.remove('open')); });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
+  </script>
+</body>
+</html>
