@@ -772,6 +772,32 @@
       body, a, button { cursor: auto !important; }
       .cursor { display: none; }
     }
+
+    /* ── SERVICES DROPDOWN ── */
+    .nav-left { position: relative; }
+    .nav-left > li { position: relative; list-style: none; }
+    .nav-left-list { display: flex; gap: 36px; list-style: none; }
+    .nav-left-list > li { position: relative; }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 8px 0; min-width: 200px;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 400;
+    }
+    .nav-left-list > li:hover .dropdown,
+    .nav-left-list > li.open .dropdown {
+      opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+    .dropdown a {
+      display: block; padding: 10px 16px;
+      color: #e2e8f0; text-decoration: none; font-size: 14px;
+    }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .dropdown-trigger { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .dropdown-trigger::after { content: '▾'; font-size: 10px; }
   </style>
 </head>
 <body>
@@ -787,10 +813,19 @@
 
   <!-- NAV -->
   <nav class="nav" id="siteNav">
-    <div class="nav-left">
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-    </div>
+    <ul class="nav-left-list">
+      <li class="has-dropdown">
+        <span class="dropdown-trigger" style="font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);">Services</span>
+        <ul class="dropdown">
+          <li><a href="#services">Landscape Design &amp; Installation</a></li>
+          <li><a href="#services">Irrigation &amp; Sprinkler Systems</a></li>
+          <li><a href="#services">Precision Maintenance</a></li>
+          <li><a href="#services">Hardscaping &amp; Pavers</a></li>
+          <li><a href="#services">Desert Xeriscaping</a></li>
+        </ul>
+      </li>
+      <li><a href="#process" style="font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .25s;">Process</a></li>
+    </ul>
     <a href="#" class="nav-logo">Desert Grounds</a>
     <div class="nav-right">
       <div class="nav-right-links">
@@ -1346,6 +1381,18 @@
       const x = e.pageX - gallery.offsetLeft;
       gallery.scrollLeft = scrollLeft - (x - startX) * 1.5;
     });
+  </script>
+
+  <script>
+    const servicesLi = document.querySelector('.nav-left-list > li.has-dropdown');
+    if (servicesLi) {
+      const trigger = servicesLi.querySelector('.dropdown-trigger');
+      trigger.style.cursor = 'pointer';
+      trigger.addEventListener('click', e => { e.stopPropagation(); servicesLi.classList.toggle('open'); });
+      document.addEventListener('click', () => servicesLi.classList.remove('open'));
+      servicesLi.querySelectorAll('.dropdown a').forEach(a => a.addEventListener('click', () => servicesLi.classList.remove('open')));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') servicesLi.classList.remove('open'); });
+    }
   </script>
 
 </body>

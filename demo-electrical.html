@@ -989,6 +989,29 @@
     .faq-item.open .faq-icon {
       transform: rotate(45deg);
     }
+
+    /* ── SERVICES DROPDOWN ── */
+    .nav-links > li { position: relative; }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 8px 0; min-width: 200px;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 100;
+    }
+    .nav-links > li:hover .dropdown,
+    .nav-links > li.open .dropdown {
+      opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+    .dropdown a {
+      display: block; padding: 10px 16px;
+      color: #e2e8f0; text-decoration: none; font-size: 14px;
+    }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .dropdown-trigger { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .dropdown-trigger::after { content: '▾'; font-size: 10px; }
   </style>
 </head>
 <body>
@@ -1003,7 +1026,15 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">VOLT<span>.</span></a>
       <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
+        <li class="has-dropdown">
+          <span class="dropdown-trigger" style="font-size:0.9rem;font-weight:500;color:var(--muted);">Services</span>
+          <ul class="dropdown">
+            <li><a href="#services">Panel Upgrades</a></li>
+            <li><a href="#services">Outlets &amp; Wiring</a></li>
+            <li><a href="#services">Lighting Installation</a></li>
+            <li><a href="#services">Emergency Electrical</a></li>
+          </ul>
+        </li>
         <li><a href="#why">Why Volt</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1438,6 +1469,18 @@
         }
       });
     });
+  </script>
+
+  <script>
+    const servicesLi = document.querySelector('.nav-links > li.has-dropdown');
+    if (servicesLi) {
+      const trigger = servicesLi.querySelector('.dropdown-trigger');
+      trigger.style.cursor = 'pointer';
+      trigger.addEventListener('click', e => { e.stopPropagation(); servicesLi.classList.toggle('open'); });
+      document.addEventListener('click', () => servicesLi.classList.remove('open'));
+      servicesLi.querySelectorAll('.dropdown a').forEach(a => a.addEventListener('click', () => servicesLi.classList.remove('open')));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') servicesLi.classList.remove('open'); });
+    }
   </script>
 </body>
 </html>

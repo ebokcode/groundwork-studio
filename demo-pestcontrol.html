@@ -693,6 +693,31 @@
     @media (max-width: 960px) {
       .faq-section { padding: 60px 20px; }
     }
+
+    /* ── SERVICES DROPDOWN ── */
+    .nav-right .nav-links { list-style: none; }
+    .nav-links-list { list-style: none; display: flex; gap: 32px; align-items: center; }
+    .nav-links-list > li { position: relative; }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 8px 0; min-width: 200px;
+      opacity: 0; pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 100;
+    }
+    .nav-links-list > li:hover .dropdown,
+    .nav-links-list > li.open .dropdown {
+      opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+    .dropdown a {
+      display: block; padding: 10px 16px;
+      color: #e2e8f0; text-decoration: none; font-size: 14px;
+    }
+    .dropdown a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .dropdown-trigger { display: flex; align-items: center; gap: 4px; }
+    .dropdown-trigger::after { content: '▾'; font-size: 10px; }
   </style>
 </head>
 <body>
@@ -707,11 +732,23 @@
   <nav class="nav" id="siteNav">
     <div class="nav-logo">Arizona Shield<span>.</span></div>
     <div class="nav-right">
-      <div class="nav-links">
-        <a href="#services">Pests</a>
-        <a href="#why">About</a>
-        <a href="#contact">Contact</a>
-      </div>
+      <ul class="nav-links-list">
+        <li class="has-dropdown">
+          <span class="dropdown-trigger" style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);">Pests</span>
+          <ul class="dropdown">
+            <li><a href="#services">Scorpions</a></li>
+            <li><a href="#services">Ants</a></li>
+            <li><a href="#services">Cockroaches</a></li>
+            <li><a href="#services">Rodents</a></li>
+            <li><a href="#services">Termites</a></li>
+            <li><a href="#services">Bed Bugs</a></li>
+            <li><a href="#services">Spiders</a></li>
+            <li><a href="#services">Wasps &amp; Bees</a></li>
+          </ul>
+        </li>
+        <li><a href="#why" style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);transition:color 0.2s;">About</a></li>
+        <li><a href="#contact" style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.65);transition:color 0.2s;">Contact</a></li>
+      </ul>
       <a href="tel:+16025550183" class="nav-emergency"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:inline-block;vertical-align:middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> (602) 555-0183</a>
     </div>
   </nav>
@@ -747,20 +784,20 @@
     <!-- STATS -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-num" data-target="30">30</div>
-        <div class="stat-label">Day Guarantee</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" data-target="8">8</div>
-        <div class="stat-label">Pest Types Handled</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" data-target="12">12</div>
+        <div class="stat-num">12+</div>
         <div class="stat-label">Years in Phoenix</div>
       </div>
       <div class="stat">
-        <div class="stat-num" data-target="100">100</div>
-        <div class="stat-label">% Licensed &amp; Insured</div>
+        <div class="stat-num">3,500+</div>
+        <div class="stat-label">Treatments Completed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.8★</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Pet-Safe Methods</div>
       </div>
     </div>
 
@@ -1118,6 +1155,18 @@
         }
       });
     });
+  </script>
+
+  <script>
+    const servicesLi = document.querySelector('.nav-links-list > li.has-dropdown');
+    if (servicesLi) {
+      const trigger = servicesLi.querySelector('.dropdown-trigger');
+      trigger.style.cursor = 'pointer';
+      trigger.addEventListener('click', e => { e.stopPropagation(); servicesLi.classList.toggle('open'); });
+      document.addEventListener('click', () => servicesLi.classList.remove('open'));
+      servicesLi.querySelectorAll('.dropdown a').forEach(a => a.addEventListener('click', () => servicesLi.classList.remove('open')));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') servicesLi.classList.remove('open'); });
+    }
   </script>
 
 </body>
