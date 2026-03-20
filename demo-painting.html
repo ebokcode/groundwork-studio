@@ -151,19 +151,20 @@
       align-items: center;
       gap: 8px;
       background: transparent;
-      color: var(--charcoal);
+      color: #ffffff;
       font-family: var(--sans);
       font-size: 15px;
       font-weight: 700;
       padding: 15px 30px;
       border-radius: 8px;
-      border: 2px solid var(--charcoal);
+      border: 2px solid rgba(255,255,255,0.7);
       cursor: pointer;
-      transition: background .2s, color .2s, transform .15s;
+      transition: background .2s, color .2s, border-color .2s, transform .15s;
     }
     .btn-outline-dark:hover {
-      background: var(--charcoal);
-      color: #fff;
+      background: #ffffff;
+      color: var(--charcoal);
+      border-color: #ffffff;
       transform: translateY(-2px);
     }
 
@@ -171,7 +172,8 @@
     .hero {
       min-height: 100vh;
       padding-top: 110px; /* nav + demo bar */
-      background: var(--white);
+      background: linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)),
+        url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
@@ -216,7 +218,7 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--coral);
+      color: var(--coral-lt);
       margin-bottom: 24px;
     }
     .hero-eyebrow::before {
@@ -224,21 +226,21 @@
       display: block;
       width: 28px;
       height: 2px;
-      background: var(--coral);
+      background: var(--coral-lt);
     }
     .hero-h1 {
       font-size: clamp(52px, 8vw, 100px);
       font-weight: 800;
       line-height: 1.0;
       letter-spacing: -2px;
-      color: var(--charcoal);
+      color: #ffffff;
       margin-bottom: 28px;
     }
     .hero-h1 .accent { color: var(--coral); }
     .hero-tagline {
       font-size: 18px;
       font-weight: 300;
-      color: var(--muted);
+      color: rgba(255,255,255,0.8);
       line-height: 1.65;
       max-width: 420px;
       margin-bottom: 40px;
@@ -253,20 +255,21 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--off-white);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 50px;
       padding: 10px 20px;
+      backdrop-filter: blur(8px);
     }
     .hero-badge-stars {
-      color: var(--coral);
+      color: var(--coral-lt);
       font-size: 14px;
       letter-spacing: 1px;
     }
     .hero-badge-text {
       font-size: 13px;
       font-weight: 600;
-      color: var(--charcoal);
+      color: #ffffff;
     }
     .hero-right {
       position: relative;
@@ -330,6 +333,16 @@
       color: var(--charcoal);
     }
 
+    /* ── SERVICE CARD PHOTO STRIP ─────────────────────────── */
+    .svc-photo {
+      width: calc(100% + 56px);
+      margin: -32px -28px 20px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px 8px 0 0;
+    }
+
     /* ── SERVICES ─────────────────────────────────────────── */
     .services {
       background: var(--beige);
@@ -371,6 +384,7 @@
       border-top: 3px solid var(--coral);
       transition: transform .25s, box-shadow .25s;
       cursor: default;
+      overflow: hidden;
     }
     .service-card:hover {
       transform: translateY(-6px);
@@ -1112,21 +1126,25 @@
     </div>
     <div class="services-grid">
       <div class="service-card reveal reveal-delay-1">
+        <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=800&q=80')"></div>
         <span class="service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
         <div class="service-title">Interior Painting</div>
         <div class="service-desc">Walls, ceilings, trim, and accent features. We protect your furnishings and leave your home spotless — no mess, no hassle.</div>
       </div>
       <div class="service-card reveal reveal-delay-2">
+        <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80')"></div>
         <span class="service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
         <div class="service-title">Exterior Painting</div>
         <div class="service-desc">Curb appeal that lasts in Arizona's harsh climate. UV-resistant, weather-sealed finishes applied with thorough surface preparation.</div>
       </div>
       <div class="service-card reveal reveal-delay-3">
+        <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80')"></div>
         <span class="service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
         <div class="service-title">Cabinet Refinishing</div>
         <div class="service-desc">Transform your kitchen or bathroom cabinets for a fraction of the cost of replacement. Smooth, factory-quality finish.</div>
       </div>
       <div class="service-card reveal reveal-delay-4">
+        <div class="svc-photo" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80')"></div>
         <span class="service-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/></svg></span>
         <div class="service-title">Color Consultation</div>
         <div class="service-desc">Not sure what to choose? Our certified color consultants walk you through options for your home's style, light, and personality.</div>
