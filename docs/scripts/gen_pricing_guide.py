@@ -354,10 +354,11 @@ def page_monthly():
     s += [
         Paragraph("MONTHLY PLANS \u2014 KEEPING YOUR SITE RUNNING", LABEL),
         Paragraph(
-            "Once your site is live, a monthly plan keeps it online, secure, and up to date. "
-            "The build fee is a one-time cost \u2014 monthly plans cover hosting, maintenance, "
-            "and optional growth services. Every plan includes full hosting on a global CDN. "
-            "You are not paying for a third-party platform subscription.",
+            "Once your site is live, the <b>Maintenance Plan is required</b> to keep your site "
+            "online \u2014 it covers hosting, SSL, uptime monitoring, and content updates. "
+            "The <b>Growth Plan is completely optional</b> and is for businesses that want active "
+            "Google presence management, review monitoring, and ongoing SEO work. "
+            "You can start on Maintenance and upgrade to Growth at any time.",
             BODYJ),
         blank(0.12),
     ]
@@ -431,9 +432,14 @@ def page_monthly():
     ]))
 
     s += [
-        Paragraph("GROWTH PLAN \u2014 ACTIVE GOOGLE PRESENCE MANAGEMENT",
+        Paragraph("GROWTH PLAN \u2014 OPTIONAL UPGRADE",
                   sty("gp_lbl", fontSize=8, fontName="Helvetica-Bold",
-                      textColor=GS_GREEN, letterSpacing=1.5, spaceAfter=6)),
+                      textColor=GS_GREEN, letterSpacing=1.5, spaceAfter=4)),
+        Paragraph(
+            "Not required \u2014 add this if you want active Google presence management, "
+            "review monitoring, keyword tracking, and ongoing SEO. Cancel anytime with 30 days notice.",
+            sty("gp_intro", fontSize=8.5, fontName="Helvetica", textColor=GS_GRAY,
+                leading=13, spaceAfter=8)),
         gt,
         blank(0.04),
         Paragraph(
