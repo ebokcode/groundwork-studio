@@ -371,7 +371,8 @@ def page_maintenance():
         ("T1 Foundation", "$125/mo",
          "Netlify hosting on a global CDN, SSL certificate (HTTPS), uptime monitoring with alerts, "
          "all security and platform updates, minor content edits on request (up to 1 hr/month), "
-         "and a monthly uptime report sent to you."),
+         "and a Quarterly Performance Report every 90 days (Google traffic, search impressions, "
+         "GBP views, site changes made, and recommendations)."),
         ("T2 Standard",  "$150/mo",
          "Everything above. Slightly more surface area to maintain and monitor each month."),
         ("T3 Elevated",  "$175/mo",

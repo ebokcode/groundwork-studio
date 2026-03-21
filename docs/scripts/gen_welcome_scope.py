@@ -391,7 +391,8 @@ def story():
         ("Security",           "SSL certificate, uptime monitoring, platform updates."),
         ("Content updates",    "Send us text or photo changes — we handle it, usually within 48 hours."),
         ("Developer access",   "Questions, tweaks, or small additions — just email us."),
-        ("Cancellation",       "30 days written notice, any time. Site can be migrated to your own hosting for a one-time $250 fee."),
+        ("Quarterly report",    "Every 90 days we email you a performance report — Google traffic, search impressions, GBP views, changes made that quarter, and our top recommendations."),
+        ("Cancellation",        "30 days written notice, any time. Site can be migrated to your own hosting for a one-time $250 fee."),
     ]
     post_data = [checklist_row("\u2714", f"<b>{item}</b> — {desc}") for item, desc in post_items]
     post_t = Table(post_data, colWidths=[0.25*inch, 6.0*inch])

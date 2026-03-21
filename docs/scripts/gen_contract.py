@@ -209,14 +209,21 @@ def story():
          "for the final 30-day notice period is non-refundable. The website will remain live through the end of the notice "
          "period. Upon termination, the site will be taken offline unless client has paid the migration fee ($250) in advance. "
          "All outstanding balances must be settled before any migration or handoff."),
-        ("9. Confidentiality",
+        ("9. Quarterly Performance Reports",
+         "While enrolled in a Monthly Maintenance or Growth Plan, Groundwork Studio AZ LLC will deliver "
+         "a Quarterly Performance Report to client via email once every 90 days. "
+         "Each report includes: Google Search Console impressions and clicks, Google Business Profile views, "
+         "a summary of site changes made during the quarter, page speed score, and 1-2 recommendations "
+         "for the following quarter. Reports are delivered within the first 10 business days of each new quarter. "
+         "This reporting is included at no additional cost as part of the active monthly plan."),
+        ("10. Confidentiality",
          "Both parties agree to keep confidential any proprietary business information shared during the course of this "
          "engagement and not to disclose it to third parties without prior written consent, except as required by law."),
-        ("10. Governing Law",
+        ("11. Governing Law",
          "This agreement is governed by the laws of the State of Arizona. Groundwork Studio AZ LLC is a registered Arizona "
          "Limited Liability Company. Any disputes shall be resolved in Maricopa County, Arizona. The parties agree to attempt "
          "good-faith resolution before initiating formal proceedings."),
-        ("11. Entire Agreement",
+        ("12. Entire Agreement",
          "This document constitutes the entire agreement between the parties and supersedes all prior communications, "
          "proposals, or representations. Modifications must be made in writing and signed by both parties. "
          "This agreement is valid when signed by both parties, including via electronic signature (DocuSign or equivalent)."),

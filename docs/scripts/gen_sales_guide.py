@@ -475,8 +475,11 @@ def story():
             "What's the monthly fee for?",
             "The retainer covers hosting, security, any content updates you send us, "
             "and having someone to call when something needs to change. "
+            "Every 90 days you also get a Quarterly Performance Report — "
+            "we send you your Google traffic data, search impressions, GBP views, "
+            "a summary of everything we did that quarter, and our top 1-2 recommendations. "
             "You're not just paying for the site to stay online — "
-            "you're paying for a developer on call.",
+            "you're paying for full visibility into how it's actually performing.",
         ),
         (
             "What if I want to cancel?",
@@ -542,6 +545,7 @@ def story():
         ["Always end with:", "A specific next action (email, callback day, demo link)"],
         ["Answer to any tech Q:", '"We hand-code it from scratch — no templates, no platform fees"'],
         ["Local SEO add-on:", "$250 one-time — GBP setup, schema markup, citations, keyword doc"],
+        ["Quarterly report:", "Every 90 days — traffic, search impressions, GBP views, changes made, recommendations"],
         ["LLC name on contract:", "Groundwork Studio AZ LLC"],
         ["Contact:", "evan@teamground.work · (480) 452-6473 · teamground.work"],
     ]
