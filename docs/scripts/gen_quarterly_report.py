@@ -379,14 +379,14 @@ def page_traffic():
         "<b>Avg. Duration</b> is how long visitors spend on your site per visit — longer is better. "
         "<b>Bounce Rate</b> is the % who leave after viewing only one page — lower is better. "
         "Steady monthly growth in sessions indicates your site is gaining visibility over time."
-    ), blank(0.12)]
+    ), blank(0.1)]
 
     # Bar chart — Sessions vs Users
     s += [Paragraph("Monthly Sessions vs. Unique Users", H3)]
     s += [bar_chart([[312, 427, 518], [248, 361, 441]],
                     ["January", "February", "March"],
-                    [GS_GREEN, GS_BLUE_C], dw=430, dh=155)]
-    s += [legend_row([("Sessions", GS_GREEN), ("Unique Users", GS_BLUE_C)]), blank(0.1)]
+                    [GS_GREEN, GS_BLUE_C], dw=430, dh=190)]
+    s += [legend_row([("Sessions", GS_GREEN), ("Unique Users", GS_BLUE_C)]), blank(0.08)]
 
     # Monthly breakdown table
     s += [Paragraph("Monthly Breakdown", H3)]
@@ -400,7 +400,7 @@ def page_traffic():
     td = [[cell(h, bold=True, size=8, color=WHITE, align=TA_CENTER) for h in th]]
     for i, row in enumerate(tr):
         is_tot = i == 3
-        td.append([cell(v, bold=is_tot, size=8.5,
+        td.append([cell(v, bold=is_tot, size=9,
                         color=GS_GREEN if is_tot and j == 0 else GS_DARK,
                         align=TA_CENTER if j > 0 else TA_LEFT)
                    for j, v in enumerate(row)])
@@ -411,13 +411,13 @@ def page_traffic():
         ("ROWBACKGROUNDS",(0,1),(-1,3),  [WHITE, GS_SLATE]),
         ("GRID",          (0,0),(-1,-1), 0.5, LINE),
         ("VALIGN",        (0,0),(-1,-1), "MIDDLE"),
-        ("TOPPADDING",    (0,0),(-1,-1), 6),
-        ("BOTTOMPADDING", (0,0),(-1,-1), 6),
+        ("TOPPADDING",    (0,0),(-1,-1), 8),
+        ("BOTTOMPADDING", (0,0),(-1,-1), 8),
         ("LEFTPADDING",   (0,0),(-1,-1), 8),
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
         ("LINEABOVE",     (0,4),(-1,4),  1.5, GS_GREEN),
     ]))
-    s += [tt, blank(0.12)]
+    s += [tt, blank(0.1)]
 
     # Traffic sources table
     s += [Paragraph("Traffic Sources", H3)]
@@ -432,10 +432,10 @@ def page_traffic():
     sd = [[cell(h, bold=True, size=8, color=WHITE, align=TA_CENTER) for h in sh]]
     for row in sr:
         sd.append([
-            cell(row[0], size=8.5),
-            cell(row[1], bold=True, size=8.5, align=TA_CENTER),
-            cell(row[2], size=8.5, color=GS_GRAY, align=TA_CENTER),
-            Paragraph(row[3], sty(f"srt_{hash(row[3]+row[0])}", fontSize=8.5,
+            cell(row[0], size=9),
+            cell(row[1], bold=True, size=9, align=TA_CENTER),
+            cell(row[2], size=9, color=GS_GRAY, align=TA_CENTER),
+            Paragraph(row[3], sty(f"srt_{hash(row[3]+row[0])}", fontSize=9,
                                   fontName="Helvetica-Bold", textColor=GS_GREEN,
                                   alignment=TA_CENTER, leading=13)),
         ])
@@ -445,8 +445,8 @@ def page_traffic():
         ("ROWBACKGROUNDS",(0,1),(-1,-1), [WHITE, GS_SLATE]),
         ("GRID",          (0,0),(-1,-1), 0.5, LINE),
         ("VALIGN",        (0,0),(-1,-1), "MIDDLE"),
-        ("TOPPADDING",    (0,0),(-1,-1), 6),
-        ("BOTTOMPADDING", (0,0),(-1,-1), 6),
+        ("TOPPADDING",    (0,0),(-1,-1), 8),
+        ("BOTTOMPADDING", (0,0),(-1,-1), 8),
         ("LEFTPADDING",   (0,0),(-1,-1), 8),
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
     ]))
@@ -589,19 +589,19 @@ def page_gbp():
         "customers). Growing discovery searches is the biggest indicator of local SEO momentum. "
         "<b>Growth actions:</b> Posting to GBP weekly, responding to every review within 48 hours, and "
         "keeping business hours / photos current all directly improve your visibility in discovery searches."
-    ), blank(0.12)]
+    ), blank(0.1)]
 
     # GBP grouped bar chart
     s += [Paragraph("Monthly GBP Activity", H3)]
     s += [bar_chart(
         [[420, 580, 640], [28, 39, 47], [45, 67, 84]],
         ["January", "February", "March"],
-        [GS_GREEN, GS_BLUE_C, GS_AMBER], dw=430, dh=155)]
+        [GS_GREEN, GS_BLUE_C, GS_AMBER], dw=430, dh=185)]
     s += [legend_row([
         ("Profile Views", GS_GREEN),
         ("Phone Calls", GS_BLUE_C),
         ("Website Clicks", GS_AMBER),
-    ]), blank(0.12)]
+    ]), blank(0.08)]
 
     # Monthly GBP breakdown table
     s += [Paragraph("Monthly GBP Breakdown", H3)]
@@ -615,7 +615,7 @@ def page_gbp():
     gd = [[cell(h, bold=True, size=8, color=WHITE, align=TA_CENTER) for h in gh]]
     for i, row in enumerate(gr):
         is_tot = i == 3
-        gd.append([cell(v, bold=is_tot, size=8.5,
+        gd.append([cell(v, bold=is_tot, size=9,
                         color=GS_GREEN if is_tot and j == 0 else GS_DARK,
                         align=TA_CENTER if j > 0 else TA_LEFT)
                    for j, v in enumerate(row)])
@@ -626,13 +626,13 @@ def page_gbp():
         ("ROWBACKGROUNDS",(0,1),(-1,3),  [WHITE, GS_SLATE]),
         ("GRID",          (0,0),(-1,-1), 0.5, LINE),
         ("VALIGN",        (0,0),(-1,-1), "MIDDLE"),
-        ("TOPPADDING",    (0,0),(-1,-1), 6),
-        ("BOTTOMPADDING", (0,0),(-1,-1), 6),
+        ("TOPPADDING",    (0,0),(-1,-1), 8),
+        ("BOTTOMPADDING", (0,0),(-1,-1), 8),
         ("LEFTPADDING",   (0,0),(-1,-1), 8),
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
         ("LINEABOVE",     (0,4),(-1,4),  1.5, GS_GREEN),
     ]))
-    s += [g_t, blank(0.16)]
+    s += [g_t, blank(0.12)]
 
     # How customers found you — two side-by-side boxes
     s += [Paragraph("How Customers Found You", H3)]
@@ -838,9 +838,49 @@ def page_reviews_work():
         ("BOTTOMPADDING", (0,0),(-1,-1), 5),
         ("LEFTPADDING",   (0,0),(-1,-1), 8),
     ]))
-    s += [rat_t, blank(0.14), hr(GS_BORDER)]
+    s += [rat_t, blank(0.14)]
 
-    # Work completed
+    # Recent review highlights
+    s += [Paragraph("Recent Review Highlights", H3)]
+    recent_reviews = [
+        ("[Customer Name]", 5, "[Month YYYY]",
+         "\u201c[Paste actual Google review text here \u2014 use the 2\u20133 most recent "
+         "five-star reviews received this quarter. Real quotes build trust with new visitors "
+         "who read the report alongside a proposal or follow-up.]\u201d"),
+        ("[Customer Name]", 5, "[Month YYYY]",
+         "\u201c[Second review. Include the customer\u2019s own words verbatim. Even a sentence "
+         "or two is powerful \u2014 specific details (fast, professional, great price) resonate "
+         "more than generic praise.]\u201d"),
+        ("[Customer Name]", 4, "[Month YYYY]",
+         "\u201c[A 4-star review shows balance and authenticity. If there was constructive feedback, "
+         "note how it was addressed \u2014 this signals professionalism and continuous improvement.]\u201d"),
+    ]
+    for name, stars, date, text in recent_reviews:
+        star_str = "\u2605" * stars + ("\u2606" * (5 - stars))
+        rb = Table([
+            [Paragraph(
+                f"<b>{name}</b>   "
+                f"<font color='#{GS_AMBER.hexval()[2:]}'>{star_str}</font>   "
+                f"<font color='#{GS_GRAY.hexval()[2:]}'>{date}</font>",
+                sty(f"rname_{hash(name+date)}", fontSize=9.5, fontName="Helvetica",
+                    textColor=GS_DARK, leading=14))],
+            [Paragraph(text, sty(f"rtext_{hash(text)}", fontSize=9, fontName="Helvetica-Oblique",
+                                 textColor=GS_DARK, leading=14))],
+        ], colWidths=[6.25*inch])
+        rb.setStyle(TableStyle([
+            ("BACKGROUND",    (0,0),(-1,-1), WHITE),
+            ("BOX",           (0,0),(-1,-1), 0.5, LINE),
+            ("TOPPADDING",    (0,0),(0,0), 9),
+            ("BOTTOMPADDING", (0,0),(0,0), 4),
+            ("TOPPADDING",    (0,1),(0,1), 4),
+            ("BOTTOMPADDING", (0,1),(0,1), 11),
+            ("LEFTPADDING",   (0,0),(-1,-1), 12),
+            ("RIGHTPADDING",  (0,0),(-1,-1), 12),
+        ]))
+        s += [rb, blank(0.07)]
+
+    # Work completed — starts on its own page
+    s += [PageBreak()]
     s += section_header("WORK COMPLETED", "Changes & Updates This Quarter")
 
     work_cats = [
