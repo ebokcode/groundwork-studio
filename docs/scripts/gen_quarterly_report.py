@@ -69,14 +69,25 @@ def hr(color=LINE, t=0.75): return HRFlowable(width="100%", thickness=t, color=c
 def blank(h=0.1): return Spacer(1, h*inch)
 
 FOOTER_TXT = "Groundwork Studio AZ LLC  \u00b7  teamground.work  \u00b7  evan@teamground.work  \u00b7  (480) 452-6473"
+FOOTER_NOTE = "Template \u2014 replace bracketed placeholders and sample data before delivery to client."
 
-def footer():
-    return [
-        blank(0.1),
-        hr(GS_BORDER),
-        Paragraph(FOOTER_TXT, SMALL),
-        Paragraph("Template — replace bracketed placeholders and sample data before delivery to client.", NOTE),
-    ]
+def draw_footer(canvas, doc):
+    """Canvas-level footer drawn on every page — takes no story space."""
+    canvas.saveState()
+    page_w, _ = letter
+    lm, rm = 0.75*inch, 0.75*inch
+    y_line = 0.52*inch
+    y_txt  = 0.35*inch
+    y_note = 0.22*inch
+    canvas.setStrokeColor(LINE)
+    canvas.setLineWidth(0.75)
+    canvas.line(lm, y_line, page_w - rm, y_line)
+    canvas.setFont("Helvetica", 7.5)
+    canvas.setFillColor(GS_GRAY)
+    canvas.drawCentredString(page_w / 2, y_txt, FOOTER_TXT)
+    canvas.setFont("Helvetica-Oblique", 6.5)
+    canvas.drawCentredString(page_w / 2, y_note, FOOTER_NOTE)
+    canvas.restoreState()
 
 def cell(text, bold=False, size=9, color=GS_DARK, align=TA_LEFT, leading=13):
     return Paragraph(text, sty(f"c_{hash(text+str(bold)+str(size)+str(align))}",
@@ -223,6 +234,23 @@ def section_header(label_text, title_text):
     ]
 
 
+# ── Explainer box ───────────────────────────────────────────────────────────────
+def explain_box(text):
+    """Light gray callout box with explanatory/context text for the client."""
+    t = Table([[Paragraph(text, sty(f"ex_{hash(text)}", fontSize=8.5, fontName="Helvetica",
+                                    textColor=GS_DARK, leading=13))]],
+              colWidths=[6.25*inch])
+    t.setStyle(TableStyle([
+        ("BACKGROUND",    (0,0),(-1,-1), GS_SLATE),
+        ("BOX",           (0,0),(-1,-1), 0.5, LINE),
+        ("TOPPADDING",    (0,0),(-1,-1), 8),
+        ("BOTTOMPADDING", (0,0),(-1,-1), 8),
+        ("LEFTPADDING",   (0,0),(-1,-1), 12),
+        ("RIGHTPADDING",  (0,0),(-1,-1), 12),
+    ]))
+    return t
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE 1  —  COVER + FULL METRICS SNAPSHOT
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -325,7 +353,7 @@ def page_cover():
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
     ]))
     s += [ms_t]
-    s += footer()
+
     return s
 
 
@@ -342,7 +370,16 @@ def page_traffic():
         kpi_card("UNIQUE USERS",   "1,050",  "Jan \u2013 Mar 2025",   w=1.5*inch),
         kpi_card("PAGEVIEWS",      "3,841",  "Jan \u2013 Mar 2025",   w=1.5*inch),
         kpi_card("AVG. DURATION",  "2m 14s", "per session",           w=1.5*inch),
-    ], cw), blank(0.16)]
+    ], cw), blank(0.1)]
+
+    s += [explain_box(
+        "<b>How to read this:</b>  A <b>Session</b> is one visit to your site (one person, one sitting). "
+        "<b>Unique Users</b> counts individual visitors — someone who visits 3 times is 1 user, 3 sessions. "
+        "<b>Pageviews</b> counts every page loaded across all visits. "
+        "<b>Avg. Duration</b> is how long visitors spend on your site per visit — longer is better. "
+        "<b>Bounce Rate</b> is the % who leave after viewing only one page — lower is better. "
+        "Steady monthly growth in sessions indicates your site is gaining visibility over time."
+    ), blank(0.12)]
 
     # Bar chart — Sessions vs Users
     s += [Paragraph("Monthly Sessions vs. Unique Users", H3)]
@@ -414,7 +451,7 @@ def page_traffic():
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
     ]))
     s += [src_t]
-    s += footer()
+
     return s
 
 
@@ -431,7 +468,18 @@ def page_search():
         kpi_card("ORGANIC CLICKS",    "280",    "click-throughs to site",   w=1.5*inch),
         kpi_card("AVG. CTR",          "2.6%",   "\u2191 from 2.3% last qtr",w=1.5*inch),
         kpi_card("AVG. POSITION",     "14.3",   "\u2191 from 24.2 last qtr",w=1.5*inch),
-    ], cw), blank(0.16)]
+    ], cw), blank(0.1)]
+
+    s += [explain_box(
+        "<b>How to read this:</b>  <b>Impressions</b> = the number of times your site appeared in a Google "
+        "search result (whether or not anyone clicked). <b>Clicks</b> = how many people actually visited your "
+        "site from that result. <b>CTR (Click-Through Rate)</b> = Clicks \u00f7 Impressions \u2014 a higher % "
+        "means your listing is compelling enough to click. <b>Avg. Position</b> = your average ranking in "
+        "Google search results \u2014 position 1 is the top result, lower numbers are better. "
+        "<b>Growth action:</b> Keywords ranking positions 5\u201315 have the most room to improve \u2014 "
+        "adding dedicated service pages and refining on-page content for those terms typically moves them "
+        "into the top 5 within 2\u20133 months."
+    ), blank(0.12)]
 
     # Search impressions line chart
     s += [Paragraph("Monthly Search Impressions", H3)]
@@ -513,7 +561,7 @@ def page_search():
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
     ]))
     s += [kw_t]
-    s += footer()
+
     return s
 
 
@@ -530,7 +578,18 @@ def page_gbp():
         kpi_card("PHONE CALLS",    "114",   "tapped call button",      w=1.5*inch),
         kpi_card("DIRECTIONS",     "52",    "direction requests",      w=1.5*inch),
         kpi_card("WEBSITE CLICKS", "196",   "clicks from GBP to site", w=1.5*inch),
-    ], cw), blank(0.16)]
+    ], cw), blank(0.1)]
+
+    s += [explain_box(
+        "<b>How to read this:</b>  <b>GBP (Google Business Profile)</b> is your listing that appears in "
+        "Google Maps and the local \u201cmap pack\u201d at the top of search results. "
+        "<b>Profile Views</b> = how many people saw your listing. "
+        "<b>Direct Searches</b> = people who searched your business name specifically (they already know you). "
+        "<b>Discovery Searches</b> = people who found you by searching a service or category (new potential "
+        "customers). Growing discovery searches is the biggest indicator of local SEO momentum. "
+        "<b>Growth actions:</b> Posting to GBP weekly, responding to every review within 48 hours, and "
+        "keeping business hours / photos current all directly improve your visibility in discovery searches."
+    ), blank(0.12)]
 
     # GBP grouped bar chart
     s += [Paragraph("Monthly GBP Activity", H3)]
@@ -615,7 +674,7 @@ def page_gbp():
         ("LEFTPADDING",   (1,0),(1,0),   10),
     ]))
     s += [frow]
-    s += footer()
+
     return s
 
 
@@ -632,7 +691,22 @@ def page_technical():
         kpi_card("MOBILE SCORE",   "91/100", "Google Mobile Test",  w=1.5*inch),
         kpi_card("DESKTOP SCORE",  "97/100", "Google Desktop Test", w=1.5*inch),
         kpi_card("UPTIME",         "99.98%", "0 outages, 2m 42s total downtime", w=1.5*inch),
-    ], cw), blank(0.16)]
+    ], cw), blank(0.1)]
+
+    s += [explain_box(
+        "<b>Core Web Vitals explained:</b>  "
+        "<b>FCP (First Contentful Paint)</b> \u2014 how quickly the first text or image appears on screen. "
+        "<b>LCP (Largest Contentful Paint)</b> \u2014 how long until the main content is fully loaded \u2014 "
+        "Google's primary speed signal; under 2.5s is excellent. "
+        "<b>TBT (Total Blocking Time)</b> \u2014 time the page is unresponsive to user input while loading; "
+        "0ms means instant responsiveness. "
+        "<b>CLS (Cumulative Layout Shift)</b> \u2014 measures visual stability \u2014 a score near 0 means "
+        "nothing jumps around while loading. "
+        "<b>SI (Speed Index)</b> \u2014 how quickly content becomes visible overall. "
+        "<b>TTI (Time to Interactive)</b> \u2014 when the page is fully ready to respond to clicks and taps. "
+        "Scores 90\u2013100 are green (Excellent), 50\u201389 are amber (Needs Improvement), below 50 are red (Poor). "
+        "Google uses these scores as a ranking factor \u2014 a fast, stable site ranks higher and converts better."
+    ), blank(0.12)]
 
     # Core Web Vitals table
     s += [Paragraph("Core Web Vitals", H3)]
@@ -704,7 +778,7 @@ def page_technical():
         ("RIGHTPADDING",  (0,0),(-1,-1), 6),
     ]))
     s += [sec_t]
-    s += footer()
+
     return s
 
 
@@ -723,7 +797,19 @@ def page_reviews_work():
         kpi_card("NEW REVIEWS",    "6",           "received this quarter",   w=1.5*inch),
         kpi_card("TOTAL REVIEWS",  "14",          "lifetime on Google",      w=1.5*inch),
         kpi_card("RESPONSE RATE",  "83%",         "reviews responded to",    w=1.5*inch),
-    ], cw), blank(0.14)]
+    ], cw), blank(0.1)]
+
+    s += [explain_box(
+        "<b>Why reviews matter:</b>  Google reviews are one of the top 3 local ranking factors. "
+        "Businesses with more reviews and higher ratings consistently appear higher in the Google Maps "
+        "pack and local search results. <b>Response Rate</b> measures how often you publicly reply to "
+        "reviews \u2014 responding to both positive and negative reviews signals professionalism and "
+        "improves ranking. A rating of 4.5+ with 20+ reviews is the threshold where most customers "
+        "trust a business enough to contact them without hesitation. "
+        "<b>Growth action:</b> Ask for reviews within 24 hours of a completed job while the experience "
+        "is fresh \u2014 a short text with a direct link converts at 3\u20135\u00d7 higher than asking in person. "
+        "Aim to respond to every review within 48 hours."
+    ), blank(0.12)]
 
     # Rating breakdown
     s += [Paragraph("Rating Distribution", H3)]
@@ -813,7 +899,7 @@ def page_reviews_work():
         ]))
         s += [item_t, blank(0.06)]
 
-    s += footer()
+
     return s
 
 
@@ -823,6 +909,20 @@ def page_reviews_work():
 def page_recommendations():
     s = [PageBreak()]
     s += section_header("RECOMMENDATIONS", "Action Items & Q2 Goals")
+
+    s += [explain_box(
+        "<b>How priorities work:</b>  "
+        "<b>HIGH PRIORITY</b> items have the highest ROI right now and should be acted on this quarter. "
+        "<b>MEDIUM PRIORITY</b> items are growth opportunities that will compound over time \u2014 start "
+        "planning them now, execute when capacity allows. "
+        "<b>ONGOING</b> items are habits and maintenance tasks that we handle consistently to maintain "
+        "and grow your results. "
+        "Items labeled <b>\u201cClient\u201d</b> under Owner require action on your end (e.g., sending photos, "
+        "requesting reviews from customers). Items labeled <b>\u201cGroundwork Studio\u201d</b> are handled by "
+        "us at no extra charge within your maintenance plan. "
+        "Even small actions \u2014 like asking two customers a week for a review \u2014 compound into "
+        "meaningful ranking improvements over a quarter."
+    ), blank(0.12)]
 
     recs = [
         ("HIGH PRIORITY", GS_RED,    GS_RED_L,  GS_RED_B,
@@ -930,7 +1030,7 @@ def page_recommendations():
         ("RIGHTPADDING",  (0,0),(-1,-1), 14),
     ]))
     s += [cta]
-    s += footer()
+
     return s
 
 
@@ -946,11 +1046,11 @@ def build():
     doc = SimpleDocTemplate(
         OUT_REPO, pagesize=letter,
         leftMargin=0.75*inch, rightMargin=0.75*inch,
-        topMargin=0.65*inch,  bottomMargin=0.65*inch,
+        topMargin=0.65*inch,  bottomMargin=0.85*inch,
         title="Groundwork Studio — Quarterly Performance Report",
         author="Groundwork Studio AZ LLC",
     )
-    doc.build(story())
+    doc.build(story(), onFirstPage=draw_footer, onLaterPages=draw_footer)
     shutil.copy(OUT_REPO, OUT_DESK)
     print(f"\u2713 Quarterly Report saved to:\n  {OUT_REPO}\n  {OUT_DESK}")
 
