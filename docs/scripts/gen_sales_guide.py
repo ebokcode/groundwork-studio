@@ -62,7 +62,7 @@ def story():
         Paragraph("Cold Calling<br/>Sales Guide", style("cov_h1", fontSize=32, fontName="Helvetica-Bold",
                   textColor=GS_DARK, alignment=TA_CENTER, leading=38)),
         Spacer(1, 0.15*inch),
-        Paragraph("Scripts · Pipeline · Objection Handling · Question Answers",
+        Paragraph("Scripts · Discovery · Pipeline · Objection Handling · Q&amp;A",
                   style("cov_sub", fontSize=11, fontName="Helvetica", textColor=GS_GRAY,
                         alignment=TA_CENTER)),
         Spacer(1, 0.3*inch),
@@ -156,9 +156,163 @@ def story():
 
     s.append(PageBreak())
 
-    # ── SECTION 3: PIPELINE ───────────────────────────────────────────────────
+    # ── SECTION 3: DISCOVERY — FINDING THE PROBLEM ───────────────────────────
     s += [
         Paragraph("SECTION 3", LABEL),
+        Paragraph("Finding the Problem", H1),
+        div(),
+        Paragraph(
+            "Don't ask 'do you have any problems?' — they'll say no. Use indirect, assumptive "
+            "questions that make problems feel normal. Once they acknowledge a gap, "
+            "the demo sells itself.",
+            BODY),
+        Spacer(1, 0.12*inch),
+        Paragraph("The Opening Hook", H2),
+        Paragraph("<i>After your intro — before pitching anything:</i>", SMALL),
+        Paragraph(
+            '"I work with a lot of [restaurants / contractors / salons] in [city] — '
+            'most of them tell me the same thing: their website either doesn\'t exist, '
+            'hasn\'t been touched in years, or just isn\'t bringing in any new customers. '
+            'Is that something you\'re running into at all?"',
+            MONO),
+        Paragraph(
+            "This normalizes the problem so they don't feel embarrassed, and gives them a soft "
+            "yes/no that leads naturally into a real conversation.",
+            SMALL),
+        Spacer(1, 0.1*inch),
+        Paragraph("Discovery Questions", H2),
+        Paragraph(
+            "<i>Use 1-2 of these — don't rapid-fire them all. "
+            "Listen after each one. Silence is good.</i>", SMALL),
+        Spacer(1, 0.06*inch),
+    ]
+
+    discovery_qs = [
+        (
+            '"When someone searches for [your type of business] in [city], '
+            'do you know where you\'re showing up?"',
+            "Makes them realize they don't actually know — opens the SEO conversation naturally.",
+        ),
+        (
+            '"How are most of your new customers finding you right now?"',
+            "Exposes referral dependency. If they say 'word of mouth,' you have your angle.",
+        ),
+        (
+            '"If someone Googled you right now, what would they find?"',
+            "Direct and honest. A pause or laugh tells you everything.",
+        ),
+        (
+            '"Do you have a way to collect reviews from happy customers, '
+            'or is that kind of hit or miss?"',
+            "Surfaces a specific, fixable gap — especially powerful for trades and services.",
+        ),
+        (
+            '"Has anyone come in recently and said they found you online?"',
+            "If they pause or laugh, that's your signal. Low online traffic confirmed.",
+        ),
+        (
+            '"What does your current site do for you — do people actually call from it?"',
+            "Gets them to evaluate their own asset critically. Most will admit it underperforms.",
+        ),
+    ]
+
+    for idx, (q, tip) in enumerate(discovery_qs):
+        drow = [[
+            Paragraph(q, style(f"dq_{idx}", fontSize=9, fontName="Helvetica-Bold",
+                               textColor=GS_DARK, leading=14)),
+            Paragraph(tip, style(f"dt_{idx}", fontSize=8.5, fontName="Helvetica",
+                                 textColor=GS_GRAY, leading=13)),
+        ]]
+        dt = Table(drow, colWidths=[2.9*inch, 3.35*inch])
+        dt.setStyle(TableStyle([
+            ("BACKGROUND", (0,0), (0,0), GS_LIGHT),
+            ("BACKGROUND", (1,0), (1,0), colors.white),
+            ("BOX", (0,0), (-1,-1), 0.5, GS_BORDER),
+            ("LINEAFTER", (0,0), (0,-1), 0.5, GS_BORDER),
+            ("VALIGN", (0,0), (-1,-1), "TOP"),
+            ("TOPPADDING", (0,0), (-1,-1), 8),
+            ("BOTTOMPADDING", (0,0), (-1,-1), 8),
+            ("LEFTPADDING", (0,0), (-1,-1), 10),
+            ("RIGHTPADDING", (0,0), (-1,-1), 8),
+        ]))
+        s += [dt, Spacer(1, 0.05*inch)]
+
+    s += [
+        Spacer(1, 0.12*inch),
+        Paragraph("Common Pain Points to Listen For", H2),
+        Paragraph(
+            "<i>Businesses with weak or no online presence almost always share "
+            "one or more of these problems:</i>", SMALL),
+        Spacer(1, 0.08*inch),
+    ]
+
+    pain_header = ["Pain Point", "What's Actually Happening"]
+    pain_rows = [
+        ["Invisible to Google",
+         "No GMB listing, outdated info, zero local SEO — competitors with worse service rank above them."],
+        ["Referral dependency",
+         "90%+ of customers come from word of mouth — fine until it slows down, then they're stuck."],
+        ["Dead or no reviews",
+         "Last Google review is years old. First impression is a ghost town — customers bounce."],
+        ["Website embarrassment",
+         "They have one, but it's so outdated they don't give out the URL. It's worse than nothing."],
+        ["Missing mobile customers",
+         "Their site breaks on phones — 70%+ of local searches happen on mobile devices."],
+        ["No after-hours capture",
+         "Someone searches at 9pm, finds nothing, calls a competitor who has a contact form."],
+        ["Losing the comparison",
+         "When a prospect compares two businesses, clean site + good reviews wins by default."],
+        ["Lost trust signal",
+         "No website = not legit in the customer's mind — even if the work is excellent."],
+    ]
+
+    pp_data = [[
+        Paragraph(pain_header[0], style("pp_h0", fontSize=8.5, fontName="Helvetica-Bold",
+                                        textColor=colors.white, leading=13)),
+        Paragraph(pain_header[1], style("pp_h1", fontSize=8.5, fontName="Helvetica-Bold",
+                                        textColor=colors.white, leading=13)),
+    ]]
+    for j, row in enumerate(pain_rows):
+        pp_data.append([
+            Paragraph(row[0], style(f"pp_r{j}_0", fontSize=8.5, fontName="Helvetica-Bold",
+                                    textColor=GS_DARK, leading=13)),
+            Paragraph(row[1], style(f"pp_r{j}_1", fontSize=8.5, fontName="Helvetica",
+                                    textColor=GS_DARK, leading=13)),
+        ])
+
+    pp_t = Table(pp_data, colWidths=[1.6*inch, 4.65*inch])
+    pp_t.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), GS_GREEN),
+        ("ROWBACKGROUNDS", (0,1), (-1,-1), [colors.white, colors.HexColor("#f9fafb")]),
+        ("GRID", (0,0), (-1,-1), 0.5, colors.HexColor("#e5e7eb")),
+        ("VALIGN", (0,0), (-1,-1), "TOP"),
+        ("TOPPADDING", (0,0), (-1,-1), 7),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 7),
+        ("LEFTPADDING", (0,0), (-1,-1), 8),
+        ("RIGHTPADDING", (0,0), (-1,-1), 6),
+    ]))
+    s += [pp_t, Spacer(1, 0.15*inch)]
+
+    s += [
+        Paragraph("The Closing Bridge", H2),
+        Paragraph("<i>Use this once they've confirmed any pain point:</i>", SMALL),
+        Paragraph(
+            '"That\'s exactly what we help with — we build clean, professional sites that are '
+            'set up to actually show up on Google in [city]. Most clients start seeing the '
+            'difference within the first month. Got 15 minutes this week to walk through '
+            'what that could look like for you?"',
+            MONO),
+        Paragraph(
+            "Short. Specific. Low-commitment ask. "
+            "If they say yes to 15 minutes, you've moved them from CONTACTED to IN CONVERSATION.",
+            SMALL),
+    ]
+
+    s.append(PageBreak())
+
+    # ── SECTION 4: PIPELINE ───────────────────────────────────────────────────
+    s += [
+        Paragraph("SECTION 4", LABEL),
         Paragraph("Pipeline View", H1),
         div(),
         Paragraph("Track every prospect through these stages. One row per lead.", BODY),
@@ -221,7 +375,7 @@ def story():
 
     # ── SECTION 4: OBJECTION HANDLING ─────────────────────────────────────────
     s += [
-        Paragraph("SECTION 4", LABEL),
+        Paragraph("SECTION 5", LABEL),
         Paragraph("Turning No's Into Yes's", H1),
         div(),
         Paragraph(
@@ -291,7 +445,7 @@ def story():
 
     # ── SECTION 5: QUESTION ANSWERS ───────────────────────────────────────────
     s += [
-        Paragraph("SECTION 5", LABEL),
+        Paragraph("SECTION 6", LABEL),
         Paragraph("Answering Specific Questions", H1),
         div(),
         Paragraph(
