@@ -32,7 +32,7 @@ def style(name, **kw):
     return s
 
 H1 = style("H1", fontSize=22, fontName="Helvetica-Bold", textColor=GS_DARK,
-           spaceAfter=4, spaceBefore=16)
+           spaceAfter=10, spaceBefore=16)
 H2 = style("H2", fontSize=13, fontName="Helvetica-Bold", textColor=GS_GREEN,
            spaceAfter=6, spaceBefore=14)
 H3 = style("H3", fontSize=11, fontName="Helvetica-Bold", textColor=GS_DARK,
@@ -48,7 +48,7 @@ LABEL = style("LABEL", fontSize=8, fontName="Helvetica-Bold",
               textColor=GS_GREEN, spaceAfter=2, spaceBefore=8,
               letterSpacing=1.5)
 
-def div(color=GS_BORDER, thickness=1): return HRFlowable(width="100%", thickness=thickness, color=color, spaceAfter=6, spaceBefore=2)
+def div(color=GS_BORDER, thickness=1): return HRFlowable(width="100%", thickness=thickness, color=color, spaceAfter=8, spaceBefore=6)
 
 def story():
     s = []
@@ -392,8 +392,9 @@ def story():
          "Can I send you a demo?"),
         ("We can't afford it right now.",
          "I hear that a lot — what does your timeline look like for the year? "
-         "... Our builds are one-time, no ongoing platform fees. "
-         "We also structure payment in two halves so it doesn't hit all at once. "
+         "... The build fee is one-time — no surprise platform costs. "
+         "There's a small monthly maintenance fee that covers hosting, security, and any updates, "
+         "but that's it. We also split the build into two payments so it doesn't hit all at once. "
          "What would a realistic number look like for you?"),
         ("I'm not interested.",
          "Fair enough — can I ask what's holding you back? Is it timing, budget, "
