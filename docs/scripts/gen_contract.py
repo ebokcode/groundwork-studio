@@ -122,7 +122,23 @@ def story():
     s += [Paragraph("DELIVERABLES — Pages / Features Included", sty("dl_hdr", fontSize=8, fontName="Helvetica-Bold", textColor=GS_GRAY))]
     for _ in range(3):
         s += [Paragraph("_" * 105, FIELD)]
-    s += [blank(0.05), hr()]
+    s += [blank(0.04)]
+
+    # SEO add-on checkbox
+    seo_row = Table(
+        [[Paragraph("\u2610  Local SEO Setup included  (+$250 one-time)  —  Google Business Profile, schema markup, citations, keyword research",
+                    sty("seo_cb", fontSize=8.5, fontName="Helvetica", textColor=GS_DARK, leading=13))]],
+        colWidths=[6.25*inch]
+    )
+    seo_row.setStyle(TableStyle([
+        ("BACKGROUND",    (0,0),(-1,-1), colors.HexColor("#eff6ff")),
+        ("BOX",           (0,0),(-1,-1), 0.75, colors.HexColor("#bfdbfe")),
+        ("TOPPADDING",    (0,0),(-1,-1), 7),
+        ("BOTTOMPADDING", (0,0),(-1,-1), 7),
+        ("LEFTPADDING",   (0,0),(-1,-1), 12),
+        ("RIGHTPADDING",  (0,0),(-1,-1), 12),
+    ]))
+    s += [seo_row, blank(0.05), hr()]
 
     # ── FEES & PAYMENT ────────────────────────────────────────────────────────
     s += [Paragraph("FEES & PAYMENT", LABEL)]

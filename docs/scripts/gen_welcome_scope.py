@@ -23,6 +23,9 @@ GS_BORDER = colors.HexColor("#d1fae5")
 GS_MID    = colors.HexColor("#dcfce7")
 LINE      = colors.HexColor("#e5e7eb")
 WHITE     = colors.white
+GS_BLUE      = colors.HexColor("#eff6ff")
+GS_BLUE_BDR  = colors.HexColor("#bfdbfe")
+GS_BLUE_TEXT = colors.HexColor("#1d4ed8")
 
 def sty(name, **kw): return ParagraphStyle(name, **kw)
 
@@ -208,7 +211,38 @@ def story():
         ]))
         s += [rt]
 
-    s += [blank(0.05)]
+    # ── LOCAL SEO ADD-ON ──────────────────────────────────────────────────────
+    seo_box = Table(
+        [
+            [Paragraph("+ LOCAL SEO SETUP  —  OPTIONAL ONE-TIME ADD-ON",
+                       sty("seo_title", fontSize=9, fontName="Helvetica-Bold",
+                           textColor=GS_BLUE_TEXT, spaceAfter=0, letterSpacing=0.5))],
+            [Paragraph(
+                "<b>$250 · Done once, done right.</b>  Includes: Google Business Profile setup "
+                "and optimization, schema markup (tells Google your exact business type, location, "
+                "and services), citation submissions to Yelp, BBB, and Apple Maps, plus a keyword "
+                "research doc for your top 5 search terms. No monthly fees — one-time add-on to your build.",
+                sty("seo_body", fontSize=8.5, fontName="Helvetica", textColor=GS_DARK, leading=13))],
+            [Paragraph("\u2610  Yes, add Local SEO Setup to my project  (+$250 one-time)",
+                       sty("seo_check", fontSize=9, fontName="Helvetica-Bold",
+                           textColor=GS_BLUE_TEXT, leading=14))],
+        ],
+        colWidths=[6.25*inch]
+    )
+    seo_box.setStyle(TableStyle([
+        ("BACKGROUND",    (0,0),(-1,-1), GS_BLUE),
+        ("BOX",           (0,0),(-1,-1), 1.0, GS_BLUE_BDR),
+        ("TOPPADDING",    (0,0),(0,0),  10),
+        ("BOTTOMPADDING", (0,0),(0,0),   4),
+        ("TOPPADDING",    (0,1),(0,1),   2),
+        ("BOTTOMPADDING", (0,1),(0,1),   6),
+        ("TOPPADDING",    (0,2),(0,2),   4),
+        ("BOTTOMPADDING", (0,2),(0,2),  10),
+        ("LEFTPADDING",   (0,0),(-1,-1), 14),
+        ("RIGHTPADDING",  (0,0),(-1,-1), 14),
+    ]))
+    s += [seo_box, blank(0.05)]
+
     s += [Paragraph("Additional Notes / Custom Requests", H2)]
     for _ in range(2):
         s += [Paragraph("_" * 108, FIELD)]

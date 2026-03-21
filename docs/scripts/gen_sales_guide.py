@@ -344,9 +344,13 @@ def story():
         ),
         (
             "Do you do SEO?",
-            "Every site we build is SEO-optimized out of the box — proper meta tags, "
-            "fast load times, mobile-first design, Google Business integration. "
-            "We're not an ongoing SEO agency, but the foundation is solid from day one.",
+            "Every site we build is SEO-ready out of the box — proper meta tags, fast load times, "
+            "mobile-first design, and Google-readable structure. That gives you a stronger foundation "
+            "than most agencies start with. We also offer a one-time Local SEO Setup add-on for $250. "
+            "That covers Google Business Profile setup and optimization, schema markup so Google knows "
+            "exactly what your business is, citation submissions to Yelp, BBB, and Apple Maps, "
+            "and a keyword research doc for your top 5 search terms. Done once, no monthly fees. "
+            "Most clients add it on — it's the fastest way to start showing up locally.",
         ),
         (
             "What's your LLC or business registration?",
@@ -382,6 +386,7 @@ def story():
         ["Never say:", '"I\'m just calling to check in" — always have a purpose'],
         ["Always end with:", "A specific next action (email, callback day, demo link)"],
         ["Answer to any tech Q:", '"We hand-code it from scratch — no templates, no platform fees"'],
+        ["Local SEO add-on:", "$250 one-time — GBP setup, schema markup, citations, keyword doc"],
         ["LLC name on contract:", "Groundwork Studio AZ LLC"],
         ["Contact:", "evan@teamground.work · (480) 452-6473 · teamground.work"],
     ]
