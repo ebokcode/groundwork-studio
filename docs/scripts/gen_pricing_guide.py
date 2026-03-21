@@ -346,37 +346,43 @@ def page_tier_detail():
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 4  —  MONTHLY PLANS
+# PAGE 4  —  MAINTENANCE PLAN
 # ═══════════════════════════════════════════════════════════════════════════════
-def page_monthly():
+def page_maintenance():
     s = [PageBreak()]
 
     s += [
         Paragraph("MONTHLY PLANS \u2014 KEEPING YOUR SITE RUNNING", LABEL),
         Paragraph(
-            "Once your site is live, the <b>Maintenance Plan is required</b> to keep your site "
-            "online \u2014 it covers hosting, SSL, uptime monitoring, and content updates. "
+            "Once your site is live, the <b>Maintenance Plan is required</b> to keep it online \u2014 "
+            "it covers hosting, SSL, uptime monitoring, and content updates. "
             "The <b>Growth Plan is completely optional</b> and is for businesses that want active "
-            "Google presence management, review monitoring, and ongoing SEO work. "
+            "Google presence management, review monitoring, and ongoing SEO. "
             "You can start on Maintenance and upgrade to Growth at any time.",
             BODYJ),
-        blank(0.12),
+        blank(0.14),
+        Paragraph("MAINTENANCE PLAN \u2014 REQUIRED", sty("mp_lbl", fontSize=8,
+                  fontName="Helvetica-Bold", textColor=GS_GREEN, letterSpacing=1.5, spaceAfter=6)),
     ]
 
     mh = [cell(h, bold=True, size=8, color=WHITE, align=TA_CENTER)
           for h in ["TIER", "MONTHLY RATE", "WHAT\u2019S INCLUDED"]]
-
     maint_rows = [
         ("T1 Foundation", "$125/mo",
          "Netlify hosting on a global CDN, SSL certificate (HTTPS), uptime monitoring with alerts, "
          "all security and platform updates, minor content edits on request (up to 1 hr/month), "
          "and a monthly uptime report sent to you."),
-        ("T2 Standard",  "$150/mo", "Everything above. Slightly more surface area to maintain and monitor each month."),
-        ("T3 Elevated",  "$175/mo", "Everything above. More pages means more content to update, more links to verify, and a larger site to keep optimized."),
-        ("T4 Premium",   "$200/mo", "Everything above. 8\u201311 pages plus booking integration and deep SEO architecture require the most ongoing attention."),
+        ("T2 Standard",  "$150/mo",
+         "Everything above. Slightly more surface area to maintain and monitor each month."),
+        ("T3 Elevated",  "$175/mo",
+         "Everything above. More pages means more content to update, more links to verify, "
+         "and a larger site to keep optimized."),
+        ("T4 Premium",   "$200/mo",
+         "Everything above. 8\u201311 pages plus booking integration and deep SEO architecture "
+         "require the most ongoing attention to keep performing."),
     ]
-    mr = [[cell(t, bold=True, size=9), cell(r, bold=True, size=11, color=GS_GREEN, align=TA_CENTER), cell(d, size=8.5, leading=13)]
-          for t, r, d in maint_rows]
+    mr = [[cell(t, bold=True, size=9), cell(r, bold=True, size=11, color=GS_GREEN, align=TA_CENTER),
+           cell(d, size=8.5, leading=13)] for t, r, d in maint_rows]
     mt = Table([mh] + mr, colWidths=[1.1*inch, 1.1*inch, 4.05*inch])
     mt.setStyle(TableStyle([
         ("BACKGROUND",    (0,0),(-1,0),  GS_GREEN),
@@ -390,18 +396,31 @@ def page_monthly():
         ("ALIGN",         (0,1),(1,-1),  "CENTER"),
         ("VALIGN",        (0,1),(1,-1),  "MIDDLE"),
     ]))
+    s += [mt, blank(0.06),
+          Paragraph(
+              "Why the rate varies by tier: More pages means more to monitor, maintain, and update. "
+              "The rate reflects actual time spent, not a flat fee charged regardless of work. "
+              "Most clients choose this plan. Less than a tank of gas per month.",
+              SMALLL)]
+
+    s += footer()
+    return s
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PAGE 5  —  GROWTH PLAN + NEXTDOOR
+# ═══════════════════════════════════════════════════════════════════════════════
+def page_growth():
+    s = [PageBreak()]
 
     s += [
-        Paragraph("MAINTENANCE PLAN", sty("mp_lbl", fontSize=8, fontName="Helvetica-Bold",
-                  textColor=GS_GREEN, letterSpacing=1.5, spaceAfter=6)),
-        mt,
-        blank(0.04),
+        Paragraph("GROWTH PLAN \u2014 OPTIONAL UPGRADE", LABEL),
         Paragraph(
-            "Why the rate varies by tier: More pages means more to monitor, maintain, and update. "
-            "The rate reflects actual time spent. Most clients choose this plan. "
-            "Less than a tank of gas per month.",
-            SMALLL),
-        blank(0.18),
+            "Not required \u2014 add this if you want active Google presence management, "
+            "review monitoring, keyword tracking, and ongoing SEO work. "
+            "Start on Maintenance and upgrade whenever you\u2019re ready. Cancel anytime with 30 days notice.",
+            BODYJ),
+        blank(0.1),
     ]
 
     gh = [cell(h, bold=True, size=8, color=WHITE, align=TA_CENTER)
@@ -411,12 +430,17 @@ def page_monthly():
          "Everything in Maintenance, plus 1\u20133 Google Business Profile posts per month, "
          "responses to all new Google reviews, monthly SEO refresh (meta titles and descriptions "
          "updated), and a monthly keyword ranking report."),
-        ("T2 Standard",  "$300/mo", "Everything in T1 Growth. Additional SEO surface area across added pages."),
-        ("T3 Elevated",  "$350/mo", "Everything above, plus proactive review generation strategy, page copy optimization, and quarterly competitor keyword gap analysis."),
-        ("T4 Premium",   "$425/mo", "Everything above across all 8\u201311 pages. Maximum SEO investment for businesses that want to dominate local search."),
+        ("T2 Standard",  "$300/mo",
+         "Everything in T1 Growth. Additional SEO surface area across added pages."),
+        ("T3 Elevated",  "$350/mo",
+         "Everything above, plus proactive review generation strategy, page copy optimization, "
+         "and quarterly competitor keyword gap analysis."),
+        ("T4 Premium",   "$425/mo",
+         "Everything above across all 8\u201311 pages. Maximum SEO investment for businesses "
+         "that want to dominate local search."),
     ]
-    gr = [[cell(t, bold=True, size=9), cell(r, bold=True, size=11, color=GS_GREEN, align=TA_CENTER), cell(d, size=8.5, leading=13)]
-          for t, r, d in growth_rows]
+    gr = [[cell(t, bold=True, size=9), cell(r, bold=True, size=11, color=GS_GREEN, align=TA_CENTER),
+           cell(d, size=8.5, leading=13)] for t, r, d in growth_rows]
     gt = Table([gh] + gr, colWidths=[1.1*inch, 1.1*inch, 4.05*inch])
     gt.setStyle(TableStyle([
         ("BACKGROUND",    (0,0),(-1,0),  GS_GREEN),
@@ -430,37 +454,17 @@ def page_monthly():
         ("ALIGN",         (0,1),(1,-1),  "CENTER"),
         ("VALIGN",        (0,1),(1,-1),  "MIDDLE"),
     ]))
+    s += [gt, blank(0.06),
+          Paragraph(
+              "Why it costs more: Real, ongoing work each month \u2014 writing posts, monitoring "
+              "rankings, responding to reviews, and making data-driven adjustments. "
+              "Not automated. A real person working on your Google presence every month.",
+              SMALLL),
+          blank(0.16), hr()]
 
+    # Nextdoor (logically grouped with monthly plans)
     s += [
-        Paragraph("GROWTH PLAN \u2014 OPTIONAL UPGRADE",
-                  sty("gp_lbl", fontSize=8, fontName="Helvetica-Bold",
-                      textColor=GS_GREEN, letterSpacing=1.5, spaceAfter=4)),
-        Paragraph(
-            "Not required \u2014 add this if you want active Google presence management, "
-            "review monitoring, keyword tracking, and ongoing SEO. Cancel anytime with 30 days notice.",
-            sty("gp_intro", fontSize=8.5, fontName="Helvetica", textColor=GS_GRAY,
-                leading=13, spaceAfter=8)),
-        gt,
         blank(0.04),
-        Paragraph(
-            "Why it costs more: Real, ongoing work each month \u2014 writing posts, monitoring "
-            "rankings, responding to reviews, and making data-driven adjustments. "
-            "Not automated. A real person working on your Google presence every month.",
-            SMALLL),
-    ]
-
-    s += footer()
-    return s
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# PAGE 5  —  NEXTDOOR + ADD-ON SERVICES
-# ═══════════════════════════════════════════════════════════════════════════════
-def page_addons():
-    s = [PageBreak()]
-
-    # Nextdoor
-    s += [
         Paragraph("LOCAL PRESENCE ADD-ON \u2014 NEXTDOOR MANAGEMENT", LABEL),
     ]
     nd_t = Table(
@@ -470,8 +474,8 @@ def page_addons():
                align=TA_CENTER, leading=14),
           cell(
             "$99 Setup: We create and fully configure your Nextdoor Business page. "
-            "Monthly: One neighborhood post written and published per month, monitoring for "
-            "neighbor recommendations and service requests, responding to messages in your area. "
+            "Monthly: One neighborhood post per month, monitoring for neighbor recommendations "
+            "and service requests, responding to messages in your area. "
             "<b>Why Nextdoor matters:</b> Most homeowners don\u2019t Google for a plumber or "
             "roofer \u2014 they ask their neighbors. Nextdoor is where those conversations happen. "
             "Flat rate \u2014 same price regardless of tier.",
@@ -492,7 +496,17 @@ def page_addons():
     s += [Paragraph(
         "If you cancel your monthly plan, your site will go offline. "
         "A $250 migration fee applies if you\u2019d like the site files transferred to a new host.",
-        SMALLL), blank(0.16), hr()]
+        SMALLL)]
+
+    s += footer()
+    return s
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PAGE 6  —  ADD-ON SERVICES
+# ═══════════════════════════════════════════════════════════════════════════════
+def page_addons():
+    s = [PageBreak()]
 
     # Add-On Services
     s += [
@@ -502,45 +516,64 @@ def page_addons():
         blank(0.08),
     ]
 
+    # SEO differentiator note
+    seo_note = Table(
+        [[Paragraph(
+            "<b>How our SEO options differ:</b>  "
+            "<b>Local SEO Setup ($250)</b> is a one-time foundation \u2014 GBP, schema, citations, keyword doc. "
+            "Done once at launch, no ongoing fees. "
+            "<b>Growth Plan ($275\u2013$425/mo)</b> is ongoing \u2014 monthly posts, review responses, "
+            "rank tracking, and active optimization. Think of Local SEO Setup as planting the seed; "
+            "the Growth Plan is watering it every month.",
+            sty("seo_note", fontSize=8.5, fontName="Helvetica", textColor=GS_DARK, leading=13))]],
+        colWidths=[6.25*inch]
+    )
+    seo_note.setStyle(TableStyle([
+        ("BACKGROUND",    (0,0),(-1,-1), GS_BLUE),
+        ("BOX",           (0,0),(-1,-1), 1.0, GS_BLUE_B),
+        ("TOPPADDING",    (0,0),(-1,-1), 10),
+        ("BOTTOMPADDING", (0,0),(-1,-1), 10),
+        ("LEFTPADDING",   (0,0),(-1,-1), 14),
+        ("RIGHTPADDING",  (0,0),(-1,-1), 14),
+    ]))
+    s += [seo_note, blank(0.1)]
+
     ah = [cell(h, bold=True, size=8, color=WHITE, align=TA_CENTER)
-          for h in ["ADD-ON", "PRICE", "WHAT YOU GET \u2014 AND WHY IT\u2019S PRICED THIS WAY"]]
+          for h in ["ADD-ON", "PRICE", "WHAT YOU GET"]]
 
     addons = [
-        ("Logo & Brand Identity",       "$300 \u2013 $600",
+        ("Logo & Brand Identity",
+         "$300 \u2013 $600",
          "A professionally designed logo and full brand kit \u2014 color palette, fonts, and logo "
          "files in all formats (PNG, SVG, PDF). Simple wordmark is $300; custom icon-based logo "
-         "with full brand guidelines is $600. Delivered before the site launches so everything matches."),
-        ("Google Business Profile Setup", "$200 \u2013 $350",
-         "We create or claim your Google Business listing, upload photos, write your business "
-         "description, configure your service list and hours, and complete full verification. "
-         "Range reflects whether the listing exists and needs cleanup ($200) or needs to be built "
-         "from scratch ($350)."),
-        ("Local SEO Setup",              "$250\none-time",
-         "<b>Done once, done right.</b>  Google Business Profile setup and optimization, schema "
-         "markup (tells Google your exact business type, location, and services), citation "
-         "submissions to Yelp, BBB, and Apple Maps, plus a keyword research doc for your top 5 "
-         "search terms. No monthly fees \u2014 one flat add-on to your build. The fastest way to "
-         "start showing up in local searches from day one."),
-        ("SEO Foundation Package",       "$400 \u2013 $700",
-         "Keyword research specific to your service area, meta titles and descriptions written for "
-         "every page, schema markup, and sitemap submission to Google Search Console. Range reflects "
-         "site size \u2014 Tier 1 is $400; Tier 4 is closer to $700."),
-        ("Booking / Scheduling Integration", "$300 \u2013 $500",
+         "with full brand guidelines is $600. Delivered before launch so everything matches."),
+        ("Local SEO Setup",
+         "$250\none-time",
+         "<b>One-time foundation.</b>  Google Business Profile setup and optimization, schema markup "
+         "(tells Google your exact business type and location), citation submissions to Yelp, BBB, "
+         "and Apple Maps, plus a keyword research doc for your top 5 search terms. "
+         "No monthly fees \u2014 the fastest way to start showing up locally from day one."),
+        ("Booking / Scheduling Integration",
+         "$300 \u2013 $500",
          "Connects an online booking tool (Calendly, Square Appointments, or Acuity) to your site "
-         "so customers can schedule without calling. Price reflects integration complexity and "
-         "whether a new account needs setup."),
-        ("Google & Meta Ads Setup",      "$400 setup +\n10\u201315%/mo\nof ad spend",
-         "We build and manage paid ad campaigns on Google Search and/or Facebook/Instagram targeting "
-         "customers in your service area. You control the budget. The setup fee covers campaign "
-         "architecture and ad copy; monthly percentage covers ongoing management and reporting."),
-        ("Domain Registration & Setup",  "$50 \u2013 $75",
-         "We handle the domain purchase and full DNS connection \u2014 no GoDaddy account needed. "
-         "Alternatively, buy your own domain ($12\u2013$15/yr) and we connect it at no extra charge. "
-         "The $50\u2013$75 is for the purchase and setup service only."),
-        ("Rush Delivery",                "+25% of\nbuild fee",
-         "Guarantees your project moves to the front of the queue and is completed in under 2 weeks. "
-         "Standard turnaround is already 1\u20132 weeks \u2014 rush delivery reserves dedicated "
-         "focus time and may require evening or weekend work to hit the deadline."),
+         "so customers can schedule without calling. You set your availability \u2014 customers book "
+         "themselves and you get a notification. Price reflects integration complexity."),
+        ("Paid Ads Setup\n(Google & Meta)",
+         "$400 setup +\n10\u201315%/mo\nof ad spend",
+         "We build and manage paid campaigns on Google Search and/or Facebook/Instagram targeting "
+         "customers in your service area. You control the budget \u2014 we write the ads, build "
+         "the campaigns, and optimize monthly. Setup covers architecture and copy; "
+         "monthly % covers ongoing management and reporting."),
+        ("Domain Registration & Setup",
+         "$50 \u2013 $75",
+         "We purchase the domain and handle full DNS setup \u2014 no GoDaddy account needed. "
+         "Alternatively, buy your own domain ($12\u2013$15/yr) and we connect it at no charge. "
+         "The $50\u2013$75 is for the purchase-and-setup service only."),
+        ("Rush Delivery",
+         "+25% of\nbuild fee",
+         "Moves your project to the front of the queue \u2014 completed in under 2 weeks. "
+         "Standard turnaround is already 1\u20132 weeks; rush reserves dedicated focus time "
+         "and may require evening or weekend work to hit your deadline."),
     ]
 
     seo_idx = next(i+1 for i, (t,_,_) in enumerate(addons) if "Local SEO" in t)
@@ -550,20 +583,20 @@ def page_addons():
            cell(d, size=8.5, leading=13)]
           for t, p, d in addons]
 
-    at = Table([ah] + ar, colWidths=[1.45*inch, 0.9*inch, 3.9*inch])
+    at = Table([ah] + ar, colWidths=[1.5*inch, 0.95*inch, 3.8*inch])
     at.setStyle(TableStyle([
-        ("BACKGROUND",    (0,0),(-1,0),            GS_GREEN),
-        ("ROWBACKGROUNDS",(0,1),(-1,-1),           [WHITE, colors.HexColor("#f9fafb")]),
+        ("BACKGROUND",    (0,0),(-1,0),             GS_GREEN),
+        ("ROWBACKGROUNDS",(0,1),(-1,-1),            [WHITE, colors.HexColor("#f9fafb")]),
         ("BACKGROUND",    (0,seo_idx),(-1,seo_idx), GS_BLUE),
         ("BOX",           (0,seo_idx),(-1,seo_idx), 1.0, GS_BLUE_B),
-        ("GRID",          (0,0),(-1,-1),            0.5, LINE),
-        ("VALIGN",        (0,0),(-1,-1),            "TOP"),
-        ("TOPPADDING",    (0,0),(-1,-1),            7),
-        ("BOTTOMPADDING", (0,0),(-1,-1),            7),
-        ("LEFTPADDING",   (0,0),(-1,-1),            8),
-        ("RIGHTPADDING",  (0,0),(-1,-1),            8),
-        ("ALIGN",         (0,1),(1,-1),             "CENTER"),
-        ("TEXTCOLOR",     (1,seo_idx),(1,seo_idx),  GS_BLUE_T),
+        ("GRID",          (0,0),(-1,-1),             0.5, LINE),
+        ("VALIGN",        (0,0),(-1,-1),             "TOP"),
+        ("TOPPADDING",    (0,0),(-1,-1),             7),
+        ("BOTTOMPADDING", (0,0),(-1,-1),             7),
+        ("LEFTPADDING",   (0,0),(-1,-1),             8),
+        ("RIGHTPADDING",  (0,0),(-1,-1),             8),
+        ("ALIGN",         (0,1),(1,-1),              "CENTER"),
+        ("TEXTCOLOR",     (1,seo_idx),(1,seo_idx),   GS_BLUE_T),
     ]))
     s += [at]
 
@@ -635,7 +668,7 @@ def page_good_to_know():
 # ═══════════════════════════════════════════════════════════════════════════════
 def story():
     return (page_intro() + page_tiers_overview() + page_tier_detail() +
-            page_monthly() + page_addons() + page_good_to_know())
+            page_maintenance() + page_growth() + page_addons() + page_good_to_know())
 
 
 def build():
